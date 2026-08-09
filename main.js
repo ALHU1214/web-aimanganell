@@ -13,8 +13,8 @@
   var pages = { home: $('#home'), info: $('#page2') };
 
   function showPage(which, anchor) {
-    pages.home.hidden = which !== 'home';
-    pages.info.hidden = which !== 'info';
+    if (pages.home) pages.home.hidden = which !== 'home';
+    if (pages.info) pages.info.hidden = which !== 'info';
     if (anchor) {
       var el = document.getElementById(anchor);
       if (el) {
@@ -45,6 +45,16 @@
       window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
     });
   });
+
+  // revela la página 2 al cargar si la URL ya trae un hash que apunta ahí
+  // (enlace externo, ej. desde Google o desde el blog), no solo al hacer clic
+  (function revealFromHash() {
+    var id = window.location.hash.slice(1);
+    if (!id || !pages.info) return;
+    var target = id === 'page2' ? pages.info : document.getElementById(id);
+    if (!target || !(target === pages.info || pages.info.contains(target))) return;
+    showPage('info', id === 'page2' ? '' : id);
+  })();
 
   /* ---------- 2 · vídeos de fondo ---------- */
   function setupVideo(video, src, opts) {
@@ -178,12 +188,14 @@
   };
 
   function openLegal(doc) {
-    titleEl.textContent = titles[doc] || titles.priv;
+    if (!modal) return;
+    if (titleEl) titleEl.textContent = titles[doc] || titles.priv;
     $$('.legal-body', modal).forEach(function (b) { b.hidden = b.getAttribute('data-doc') !== doc; });
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
   }
   function closeLegal() {
+    if (!modal) return;
     modal.hidden = true;
     document.body.style.overflow = '';
   }
@@ -195,9 +207,10 @@
       openLegal(a.getAttribute('data-legal'));
     });
   });
-  $('.legal-close').addEventListener('click', closeLegal);
-  modal.addEventListener('click', function (e) { if (e.target === modal) closeLegal(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeLegal(); });
+  var legalClose = $('.legal-close');
+  if (legalClose) legalClose.addEventListener('click', closeLegal);
+  if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeLegal(); });
+  document.addEventListener('keydown', function (e) { if (modal && e.key === 'Escape' && !modal.hidden) closeLegal(); });
 
   /* ---------- 6 · cookies y analítica (Consent Mode v2) ---------- */
   var bar = $('#cookie-bar');
@@ -253,25 +266,28 @@
 
   try {
     var choice = localStorage.getItem('am_cookies');
-    if (!choice) { bar.hidden = false; initConsentMode(); }
+    if (!choice) { if (bar) bar.hidden = false; initConsentMode(); }
     else if (choice === 'all') { grant(); }
     else { initConsentMode(); }
-  } catch (err) { bar.hidden = false; }
+  } catch (err) { if (bar) bar.hidden = false; }
 
-  $('#cookie-accept').addEventListener('click', function () {
+  var cookieAccept = $('#cookie-accept');
+  if (cookieAccept) cookieAccept.addEventListener('click', function () {
     try { localStorage.setItem('am_cookies', 'all'); } catch (e) {}
     grant();
-    bar.hidden = true;
+    if (bar) bar.hidden = true;
   });
-  $('#cookie-reject').addEventListener('click', function () {
+  var cookieReject = $('#cookie-reject');
+  if (cookieReject) cookieReject.addEventListener('click', function () {
     try { localStorage.setItem('am_cookies', 'essential'); } catch (e) {}
     initConsentMode();
-    bar.hidden = true;
+    if (bar) bar.hidden = true;
   });
-  $('#reopen-cookies').addEventListener('click', function (e) {
+  var reopenCookies = $('#reopen-cookies');
+  if (reopenCookies) reopenCookies.addEventListener('click', function (e) {
     e.preventDefault();
     try { localStorage.removeItem('am_cookies'); } catch (err) {}
     closeLegal();
-    bar.hidden = false;
+    if (bar) bar.hidden = false;
   });
 })();

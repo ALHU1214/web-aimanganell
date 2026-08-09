@@ -9,8 +9,12 @@ window.AM_CONFIG = {
   calUrl: 'https://cal.com/aimanganell/llamada-inicial',
 
   // Vídeos de fondo. Deja '' para desactivar un vídeo.
+  // Ojo: son rutas relativas al documento que los usa, no a este archivo.
+  // heroVideo lo consume index.html (raíz); consultoriaVideo lo consume
+  // consultoria/index.html (un nivel más abajo) — si alguna vez se usan
+  // desde otra profundidad, esta ruta también hay que ajustarla.
   heroVideo: 'assets/hero.mp4',
-  consultoriaVideo: 'assets/consultoria.mp4',
+  consultoriaVideo: '../assets/consultoria.mp4',
   consultoriaVideoRate: 0.55,   // cámara lenta del vídeo de consultoría
 
   // Destino de los leads. Deja supabase.url vacío para desactivarlo
