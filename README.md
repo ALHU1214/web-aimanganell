@@ -6,11 +6,17 @@ Web estática. Sin build, sin dependencias: HTML + CSS + JS puro.
 
 ```
 web/
-├── index.html    Todo el marcado (portada + consultoría + legales)
-├── styles.css    Todos los estilos
-├── main.js       Lógica: navegación, formularios, cookies, vídeos
-├── config.js     Ajustes que cambian al publicar
-└── assets/       Logos, favicon y textura de fondo
+├── index.html          Portada (hero + formulario)
+├── consultoria/        Página de consultoría (URL propia, antes vivía oculta en index.html)
+├── legal/              Aviso legal, privacidad, cookies — URL propia + modal
+├── blog/
+│   ├── posts/          DATOS de cada post (*.post) — lo único que toca n8n
+│   └── <slug>/          Páginas generadas — NO editar a mano, ver "Blog" más abajo
+├── scripts/            Plantilla y generador del blog (Node puro, sin dependencias)
+├── styles.css          Todos los estilos
+├── main.js             Lógica: navegación, formularios, cookies, vídeos, modal legal
+├── config.js           Ajustes que cambian al publicar
+└── assets/             Logos, favicon, vídeos e imágenes compartidas
 ```
 
 ## Verla en local
@@ -40,6 +46,29 @@ falta recomprimir con otros parámetros.
 **Colores y tipografía:** en `styles.css`, bloque `:root` al principio.
 Cambiando `--acc`, `--acc2` y `--acc-rgb` cambia el acento de toda la web.
 
+## Blog
+
+Contenido y presentación separados: `blog/posts/*.post` son los datos
+(uno por post), `blog/<slug>/` son las páginas ya generadas. **No se
+edita `blog/<slug>/index.html` a mano** — se sobrescribe en el próximo
+build. El formato exacto de un `.post` está documentado en
+[`blog/posts/README.md`](blog/posts/README.md).
+
+Para generar las páginas a partir de los datos:
+
+```bash
+node scripts/build-blog.js
+```
+
+No hace falta `npm install` — es Node puro. En local hay que
+ejecutarlo a mano tras añadir o editar un `.post`; en GitHub, el
+workflow `.github/workflows/build-blog.yml` lo hace solo en cada
+push que toque `blog/posts/`.
+
+Rediseñar el blog es editar `scripts/post-template.html` y volver a
+ejecutar el build — todos los posts (pasados y futuros) se regeneran
+con el diseño nuevo, sin tocar ningún `.post`.
+
 ## Publicar en WordPress
 
 La web no es un tema de WordPress. Tres opciones, de menos a más trabajo:
@@ -65,12 +94,16 @@ cd web
 git init
 git add .
 git commit -m "Primera versión"
-git branch -M main
+git branch -M master
 git remote add origin https://github.com/USUARIO/REPO.git
-git push -u origin main
+git push -u origin master
 ```
 
 Con GitHub Pages activado en Settings → Pages ya tienes la web publicada.
+Si usas GitHub Pages sirviendo directamente desde `master` (sin Actions
+de build para el propio Pages), el workflow de `blog/` no necesita
+configuración aparte: ya está en `.github/workflows/build-blog.yml` y
+se activa solo con el primer push que toque `blog/posts/`.
 
 ## Nota sobre las claves
 

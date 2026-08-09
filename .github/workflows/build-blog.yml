@@ -1,0 +1,34 @@
+name: Build blog
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'blog/posts/**'
+      - 'scripts/build-blog.js'
+      - 'scripts/post-template.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generar páginas del blog
+        run: node scripts/build-blog.js
+
+      - name: Commit de las páginas generadas (si hay cambios)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/
+          if git diff --cached --quiet; then
+            echo "Sin cambios en las páginas generadas."
+          else
+            git commit -m "Genera blog desde blog/posts/ [skip ci]"
+            git push
+          fi
