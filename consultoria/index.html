@@ -22,6 +22,47 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+
+<!-- JSON-LD: sin precio porque no se publica en ningún sitio del
+     sitio (se trata en la llamada) — solo lo que ya describe esta
+     página: en qué consiste el diagnóstico y que se descuenta de la
+     implementación. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://aimanganell.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Consultoría", "item": "https://aimanganell.com/consultoria/" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Diagnóstico IA & Ciberseguridad",
+      "serviceType": "Consultoría de automatización con inteligencia artificial y ciberseguridad",
+      "url": "https://aimanganell.com/consultoria/",
+      "description": "Diagnóstico que mapea los procesos reales de la empresa, evalúa su ciberseguridad y prioriza las automatizaciones posibles por impacto y riesgo. Es un servicio con entidad propia: si la empresa contrata después la implementación, el importe del diagnóstico se descuenta íntegramente.",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI MANGANELL",
+        "url": "https://aimanganell.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aimanganell.com/assets/logo-h-a.png",
+          "width": 985,
+          "height": 168
+        }
+      },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Canarias" },
+        { "@type": "Country", "name": "España" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

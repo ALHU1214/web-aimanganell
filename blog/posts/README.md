@@ -61,6 +61,24 @@ ignoran), pero no hacen falta.
   palabras del cuerpo. No es un campo del JSON.
 - **Bloque de autor y CTA de cierre**: son fijos, iguales en todos
   los posts, y viven en `scripts/post-template.html`, no en los datos.
+- **`dateModified` del JSON-LD**: no es un campo del `.post`. Se calcula
+  con `git log` sobre el propio archivo — la fecha del último commit
+  que lo tocó. Si editas un post más adelante (nuevo commit sobre el
+  mismo `.post`), `dateModified` se actualiza solo. `date` (el campo
+  que sí existe) sigue siendo la fecha editorial de publicación
+  (`datePublished`), y no cambia aunque se edite el post después.
+
+## SEO técnico (JSON-LD)
+
+Cada post generado lleva automáticamente, sin que n8n haga nada:
+`BreadcrumbList` (Inicio › Blog › el post), `BlogPosting` (con
+`author`/`publisher` = AI MANGANELL, `datePublished` = `date`,
+`dateModified` = último commit git sobre el `.post`), y `FAQPage`
+si el post tiene `faq`. El listado (`blog/index.html`) lleva
+`CollectionPage` + `BreadcrumbList` + `ItemList` de los posts
+listados. Verificable con la
+[Prueba de resultados enriquecidos de Google](https://search.google.com/test/rich-results)
+pegando la URL una vez publicada, o el HTML en local antes de publicar.
 
 ## Validación
 

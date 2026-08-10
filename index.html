@@ -27,6 +27,37 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+
+<!-- JSON-LD: entidad de negocio. Sin teléfono, precio ni dirección
+     completa porque no se publican en ningún sitio del sitio — solo
+     región y país, que es lo único que consta en el aviso legal. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://aimanganell.com/#organization",
+  "name": "AI MANGANELL",
+  "url": "https://aimanganell.com/",
+  "description": "Consultoría de automatización con inteligencia artificial y ciberseguridad para pymes B2B. Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden.",
+  "email": "hola@aimanganell.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://aimanganell.com/assets/logo-h-a.png",
+    "width": 985,
+    "height": 168
+  },
+  "image": "https://aimanganell.com/assets/logo-h-a.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Canarias",
+    "addressCountry": "ES"
+  },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Canarias" },
+    { "@type": "Country", "name": "España" }
+  ]
+}
+</script>
 </head>
 <body>
 

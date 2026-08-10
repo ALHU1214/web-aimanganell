@@ -79,6 +79,13 @@ Rediseñar el blog es editar `scripts/post-template.html` y volver a
 ejecutar el build — todos los posts (pasados y futuros) se regeneran
 con el diseño nuevo, sin tocar ningún `.post`.
 
+**SEO técnico (JSON-LD):** cada post lleva `BreadcrumbList` + `BlogPosting`
+(+ `FAQPage` si tiene preguntas) generados solos; el listado lleva
+`CollectionPage` + `BreadcrumbList` (+ `ItemList` si hay posts). `index.html`
+y `consultoria/index.html` llevan su propio marcado (`ProfessionalService`
+y `Service`) escrito a mano. Detalle completo y cómo validarlo en
+[`blog/posts/README.md`](blog/posts/README.md#seo-técnico-json-ld).
+
 ## Publicar en WordPress
 
 La web no es un tema de WordPress. Tres opciones, de menos a más trabajo:

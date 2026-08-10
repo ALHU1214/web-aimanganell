@@ -10,6 +10,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const POSTS_DIR = path.join(ROOT, 'blog', 'posts');
@@ -24,6 +25,56 @@ const MESES = [
   'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
   'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
 ];
+
+// misma entidad en cada página — inline siempre (no @id cruzado entre
+// páginas: la herramienta de resultados enriquecidos de Google valida
+// cada página por separado y no resuelve referencias a otro documento)
+const ORGANIZATION = {
+  '@type': 'Organization',
+  name: 'AI MANGANELL',
+  url: SITE_URL + '/',
+  logo: {
+    '@type': 'ImageObject',
+    url: SITE_URL + '/assets/logo-h-a.png',
+    width: 985,
+    height: 168
+  }
+};
+
+// última fecha en que este archivo cambió según git — si no hay
+// historial (repo nuevo, archivo sin commitear) devuelve null y quien
+// llama usa data.date como respaldo
+function gitLastModifiedISO(relPathPosix) {
+  try {
+    const out = execFileSync(
+      'git', ['log', '-1', '--format=%aI', '--', relPathPosix],
+      { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }
+    ).toString().trim();
+    return out || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// serializa un objeto a JSON-LD dentro de <script>, escapando "<" para
+// que un valor con "</script>" dentro no pueda cortar el bloque
+function jsonLdScript(graph) {
+  const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }, null, 2)
+    .replace(/</g, '\\u003c');
+  return `<script type="application/ld+json">\n${json}\n</script>`;
+}
+
+function buildBreadcrumbSchema(items) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: it.url
+    }))
+  };
+}
 
 function fail(msg) {
   console.error('✖ ' + msg);
@@ -110,19 +161,58 @@ function renderFaqHtml(faq) {
   )).join('\n');
 }
 
-function renderPost(template, data, bodyHtml) {
+function buildArticleSchema(data, canonical, coverUrl, dateModified) {
+  return {
+    '@type': 'BlogPosting',
+    '@id': canonical + '#article',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    headline: data.title,
+    description: data.description,
+    image: [coverUrl],
+    datePublished: data.date,
+    dateModified: dateModified,
+    author: ORGANIZATION,
+    publisher: ORGANIZATION
+  };
+}
+
+function buildFaqSchema(faq) {
+  if (!faq || !faq.length) return null;
+  return {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(item => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  };
+}
+
+function renderPost(template, data, bodyHtml, dateModified) {
   const slug = data.slug;
   const width = data.cover.width || 1600;
   const height = data.cover.height || 900;
   const canonical = `${SITE_URL}/blog/${slug}/`;
+  const coverUrl = `${SITE_URL}/blog/${slug}/cover.jpg`;
   const robotsTag = data.noindex ? '<meta name="robots" content="noindex, nofollow">\n' : '';
+
+  const graph = [
+    buildBreadcrumbSchema([
+      { name: 'Inicio', url: `${SITE_URL}/` },
+      { name: 'Blog', url: `${SITE_URL}/blog/` },
+      { name: data.title, url: canonical }
+    ]),
+    buildArticleSchema(data, canonical, coverUrl, dateModified)
+  ];
+  const faqSchema = buildFaqSchema(data.faq);
+  if (faqSchema) graph.push(faqSchema);
 
   const replacements = {
     '{{TITLE}}': escapeHtml(data.title),
     '{{DESCRIPTION}}': escapeHtml(data.description),
     '{{KEYWORD}}': escapeHtml(data.keyword || ''),
     '{{CANONICAL}}': canonical,
-    '{{OG_IMAGE}}': `${SITE_URL}/blog/${slug}/cover.jpg`,
+    '{{OG_IMAGE}}': coverUrl,
     '{{ROBOTS_TAG}}': robotsTag,
     '{{CATEGORY}}': escapeHtml(data.category),
     '{{DATE_ISO}}': data.date,
@@ -132,7 +222,8 @@ function renderPost(template, data, bodyHtml) {
     '{{COVER_WIDTH}}': String(width),
     '{{COVER_HEIGHT}}': String(height),
     '{{BODY_HTML}}': bodyHtml,
-    '{{FAQ_HTML}}': renderFaqHtml(data.faq)
+    '{{FAQ_HTML}}': renderFaqHtml(data.faq),
+    '{{JSONLD}}': jsonLdScript(graph)
   };
 
   let html = GENERATED_MARKER + '\n' + template;
@@ -171,6 +262,19 @@ function renderFilterHtml(categories) {
     buttons.join('\n') + '\n    </div>';
 }
 
+function buildItemListSchema(listedPosts) {
+  if (!listedPosts.length) return null;
+  return {
+    '@type': 'ItemList',
+    itemListElement: listedPosts.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE_URL}/blog/${p.data.slug}/`,
+      name: p.data.title
+    }))
+  };
+}
+
 function renderBlogIndex(indexTemplate, listedPosts) {
   let cardsHtml, filterHtml;
   if (!listedPosts.length) {
@@ -182,9 +286,26 @@ function renderBlogIndex(indexTemplate, listedPosts) {
     cardsHtml = '    <div class="blog-grid">\n' + listedPosts.map(renderCardHtml).join('\n') + '\n    </div>';
   }
 
+  const graph = [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${SITE_URL}/blog/#webpage`,
+      url: `${SITE_URL}/blog/`,
+      name: 'Blog · AI MANGANELL',
+      description: 'Artículos sobre automatización con IA y ciberseguridad para pymes B2B: qué automatizar, en qué orden, y los errores más caros que vemos una y otra vez.'
+    },
+    buildBreadcrumbSchema([
+      { name: 'Inicio', url: `${SITE_URL}/` },
+      { name: 'Blog', url: `${SITE_URL}/blog/` }
+    ])
+  ];
+  const itemListSchema = buildItemListSchema(listedPosts);
+  if (itemListSchema) graph.push(itemListSchema);
+
   let html = GENERATED_MARKER + '\n' + indexTemplate;
   html = html.split('{{FILTER_HTML}}').join(filterHtml);
   html = html.split('{{CARDS_HTML}}').join(cardsHtml);
+  html = html.split('{{JSONLD}}').join(jsonLdScript(graph));
   return html;
 }
 
@@ -219,7 +340,8 @@ function build() {
       const outDir = path.join(BLOG_DIR, data.slug);
       fs.mkdirSync(outDir, { recursive: true });
 
-      const html = renderPost(template, data, bodyHtml);
+      const dateModified = gitLastModifiedISO(`blog/posts/${file}`) || data.date;
+      const html = renderPost(template, data, bodyHtml, dateModified);
       fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
       fs.copyFileSync(coverSrcPath, path.join(outDir, 'cover.jpg'));
 

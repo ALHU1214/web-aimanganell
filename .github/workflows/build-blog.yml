@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # historial completo, no solo el último commit — build-blog.js
+          # usa "git log" por archivo para calcular dateModified (JSON-LD)
+          fetch-depth: 0
 
       - name: Generar páginas del blog
         run: node scripts/build-blog.js
