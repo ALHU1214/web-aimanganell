@@ -93,7 +93,29 @@
   setupVideo($('#hero-video'), CFG.heroVideo, { fade: true });
   setupVideo($('.p2-hero-video'), CFG.consultoriaVideo, { rate: CFG.consultoriaVideoRate });
 
-  /* ---------- 3 · textarea que crece con el texto ---------- */
+  /* ---------- 3 · filtro de categoría del blog ---------- */
+  // mejora progresiva: sin JS los botones no hacen nada y se ven todas
+  // las cards (enlaces reales, crawlables); con JS, filtra sin navegar
+  var blogFilterBtns = $$('.blog-filter-btn');
+  if (blogFilterBtns.length) {
+    var blogCards = $$('.blog-card');
+    blogFilterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var cat = btn.getAttribute('data-filter');
+        blogFilterBtns.forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        blogCards.forEach(function (card) {
+          var show = cat === 'all' || card.getAttribute('data-category') === cat;
+          card.classList.toggle('is-hidden', !show);
+        });
+      });
+    });
+  }
+
+  /* ---------- 4 · textarea que crece con el texto ---------- */
   $$('.autogrow').forEach(function (t) {
     t.addEventListener('input', function () {
       t.style.height = 'auto';
@@ -101,7 +123,7 @@
     });
   });
 
-  /* ---------- 4 · envío del formulario ---------- */
+  /* ---------- 5 · envío del formulario ---------- */
   function sendLead(data) {
     var sb = CFG.supabase || {};
     if (sb.url && sb.key) {
@@ -178,7 +200,7 @@
     });
   });
 
-  /* ---------- 5 · modal legal ---------- */
+  /* ---------- 6 · modal legal ---------- */
   var modal  = $('#legal-modal');
   var titleEl = $('#legal-title');
   var titles = {
@@ -212,7 +234,7 @@
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeLegal(); });
   document.addEventListener('keydown', function (e) { if (modal && e.key === 'Escape' && !modal.hidden) closeLegal(); });
 
-  /* ---------- 6 · cookies y analítica (Consent Mode v2) ---------- */
+  /* ---------- 7 · cookies y analítica (Consent Mode v2) ---------- */
   var bar = $('#cookie-bar');
   var gtagReady = false, metaLoaded = false;
 

@@ -15,6 +15,7 @@ const ROOT = path.join(__dirname, '..');
 const POSTS_DIR = path.join(ROOT, 'blog', 'posts');
 const BLOG_DIR = path.join(ROOT, 'blog');
 const TEMPLATE_PATH = path.join(__dirname, 'post-template.html');
+const INDEX_TEMPLATE_PATH = path.join(__dirname, 'blog-index-template.html');
 const SITE_URL = 'https://aimanganell.com';
 
 const GENERATED_MARKER = '<!-- GENERADO POR scripts/build-blog.js — NO EDITAR A MANO -->';
@@ -141,6 +142,52 @@ function renderPost(template, data, bodyHtml) {
   return html;
 }
 
+function renderCardHtml(post) {
+  const { data } = post;
+  const width = data.cover.width || 1600;
+  const height = data.cover.height || 900;
+  return (
+    `      <a class="blog-card" href="${data.slug}/index.html" data-category="${escapeHtml(data.category)}">\n` +
+    '        <div class="blog-card-cover">\n' +
+    `          <img src="${data.slug}/cover.jpg" alt="${escapeHtml(data.cover.alt)}" width="${width}" height="${height}" loading="lazy">\n` +
+    '        </div>\n' +
+    '        <div class="blog-card-body">\n' +
+    `          <span class="blog-card-cat">${escapeHtml(data.category)}</span>\n` +
+    `          <h2>${escapeHtml(data.title)}</h2>\n` +
+    `          <p>${escapeHtml(data.description)}</p>\n` +
+    `          <time datetime="${data.date}">${formatDateHuman(data.date)}</time>\n` +
+    '        </div>\n' +
+    '      </a>'
+  );
+}
+
+function renderFilterHtml(categories) {
+  if (categories.length < 2) return '';
+  const buttons = ['      <button type="button" class="blog-filter-btn is-active" data-filter="all" aria-pressed="true">Todos</button>']
+    .concat(categories.map(cat => (
+      `      <button type="button" class="blog-filter-btn" data-filter="${escapeHtml(cat)}" aria-pressed="false">${escapeHtml(cat)}</button>`
+    )));
+  return '    <div class="blog-filter" role="group" aria-label="Filtrar por categoría">\n' +
+    buttons.join('\n') + '\n    </div>';
+}
+
+function renderBlogIndex(indexTemplate, listedPosts) {
+  let cardsHtml, filterHtml;
+  if (!listedPosts.length) {
+    filterHtml = '';
+    cardsHtml = '    <div class="blog-empty">\n      <p>Todavía no hay artículos publicados. Vuelve pronto.</p>\n    </div>';
+  } else {
+    const categories = Array.from(new Set(listedPosts.map(p => p.data.category))).sort((a, b) => a.localeCompare(b, 'es'));
+    filterHtml = renderFilterHtml(categories);
+    cardsHtml = '    <div class="blog-grid">\n' + listedPosts.map(renderCardHtml).join('\n') + '\n    </div>';
+  }
+
+  let html = GENERATED_MARKER + '\n' + indexTemplate;
+  html = html.split('{{FILTER_HTML}}').join(filterHtml);
+  html = html.split('{{CARDS_HTML}}').join(cardsHtml);
+  return html;
+}
+
 function build() {
   if (!fs.existsSync(POSTS_DIR)) {
     fail(`No existe ${POSTS_DIR}`);
@@ -154,6 +201,7 @@ function build() {
   }
 
   const validSlugs = new Set();
+  const okPosts = [];
   let errors = 0;
 
   for (const file of postFiles) {
@@ -176,6 +224,7 @@ function build() {
       fs.copyFileSync(coverSrcPath, path.join(outDir, 'cover.jpg'));
 
       validSlugs.add(data.slug);
+      okPosts.push({ data, bodyHtml });
       console.log(`✓ blog/${data.slug}/  ←  blog/posts/${file}`);
     } catch (e) {
       fail(e.message);
@@ -193,6 +242,16 @@ function build() {
       console.log(`🗑 blog/${entry.name}/  (ya no hay blog/posts/${entry.name}.post)`);
     }
   }
+
+  // listado: solo posts sin error y sin noindex, más recientes primero
+  const listedPosts = okPosts
+    .filter(p => !p.data.noindex)
+    .sort((a, b) => b.data.date.localeCompare(a.data.date));
+
+  const indexTemplate = fs.readFileSync(INDEX_TEMPLATE_PATH, 'utf8');
+  const indexHtml = renderBlogIndex(indexTemplate, listedPosts);
+  fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), indexHtml, 'utf8');
+  console.log(`✓ blog/index.html  (${listedPosts.length} post(s) listados)`);
 
   if (errors) {
     console.error(`\n${errors} archivo(s) con error. No se han tocado sus páginas generadas.`);

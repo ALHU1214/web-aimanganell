@@ -523,10 +523,10 @@ footer {
 }
 .author-avatar {
   flex: none; width: 56px; height: 56px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, var(--acc2), var(--acc-deep));
+  background: var(--ink);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-1); font-weight: 700; font-size: 17px; color: #07100e;
 }
+.author-avatar img { width: 60%; height: auto; }
 .author-name { margin: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
 .author-bio { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: rgba(232,242,239,.65); }
 
@@ -540,6 +540,52 @@ footer {
 .post-cta .btn-acc { margin-top: 26px; display: inline-flex; padding: 16px 34px; border-radius: 12px; font-size: 16px; }
 
 /* ============================================================
+   BLOG · LISTADO
+   ============================================================ */
+.blog-page { padding: calc(var(--sec-pad) + 20px) 48px var(--sec-pad); }
+.blog-page-wrap { max-width: 1080px; margin: 0 auto; }
+
+.blog-page-header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 640px; margin-bottom: 44px; }
+.blog-page-header h1 {
+  margin: 0; font-family: var(--font-1); font-weight: 700; letter-spacing: -.02em;
+  line-height: 1.15; font-size: clamp(32px, 5vw, 52px); text-wrap: balance;
+}
+.blog-page-header p { margin: 0; font-size: 16.5px; line-height: 1.6; color: rgba(232,242,239,.75); text-wrap: pretty; }
+
+/* filtro por categoría — mejora progresiva: sin JS no existe, con JS oculta cards */
+.blog-filter { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 40px; }
+.blog-filter-btn {
+  padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(232,242,239,.18);
+  background: transparent; color: rgba(232,242,239,.7); font-family: inherit; font-size: 13.5px;
+  font-weight: 600; cursor: pointer; transition: border-color .2s, background .2s, color .2s;
+}
+.blog-filter-btn:hover { border-color: rgba(var(--acc-rgb),.5); color: var(--ink); }
+.blog-filter-btn.is-active { background: var(--acc); border-color: var(--acc); color: #07100e; }
+
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 26px; }
+
+.blog-card {
+  display: flex; flex-direction: column; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(232,242,239,.09); background: rgba(232,242,239,.02);
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+}
+.blog-card:hover { border-color: rgba(var(--acc-rgb),.5); box-shadow: 0 0 40px rgba(var(--acc-rgb),.18); transform: translateY(-2px); }
+.blog-card.is-hidden { display: none; }
+.blog-card-cover { line-height: 0; aspect-ratio: 16 / 9; }
+.blog-card-cover img { width: 100%; height: 100%; object-fit: cover; }
+.blog-card-body { display: flex; flex-direction: column; gap: 10px; padding: 22px 24px 26px; flex: 1; }
+.blog-card-cat { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--acc2); }
+.blog-card-body h2 { margin: 0; font-family: var(--font-1); font-weight: 700; font-size: 19px; line-height: 1.35; color: var(--ink); letter-spacing: -.01em; }
+.blog-card-body p {
+  margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(232,242,239,.7); flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.blog-card-body time { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: rgba(232,242,239,.4); }
+
+.blog-empty { padding: 80px 24px; text-align: center; border-radius: 16px; border: 1px dashed rgba(232,242,239,.15); }
+.blog-empty p { margin: 0; font-size: 16px; color: rgba(232,242,239,.55); }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1120px) { .ben-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -549,7 +595,7 @@ footer {
 
 @media (max-width: 760px) {
   :root { --sec-pad: 58px; }
-  nav, footer, .sec, .p2-hero, .contacto, .sec-total, .manifiesto, .post-page, .legal-page { padding-left: 20px; padding-right: 20px; }
+  nav, footer, .sec, .p2-hero, .contacto, .sec-total, .manifiesto, .post-page, .legal-page, .blog-page { padding-left: 20px; padding-right: 20px; }
   nav { padding-top: 14px; padding-bottom: 10px; }
   .nav-logo img { height: 22px; }
   .nav-link { font-size: 13px; }
@@ -570,10 +616,11 @@ footer {
   .post-cta { padding: 34px 24px; }
   .post-author { padding: 22px; }
   .legal-page { padding-top: 100px; }
+  .blog-page { padding-top: 100px; }
 }
 
 @media (max-width: 420px) {
-  nav, footer, .sec, .p2-hero, .contacto, .sec-total, .manifiesto, .post-page, .legal-page { padding-left: 16px; padding-right: 16px; }
+  nav, footer, .sec, .p2-hero, .contacto, .sec-total, .manifiesto, .post-page, .legal-page, .blog-page { padding-left: 16px; padding-right: 16px; }
 }
 
 @media (max-width: 480px) {

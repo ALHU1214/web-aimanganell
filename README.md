@@ -49,10 +49,20 @@ Cambiando `--acc`, `--acc2` y `--acc-rgb` cambia el acento de toda la web.
 ## Blog
 
 Contenido y presentación separados: `blog/posts/*.post` son los datos
-(uno por post), `blog/<slug>/` son las páginas ya generadas. **No se
-edita `blog/<slug>/index.html` a mano** — se sobrescribe en el próximo
-build. El formato exacto de un `.post` está documentado en
-[`blog/posts/README.md`](blog/posts/README.md).
+(uno por post), `blog/<slug>/` y `blog/index.html` (el listado) son
+las páginas ya generadas. **No se edita nada de eso a mano** — se
+sobrescribe en el próximo build. El formato exacto de un `.post` está
+documentado en [`blog/posts/README.md`](blog/posts/README.md).
+
+El listado (`blog/index.html`) se genera solo, ordenado por fecha
+descendente, con filtro por categoría (mejora progresiva: sin JS se
+ven todos los posts, con enlaces `<a href>` reales y crawlables; con
+JS, los botones filtran sin navegar). Los posts marcados `"noindex":
+true` en su `.post` no aparecen en el listado — es el mismo campo que
+controla la indexación, así que no hace falta uno nuevo, pero ojo:
+esto acopla "no indexar" con "no listar". Si algún día hace falta un
+post indexable-pero-no-listado (o al revés), habrá que separar los
+dos campos.
 
 Para generar las páginas a partir de los datos:
 
