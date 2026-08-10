@@ -71,8 +71,26 @@
       // un frame más por si algo reajustó justo en el evento load
       requestAnimationFrame(function () {
         window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
+        cleanHashFromUrl();
       });
     });
+
+    // quita el #ancla de la barra de direcciones una vez el scroll suave
+    // termina de verdad (evento scrollend) — replaceState, no navega ni
+    // añade entrada al historial. Si el navegador no soporta scrollend,
+    // o el scroll no llega a moverse (ya estaba en su sitio y por tanto
+    // scrollend no dispara), un timeout de respaldo limpia igualmente.
+    function cleanHashFromUrl() {
+      var done = false;
+      function clean() {
+        if (done) return;
+        done = true;
+        window.removeEventListener('scrollend', clean);
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      if ('onscrollend' in window) window.addEventListener('scrollend', clean, { once: true });
+      setTimeout(clean, 1500);
+    }
   })();
 
   /* ---------- 2 · vídeos de fondo ---------- */
