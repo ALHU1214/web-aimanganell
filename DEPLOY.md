@@ -34,30 +34,27 @@ Si quieres publicar el sitio *antes* de tener el alta (por ejemplo,
 para enseñarlo o probarlo), la única forma segura es con el
 formulario desactivado — dímelo si llega ese caso y vemos cómo.
 
-## 1. Repositorio en GitHub
+## 1. Repositorio en GitHub — ✅ hecho
 
-- [ ] Crear el repositorio en GitHub (vacío, sin README/gitignore
-      generados por GitHub, ya los tenemos).
-- [ ] `git remote add origin https://github.com/TU-USUARIO/TU-REPO.git`
-- [ ] `git push -u origin master`
+Repo creado y con todo el historial subido:
+`https://github.com/ALHU1214/web-aimanganell`
 
-## 2. Permisos de GitHub Actions
+## 2. Permisos de GitHub Actions — ✅ hecho
 
-- [ ] Settings → Actions → General → **Workflow permissions** →
-      marcar **"Read and write permissions"**.
-      Sin esto, el workflow que genera el blog (`build-blog.yml`) no
-      podrá hacer `git push` de las páginas generadas y fallará.
+`default_workflow_permissions` en `write`. Verificado con una
+ejecución manual del workflow: comitea y empuja las páginas
+generadas sin error.
 
-## 3. GitHub Pages
+## 3. GitHub Pages — ✅ hecho
 
-- [ ] Settings → Pages → **Source = "Deploy from a branch"**, rama
-      `master`, carpeta `/ (root)`.
-      **Importante: NO elijas "GitHub Actions" como source.** Ya
-      tenemos nuestro propio workflow que comitea archivos estáticos
-      a `master` — Pages solo tiene que servir esa rama tal cual, no
-      ejecutar su propio build.
+Activado, Source = rama `master`, carpeta `/`. Primer build
+(`pages build and deployment`) completado con éxito.
 
-## 4. Dominio propio (aimanganell.com)
+## 4. Dominio propio (aimanganell.com) — ⏳ falta el DNS, lo único que queda de infraestructura
+
+El archivo `CNAME` con `aimanganell.com` ya está en el repo — GitHub
+ya lo detectó (`"cname":"aimanganell.com"` en la configuración de
+Pages). **Falta lo único que no puedo hacer yo: el DNS.**
 
 - [ ] En tu proveedor de DNS, registros **A** del dominio raíz
       (`aimanganell.com`) apuntando a las 4 IPs de GitHub Pages:
@@ -67,11 +64,16 @@ formulario desactivado — dímelo si llega ese caso y vemos cómo.
       185.199.110.153
       185.199.111.153
       ```
-- [ ] Avisar para que añada el archivo `CNAME` en la raíz del repo
-      con el dominio — lo hago yo en cuanto el DNS esté listo.
-- [ ] Una vez el DNS resuelva: Settings → Pages → **Custom domain**
-      → escribir `aimanganell.com` → esperar a que GitHub emita el
-      certificado (puede tardar un rato) → activar **"Enforce HTTPS"**.
+- [ ] Una vez el DNS resuelva (puede tardar de minutos a horas):
+      Settings → Pages → verás que "Enforce HTTPS" pasa a estar
+      disponible — actívalo en cuanto aparezca. GitHub emite el
+      certificado automáticamente al verificar el dominio, no hay
+      que pedirlo aparte.
+- Mientras tanto, el sitio ya es visible en
+  `https://alhu1214.github.io/web-aimanganell/`, aunque esa URL
+  redirige automáticamente a `aimanganell.com` (por el `CNAME`), así
+  que hasta que el DNS resuelva no vas a poder verlo cargar del todo
+  desde ningún sitio — es normal, no es que algo esté roto.
 
 ## 5. Google Search Console
 
