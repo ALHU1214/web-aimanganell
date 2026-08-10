@@ -368,16 +368,32 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    FOOTER
    ============================================================ */
 footer {
-  display: flex; flex-direction: column; gap: 26px; padding: 44px 48px 34px;
+  display: flex; flex-direction: column; gap: 22px; padding: 44px 48px 34px;
   border-top: 1px solid rgba(var(--acc-rgb), .12);
   font-size: 13.5px; color: rgba(232,242,239,.5);
 }
-.foot-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.foot-top img { height: 26px; width: auto; opacity: .85; }
-.foot-legal { display: flex; flex-wrap: wrap; gap: 12px 26px; align-items: center; padding-top: 22px; border-top: 1px solid rgba(232,242,239,.08); }
+.foot-brand-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.foot-brand-name { font-family: var(--font-1); font-weight: 700; font-size: 15px; letter-spacing: .02em; color: var(--ink); }
+.foot-social { display: flex; align-items: center; gap: 16px; min-height: 20px; }
+.foot-social a { color: rgba(232,242,239,.6); display: inline-flex; }
+.foot-social a:hover { color: var(--acc); }
+.foot-social svg { width: 18px; height: 18px; }
+
+.foot-legal {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 24px; align-items: center;
+  padding-top: 20px; border-top: 1px solid rgba(232,242,239,.08);
+}
 .foot-link { color: rgba(232,242,239,.6); }
 .foot-link:hover { color: var(--acc); }
-.foot-fine { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 12px; color: rgba(232,242,239,.38); line-height: 1.6; }
+.foot-link-subtle { font-size: 12px; color: rgba(232,242,239,.4); }
+.foot-link-subtle:hover { color: var(--acc); }
+
+.foot-email { text-align: center; }
+
+.foot-symbol { display: flex; justify-content: center; }
+.foot-symbol img { height: 26px; width: auto; opacity: .7; }
+
+.foot-copy { margin: 0; text-align: center; font-size: 12px; color: rgba(232,242,239,.38); }
 
 /* ============================================================
    COOKIES

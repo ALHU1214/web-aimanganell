@@ -3,6 +3,37 @@
 Todo lo de este documento lo tienes que hacer tú (cuenta de GitHub,
 DNS, Search Console) — nada de esto lo puede hacer Claude Code por ti.
 
+## 🚫 BLOQUEANTE — no publicar con el formulario activo
+
+El **Aviso legal** y la **Política de privacidad** tienen los datos
+identificativos del responsable marcados como huecos sin rellenar:
+
+```
+NIF [NIF PENDIENTE]
+Domicilio [DOMICILIO PENDIENTE]
+```
+
+No están inventados a propósito — hay que esperar al alta de
+autónomo para tener NIF y domicilio fiscal reales. Pero **mientras
+falten, el sitio no puede recoger datos de nadie**: el formulario de
+contacto trata datos personales (RGPD/LOPDGDD) y la LSSI-CE exige que
+el aviso legal identifique de verdad al responsable del sitio. Un
+aviso legal con placeholders visibles es peor que no tener aviso
+legal — muestra que el sitio no cumple.
+
+**Antes de publicar con el formulario activo:**
+1. Dar de alta como autónomo (o la figura que corresponda).
+2. Pasarme NIF y domicilio fiscal.
+3. Sustituyo los dos huecos en `legal/aviso-legal/index.html` y
+   `legal/privacidad/index.html` (aparecen dos veces cada uno: en su
+   propio contenido y en el modal legal que se repite en cada página
+   del sitio — lo hago yo, no hay que tocarlo a mano en varios
+   sitios).
+
+Si quieres publicar el sitio *antes* de tener el alta (por ejemplo,
+para enseñarlo o probarlo), la única forma segura es con el
+formulario desactivado — dímelo si llega ese caso y vemos cómo.
+
 ## 1. Repositorio en GitHub
 
 - [ ] Crear el repositorio en GitHub (vacío, sin README/gitignore
@@ -62,8 +93,8 @@ DNS, Search Console) — nada de esto lo puede hacer Claude Code por ti.
       (o Meta Pixel) tuya — pásame el ID y lo pongo.
 - [ ] Foto real para el bloque de autor de los posts (de momento usa
       el símbolo de la marca).
-- [ ] Teléfono público, si quieres que aparezca en el schema de la
-      home (`ProfessionalService`) — de momento no hay ninguno.
+- [ ] Iconos de redes sociales en el footer (hueco preparado, vacío
+      hasta que haya perfiles públicos que enlazar).
 
 ## Ya resuelto, no hace falta tocar
 
@@ -74,3 +105,10 @@ DNS, Search Console) — nada de esto lo puede hacer Claude Code por ti.
 - `ffmpeg` en CI — el workflow de GitHub Actions lo instala solo en
   cada ejecución (hace falta para las variantes de imagen del blog).
   En local ya está instalado en esta máquina.
+- Teléfono: decisión final del usuario, sin publicarlo en ningún
+  sitio. Contacto solo por formulario y `hola@aimanganell.com` — ni
+  en el footer ni en el JSON-LD de la home (`ProfessionalService`).
+- El footer **ya no muestra** "Responsable: AI MANGANELL · Canarias,
+  España" — esos datos identificativos viven solo dentro del aviso
+  legal y la política de privacidad, que es donde corresponde
+  legalmente. Decisión explícita del usuario, no un olvido.
