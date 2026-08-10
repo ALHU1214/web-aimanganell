@@ -72,10 +72,11 @@ ignoran), pero no hacen falta.
 
 Cada post generado lleva automáticamente, sin que n8n haga nada:
 `BreadcrumbList` (Inicio › Blog › el post), `BlogPosting` (con
-`author` = Person "Álvaro Manganell" — señal de E-E-A-T, un autor
-persona en vez de solo la marca —, `publisher` = Organization AI
-MANGANELL, `datePublished` = `date`, `dateModified` = último commit
-git sobre el `.post`), y `FAQPage` si el post tiene `faq`. El listado
+`author` = Person "Álvaro Manganell González" (jobTitle "Fundador")
+— señal de E-E-A-T, un autor persona en vez de solo la marca —,
+`publisher` = Organization AI MANGANELL, `datePublished` = `date`,
+`dateModified` = último commit git sobre el `.post`), y `FAQPage` si
+el post tiene `faq`. El listado
 (`blog/index.html`) lleva `CollectionPage` + `BreadcrumbList` +
 `ItemList` de los posts listados. Verificable con la
 [Prueba de resultados enriquecidos de Google](https://search.google.com/test/rich-results)
