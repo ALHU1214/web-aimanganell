@@ -40,7 +40,7 @@ Tres partes, en este orden exacto:
 | `cover.alt` | Sí | texto | Alt real y descriptivo, no vacío. |
 | `cover.width` / `cover.height` | No | número | Por defecto 1600×900. Solo hace falta si la imagen tiene otro tamaño. |
 | `faq` | No | array de `{ "q": "...", "a": "..." }` | Cualquier número de preguntas, incluido 0. |
-| `noindex` | No | `true` / `false` | `true` añade `<meta name="robots" content="noindex, nofollow">`. Para contenido de prueba, no para posts reales. |
+| `noindex` | No | `true` / `false` | `true` añade `<meta name="robots" content="noindex, nofollow">` **y** excluye el post del listado, de `sitemap.xml` y de `blog/rss.xml`. Para contenido de prueba, no para posts reales. |
 
 Todos los valores de texto son JSON normal — comillas, tildes y saltos
 de línea se escapan solos si generas el JSON con `JSON.stringify()`
@@ -72,13 +72,25 @@ ignoran), pero no hacen falta.
 
 Cada post generado lleva automáticamente, sin que n8n haga nada:
 `BreadcrumbList` (Inicio › Blog › el post), `BlogPosting` (con
-`author`/`publisher` = AI MANGANELL, `datePublished` = `date`,
-`dateModified` = último commit git sobre el `.post`), y `FAQPage`
-si el post tiene `faq`. El listado (`blog/index.html`) lleva
-`CollectionPage` + `BreadcrumbList` + `ItemList` de los posts
-listados. Verificable con la
+`author` = Person "Álvaro Manganell" — señal de E-E-A-T, un autor
+persona en vez de solo la marca —, `publisher` = Organization AI
+MANGANELL, `datePublished` = `date`, `dateModified` = último commit
+git sobre el `.post`), y `FAQPage` si el post tiene `faq`. El listado
+(`blog/index.html`) lleva `CollectionPage` + `BreadcrumbList` +
+`ItemList` de los posts listados. Verificable con la
 [Prueba de resultados enriquecidos de Google](https://search.google.com/test/rich-results)
 pegando la URL una vez publicada, o el HTML en local antes de publicar.
+
+**Imagen en varios ratios**: además de `cover.jpg` (16:9, la portada
+tal cual), el build genera automáticamente `cover-4x3.jpg` y
+`cover-1x1.jpg` con `ffmpeg` (recorte centrado) y los añade todos al
+`image` del `BlogPosting`. No es un campo del `.post` — pasa solo con
+la misma portada que ya subes. Si `ffmpeg` no está disponible, el
+build no falla: el post se genera igual, solo con la imagen 16:9.
+
+**`sitemap.xml` / `blog/rss.xml`**: se generan en el mismo build a
+partir de los posts sin `noindex`, sin que n8n tenga que hacer nada
+adicional. Ver el README principal del proyecto.
 
 ## Validación
 

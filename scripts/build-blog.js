@@ -26,6 +26,15 @@ const MESES = [
   'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
 ];
 
+// páginas escritas a mano que van en el sitemap — deliberadamente NO
+// incluye legal/* (llevan noindex) ni blog/<slug>/ (esas se añaden
+// solas desde blog/posts/). Si se añade una página nueva a mano al
+// sitio, hay que añadirla aquí también para que salga en el sitemap.
+const STATIC_PAGES = [
+  { relPath: 'index.html', url: SITE_URL + '/' },
+  { relPath: path.join('consultoria', 'index.html'), url: SITE_URL + '/consultoria/' }
+];
+
 // misma entidad en cada página — inline siempre (no @id cruzado entre
 // páginas: la herramienta de resultados enriquecidos de Google valida
 // cada página por separado y no resuelve referencias a otro documento)
@@ -41,6 +50,16 @@ const ORGANIZATION = {
   }
 };
 
+// autor de los posts: persona real, no la marca — señal de E-E-A-T.
+// publisher se queda como ORGANIZATION, sin cambios.
+const AUTHOR_PERSON = {
+  '@type': 'Person',
+  name: 'Álvaro Manganell González',
+  url: SITE_URL + '/',
+  jobTitle: 'Fundador',
+  worksFor: ORGANIZATION
+};
+
 // última fecha en que este archivo cambió según git — si no hay
 // historial (repo nuevo, archivo sin commitear) devuelve null y quien
 // llama usa data.date como respaldo
@@ -54,6 +73,42 @@ function gitLastModifiedISO(relPathPosix) {
   } catch (e) {
     return null;
   }
+}
+
+// recorte centrado con ffmpeg (ya se usa en el proyecto para vídeo).
+// Requiere ffmpeg en PATH — si falla (no instalado, imagen ya más
+// estrecha que el ratio pedido...) devuelve false y quien llama sigue
+// sin esa variante, no rompe el build por esto.
+function cropImage(srcPath, destPath, targetW, targetH) {
+  try {
+    execFileSync('ffmpeg', [
+      '-y', '-i', srcPath,
+      '-vf', `crop=${targetW}:${targetH}`,
+      '-q:v', '3',
+      destPath
+    ], { stdio: ['ignore', 'ignore', 'ignore'] });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// genera cover-4x3.jpg y cover-1x1.jpg junto a cover.jpg, recortando
+// desde el centro de la portada original (pensado para fuente 16:9,
+// que es el valor por defecto de cover.width/height)
+function generateCoverVariants(coverPath, outDir, width, height) {
+  const variants = [];
+  const w43 = Math.round((height * 4) / 3);
+  if (w43 <= width) {
+    const dest = path.join(outDir, 'cover-4x3.jpg');
+    if (cropImage(coverPath, dest, w43, height)) variants.push({ file: 'cover-4x3.jpg', width: w43, height });
+  }
+  const w11 = height;
+  if (w11 <= width) {
+    const dest = path.join(outDir, 'cover-1x1.jpg');
+    if (cropImage(coverPath, dest, w11, height)) variants.push({ file: 'cover-1x1.jpg', width: w11, height });
+  }
+  return variants;
 }
 
 // serializa un objeto a JSON-LD dentro de <script>, escapando "<" para
@@ -161,17 +216,17 @@ function renderFaqHtml(faq) {
   )).join('\n');
 }
 
-function buildArticleSchema(data, canonical, coverUrl, dateModified) {
+function buildArticleSchema(data, canonical, imageUrls, dateModified) {
   return {
     '@type': 'BlogPosting',
     '@id': canonical + '#article',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     headline: data.title,
     description: data.description,
-    image: [coverUrl],
+    image: imageUrls,
     datePublished: data.date,
     dateModified: dateModified,
-    author: ORGANIZATION,
+    author: AUTHOR_PERSON,
     publisher: ORGANIZATION
   };
 }
@@ -188,7 +243,7 @@ function buildFaqSchema(faq) {
   };
 }
 
-function renderPost(template, data, bodyHtml, dateModified) {
+function renderPost(template, data, bodyHtml, dateModified, coverVariants) {
   const slug = data.slug;
   const width = data.cover.width || 1600;
   const height = data.cover.height || 900;
@@ -196,13 +251,17 @@ function renderPost(template, data, bodyHtml, dateModified) {
   const coverUrl = `${SITE_URL}/blog/${slug}/cover.jpg`;
   const robotsTag = data.noindex ? '<meta name="robots" content="noindex, nofollow">\n' : '';
 
+  const imageUrls = [coverUrl].concat(
+    (coverVariants || []).map(v => `${SITE_URL}/blog/${slug}/${v.file}`)
+  );
+
   const graph = [
     buildBreadcrumbSchema([
       { name: 'Inicio', url: `${SITE_URL}/` },
       { name: 'Blog', url: `${SITE_URL}/blog/` },
       { name: data.title, url: canonical }
     ]),
-    buildArticleSchema(data, canonical, coverUrl, dateModified)
+    buildArticleSchema(data, canonical, imageUrls, dateModified)
   ];
   const faqSchema = buildFaqSchema(data.faq);
   if (faqSchema) graph.push(faqSchema);
@@ -309,6 +368,89 @@ function renderBlogIndex(indexTemplate, listedPosts) {
   return html;
 }
 
+function escapeXml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+// RFC 822 (lo que exige RSS) a partir de "YYYY-MM-DD" — sin hora real,
+// se usa medianoche UTC porque el .post tampoco tiene hora (igual que
+// datePublished en el JSON-LD del post)
+function toRfc822(dateISO) {
+  return new Date(dateISO + 'T00:00:00Z').toUTCString();
+}
+
+// XML de sitemap: solo lo indexable — páginas estáticas + posts sin
+// noindex. Ni las 3 páginas legales (noindex) ni los posts noindex
+// entran aquí.
+function buildSitemapXml(listedPosts) {
+  const urls = STATIC_PAGES.map(p => ({
+    url: p.url,
+    lastmod: (gitLastModifiedISO(p.relPath.split(path.sep).join('/')) || '').slice(0, 10)
+  }));
+  urls.push({ url: `${SITE_URL}/blog/`, lastmod: new Date().toISOString().slice(0, 10) });
+  listedPosts.forEach(p => {
+    urls.push({ url: `${SITE_URL}/blog/${p.data.slug}/`, lastmod: p.dateModified.slice(0, 10) });
+  });
+
+  const entries = urls.map(u => (
+    '  <url>\n' +
+    `    <loc>${escapeXml(u.url)}</loc>\n` +
+    (u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : '') +
+    '  </url>'
+  )).join('\n');
+
+  return '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    entries + '\n' +
+    '</urlset>\n';
+}
+
+function buildRobotsTxt() {
+  // sin Disallow: las páginas no indexables ya llevan
+  // <meta name="robots" content="noindex"> en su propio HTML — un
+  // Disallow aquí impediría a Google rastrearlas y por tanto NUNCA
+  // vería esa etiqueta (los dos mecanismos no se combinan bien)
+  return (
+    'User-agent: *\n' +
+    'Allow: /\n' +
+    '\n' +
+    `Sitemap: ${SITE_URL}/sitemap.xml\n`
+  );
+}
+
+function buildRssXml(listedPosts) {
+  const items = listedPosts.map(p => {
+    const link = `${SITE_URL}/blog/${p.data.slug}/`;
+    return (
+      '    <item>\n' +
+      `      <title>${escapeXml(p.data.title)}</title>\n` +
+      `      <link>${escapeXml(link)}</link>\n` +
+      `      <guid>${escapeXml(link)}</guid>\n` +
+      `      <pubDate>${toRfc822(p.data.date)}</pubDate>\n` +
+      `      <category>${escapeXml(p.data.category)}</category>\n` +
+      `      <description>${escapeXml(p.data.description)}</description>\n` +
+      '    </item>'
+    );
+  }).join('\n');
+
+  return '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<rss version="2.0">\n' +
+    '  <channel>\n' +
+    '    <title>Blog · AI MANGANELL</title>\n' +
+    `    <link>${SITE_URL}/blog/</link>\n` +
+    '    <description>Artículos sobre automatización con IA y ciberseguridad para pymes B2B.</description>\n' +
+    '    <language>es</language>\n' +
+    `    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n` +
+    (items ? items + '\n' : '') +
+    '  </channel>\n' +
+    '</rss>\n';
+}
+
 function build() {
   if (!fs.existsSync(POSTS_DIR)) {
     fail(`No existe ${POSTS_DIR}`);
@@ -340,13 +482,18 @@ function build() {
       const outDir = path.join(BLOG_DIR, data.slug);
       fs.mkdirSync(outDir, { recursive: true });
 
+      const coverDestPath = path.join(outDir, 'cover.jpg');
+      fs.copyFileSync(coverSrcPath, coverDestPath);
+      const coverVariants = generateCoverVariants(
+        coverDestPath, outDir, data.cover.width || 1600, data.cover.height || 900
+      );
+
       const dateModified = gitLastModifiedISO(`blog/posts/${file}`) || data.date;
-      const html = renderPost(template, data, bodyHtml, dateModified);
+      const html = renderPost(template, data, bodyHtml, dateModified, coverVariants);
       fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
-      fs.copyFileSync(coverSrcPath, path.join(outDir, 'cover.jpg'));
 
       validSlugs.add(data.slug);
-      okPosts.push({ data, bodyHtml });
+      okPosts.push({ data, bodyHtml, dateModified });
       console.log(`✓ blog/${data.slug}/  ←  blog/posts/${file}`);
     } catch (e) {
       fail(e.message);
@@ -374,6 +521,15 @@ function build() {
   const indexHtml = renderBlogIndex(indexTemplate, listedPosts);
   fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), indexHtml, 'utf8');
   console.log(`✓ blog/index.html  (${listedPosts.length} post(s) listados)`);
+
+  fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemapXml(listedPosts), 'utf8');
+  console.log(`✓ sitemap.xml  (${STATIC_PAGES.length + 1 + listedPosts.length} URLs)`);
+
+  fs.writeFileSync(path.join(ROOT, 'robots.txt'), buildRobotsTxt(), 'utf8');
+  console.log('✓ robots.txt');
+
+  fs.writeFileSync(path.join(BLOG_DIR, 'rss.xml'), buildRssXml(listedPosts), 'utf8');
+  console.log(`✓ blog/rss.xml  (${listedPosts.length} entradas)`);
 
   if (errors) {
     console.error(`\n${errors} archivo(s) con error. No se han tocado sus páginas generadas.`);

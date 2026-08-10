@@ -528,6 +528,7 @@ footer {
 }
 .author-avatar img { width: 60%; height: auto; }
 .author-name { margin: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
+.author-role { font-size: 13px; font-weight: 500; color: rgba(232,242,239,.5); }
 .author-bio { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: rgba(232,242,239,.65); }
 
 /* CTA de cierre */

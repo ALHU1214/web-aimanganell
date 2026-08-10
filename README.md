@@ -11,12 +11,17 @@ web/
 ├── legal/              Aviso legal, privacidad, cookies — URL propia + modal
 ├── blog/
 │   ├── posts/          DATOS de cada post (*.post) — lo único que toca n8n
-│   └── <slug>/          Páginas generadas — NO editar a mano, ver "Blog" más abajo
+│   ├── <slug>/          Páginas generadas — NO editar a mano, ver "Blog" más abajo
+│   ├── index.html       Listado — generado
+│   └── rss.xml          Feed — generado
 ├── scripts/            Plantilla y generador del blog (Node puro, sin dependencias)
-├── styles.css          Todos los estilos
-├── main.js             Lógica: navegación, formularios, cookies, vídeos, modal legal
-├── config.js           Ajustes que cambian al publicar
-└── assets/             Logos, favicon, vídeos e imágenes compartidas
+├── sitemap.xml          Generado — solo páginas indexables
+├── robots.txt            Generado
+├── styles.css           Todos los estilos
+├── main.js              Lógica: navegación, formularios, cookies, vídeos, modal legal
+├── config.js            Ajustes que cambian al publicar
+├── DEPLOY.md            Checklist para publicar (dominio, Pages, Search Console)
+└── assets/              Logos, favicon, vídeos e imágenes compartidas
 ```
 
 ## Verla en local
@@ -24,6 +29,12 @@ web/
 Abre `index.html` en el navegador, o en VS Code usa la extensión
 **Live Server** (botón "Go Live"). Necesario si quieres que carguen
 bien los vídeos y las fuentes.
+
+Para regenerar el blog hace falta además **ffmpeg** en el PATH (genera
+las variantes de portada en distintos ratios) — ya está instalado en
+esta máquina. Si lo ejecutas en otra, instálalo primero; sin él, el
+build sigue funcionando pero cada post se queda solo con la portada
+16:9, sin las variantes 4:3/1:1.
 
 ## Qué tocar antes de publicar
 
@@ -86,6 +97,15 @@ y `consultoria/index.html` llevan su propio marcado (`ProfessionalService`
 y `Service`) escrito a mano. Detalle completo y cómo validarlo en
 [`blog/posts/README.md`](blog/posts/README.md#seo-técnico-json-ld).
 
+**`sitemap.xml`, `robots.txt` y `blog/rss.xml`** se generan en el mismo
+build, a partir de los mismos `.post`. Ni las 3 páginas legales ni los
+posts marcados `noindex` entran en el sitemap ni en el RSS — solo lo
+que de verdad quieres que se indexe. `robots.txt` no bloquea nada por
+`Disallow` (las páginas no indexables ya llevan su propio
+`<meta name="robots" content="noindex">`, y combinar los dos mecanismos
+en la misma URL es contraproducente: Google no podría rastrearla para
+ver esa etiqueta).
+
 ## Publicar en WordPress
 
 La web no es un tema de WordPress. Tres opciones, de menos a más trabajo:
@@ -116,11 +136,8 @@ git remote add origin https://github.com/USUARIO/REPO.git
 git push -u origin master
 ```
 
-Con GitHub Pages activado en Settings → Pages ya tienes la web publicada.
-Si usas GitHub Pages sirviendo directamente desde `master` (sin Actions
-de build para el propio Pages), el workflow de `blog/` no necesita
-configuración aparte: ya está en `.github/workflows/build-blog.yml` y
-se activa solo con el primer push que toque `blog/posts/`.
+Checklist completo de qué falta para publicar de verdad (Pages, dominio,
+Search Console) en [`DEPLOY.md`](DEPLOY.md).
 
 ## Nota sobre las claves
 
