@@ -36,7 +36,19 @@ jobs:
           git add blog/ sitemap.xml robots.txt
           if git diff --cached --quiet; then
             echo "Sin cambios en las páginas generadas."
-          else
-            git commit -m "Genera blog desde blog/posts/ [skip ci]"
-            git push
+            exit 0
           fi
+          git commit -m "Genera blog desde blog/posts/ [skip ci]"
+          # reintenta con rebase por si master avanzó entre el checkout
+          # y este push (otro commit, otra ejecución en paralelo...)
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rechazado, reintentando con rebase ($i/5)…"
+            git fetch origin master
+            git rebase origin/master
+            sleep $((i * 3))
+          done
+          echo "::error::No se pudo empujar tras 5 intentos."
+          exit 1
