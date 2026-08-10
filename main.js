@@ -46,14 +46,33 @@
     });
   });
 
-  // revela la página 2 al cargar si la URL ya trae un hash que apunta ahí
-  // (enlace externo, ej. desde Google o desde el blog), no solo al hacer clic
-  (function revealFromHash() {
+  // si la URL ya trae un ancla al cargar (enlace externo, ej. desde el
+  // blog a /#formulario, o desde fuera a /consultoria/#contacto), hace
+  // scroll ahí con el mismo offset que un clic — pero solo cuando la
+  // página está visualmente asentada (fuentes cargadas + load), no al
+  // analizar el script. El scroll nativo del navegador ocurre antes de
+  // eso, con las fuentes de sistema todavía puestas; en cuanto el texto
+  // reajusta con Space Grotesk/Manrope el layout se mueve y el navegador
+  // no vuelve a corregir solo — por eso aterrizaba en el sitio equivocado
+  // (normalmente el h1, más arriba de donde debía frenar).
+  (function scrollToHashWhenReady() {
     var id = window.location.hash.slice(1);
-    if (!id || !pages.info) return;
-    var target = id === 'page2' ? pages.info : document.getElementById(id);
-    if (!target || !(target === pages.info || pages.info.contains(target))) return;
-    showPage('info', id === 'page2' ? '' : id);
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (!target) return;
+
+    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    var pageLoaded = new Promise(function (resolve) {
+      if (document.readyState === 'complete') resolve();
+      else window.addEventListener('load', resolve, { once: true });
+    });
+
+    Promise.all([fontsReady, pageLoaded]).then(function () {
+      // un frame más por si algo reajustó justo en el evento load
+      requestAnimationFrame(function () {
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
+      });
+    });
   })();
 
   /* ---------- 2 · vídeos de fondo ---------- */
