@@ -29,9 +29,11 @@
 <link rel="stylesheet" href="styles.css">
 
 <!-- JSON-LD: entidad de negocio. Sin teléfono (contacto solo por
-     formulario y email), sin precio ni dirección completa — nada de
-     eso se publica en ningún sitio del sitio; de la dirección solo
-     consta región y país, que es lo único que hay en el aviso legal. -->
+     formulario y email) ni precio — no se publican en ningún sitio
+     del sitio. Dirección sin calle (pendiente del alta de autónomo,
+     ver legal/aviso-legal y legal/privacidad): solo localidad, región
+     y país, para reflejar que la base está en Tenerife/Canarias pero
+     el servicio cubre también península en remoto (ver areaServed). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -50,6 +52,7 @@
   "image": "https://aimanganell.com/assets/logo-h-a.png",
   "address": {
     "@type": "PostalAddress",
+    "addressLocality": "Tenerife",
     "addressRegion": "Canarias",
     "addressCountry": "ES"
   },
