@@ -5,7 +5,6 @@
   "description": "Seguridad de los sistemas de reservas automatizados con agentes de IA: protege datos, limita permisos y evita fraudes con auditoría y supervisión humana.",
   "keyword": "Seguridad de los sistemas de reservas automatizados con agentes de IA",
   "category": "Automatización",
-  "noindex": true,
   "date": "2026-08-11",
   "cover": {
     "src": "seguridad-reservas-agentes-ia-cover.jpg",
@@ -196,4 +195,5 @@
 
 <p>El resultado no es solo un sistema más protegido. Es una operación más trazable, más coherente y más digna de la confianza de los clientes. En el negocio de las reservas, donde cada interacción puede afectar ingresos y reputación, esa confianza es el activo que ninguna empresa puede permitirse automatizar sin proteger.</p>
 <h2>Lo que vemos en la práctica</h2>
-<p>[PENDIENTE: caso real]</p>
+<p>Este mismo blog está automatizado, y al montarlo tuvimos que decidir exactamente lo que plantea el artículo. Al crear el token que permite publicar en el repositorio, la opción cómoda era dar acceso a todo. Le dimos permiso a un único repositorio y a una única función: escribir archivos. Nada más. Si mañana ese token se filtra, el daño posible está acotado de antemano</p>
+<p>Es la pregunta que hacemos en cada diagnóstico y la que casi nadie ha respondido antes de conectar nada: no qué puede hacer la herramienta, sino qué no debería poder hacer. Junto con una segunda que también se olvida: qué gasto genera cada conexión. Hemos visto empresas con accesos abiertos que nadie recuerda haber concedido, y quitarlos después siempre cuesta más que no darlos.</p>
