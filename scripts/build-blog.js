@@ -297,7 +297,7 @@ function renderCardHtml(post) {
   const width = data.cover.width || 1600;
   const height = data.cover.height || 900;
   return (
-    `      <a class="blog-card" href="${data.slug}/index.html" data-category="${escapeHtml(data.category)}">\n` +
+    `      <a class="blog-card" href="/blog/${data.slug}/" data-category="${escapeHtml(data.category)}">\n` +
     '        <div class="blog-card-cover">\n' +
     `          <img src="${data.slug}/cover.jpg" alt="${escapeHtml(data.cover.alt)}" width="${width}" height="${height}" loading="lazy">\n` +
     '        </div>\n' +
