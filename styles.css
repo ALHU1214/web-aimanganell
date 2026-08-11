@@ -3,6 +3,36 @@
    Paleta y tipografía en :root — cambia aquí y cambia todo.
    ============================================================ */
 
+/* Tipografías autohospedadas (antes Google Fonts). Space Grotesk y
+   Manrope son fuentes variables: Google sirve un único archivo por
+   familia que cubre todo su rango de pesos, así que un solo
+   @font-face con font-weight en rango basta — el navegador
+   interpola el peso exacto (400/600/700, 400/500/600/700/800) sin
+   pedir un archivo por peso. IBM Plex Mono solo se usa en 400 aquí,
+   así que se queda en un peso fijo. Solo se piden los pesos que
+   realmente usa el sitio (ver styles.css para el resto). */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('assets/fonts/space-grotesk.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('assets/fonts/manrope.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-mono.woff2') format('woff2');
+}
+
 :root {
   --acc: #3b8dff;          /* acento principal (azul eléctrico) */
   --acc2: #7ab6ff;         /* acento hover */
