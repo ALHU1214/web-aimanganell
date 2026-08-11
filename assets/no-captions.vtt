@@ -1,0 +1,6 @@
+WEBVTT
+
+NOTE
+Vídeo de fondo decorativo, sin pista de audio ni diálogo — no hay
+contenido que subtitular. Este track vacío existe para satisfacer
+el requisito de accesibilidad de que todo <video> tenga <track>.
