@@ -5,7 +5,15 @@
     <link>https://aimanganell.com/blog/</link>
     <description>Artículos sobre automatización con IA y ciberseguridad para pymes B2B.</description>
     <language>es</language>
-    <lastBuildDate>Tue, 11 Aug 2026 14:54:47 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 15:12:25 GMT</lastBuildDate>
+    <item>
+      <title>Protege tus reservas automatizadas con agentes de IA</title>
+      <link>https://aimanganell.com/blog/seguridad-reservas-agentes-ia/</link>
+      <guid>https://aimanganell.com/blog/seguridad-reservas-agentes-ia/</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Automatización</category>
+      <description>Seguridad de los sistemas de reservas automatizados con agentes de IA: protege datos, limita permisos y evita fraudes con auditoría y supervisión humana.</description>
+    </item>
     <item>
       <title>Muse Glimmer impulsa la automatización de procesos locales</title>
       <link>https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/</link>
