@@ -14,3 +14,7 @@ desktop.ini
 # Entorno / secretos, por si se añaden más adelante
 .env
 .env.local
+
+# Exports de workflows de n8n (exponen estructura interna y IDs
+# de hojas de Google) — n8n los suele soltar en la raíz del repo
+/*.json
