@@ -204,6 +204,10 @@ function validatePost(data, bodyHtml, filePath) {
       if (!item.q || !item.a) throw new Error(`${filePath}: faq[${i}] necesita "q" y "a"`);
     });
   }
+  const effectiveTitle = `${data.seoTitle || data.title} · AI MANGANELL`;
+  if (effectiveTitle.length > 60) {
+    console.warn(`⚠ ${filePath}: el <title> final mide ${effectiveTitle.length} caracteres (> 60): "${effectiveTitle}"${data.seoTitle ? '' : ' — añade "seoTitle" para acortarlo sin tocar el H1'}`);
+  }
 }
 
 function renderFaqHtml(faq) {
@@ -268,6 +272,7 @@ function renderPost(template, data, bodyHtml, dateModified, coverVariants) {
 
   const replacements = {
     '{{TITLE}}': escapeHtml(data.title),
+    '{{SEO_TITLE}}': escapeHtml(data.seoTitle || data.title),
     '{{DESCRIPTION}}': escapeHtml(data.description),
     '{{KEYWORD}}': escapeHtml(data.keyword || ''),
     '{{CANONICAL}}': canonical,
