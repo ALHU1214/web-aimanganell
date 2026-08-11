@@ -237,21 +237,51 @@
     });
   });
 
-  /* ---------- 6 · modal legal ---------- */
+  /* ---------- 6 · modal legal — contenido bajo demanda ----------
+     Los tres documentos ya existen como páginas reales (/legal/...).
+     En vez de incrustar ~1500 palabras duplicadas en el DOM de CADA
+     página, el modal hace fetch() a la página real y muestra solo su
+     .legal-body. Si el fetch falla (sin red, sin JS, o el navegador
+     no soporta fetch — o en local por file://, donde fetch entre
+     archivos está bloqueado por CORS), el enlace lleva a la página
+     real: exactamente lo que ya haría sin JS. */
   var modal  = $('#legal-modal');
   var titleEl = $('#legal-title');
+  var bodyEl = modal && $('.legal-body', modal);
   var titles = {
     priv:    'Política de privacidad',
     aviso:   'Aviso legal',
     cookies: 'Política de cookies'
   };
+  var legalCache = {};
 
-  function openLegal(doc) {
-    if (!modal) return;
+  function fetchLegalBody(doc, url) {
+    if (legalCache[doc]) return Promise.resolve(legalCache[doc]);
+    return fetch(url).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function (html) {
+      var parsed = new DOMParser().parseFromString(html, 'text/html');
+      var source = parsed.querySelector('.legal-body');
+      if (!source) throw new Error('sin .legal-body en la respuesta');
+      legalCache[doc] = source.innerHTML;
+      return legalCache[doc];
+    });
+  }
+
+  function openLegal(doc, url) {
+    if (!modal || !bodyEl || !url) { if (url) window.location.href = url; return; }
     if (titleEl) titleEl.textContent = titles[doc] || titles.priv;
-    $$('.legal-body', modal).forEach(function (b) { b.hidden = b.getAttribute('data-doc') !== doc; });
+    bodyEl.innerHTML = '<p>Cargando…</p>';
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    fetchLegalBody(doc, url).then(function (html) {
+      if (modal.hidden) return; // se cerró mientras cargaba
+      bodyEl.innerHTML = html;
+    }).catch(function () {
+      closeLegal();
+      window.location.href = url;
+    });
   }
   function closeLegal() {
     if (!modal) return;
@@ -263,7 +293,7 @@
     a.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      openLegal(a.getAttribute('data-legal'));
+      openLegal(a.getAttribute('data-legal'), a.getAttribute('href'));
     });
   });
   var legalClose = $('.legal-close');
