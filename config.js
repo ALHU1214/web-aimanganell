@@ -28,8 +28,9 @@ window.AM_CONFIG = {
   // Webhook opcional (n8n, Zapier, Make…). Recibe el lead en JSON.
   webhookUrl: '',
 
-  // Analítica. Rellena para activarla; se carga solo si el usuario
-  // acepta todas las cookies (Consent Mode v2).
-  gaId: '',
+  // Analítica. El script de GA solo se inyecta si el usuario acepta
+  // todas las cookies en el banner (o ya lo aceptó en una visita
+  // anterior); con "solo esenciales" no se carga en absoluto.
+  gaId: 'G-PLTXXWN26D',
   metaPixelId: ''
 };

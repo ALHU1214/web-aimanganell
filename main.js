@@ -301,28 +301,25 @@
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeLegal(); });
   document.addEventListener('keydown', function (e) { if (modal && e.key === 'Escape' && !modal.hidden) closeLegal(); });
 
-  /* ---------- 7 · cookies y analítica (Consent Mode v2) ---------- */
+  /* ---------- 7 · cookies y analítica ----------
+     GA solo se inyecta si el usuario acepta todas las cookies.
+     Con "solo esenciales" (o sin elegir aún) no se carga el script
+     en absoluto, ni siquiera en modo "denegado": el propio <script>
+     de gtag.js no llega a añadirse al DOM. */
   var bar = $('#cookie-bar');
-  var gtagReady = false, metaLoaded = false;
+  var gaLoaded = false, metaLoaded = false;
 
-  function initConsentMode() {
-    if (gtagReady || !CFG.gaId) return;
-    gtagReady = true;
+  function loadGA() {
+    if (gaLoaded || !CFG.gaId) return;
+    gaLoaded = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag('consent', 'default', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'denied',
-      wait_for_update: 500
-    });
     window.gtag('js', new Date());
+    window.gtag('config', CFG.gaId, { anonymize_ip: true });
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + CFG.gaId;
     document.head.appendChild(s);
-    window.gtag('config', CFG.gaId, { anonymize_ip: true });
   }
 
   function loadMeta() {
@@ -341,23 +338,15 @@
   }
 
   function grant() {
-    initConsentMode();
-    if (window.gtag) {
-      window.gtag('consent', 'update', {
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-        analytics_storage: 'granted'
-      });
-    }
+    loadGA();
     loadMeta();
   }
 
   try {
     var choice = localStorage.getItem('am_cookies');
-    if (!choice) { if (bar) bar.hidden = false; initConsentMode(); }
+    if (!choice) { if (bar) bar.hidden = false; }
     else if (choice === 'all') { grant(); }
-    else { initConsentMode(); }
+    // choice === 'essential' → no se carga GA ni Meta
   } catch (err) { if (bar) bar.hidden = false; }
 
   var cookieAccept = $('#cookie-accept');
@@ -369,7 +358,6 @@
   var cookieReject = $('#cookie-reject');
   if (cookieReject) cookieReject.addEventListener('click', function () {
     try { localStorage.setItem('am_cookies', 'essential'); } catch (e) {}
-    initConsentMode();
     if (bar) bar.hidden = true;
   });
   var reopenCookies = $('#reopen-cookies');
