@@ -5,7 +5,6 @@
   "description": "Seguridad de los agentes de IA en sistemas de reservas empresariales: conoce permisos, aprobaciones y controles para proteger datos y evitar errores y fraudes.",
   "keyword": "Seguridad de los agentes de IA en sistemas de reservas empresariales",
   "category": "Automatización",
-  "noindex": true,
   "date": "2026-08-12",
   "cover": {
     "src": "seguridad-agentes-ia-reservas-empresariales-cover.jpg",
@@ -96,5 +95,9 @@
 <p>Las empresas que conectan agentes con CRM y ERP necesitan además proteger los datos durante su transmisión y almacenamiento, usar autenticación sólida y mantener registros de auditoría. Estas medidas son particularmente importantes cuando el agente maneja históricos de compra, preferencias, facturación o identificadores de reservas, como explica esta <a href="https://aunoa.ai/blog/agentes-ia-guia-completa/">guía sobre agentes de IA e integración empresarial</a>. Para valorar alternativas centradas en la privacidad y el control de los datos, también puede consultar este artículo sobre <a href="https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/">agentes de IA locales</a>.</p>
 
 <p>La conclusión para una pyme es directa: empiece con tareas de consulta y asistencia, no con decisiones irreversibles. Asigne una identidad a cada agente, limite sus permisos por acción, valide toda operación sensible, exija aprobación humana cuando corresponda y registre cada paso. Un agente de reservas puede aportar eficiencia real, pero solo si opera dentro de un sistema diseñado para decirle claramente qué puede hacer y, sobre todo, qué no puede hacer.</p>
+
 <h2>Lo que vemos en la práctica</h2>
-<p>[PENDIENTE: caso real]</p>
+
+<p>Hace unos días, montando una automatización propia, tuvimos que decidir si darle a un agente acceso a la configuración del DNS de nuestro dominio. Era cómodo: cinco registros que él habría creado en un minuto. Dijimos que no. Ese permiso deja modificar cómo se sirve el sitio entero, y a cambio nos ahorraba dos minutos de trabajo manual. La cuenta no salía.</p>
+
+<p>Y esa es la pregunta que casi nadie se hace antes de conectar nada: no qué puede hacer la herramienta, sino qué pasa si falla o si alguien la manipula. En los diagnósticos aparece una y otra vez el mismo patrón: agentes con credenciales de administrador "para que funcione", conectados a sistemas que nadie recuerda haber autorizado. Quitar accesos después siempre cuesta más que no darlos.</p>
