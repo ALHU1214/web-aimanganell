@@ -18,3 +18,7 @@ desktop.ini
 # Exports de workflows de n8n (exponen estructura interna y IDs
 # de hojas de Google) — n8n los suele soltar en la raíz del repo
 /*.json
+
+# Estado interno del proyecto (arquitectura, IDs de Supabase,
+# pendientes de seguridad) — solo debe existir en local
+/ESTADO-PROYECTO.md
