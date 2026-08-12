@@ -2,6 +2,7 @@
 {
   "slug": "seguridad-agentes-ia-reservas-empresariales",
   "title": "Proteja a los agentes de IA en reservas empresariales",
+  "seoTitle": "Agentes IA en reservas empresariales",
   "description": "Seguridad de los agentes de IA en sistemas de reservas empresariales: conoce permisos, aprobaciones y controles para proteger datos y evitar errores y fraudes.",
   "keyword": "Seguridad de los agentes de IA en sistemas de reservas empresariales",
   "category": "Automatización",
@@ -43,6 +44,8 @@
 <p>Hay un riesgo adicional que muchas empresas pasan por alto: dar al agente una cuenta compartida con permisos de administrador “para que funcione”. Es rápido al principio y difícil de defender después. Si el agente usa las mismas credenciales que un empleado con acceso amplio, será prácticamente imposible saber qué acción ejecutó, limitar su alcance o retirar permisos sin afectar a otros procesos.</p>
 
 <p>Por ello, un agente que atiende consultas no debería poder cancelar reservas. Un agente que ayuda al equipo interno a localizar información no debería ver datos de pago. Y un agente que calcula una propuesta comercial no debería aplicar descuentos por sí solo.</p>
+
+<p>Si su negocio opera específicamente en el sector hotelero o de alojamiento, este artículo sobre <a href="https://aimanganell.com/blog/seguridad-reservas-agentes-ia/">seguridad de sistemas de reservas automatizados con agentes de IA</a> profundiza en los riesgos particulares de gestionar datos de huéspedes, PMS hoteleros y cumplimiento del RGPD en ese sector.</p>
 
 <h2>Diseñe permisos por acción, no por aplicación</h2>
 
