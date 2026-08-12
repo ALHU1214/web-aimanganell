@@ -677,3 +677,114 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }
+
+/* ============================================================
+   RESPONSIVE MÓVIL — auditoría propia (12/08/2026)
+   Cada regla sale de medir el contenido real (longitud de los
+   textos, ratio del logo, unidades ch/vw) contra los anchos de
+   pantalla habituales (~360-430px de ancho útil).
+   ============================================================ */
+
+/* --- 1 · NAV ---------------------------------------------------
+   El logo (985:168) más "CONSULTORÍA" + "BLOG" + la píldora
+   "DIAGNÓSTICO" necesitan de sobra 600px+ a tamaño de escritorio.
+   Comprimiendo tipografía y separaciones cabe entero hasta unos
+   420px de ancho; por debajo de eso ya no hay hueco sin dejar el
+   texto ilegible. Se oculta solo la píldora: el formulario de
+   contacto está duplicado en cada página (hero + cierre), así que
+   no se pierde ningún camino a conversión. El enlace al blog en
+   cambio solo vive en el nav — no tiene entrada en el footer —
+   así que ese se queda visible siempre.                          */
+@media (max-width: 600px) {
+  nav { padding: 14px 16px 10px; }
+  .nav-logo img { height: 20px; }
+  .nav-links { gap: 10px; }
+  .nav-link { font-size: 12.5px; }
+  .nav-cta { padding: 9px 16px; font-size: 12.5px; }
+}
+@media (max-width: 420px) {
+  .nav-cta { display: none; }
+}
+
+/* nav es fixed sobre contenido que se desplaza por debajo (el
+   vídeo del hero, texto de sección): un fotograma claro del
+   vídeo o una sección clara detrás puede dejar el nav ilegible
+   sin un fondo propio.                                          */
+@media (max-width: 760px) {
+  nav {
+    background: rgba(6, 22, 29, .92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(232, 242, 239, .08);
+  }
+}
+
+/* --- 2 · Tipografías con suelo pensado para tablet, no para
+   ~360-390px real -------------------------------------------- */
+@media (max-width: 760px) {
+  /* "Primero claridad," son 18 caracteres: al suelo actual del
+     clamp (44px) y con letter-spacing negativo no entra en los
+     ~330px de ancho útil de un móvil normal. */
+  .manifiesto p { font-size: clamp(28px, 11vw, 130px); letter-spacing: -.03em; }
+
+  /* "Solicita tu Diagnóstico IA & Cyber" a 42px fijos tampoco
+     entra ni partiendo en dos líneas. */
+  .contacto-head h2 { font-size: clamp(24px, 7.5vw, 42px); }
+  .contacto { padding-top: 80px; padding-bottom: 80px; }
+
+  .p2-kicker { font-size: 17px; line-height: 1.5; }
+
+  /* el h1 lleva max-width:16ch — ch es relativo al tamaño de
+     fuente, así que bajar el font-size también reduce esa caja
+     y evita que fuerce un ancho fijo mayor que la pantalla. */
+  .p2-hero-copy h1 { margin-top: 20px; font-size: clamp(26px, 8vw, 64px); }
+  .p2-hero-copy p { margin-top: 18px; font-size: 16.5px; }
+  .p2-hero-copy .btn-acc {
+    margin-top: 30px; padding: 16px 24px; font-size: 15.5px;
+    max-width: 100%; text-align: center;
+  }
+
+  /* la caja de garantía total no desborda, pero 52px/48px de
+     relleno interno desperdicia demasiado ancho en ~330px */
+  .total-box { padding: 28px 20px; }
+  .total-box > p { margin-top: 18px; font-size: 16px; }
+  .plazas { margin-top: 26px; padding: 16px 18px; }
+  .plazas-bang, .plazas span:last-child { font-size: 15px; }
+
+  /* "facts" (Servicio / Modalidad): 96px de separación entre
+     2 columnas es demasiado en una pantalla estrecha */
+  .facts { gap: 18px 28px; margin-top: 36px; }
+}
+
+/* --- 3 · Altura del hero de consultoría -------------------------
+   82vh en iOS/Android se mide contra el alto de pantalla SIN la
+   barra de direcciones, así que la sección queda más alta que la
+   ventana visible real. svh sí la descuenta.
+   (.hero-wrap de la home se deja tal cual: min-height:0 en el
+   padre + 100vh en .hero-inner, que ya controla la altura desde
+   dentro — sumarlo en los dos la duplicaría.)                    */
+@media (max-width: 760px) {
+  .p2-hero { min-height: 78svh; padding-top: 100px; padding-bottom: 64px; }
+}
+
+/* --- 4 · Overflow: red de seguridad -----------------------------
+   No hay ninguna regla en todo el archivo que limite el tamaño
+   de una <img> o <video> sin CSS propio. Una imagen suelta en el
+   cuerpo de un post (contenido generado por n8n) o una URL/
+   palabra larga sin cortes podían desbordar en pantallas
+   estrechas. Los selectores más específicos (nav, footer,
+   portadas...) siguen ganando, esto solo cubre lo que no tiene
+   tamaño propio.                                                 */
+img, video { max-width: 100%; height: auto; }
+.post-content, .legal-body { overflow-wrap: break-word; }
+body { overflow-x: clip; }
+
+/* --- 5 · Listado del blog en pantallas muy estrechas ------------
+   minmax(300px,1fr) necesita 300px más el padding lateral de la
+   página (16px por lado aquí abajo). Por debajo de ~332px de
+   ancho de pantalla deja de caber. Por encima ya queda en una
+   sola columna de todas formas, así que fijarlo a 1fr aquí no
+   cambia nada visualmente salvo en ese caso límite.               */
+@media (max-width: 420px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
