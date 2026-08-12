@@ -253,6 +253,7 @@
                   <input type="checkbox" name="acepta">
                   <span>He leído y acepto la <a href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a> y el tratamiento de mis datos para ser contactado.</span>
                 </label>
+                <div class="turnstile-box"></div>
                 <p class="form-error" hidden></p>
                 <button type="submit" class="btn-acc btn-submit">Continuar al calendario</button>
                 <span class="form-foot">Sin permanencia · Respuesta &lt;24h · Presencial en Canarias y remoto<br>Plazas limitadas al mes</span>
@@ -323,5 +324,6 @@
 
 <script src="../config.js"></script>
 <script src="../main.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstile" async defer></script>
 </body>
 </html>

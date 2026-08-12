@@ -22,3 +22,8 @@ desktop.ini
 # Estado interno del proyecto (arquitectura, IDs de Supabase,
 # pendientes de seguridad) — solo debe existir en local
 /ESTADO-PROYECTO.md
+
+# Caché local del CLI de Supabase (project-ref, org id, URL del
+# pooler...) — se regenera con `supabase link`, no es código del
+# proyecto y no debe commitearse
+/supabase/.temp/

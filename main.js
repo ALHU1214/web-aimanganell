@@ -161,17 +161,32 @@
   });
 
   /* ---------- 5 · envío del formulario ---------- */
-  function sendLead(data) {
+  // Turnstile (modo Managed). El widget se renderiza cuando la API de
+  // Cloudflare llama a window.onloadTurnstile — puede pasar antes o
+  // después de que este script termine de correr, por eso se engancha
+  // así en vez de llamarlo directamente. Si el script de Cloudflare no
+  // llega a cargar (bloqueado por un adblocker, CDN caído...) el
+  // formulario se puede enviar igual: el bloqueo real está en la Edge
+  // Function (submit-lead), que rechaza sin token válido. Aquí solo
+  // evitamos que un fallo de un tercero deje el formulario roto.
+  window.onloadTurnstile = function () {
+    if (!window.turnstile || !CFG.turnstileSiteKey) return;
+    $$('.lead-form').forEach(function (form) {
+      var box = $('.turnstile-box', form);
+      if (!box) return;
+      form._turnstileId = window.turnstile.render(box, {
+        sitekey: CFG.turnstileSiteKey,
+        theme: 'dark'
+      });
+    });
+  };
+
+  function sendLead(data, turnstileToken) {
     var sb = CFG.supabase || {};
-    if (sb.url && sb.key) {
-      fetch(sb.url + '/rest/v1/' + (sb.table || 'leads'), {
+    if (sb.url) {
+      fetch(sb.url + '/functions/v1/submit-lead', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          apikey: sb.key,
-          Authorization: 'Bearer ' + sb.key,
-          Prefer: 'return=minimal'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nombre: data.nombre,
           empresa: data.empresa,
@@ -179,7 +194,8 @@
           telefono: data.telefono,
           mensaje: data.mensaje,
           origen: 'Landing web',
-          notas: data.biz ? 'Tipo de negocio: ' + data.biz : ''
+          notas: data.biz ? 'Tipo de negocio: ' + data.biz : '',
+          turnstileToken: turnstileToken || ''
         })
       }).catch(function () {});
     }
@@ -221,7 +237,13 @@
       }
       errBox.hidden = true;
 
-      sendLead(d);
+      var token = (window.turnstile && form._turnstileId != null)
+        ? window.turnstile.getResponse(form._turnstileId)
+        : '';
+      sendLead(d, token);
+      if (window.turnstile && form._turnstileId != null) {
+        window.turnstile.reset(form._turnstileId);
+      }
 
       var url = (CFG.calUrl || '#') +
         ((CFG.calUrl || '').indexOf('?') > -1 ? '&' : '?') +

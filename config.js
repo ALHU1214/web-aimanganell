@@ -17,8 +17,11 @@ window.AM_CONFIG = {
   consultoriaVideo: '../assets/consultoria.mp4',
   consultoriaVideoRate: 0.55,   // cámara lenta del vídeo de consultoría
 
-  // Destino de los leads. Deja supabase.url vacío para desactivarlo
-  // y usar solo el webhook (o ninguno de los dos).
+  // Destino de los leads: la Edge Function submit-lead (supabase/functions/),
+  // desplegada en el mismo proyecto de supabase.url. Es el único punto que
+  // escribe en la tabla leads — el navegador ya no inserta directamente
+  // (ver supabase/functions/submit-lead/index.ts). key se deja como
+  // referencia del proyecto, no se usa ya para el insert.
   supabase: {
     url: 'https://dbntpdrvnxdhgvdcexrt.supabase.co',
     key: 'sb_publishable_yoJZhGK0iJrHDNmj7uEBLA_42dE-kGf',
@@ -27,6 +30,11 @@ window.AM_CONFIG = {
 
   // Webhook opcional (n8n, Zapier, Make…). Recibe el lead en JSON.
   webhookUrl: '',
+
+  // Cloudflare Turnstile (protección anti-spam de los formularios de
+  // contacto). Site Key, pública por diseño. La Secret Key nunca va
+  // aquí — vive solo como secret de la Edge Function submit-lead.
+  turnstileSiteKey: '0x4AAAAAAENeLO4-8PHUoy9x',
 
   // Analítica. El script de GA solo se inyecta si el usuario acepta
   // todas las cookies en el banner (o ya lo aceptó en una visita
