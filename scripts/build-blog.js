@@ -37,9 +37,13 @@ const STATIC_PAGES = [
 
 // misma entidad en cada página — inline siempre (no @id cruzado entre
 // páginas: la herramienta de resultados enriquecidos de Google valida
-// cada página por separado y no resuelve referencias a otro documento)
+// cada página por separado y no resuelve referencias a otro documento).
+// El @id sí se repite igual en todas partes (mismo valor que el
+// ProfessionalService de index.html) para que un consumidor que cruce
+// datos de varias páginas reconozca que es la misma entidad.
 const ORGANIZATION = {
   '@type': 'Organization',
+  '@id': SITE_URL + '/#organization',
   name: 'AI MANGANELL',
   url: SITE_URL + '/',
   logo: {
