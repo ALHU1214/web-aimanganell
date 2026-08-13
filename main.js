@@ -106,7 +106,6 @@
     var small  = window.matchMedia('(max-width:760px)').matches;
     var conn   = navigator.connection || {};
     var frugal = conn.saveData === true ||
-                 /^(slow-2g|2g|3g)$/.test(conn.effectiveType || '') ||
                  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (small && frugal) { video.style.display = 'none'; return; }
 
@@ -181,7 +180,7 @@
     });
   };
 
-  function sendLead(data, turnstileToken) {
+  function sendLead(data, turnstileToken, origen) {
     var sb = CFG.supabase || {};
     if (sb.url) {
       fetch(sb.url + '/functions/v1/submit-lead', {
@@ -193,7 +192,7 @@
           email: data.email,
           telefono: data.telefono,
           mensaje: data.mensaje,
-          origen: 'Landing web',
+          origen: origen || 'Landing web',
           notas: data.biz ? 'Tipo de negocio: ' + data.biz : '',
           turnstileToken: turnstileToken || ''
         })
@@ -213,6 +212,7 @@
     var sentBox = $('.form-sent', card);
     var errBox  = $('.form-error', form);
     var calLink = $('.btn-cal', card);
+    var origen  = form.classList.contains('lead-form-2') ? 'Consultoría' : 'Landing web';
 
     function fail(msg) {
       errBox.textContent = msg;
@@ -240,7 +240,7 @@
       var token = (window.turnstile && form._turnstileId != null)
         ? window.turnstile.getResponse(form._turnstileId)
         : '';
-      sendLead(d, token);
+      sendLead(d, token, origen);
       if (window.turnstile && form._turnstileId != null) {
         window.turnstile.reset(form._turnstileId);
       }
