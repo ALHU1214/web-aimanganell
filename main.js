@@ -52,7 +52,7 @@
   // página está visualmente asentada (fuentes cargadas + load), no al
   // analizar el script. El scroll nativo del navegador ocurre antes de
   // eso, con las fuentes de sistema todavía puestas; en cuanto el texto
-  // reajusta con Space Grotesk/Manrope el layout se mueve y el navegador
+  // reajusta con Poppins/Manrope el layout se mueve y el navegador
   // no vuelve a corregir solo — por eso aterrizaba en el sitio equivocado
   // (normalmente el h1, más arriba de donde debía frenar).
   (function scrollToHashWhenReady() {

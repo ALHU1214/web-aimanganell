@@ -3,20 +3,42 @@
    Paleta y tipografía en :root — cambia aquí y cambia todo.
    ============================================================ */
 
-/* Tipografías autohospedadas (antes Google Fonts). Space Grotesk y
-   Manrope son fuentes variables: Google sirve un único archivo por
-   familia que cubre todo su rango de pesos, así que un solo
-   @font-face con font-weight en rango basta — el navegador
-   interpola el peso exacto (400/600/700, 400/500/600/700/800) sin
-   pedir un archivo por peso. IBM Plex Mono solo se usa en 400 aquí,
-   así que se queda en un peso fijo. Solo se piden los pesos que
-   realmente usa el sitio (ver styles.css para el resto). */
+/* Tipografías autohospedadas (antes Google Fonts). Manrope es
+   variable: Google sirve un único archivo por familia que cubre
+   todo su rango de pesos, así que un solo @font-face con
+   font-weight en rango basta — el navegador interpola el peso
+   exacto (400/500/600/700/800) sin pedir un archivo por peso.
+   Poppins no es variable en Google Fonts, así que va en un
+   @font-face por peso (solo los que realmente usa el sitio:
+   400/600/700/800). IBM Plex Mono solo se usa en 400 aquí, así
+   que se queda en un peso fijo. */
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 400;
   font-display: swap;
-  src: url('assets/fonts/space-grotesk.woff2') format('woff2');
+  src: url('assets/fonts/poppins-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/poppins-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/poppins-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('assets/fonts/poppins-800.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Manrope';
@@ -34,9 +56,9 @@
 }
 
 :root {
-  --acc: #3b8dff;          /* acento principal (azul eléctrico) */
+  --acc: #0071eb;          /* acento principal (mismo azul que los logos) */
   --acc2: #7ab6ff;         /* acento hover */
-  --acc-rgb: 59, 141, 255; /* mismo acento en RGB, para rgba() */
+  --acc-rgb: 0, 113, 235;  /* mismo acento en RGB, para rgba() */
   --acc-deep: #10305c;     /* halo oscuro del acento */
   --bg: #06161d;
   --ink: #e8f2ef;
@@ -44,7 +66,7 @@
   --blue: #3b8dff;
   --card: #0a1613;
   --sec-pad: 100px;        /* aire vertical entre secciones */
-  --font-1: 'Space Grotesk', system-ui, sans-serif;
+  --font-1: 'Poppins', system-ui, sans-serif;
   --font-2: 'Manrope', system-ui, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
 }
@@ -54,6 +76,7 @@
 html, body { margin: 0; width: 100%; min-height: 100%; background-color: var(--bg); }
 html { scroll-behavior: smooth; }
 body {
+  display: flex; flex-direction: column; min-height: 100vh;
   color: var(--ink);
   font-family: var(--font-1);
   -webkit-font-smoothing: antialiased;
@@ -124,6 +147,7 @@ nav {
 /* ============================================================
    PÁGINA 1 · HERO
    ============================================================ */
+#home { flex: 1 0 auto; }
 .hero-wrap { position: relative; overflow: hidden; min-height: 100vh; }
 .hero-video { position: absolute; inset: 0; z-index: 0; background: #07100e; }
 .hero-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -253,7 +277,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 /* ============================================================
    PÁGINA 2 · CONSULTORÍA
    ============================================================ */
-#page2 { position: relative; font-family: var(--font-2); }
+#page2 { position: relative; font-family: var(--font-1); flex: 1 0 auto; }
 .particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
 .particles span {
   position: absolute; bottom: -10px; border-radius: 50%;
@@ -304,7 +328,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .sec { padding: var(--sec-pad) 48px 0; }
 .wrap { max-width: 980px; margin: 0 auto; }
 .sec-title {
-  margin: 0 0 54px; text-align: center; font-size: clamp(30px, 3.4vw, 48px); font-weight: 700;
+  margin: 0 0 54px; text-align: center; font-size: clamp(30px, 3.4vw, 48px); font-weight: 400;
   line-height: 1.2; letter-spacing: -.02em; color: var(--ink); text-wrap: balance;
 }
 
@@ -340,12 +364,6 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .obt-item span:last-child { font-size: 17px; font-weight: 600; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
 .tick { color: var(--acc); font-size: 17px; line-height: 1.5; flex: none; }
 .cross { color: var(--red); font-size: 18px; line-height: 1.4; flex: none; }
-
-.facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px 96px; margin-top: 64px; }
-.fact { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.fact-label { font-size: 19px; line-height: 1.4; color: rgba(232,242,239,.5); }
-.fact-value { font-size: 34px; font-weight: 700; letter-spacing: -.02em; color: var(--acc); text-align: center; }
-.fact-note { font-size: 18px; line-height: 1.5; color: rgba(232,242,239,.5); }
 
 /* es para ti */
 .para-grid { max-width: 940px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
@@ -398,30 +416,48 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    FOOTER
    ============================================================ */
 footer {
-  display: flex; flex-direction: column; gap: 22px; padding: 44px 48px 34px;
-  border-top: 1px solid rgba(var(--acc-rgb), .12);
-  font-size: 13.5px; color: rgba(232,242,239,.5);
+  position: relative; z-index: 10; overflow: hidden;
+  display: flex; flex-direction: column; gap: 40px; padding: 56px 48px 40px;
+  max-width: 980px; margin: 0 auto;
+  background: var(--bg);
+  font-size: 14px; color: rgba(232,242,239,.5);
 }
+footer::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--acc) 50%, transparent 100%);
+  box-shadow: 0 -8px 24px rgba(var(--acc-rgb), .3);
+}
+.hero-wrap footer { background: none; }
 .foot-brand-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.foot-brand-name { font-family: var(--font-1); font-weight: 700; font-size: 15px; letter-spacing: .02em; color: var(--ink); }
+.foot-logo { height: 28px; width: auto; }
 .foot-social { display: flex; align-items: center; gap: 16px; min-height: 20px; }
 .foot-social a { color: rgba(232,242,239,.6); display: inline-flex; }
 .foot-social a:hover { color: var(--acc); }
 .foot-social svg { width: 18px; height: 18px; }
 
 .foot-legal {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 24px; align-items: center;
-  padding-top: 20px; border-top: 1px solid rgba(232,242,239,.08);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 32px; align-items: center;
+  padding-top: 32px; border-top: 1px solid rgba(232,242,239,.08);
 }
-.foot-link { color: rgba(232,242,239,.6); }
+.foot-link {
+  position: relative; display: inline-block; color: rgba(232,242,239,.55);
+  font-size: 15px; letter-spacing: .01em; font-weight: 400;
+}
+.foot-link::after {
+  content: ''; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px;
+  background: var(--acc); transform: scaleX(0); transform-origin: left;
+  transition: transform .25s ease;
+}
 .foot-link:hover { color: var(--acc); }
-.foot-link-subtle { font-size: 12px; color: rgba(232,242,239,.4); }
+.foot-link:hover::after { transform: scaleX(1); }
+.foot-link-subtle { font-size: 12.5px; color: rgba(232,242,239,.38); }
 .foot-link-subtle:hover { color: var(--acc); }
 
-.foot-email { text-align: center; }
+.foot-email { text-align: center; font-size: 16px; letter-spacing: .01em; }
 
 .foot-symbol { display: flex; justify-content: center; }
-.foot-symbol img { height: 26px; width: auto; opacity: .7; }
+.foot-symbol img { height: 90px; width: auto; animation: foot-float 4s ease-in-out infinite; }
+@keyframes foot-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
 .foot-copy { margin: 0; text-align: center; font-size: 12px; color: rgba(232,242,239,.38); }
 
@@ -750,10 +786,6 @@ footer {
   .total-box > p { margin-top: 18px; font-size: 16px; }
   .plazas { margin-top: 26px; padding: 16px 18px; }
   .plazas-bang, .plazas span:last-child { font-size: 15px; }
-
-  /* "facts" (Servicio / Modalidad): 96px de separación entre
-     2 columnas es demasiado en una pantalla estrecha */
-  .facts { gap: 18px 28px; margin-top: 36px; }
 }
 
 /* --- 3 · Altura del hero de consultoría -------------------------
