@@ -96,8 +96,8 @@ img { display: block; }
 
 /* ---------- animaciones ---------- */
 @keyframes pulse    { 0%,100% { opacity:.5 } 50% { opacity:1 } }
-@keyframes palpita  { 0%,100% { transform:scale(1); border-color:rgba(255,197,61,.55); box-shadow:0 0 0 rgba(255,197,61,0) }
-                      50%     { transform:scale(1.025); border-color:rgba(255,197,61,.95); box-shadow:0 0 34px rgba(255,197,61,.4) } }
+@keyframes palpita  { 0%,100% { transform:scale(1); border-color:rgba(255,197,61,.32); box-shadow:0 0 0 rgba(255,197,61,0) }
+                      50%     { transform:scale(1.025); border-color:rgba(255,197,61,.6); box-shadow:0 0 22px rgba(255,197,61,.26) } }
 @keyframes glow     { 0%,100% { box-shadow:0 0 24px rgba(var(--acc-rgb),.55), 0 0 60px rgba(var(--acc-rgb),.3) }
                       50%     { box-shadow:0 0 36px rgba(var(--acc-rgb),.85), 0 0 90px rgba(var(--acc-rgb),.5) } }
 @keyframes float-up { 0% { transform:translateY(0); opacity:0 } 8% { opacity:1 } 92% { opacity:1 } 100% { transform:translateY(-115vh); opacity:0 } }
@@ -110,6 +110,17 @@ img { display: block; }
 .rise.d2 { animation-delay: .16s; }
 .rise.d3 { animation-delay: .24s; }
 .rise.d4 { animation-delay: .32s; }
+
+/* ---------- reveal al hacer scroll (una sola vez) ----------
+   El ocultado cuelga de .js-reveal, que pone main.js al arrancar:
+   sin JS, o si el script falla, el contenido se ve tal cual. La
+   regla global de prefers-reduced-motion (más abajo) ya reduce la
+   transición a 0, así que ahí aparece de golpe, sin desplazamiento. */
+.js-reveal [data-reveal] {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .5s ease-out, transform .5s ease-out;
+}
+.js-reveal [data-reveal].is-in { opacity: 1; transform: none; }
 
 /* ---------- utilidades de color ---------- */
 .c-acc  { color: var(--acc); }
@@ -198,15 +209,10 @@ nav {
 .lead-form { display: flex; flex-direction: column; gap: 8px; }
 .lead-form-2 { gap: 18px; }
 .lead-form h2 {
-  margin: 0; font-size: clamp(24px, 6.4vw, 34px); font-weight: 700; letter-spacing: -.01em;
+  margin: 0 0 18px; font-size: clamp(24px, 6.4vw, 34px); font-weight: 400; letter-spacing: -.01em;
   text-align: center; line-height: 1.15;
 }
-.hl { color: var(--acc); box-shadow: inset 0 -4px 0 var(--red); padding: 0 .1em; }
-.step-note {
-  text-align: center; font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
-  color: var(--acc); margin: 14px 0 22px;
-}
-.step-note strong { color: var(--red); }
+.hl { color: var(--acc); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 1px; padding: 0 .1em; }
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .lead-form .grid-2, .lead-form > .field-wrap { margin-bottom: 14px; }
@@ -240,7 +246,23 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 }
 .lead-form > .consent { margin-bottom: 18px; }
 .lead-form-2 > .consent { margin-bottom: 0; }
-.consent input { margin-top: 2px; accent-color: var(--acc); width: 16px; height: 16px; }
+/* La casilla nativa se pinta blanca: accent-color solo tiñe el estado
+   marcado, no la caja vacía. Con appearance:none se dibuja a mano con
+   el mismo fondo y borde que .field, y el check se hace con ::after. */
+.consent input {
+  appearance: none; -webkit-appearance: none;
+  margin-top: 2px; width: 16px; height: 16px; flex-shrink: 0;
+  border: 1px solid rgba(232,242,239,.25); border-radius: 4px;
+  background: rgba(232,242,239,.04); cursor: pointer; position: relative;
+}
+.consent input:hover { border-color: rgba(var(--acc-rgb), .6); }
+.consent input:checked { background: var(--acc); border-color: var(--acc); }
+.consent input:checked::after {
+  content: ''; position: absolute; left: 4.5px; top: 1px;
+  width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.consent input:focus-visible { outline: 2px solid var(--acc2); outline-offset: 2px; }
 
 .form-error { margin: 0 0 12px; font-size: 13.5px; color: #ff8c7a; }
 .lead-form-2 .form-error { margin-bottom: 0; }
@@ -250,7 +272,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   font-family: inherit; cursor: pointer; text-align: center;
 }
 .btn-acc:hover { background: var(--acc2); color: #07100e; }
-.btn-submit { padding: 18px; border-radius: 12px; font-size: 19px; box-shadow: 0 0 32px rgba(var(--acc-rgb), .4); }
+.btn-submit { padding: 18px; border-radius: 999px; font-size: 19px; box-shadow: 0 0 32px rgba(var(--acc-rgb), .4); }
 .btn-sm { padding: 11px 22px; border-radius: 9px; font-size: 13.5px; font-weight: 700; }
 .btn-round { border-radius: 999px; }
 .btn-ghost {
@@ -259,12 +281,6 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   font-family: inherit; cursor: pointer;
 }
 .btn-ghost:hover { border-color: var(--ink); }
-
-.form-foot {
-  text-align: center; font-family: var(--mono); font-size: 11.5px;
-  color: rgba(232,242,239,.45); margin-top: 14px;
-}
-.lead-form-2 .form-foot { margin-top: 0; }
 
 .form-sent { display: flex; flex-direction: column; gap: 20px; text-align: center; padding: 24px 8px; }
 .form-sent p { margin: 0; font-size: 15.5px; color: rgba(232,242,239,.75); }
@@ -387,10 +403,15 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 /* contacto */
 .contacto {
   position: relative; overflow: hidden; padding: 110px 48px;
-  background: radial-gradient(ellipse 70% 80% at 50% 110%, rgba(var(--acc-rgb), .14), transparent 65%);
+  /* El degradado se recorta en la caja de la seccion, asi que tiene que
+     llegar a transparente ANTES del borde: centrado en 75% con radio
+     vertical 36%, se apaga al 98% de la altura. Antes iba centrado en
+     110% (por debajo de la seccion) y llegaba encendido al borde,
+     dejando una linea de corte justo encima de Garantia Total. */
+  background: radial-gradient(ellipse 70% 36% at 50% 75%, rgba(var(--acc-rgb), .14), transparent 65%);
 }
 .contacto-head { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; text-align: center; }
-.contacto-head h2 { margin: 0; font-size: 42px; font-weight: 700; letter-spacing: -.01em; }
+.contacto-head h2 { margin: 0; font-size: 42px; font-weight: 400; letter-spacing: -.01em; }
 .contacto .form-sec { margin-top: 34px; z-index: 2; }
 
 /* garantía total */
@@ -405,7 +426,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .total-box > p { margin: 26px auto 0; max-width: 640px; font-size: 18px; line-height: 1.6; color: var(--ink); text-wrap: pretty; }
 .plazas {
   margin-top: 38px; padding: 20px 26px; border-radius: 10px;
-  border: 1px solid rgba(255,197,61,.55); background: rgba(255,197,61,.12);
+  border: 1px solid rgba(255,197,61,.32); background: rgba(255,197,61,.12);
   display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;
   animation: palpita 3.6s ease-in-out infinite;
 }
@@ -685,7 +706,7 @@ footer::before {
   .hero-inner { min-height: 100svh; padding-top: 88px; padding-bottom: 44px; }
   .form-card { padding: 26px 20px 22px; }
   .form-shadow { transform: translate(7px, 7px); box-shadow: none; }
-  .lead-form h2 { margin-bottom: 2px; }
+  .lead-form h2 { margin-bottom: 12px; }
   .btn-submit { padding: 16px; }
   .field { padding: 13px 14px; }
   input, select, textarea, button { font-size: 16px; }

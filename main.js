@@ -389,4 +389,77 @@
     closeLegal();
     if (bar) bar.hidden = false;
   });
+  /* ---------- 8 · reveal al hacer scroll (una sola vez) ----------
+     Los bloques se marcan desde esta lista de selectores en vez de
+     escribir data-reveal en el HTML de cada página: el HTML servido
+     queda limpio, que es lo que necesita el modal legal (hace fetch
+     de /legal/... e inyecta su .legal-body por innerHTML).
+     El blog queda fuera del efecto a propósito: ni el listado ni los
+     posts. Si algún día entra, ojo con las plantillas de scripts/.   */
+  var REVEAL_SELECTORS = [
+    '#home #formulario',
+    // .guarantee-bar es una caja con borde y glow: se revela entera.
+    // Si se revelara .wrap > * como en las demás secciones, el borde
+    // aparecería de golpe y solo el texto de dentro haría el fundido.
+    '#page2 .sec > .wrap.guarantee-bar',
+    '#page2 .sec > .wrap:not(.guarantee-bar) > *',
+    '#page2 .manifiesto > *',
+    '#page2 .sec-total > *',
+    '#page2 .contacto-head',
+    '#page2 .form-sec',
+    '.legal-page-wrap > h1',
+    '.legal-page-wrap > .legal-date',
+    '.legal-page .legal-body > *'   // .legal-page excluye el .legal-body del modal, que se rellena por innerHTML
+  ];
+
+  (function initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+
+    var els = [];
+    REVEAL_SELECTORS.forEach(function (sel) {
+      $$(sel).forEach(function (el) { if (els.indexOf(el) === -1) els.push(el); });
+    });
+    if (!els.length) return;
+
+    // No se pre-marca nada como visible: de eso se encarga el observador.
+    // No hace falta y además fallaba, porque en este punto las fuentes
+    // (Poppins/Manrope) todavía no han reajustado el layout y el documento
+    // mide menos de lo que medirá — bloques que en realidad quedan muy
+    // abajo se medían dentro de la primera pantalla y salían ya visibles.
+    // No hay parpadeo porque styles.css bloquea el pintado en <head> y
+    // este script es síncrono al final del body: se ejecuta antes de que
+    // el navegador pinte por primera vez.
+    els.forEach(function (el) { el.setAttribute('data-reveal', ''); });
+    document.documentElement.classList.add('js-reveal');
+
+    // Al terminar el fundido se le quita el atributo y la clase: el
+    // elemento vuelve a ser un elemento normal, sin transition viva ni
+    // capa de composición. Importa porque varios de los bloques que se
+    // revelan llevan glows muy grandes (.guarantee-bar, .total-box, la
+    // .form-shadow del formulario) y mantenerlos compuestos encima de un
+    // body con background-attachment:fixed penaliza el scroll.
+    // Se hace con temporizador y no con transitionend porque ese evento
+    // no llega a dispararse en algunos entornos; con setTimeout la
+    // limpieza ocurre siempre. 600ms = los 500 de la transición + margen.
+    // Quitar primero el atributo y después la clase deja al elemento sin
+    // ninguna de las dos reglas aplicándose, así que no parpadea.
+    function cleanUp(el) {
+      setTimeout(function () {
+        el.removeAttribute('data-reveal');
+        el.classList.remove('is-in');
+      }, 600);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        cleanUp(entry.target);
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);   // una sola vez: al volver a subir no se re-oculta
+      });
+    }, { rootMargin: '0px 0px -60px 0px' });   // px fijos, no %: el margen negativo nunca puede superar la altura del footer y dejar un bloque sin disparar
+
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
 })();
