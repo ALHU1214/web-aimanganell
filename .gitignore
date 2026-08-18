@@ -16,8 +16,15 @@ desktop.ini
 .env.local
 
 # Exports de workflows de n8n (exponen estructura interna y IDs
-# de hojas de Google) — n8n los suele soltar en la raíz del repo
-/*.json
+# de hojas de Google). La regla es global, no solo de la raíz: antes
+# era /*.json y un export guardado en blog/ o scripts/ habría entrado
+# al repo sin avisar.
+*.json
+# Excepciones: si algún día hay que versionar un .json, se añade aquí
+# con ! delante. Estas dos van por adelantado porque que se ignoraran
+# en silencio rompería el repo para cualquiera que lo clonara.
+!package.json
+!package-lock.json
 
 # Estado interno del proyecto (arquitectura, IDs de Supabase,
 # pendientes de seguridad) — solo debe existir en local
