@@ -379,6 +379,21 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 }
 .obt-item span:last-child { font-size: 17px; font-weight: 600; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
 .tick { color: var(--acc); font-size: 17px; line-height: 1.5; flex: none; }
+
+/* Datos del servicio, al cierre de "¿Qué obtienes…".
+   Cifra en tamano fijo a proposito: con clamp()/vw encogeria en movil,
+   y ahi lo que toca es apilar los dos datos, no reducirlos. */
+.obt-facts { display: flex; justify-content: center; gap: 72px; margin-top: 54px; }
+.obt-fact  { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.obt-fact-label {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(232,242,239,.45);
+}
+.obt-fact-value {
+  font-size: 34px; font-weight: 700; line-height: 1.1;
+  letter-spacing: -.02em; color: var(--acc);
+}
+.obt-facts-note { margin: 16px 0 0; text-align: center; font-size: 14px; color: rgba(232,242,239,.45); }
 .cross { color: var(--red); font-size: 18px; line-height: 1.4; flex: none; }
 
 /* es para ti */
@@ -692,7 +707,7 @@ footer::before {
    ============================================================ */
 @media (max-width: 1120px) { .ben-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px)  { .obt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .para-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 600px)  { .obt-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px)  { .obt-grid { grid-template-columns: minmax(0, 1fr); } .obt-facts { flex-direction: column; gap: 30px; } }
 @media (max-width: 560px)  { .ben-grid { grid-template-columns: minmax(0, 1fr); } }
 
 @media (max-width: 760px) {
