@@ -411,8 +411,9 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 /* manifiesto */
 .manifiesto { padding: 150px 48px; }
 .manifiesto p {
-  margin: 0; max-width: 1000px; font-size: clamp(44px, 9.5vw, 130px); font-weight: 700;
+  margin: 0 auto; max-width: 1000px; font-size: clamp(44px, 9.5vw, 130px); font-weight: 700;
   line-height: .94; letter-spacing: -.045em; color: var(--ink); text-wrap: balance;
+  text-align: center;
 }
 
 /* contacto */
