@@ -1,0 +1,327 @@
+<!-- GENERADO POR scripts/build-blog.js — NO EDITAR A MANO -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo controlar los riesgos de la IA multiagente en pymes · AI MANGANELL</title>
+<meta name="description" content="Riesgos y controles para implantar sistemas de IA multiagente en una pyme: guía práctica para proteger datos, limitar permisos y automatizar con seguridad.">
+<meta name="keywords" content="Riesgos y controles para implantar sistemas de IA multiagente en una pyme">
+<link rel="canonical" href="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AI MANGANELL">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/">
+<meta property="og:title" content="Cómo controlar los riesgos de la IA multiagente en pymes">
+<meta property="og:description" content="Riesgos y controles para implantar sistemas de IA multiagente en una pyme: guía práctica para proteger datos, limitar permisos y automatizar con seguridad.">
+<meta property="og:image" content="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/cover.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Fotografía editorial que ilustra Riesgos y controles para implantar sistemas de IA multiagente en una pyme">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cómo controlar los riesgos de la IA multiagente en pymes">
+<meta name="twitter:description" content="Riesgos y controles para implantar sistemas de IA multiagente en una pyme: guía práctica para proteger datos, limitar permisos y automatizar con seguridad.">
+<meta name="twitter:image" content="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/cover.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://aimanganell.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://aimanganell.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cómo controlar los riesgos de la IA multiagente en pymes",
+          "item": "https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/#article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/"
+      },
+      "headline": "Cómo controlar los riesgos de la IA multiagente en pymes",
+      "description": "Riesgos y controles para implantar sistemas de IA multiagente en una pyme: guía práctica para proteger datos, limitar permisos y automatizar con seguridad.",
+      "image": [
+        "https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/cover.jpg",
+        "https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/cover-4x3.jpg",
+        "https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/cover-1x1.jpg"
+      ],
+      "datePublished": "2026-08-19",
+      "dateModified": "2026-08-19T11:38:38+01:00",
+      "author": {
+        "@type": "Person",
+        "name": "Álvaro Manganell González",
+        "url": "https://aimanganell.com/",
+        "jobTitle": "Fundador",
+        "worksFor": {
+          "@type": "Organization",
+          "@id": "https://aimanganell.com/#organization",
+          "name": "AI MANGANELL",
+          "url": "https://aimanganell.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://aimanganell.com/assets/logo-h-a.png",
+            "width": 985,
+            "height": 168
+          }
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://aimanganell.com/#organization",
+        "name": "AI MANGANELL",
+        "url": "https://aimanganell.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aimanganell.com/assets/logo-h-a.png",
+          "width": 985,
+          "height": 168
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué tareas son adecuadas para empezar a probar un sistema de IA multiagente en una pyme?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es recomendable comenzar por tareas repetitivas y de bajo riesgo, como clasificar solicitudes internas, localizar documentación aprobada, resumir información operativa o preparar borradores. Conviene limitar el primer piloto a uno o dos agentes y a un objetivo concreto, dejando para más adelante los pagos, los cambios en el ERP o las comunicaciones legales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo evitar que un agente de IA acceda a más información o herramientas de las necesarias?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aplique el principio de mínimo privilegio: cada agente debe tener únicamente los permisos imprescindibles para su función. Separe los accesos de lectura y modificación, utilice una identidad técnica distinta para cada agente y limite las herramientas por tarea y contexto; por ejemplo, permitir consultar un pedido, pero no cancelarlo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo debe intervenir una persona antes de que el sistema ejecute una acción?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Debe existir aprobación humana para acciones críticas como pagos, borrados, cambios de datos maestros, descuentos fuera de política, altas de proveedores o envíos de comunicaciones sensibles. La persona responsable debe poder revisar la propuesta, las fuentes utilizadas y sus consecuencias, y además la empresa debe conservar un registro completo de la acción y de su aprobación."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="../../assets/logo-h-a.png" alt="AI MANGANELL" width="985" height="168">
+  </a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">HOME</a>
+    <a href="/consultoria/" class="nav-link">AI &amp; CYBER AMG™</a>
+    <a href="/blog/" class="nav-link">BLOG</a>
+    <a href="/#formulario" class="nav-cta">CONTACTO</a>
+  </div>
+</nav>
+
+<div class="post-page">
+  <div class="post-wrap">
+
+    <!-- ============ CABECERA ============ -->
+    <article>
+      <header class="post-header">
+        <span class="pill"><span class="pill-dot"></span>Automatización</span>
+        <h1>Cómo controlar los riesgos de la IA multiagente en pymes</h1>
+        <p class="post-meta">
+          <time datetime="2026-08-19">19 de agosto de 2026</time>
+          <span class="dot" aria-hidden="true">·</span>
+          <span>Automatización</span>
+          <span class="dot" aria-hidden="true">·</span>
+          <span>9 min de lectura</span>
+        </p>
+      </header>
+
+      <figure class="post-cover">
+        <img src="cover.jpg" alt="Fotografía editorial que ilustra Riesgos y controles para implantar sistemas de IA multiagente en una pyme" width="1600" height="900" loading="lazy">
+      </figure>
+
+      <!-- ============ CUERPO — sin clases, el CSS apunta a las etiquetas ============ -->
+      <div class="post-content">
+<p>Implantar sistemas de <strong>IA multiagente en una pyme</strong> puede aportar una automatización útil: varios asistentes especializados colaboran para clasificar información, preparar respuestas, consultar documentación o coordinar tareas. Pero esa misma capacidad de actuar en cadena introduce riesgos que no existen, o son mucho menores, cuando se usa un único asistente para redactar un texto.</p>
+
+<p>Un sistema multiagente no debe entenderse como “varias herramientas de IA trabajando solas”. Es una arquitectura conectada a datos, documentos, correo, CRM, ERP y otras aplicaciones de la empresa. Por tanto, el riesgo no depende solo de si el modelo responde bien o mal. Depende de qué información puede consultar, qué acciones puede ejecutar, quién valida esas acciones y si la empresa puede reconstruir lo ocurrido tras un incidente.</p>
+
+<p>Para una pyme, el objetivo no debería ser conseguir la máxima autonomía desde el primer día. Debe ser automatizar tareas concretas con un nivel de control proporcional al impacto que tendría un error.</p>
+
+<h2>Dónde están los principales riesgos de un sistema multiagente</h2>
+
+<p>El primer riesgo es el <strong>acceso excesivo a datos y sistemas</strong>. Un agente que prepara informes puede necesitar consultar pedidos, datos de clientes o documentación interna. No necesita, sin embargo, modificar precios, exportar toda la base de datos comercial o acceder al buzón completo de dirección. Cuando se conceden permisos amplios “por si acaso”, un fallo del sistema se convierte rápidamente en un problema de seguridad o confidencialidad. Este principio resulta especialmente importante al proteger el CRM, el ERP y la facturación, como se explica en esta guía sobre <a href="https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/">seguridad de los agentes de IA en reservas conectadas al CRM</a>.</p>
+
+<p>Esto es especialmente relevante porque los agentes no solo leen información. En muchos proyectos se conectan a herramientas reales: crean tickets, actualizan fichas, envían correos, gestionan pedidos o lanzan flujos internos. La pérdida de información confidencial puede producirse en las respuestas, en registros de actividad, en la memoria que conserva el sistema o en una acción mal ejecutada. Los riesgos de exponer datos de clientes y permitir accesos indebidos también se observan en aplicaciones sectoriales, como la <a href="https://aimanganell.com/blog/seguridad-reservas-agentes-ia/">seguridad de los agentes de IA en las reservas de hotel</a>.</p>
+
+<p>El segundo riesgo es el <strong>uso indebido de herramientas</strong>. Una aplicación tradicional ejecuta una orden concreta. Un agente interpreta una instrucción y decide qué llamada hacer a una herramienta. Si interpreta mal una petición, recibe una orden ambigua o genera una respuesta incorrecta, puede utilizar una herramienta válida en un contexto inadecuado. Por ejemplo, un asistente diseñado para actualizar un pedido podría cambiar un dato maestro de cliente si sus permisos y validaciones no están bien definidos.</p>
+
+<p>También hay que considerar la manipulación mediante contenido externo. Un correo, un documento adjunto o una página web pueden contener instrucciones ocultas o redactadas para inducir al sistema a ignorar sus reglas de trabajo. Si un agente lee ese contenido y lo toma como una instrucción legítima, puede acabar solicitando datos, enviando información o llamando a herramientas que no debería. En una arquitectura con varios agentes, el problema puede propagarse: un agente contaminado entrega una conclusión errónea a otro, y el segundo la transforma en una acción.</p>
+
+<p>El tercer riesgo es el <strong>fallo en cascada</strong>. Un agente puede resumir mal un contrato; otro utiliza ese resumen para preparar una respuesta al cliente; un tercero envía el correo. Cada componente puede haber hecho algo aparentemente razonable, pero el resultado final es incorrecto. La coordinación entre agentes añade eficiencia, pero también multiplica las dependencias y hace más difícil detectar dónde se originó el error.</p>
+
+<p>Por último, muchas pymes infravaloran la falta de trazabilidad. Si no se registra qué agente consultó qué datos, qué decisión tomó, qué herramienta utilizó, con qué parámetros y cuál fue el resultado, no se puede investigar un incidente ni corregir el proceso. Un sistema que no permite reconstruir sus acciones no está preparado para procesos comerciales, financieros, legales o de atención al cliente con impacto real. Mantener un inventario de agentes, accesos y responsables es una base necesaria para gobernar estos sistemas.</p>
+
+<h2>Los controles que una pyme debe exigir antes de dar autonomía</h2>
+
+<p>El control más importante es el <strong>principio de mínimo privilegio</strong>: cada agente debe tener acceso únicamente a los datos, aplicaciones y acciones indispensables para su función. No conviene crear una cuenta genérica con acceso a todo el CRM, ERP y correo corporativo para que la compartan varios agentes.</p>
+
+<p>En la práctica, esto implica separar permisos de lectura y modificación. Un agente puede consultar el estado de un pedido sin poder cancelarlo. Puede preparar un borrador de correo sin capacidad para enviarlo. Puede analizar facturas sin autorización para aprobar pagos. Esta separación reduce de forma drástica el impacto de un error o una manipulación.</p>
+
+<p>Cada agente debe tener además una identidad técnica propia. Así se puede saber qué componente realizó una acción, revocarle el acceso si es necesario y evitar que una credencial comprometida dé acceso a todo el sistema. Los permisos deben limitarse por herramienta, tarea y contexto, no solo por departamento.</p>
+
+<p>El segundo control imprescindible es la <strong>aprobación humana en acciones críticas</strong>. Hay decisiones que un sistema puede proponer, pero no debería ejecutar por sí solo: pagos, altas o bajas de proveedores, modificaciones de datos maestros, descuentos fuera de política, borrados, comunicaciones externas sensibles o compromisos contractuales.</p>
+
+<p>La aprobación debe ser real, no una notificación que nadie revisa. La persona responsable tiene que ver qué propone el sistema, sobre qué información se basa y qué consecuencia tendrá aprobarlo. Si no hay tiempo para esa revisión, el proceso no está suficientemente preparado para automatizarse.</p>
+
+<p>También conviene definir una lista concreta de acciones permitidas. En lugar de intentar imaginar y bloquear todos los comportamientos peligrosos, la empresa debe decidir qué puede hacer cada agente y dejar todo lo demás fuera de su alcance. Por ejemplo, un agente de operaciones puede abrir una incidencia y asignarla a un equipo, pero no cerrar una reclamación de cliente ni modificar condiciones económicas.</p>
+
+<p>Otro control básico es compartimentar la arquitectura. La memoria de un agente que trata consultas comerciales no debería mezclarse con la de otro que analiza información de recursos humanos o finanzas. Del mismo modo, los agentes que consultan fuentes externas deben estar aislados de aquellos que pueden operar sobre sistemas internos. Cuando se estudian alternativas de ejecución local, también es importante valorar sus implicaciones de privacidad, capacidades y licencia, como muestra este análisis de <a href="https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/">Muse Glimmer y los agentes de IA locales</a>. IBM destaca la importancia de proteger el punto en el que un sistema pasa de recomendar una acción a ejecutarla en aplicaciones reales, la llamada capa de acción. Puede ampliar este enfoque en su análisis sobre <a href="https://www.ibm.com/es-es/think/insights/agentic-ai-security">seguridad en sistemas de IA que actúan mediante herramientas</a>.</p>
+
+<p>Finalmente, exija registros completos. Como mínimo, deberían quedar anotados la petición inicial, las fuentes consultadas, el agente que intervino, la herramienta usada, los parámetros enviados, el resultado y el responsable de la aprobación cuando corresponda. Estos registros deben revisarse periódicamente, no solo cuando algo sale mal.</p>
+
+<h2>Cómo desplegarlo sin convertir el piloto en un incidente</h2>
+
+<p>La implantación prudente empieza por procesos de bajo riesgo y alta repetición. Clasificar solicitudes internas, localizar documentación aprobada, preparar borradores para revisión humana o resumir información operativa son buenos candidatos. En cambio, automatizar pagos, decisiones de crédito, comunicaciones legales o cambios directos en el ERP no debería ser el primer caso de uso.</p>
+
+<p>El primer piloto debe limitarse a uno o dos agentes y una tarea claramente definida. Si el objetivo es “mejorar operaciones”, será imposible decidir qué permisos necesita el sistema, cómo medir el resultado o cuándo debe detenerse. Si el objetivo es “clasificar incidencias entrantes y proponer su asignación”, sí puede diseñarse un flujo controlado.</p>
+
+<p>Antes de pasar a producción, pruebe el sistema con situaciones deliberadamente difíciles: instrucciones ambiguas, documentos con datos contradictorios, intentos de manipular al agente, herramientas no disponibles, peticiones fuera de su función y errores de un agente que otro pueda adoptar como ciertos. No basta con comprobar que cada componente funciona de manera aislada. Hay que probar las cadenas completas de decisión y acción.</p>
+
+<p>La información que alimenta al sistema también debe estar validada. Para procesos internos, conviene priorizar políticas, procedimientos, tarifas y documentos aprobados por la empresa. No es razonable permitir que un agente base una decisión comercial o contractual en contenido web no verificado, un archivo antiguo o una nota interna sin responsable conocido.</p>
+
+<p>Además, debe existir un plan de parada y reversión. La empresa necesita saber quién puede desactivar el sistema, cómo se recuperan las tareas pendientes, qué acciones pueden deshacerse y cómo se informa a los afectados si se produce un incidente. La capacidad de revertir no es un detalle técnico: es la diferencia entre un error controlable y una interrupción operativa seria.</p>
+
+<h2>Cuándo no conviene desplegar todavía</h2>
+
+<p>No es recomendable poner en marcha un sistema de IA multiagente si no hay un responsable de negocio y un responsable técnico claramente asignados. Tampoco si nadie puede explicar qué datos consulta cada agente, qué permisos tiene o qué sucede cuando falla.</p>
+
+<p>Son señales de alerta claras que un agente pueda enviar correos, alterar datos o ejecutar transacciones sin revisión; que varias funciones compartan las mismas credenciales; que no existan registros detallados; o que el sistema consulte contenido externo sin filtros ni validación.</p>
+
+<p>La recomendación para una pyme es sencilla: empiece con poca autonomía, permisos reducidos y revisión humana. Amplíe capacidades solo cuando disponga de evidencia de que el sistema es fiable, trazable y reversible. La IA multiagente puede mejorar la productividad, pero no debe recibir autoridad operativa antes de demostrar que la empresa puede controlarla.</p>
+<h2>Lo que vemos en la práctica</h2>
+
+<p>En los diagnósticos nos encontramos casi siempre lo mismo, y no tiene que ver con la IA. Aparece una cuenta genérica —del tipo "info@" o "admin@"— que usan tres o cuatro personas y que además está conectada a un par de herramientas. Nadie recuerda quién la creó ni por qué tiene los permisos que tiene. Mientras solo entran personas, el problema se aguanta. En el momento en que se conecta un agente a esa cuenta, deja de saberse quién hizo qué: no hay forma de distinguir una acción del sistema de una acción de una persona, ni de retirar un acceso sin romperle el trabajo a alguien.</p>
+
+<p>El otro patrón habitual es escuchar "esto ya lo tenemos automatizado" y descubrir, al pedir detalle, que nadie en la empresa sabe explicar qué hace exactamente ese proceso, con qué datos ni bajo qué condiciones se dispara. Funciona, así que nadie lo mira. Y ahí está el fondo del asunto: el problema no suele ser la IA, sino el proceso que hay debajo. Automatizar algo que nadie sabe describir no lo mejora, solo lo hace más rápido y más difícil de revisar. Por eso el orden importa: primero claridad, después IA.</p>
+      </div>
+
+      <!-- ============ FAQ ============ -->
+      <section class="post-faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Preguntas frecuentes</h2>
+        <details>
+          <summary>¿Qué tareas son adecuadas para empezar a probar un sistema de IA multiagente en una pyme?</summary>
+          <p>Es recomendable comenzar por tareas repetitivas y de bajo riesgo, como clasificar solicitudes internas, localizar documentación aprobada, resumir información operativa o preparar borradores. Conviene limitar el primer piloto a uno o dos agentes y a un objetivo concreto, dejando para más adelante los pagos, los cambios en el ERP o las comunicaciones legales.</p>
+        </details>
+        <details>
+          <summary>¿Cómo puedo evitar que un agente de IA acceda a más información o herramientas de las necesarias?</summary>
+          <p>Aplique el principio de mínimo privilegio: cada agente debe tener únicamente los permisos imprescindibles para su función. Separe los accesos de lectura y modificación, utilice una identidad técnica distinta para cada agente y limite las herramientas por tarea y contexto; por ejemplo, permitir consultar un pedido, pero no cancelarlo.</p>
+        </details>
+        <details>
+          <summary>¿Cuándo debe intervenir una persona antes de que el sistema ejecute una acción?</summary>
+          <p>Debe existir aprobación humana para acciones críticas como pagos, borrados, cambios de datos maestros, descuentos fuera de política, altas de proveedores o envíos de comunicaciones sensibles. La persona responsable debe poder revisar la propuesta, las fuentes utilizadas y sus consecuencias, y además la empresa debe conservar un registro completo de la acción y de su aprobación.</p>
+        </details>
+      </section>
+
+      <!-- ============ AUTOR ============ -->
+      <section class="post-author">
+        <div class="author-avatar" aria-hidden="true"><img src="../../assets/logo-mark.png" alt="" width="741" height="397"></div>
+        <div>
+          <p class="author-name">Álvaro Manganell González <span class="author-role">· Fundador de AI MANGANELL</span></p>
+          <p class="author-bio">Consultoría de automatización con IA y ciberseguridad para pymes en Canarias. Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden.</p>
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="post-cta">
+        <h2>¿Quieres saber por dónde empezar en tu empresa?</h2>
+        <p>Así funciona el AI &amp; Cyber AMG™: qué incluye, para quién es, y por qué se descuenta íntegro si después implementas.</p>
+        <a class="btn-acc btn-round" href="/consultoria/">Ver el AI &amp; Cyber AMG™ →</a>
+      </section>
+
+    </article>
+
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-brand-row">
+    <img class="foot-logo" src="../../assets/logo-h-a.png" alt="AI MANGANELL" width="985" height="168">
+    <div class="foot-social" role="group" aria-label="Redes sociales">
+      <!-- pendiente: añadir iconos cuando haya URLs de redes sociales -->
+    </div>
+  </div>
+  <div class="foot-legal">
+    <a class="foot-link" href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a>
+    <a class="foot-link" href="/legal/cookies/" data-legal="cookies">Política de Cookies</a>
+    <a class="foot-link" href="/legal/aviso-legal/" data-legal="aviso">Aviso Legal</a>
+    <a class="foot-link foot-link-subtle" href="#" id="reopen-cookies">Configurar cookies</a>
+  </div>
+  <div class="foot-email">
+    <a class="foot-link" href="mailto:hola@aimanganell.com">hola@aimanganell.com</a>
+  </div>
+  <div class="foot-symbol">
+    <img src="../../assets/favicon.png" alt="AI MANGANELL" width="256" height="256">
+  </div>
+  <p class="foot-copy">© 2026 AI MANGANELL, todos los derechos reservados</p>
+</footer>
+
+<!-- ============ COOKIES ============ -->
+<div id="cookie-bar" hidden>
+  <p>Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Consulta nuestra <a href="/legal/cookies/" data-legal="cookies">Política de cookies</a> y la <a href="/legal/privacidad/" data-legal="priv">Política de privacidad</a>.</p>
+  <div class="cookie-btns">
+    <button type="button" class="btn-ghost" id="cookie-reject">Solo esenciales</button>
+    <button type="button" class="btn-acc btn-sm" id="cookie-accept">Aceptar todas</button>
+  </div>
+</div>
+
+<!-- ============ MODAL LEGAL ============ -->
+<div id="legal-modal" hidden>
+  <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="legal-title">
+    <button type="button" class="legal-close" aria-label="Cerrar">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+    </button>
+    <h2 id="legal-title"></h2>
+    <p class="legal-date">ÚLTIMA ACTUALIZACIÓN · AGOSTO 2026</p>
+    <div class="legal-body"><p>Cargando…</p></div>
+  </div>
+</div>
+
+<script src="../../config.js"></script>
+<script src="../../main.js"></script>
+
+</body>
+</html>
