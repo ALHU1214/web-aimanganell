@@ -756,8 +756,8 @@ footer::before {
    ============================================================ */
 
 /* --- 1 · NAV ---------------------------------------------------
-   El logo (985:168) más "CONSULTORÍA" + "BLOG" + la píldora
-   "DIAGNÓSTICO" necesitan de sobra 600px+ a tamaño de escritorio.
+   El logo (985:168) más "HOME" + "AI & CYBER AMG™" + "BLOG" + la
+   píldora "CONTACTO" necesitan de sobra 600px+ a tamaño de escritorio.
    Comprimiendo tipografía y separaciones cabe entero hasta unos
    420px de ancho; por debajo de eso ya no hay hueco sin dejar el
    texto ilegible. Se oculta solo la píldora: el formulario de
@@ -797,8 +797,8 @@ footer::before {
      ~330px de ancho útil de un móvil normal. */
   .manifiesto p { font-size: clamp(28px, 11vw, 130px); letter-spacing: -.03em; }
 
-  /* "Solicita tu Diagnóstico IA & Cyber" a 42px fijos tampoco
-     entra ni partiendo en dos líneas. */
+  /* "Solicita tu AI & Cyber AMG™" a 42px fijos tampoco entra ni
+     partiendo en dos líneas. */
   .contacto-head h2 { font-size: clamp(24px, 7.5vw, 42px); }
   .contacto { padding-top: 80px; padding-bottom: 80px; }
 

@@ -28,12 +28,11 @@ window.AM_CONFIG = {
     table: 'leads'
   },
 
-  // Webhook opcional (n8n, Zapier, Make…). Recibe el lead en JSON.
+  // Webhook opcional. Recibe el lead en JSON.
   webhookUrl: '',
 
   // Cloudflare Turnstile (protección anti-spam de los formularios de
-  // contacto). Site Key, pública por diseño. La Secret Key nunca va
-  // aquí — vive solo como secret de la Edge Function submit-lead.
+  // contacto). Site Key, pública por diseño.
   turnstileSiteKey: '0x4AAAAAAENeLO4-8PHUoy9x',
 
   // Analítica. El script de GA solo se inyecta si el usuario acepta
