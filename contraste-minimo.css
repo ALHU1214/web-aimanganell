@@ -1,0 +1,58 @@
+/* ============================================================
+   AI MANGANELL · Contraste mínimo
+   Se carga como hoja aparte, DESPUÉS de styles.css en el HTML.
+
+   SOLO corrige contraste WCAG AA. No toca tipografía, animaciones,
+   mayúsculas, glows ni ningún otro aspecto visual.
+   Cierra los 22 fallos del informe del 19/08/2026.
+   Para revertir: borra el <link> de las páginas.
+   ============================================================ */
+
+/* --- 1 · El azul, tres puntos más claro --------------------------
+   #0071eb -> #0079fc. Mismo tono, misma saturación, +3.3 pp de
+   luminosidad: indistinguible a ojo. Resuelve las dos exigencias
+   opuestas a la vez —como texto sube a 4.51, como relleno de botón
+   con el texto #07100e encima sube a 4.72— así que los botones se
+   quedan exactamente como están, con su texto oscuro y su glow.
+   Cierra 13 fallos de una sola línea.                              */
+:root {
+  --acc: #0079fc;
+  --acc-rgb: 0, 121, 252;
+}
+
+/* --- 2 · Dos fondos algo más claros necesitan un punto más -------
+   .obt-item (#0e1e24) y .post-faq (#0d1d23) son más claros que el
+   fondo general, así que ahí el azul del punto 1 aún se queda corto
+   (4.18 y 4.22). Solo en esos dos casos.                           */
+.tick { color: #0980ff; }
+.post-faq summary::after { color: #0980ff; }
+
+/* --- 3 · Textos secundarios: alfa mínimo 0.55 --------------------
+   Todos los rgba(232,242,239, α) por debajo de 0.55 fallaban o
+   aprobaban por márgenes de centésimas. Subirlos a 0.55 los lleva a
+   5.5:1 y los saca del margen de error de una vez. El tono es el
+   mismo: solo son un punto menos transparentes.                    */
+.post-meta .dot,
+.opt,
+.foot-link-subtle,
+.foot-copy,
+.blog-card-body time,
+.obt-fact-label,
+.obt-facts-note,
+.author-role,
+footer { color: rgba(232, 242, 239, .55); }
+
+.field::placeholder { color: rgba(232, 242, 239, .55); }
+
+/* --- 4 · El velo del hero -----------------------------------------
+   El texto del hero cae sobre un vídeo: el ratio depende del
+   fotograma. Con uno claro, .hero-sub baja a 3.91 y .pill a 2.99.
+   Subir el velo de .66 a .78 lo cierra sin tocar ningún color.      */
+.hero-veil { background: rgba(7, 16, 14, .78); }
+
+/* El separador de .post-meta debe leerse más tenue que el texto que
+   separa: a .55 competía con él. A .50 da 4.76 —pasa el umbral por
+   medición, sin depender de la excepción de contenido decorativo— y
+   se queda por debajo del .55 del texto, que es lo que recupera la
+   jerarquía. */
+.post-meta .dot { color: rgba(232, 242, 239, .50); }
