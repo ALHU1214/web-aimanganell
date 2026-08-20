@@ -93,6 +93,14 @@ a:hover { color: var(--acc2); }
 img { display: block; }
 ::selection { background: rgba(var(--acc-rgb), .3); }
 [hidden] { display: none !important; }
+/* Texto que no se ve pero que siguen leyendo Google y los lectores de
+   pantalla. Se usa para conservar el <h1> de la portada del blog: la
+   cabecera visible se quito, pero una pagina sin h1 pierde su titular
+   de nivel superior y el landmark que usan los lectores de pantalla. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 
 /* ---------- animaciones ---------- */
 @keyframes pulse    { 0%,100% { opacity:.5 } 50% { opacity:1 } }
