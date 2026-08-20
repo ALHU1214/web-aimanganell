@@ -212,7 +212,12 @@ nav {
   margin: 0 0 18px; font-size: clamp(24px, 6.4vw, 34px); font-weight: 400; letter-spacing: -.01em;
   text-align: center; line-height: 1.15;
 }
-.hl { color: var(--acc); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 1px; padding: 0 .1em; }
+/* El nombre del servicio va en el color del titular, no en azul: es un
+   <a>, asi que hay que ganar tambien a la regla generica de enlaces y a
+   su :hover, o volveria a tenirse. El subrayado rojo se queda: es lo que
+   lo marca como enlace y le da el enfasis. */
+.hl { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 1px; padding: 0 .1em; }
+.hl:hover { color: var(--ink); }
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .lead-form .grid-2, .lead-form > .field-wrap { margin-bottom: 14px; }
