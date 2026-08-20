@@ -855,7 +855,16 @@ footer::before {
   margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(232,242,239,.7); flex: 1;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-.blog-card-body time { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: rgba(232,242,239,.4); }
+/* margin-top:auto la empuja al fondo de la tarjeta pase lo que pase con
+   el alto del resumen, que va recortado a 3 lineas: asi las fechas de
+   las cuatro tarjetas quedan alineadas entre si aunque el texto ocupe
+   distinto. Tipografia de lectura en vez de monoespaciada, igual que en
+   la ficha del articulo. El color lo fija contraste-minimo.css. */
+.blog-card-body time {
+  margin-top: auto; padding-top: 14px;
+  font-family: var(--font-2); font-size: 13px; letter-spacing: 0;
+  color: rgba(232,242,239,.4);
+}
 
 .blog-empty { padding: 80px 24px; text-align: center; border-radius: 16px; border: 1px dashed rgba(232,242,239,.15); }
 .blog-empty p { margin: 0; font-size: 16px; color: rgba(232,242,239,.55); }
