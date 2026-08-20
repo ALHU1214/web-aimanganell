@@ -486,7 +486,10 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .contacto .form-sec { margin-top: 34px; z-index: 2; }
 
 /* garantía total */
-.sec-total { padding: var(--sec-pad) 48px var(--sec-pad); }
+/* Excepcion al paso comun: el hueco entre el formulario de contacto y
+   Garantia Total se deja en los 110px que tenia, que es como estaba en
+   produccion. El de abajo si sigue el paso, que ese separa del pie. */
+.sec-total { padding: 110px 48px var(--sec-pad); }
 .total-box {
   max-width: 800px; margin: 0 auto; padding: 52px 48px; border-radius: 16px;
   border: 2px solid var(--acc); background: rgba(var(--acc-rgb), .05);
