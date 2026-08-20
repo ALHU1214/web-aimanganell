@@ -473,7 +473,11 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 
 /* contacto */
 .contacto {
-  position: relative; overflow: hidden; padding: var(--sec-pad) 48px 0;
+  /* El relleno de abajo NO es decorativo: esta seccion lleva
+     overflow:hidden y .form-shadow sobresale ~64px por debajo de la
+     tarjeta (14px de translate mas 50px de halo). Con 0 aqui, el
+     navegador cortaba en seco el final del formulario. */
+  position: relative; overflow: hidden; padding: var(--sec-pad) 48px 70px;
   /* El degradado se recorta en la caja de la seccion, asi que tiene que
      llegar a transparente ANTES del borde: centrado en 75% con radio
      vertical 36%, se apaga al 98% de la altura. Antes iba centrado en
@@ -486,10 +490,11 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .contacto .form-sec { margin-top: 34px; z-index: 2; }
 
 /* garantía total */
-/* Excepcion al paso comun: el hueco entre el formulario de contacto y
-   Garantia Total se deja en los 110px que tenia, que es como estaba en
-   produccion. El de abajo si sigue el paso, que ese separa del pie. */
-.sec-total { padding: 110px 48px var(--sec-pad); }
+/* Excepcion al paso comun: el hueco entre el formulario y Garantia Total
+   se deja en los 110px que tenia en produccion. Van repartidos: 70px los
+   pone .contacto por abajo (los necesita para no recortar el halo del
+   formulario) y 40px esta. La suma sigue siendo 110. */
+.sec-total { padding: 40px 48px var(--sec-pad); }
 .total-box {
   max-width: 800px; margin: 0 auto; padding: 52px 48px; border-radius: 16px;
   border: 2px solid var(--acc); background: rgba(var(--acc-rgb), .05);
