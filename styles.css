@@ -652,6 +652,7 @@ footer::before {
 .post-content h2 {
   margin-top: 2.3em; font-family: var(--font-1); font-weight: 700; letter-spacing: -.015em;
   line-height: 1.25; font-size: clamp(24px, 3.2vw, 32px); color: var(--ink); text-wrap: balance;
+  padding-bottom: .32em; border-bottom: 1px solid rgba(var(--acc-rgb), .45);
 }
 .post-content h3 {
   margin-top: 1.9em; font-family: var(--font-1); font-weight: 700; letter-spacing: -.01em;
@@ -678,6 +679,57 @@ footer::before {
 .post-content code {
   font-family: var(--mono); font-size: .87em; color: var(--acc2);
   background: rgba(232,242,239,.08); padding: .15em .4em; border-radius: 5px;
+}
+
+/* ============================================================
+   BLOQUES DE CABECERA DEL POST · puntos clave y tabla de contenidos
+   Los genera scripts/build-blog.js: la tabla sale de los <h2> del
+   cuerpo, asi que los articulos de n8n la llevan sin tocar nada.
+   ============================================================ */
+/* Ojo: la barra de navegacion del sitio se estiliza con el selector de
+   elemento "nav { position: fixed; top: 0 }", asi que CUALQUIER <nav>
+   dentro del contenido hereda esa posicion fija y desaparece detras de
+   la cabecera. Por eso .post-toc devuelve position y display a su valor
+   normal. Si algun dia se anade otro <nav> en el cuerpo, le pasara lo
+   mismo. */
+.post-toc { position: static; display: block; }
+.post-keypoints,
+.post-toc {
+  margin: 0 0 34px; padding: 26px 30px 28px;
+  border: 1px solid rgba(var(--acc-rgb), .3); border-radius: 14px;
+  background: rgba(232, 242, 239, .03);
+}
+.post-keypoints h2,
+.post-toc h2 {
+  margin: 0 0 16px; padding-bottom: .5em;
+  font-family: var(--font-1); font-size: 21px; font-weight: 700;
+  letter-spacing: -.01em; color: var(--ink);
+  border-bottom: 1px solid rgba(var(--acc-rgb), .45);
+}
+.post-keypoints ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: .7em; }
+.post-keypoints li { font-size: 16.5px; line-height: 1.65; color: rgba(232,242,239,.86); }
+.post-keypoints li::marker { color: var(--acc2); }
+
+/* La tabla va numerada: el numero indica el orden de lectura, que es
+   informacion real, no adorno. */
+.post-toc ol { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: .55em; }
+.post-toc li { font-size: 16px; line-height: 1.5; }
+.post-toc li::marker { color: var(--acc2); font-family: var(--mono); font-size: .85em; }
+.post-toc a { color: var(--acc2); text-decoration: underline; text-decoration-color: rgba(var(--acc-rgb), .5); text-underline-offset: .18em; }
+.post-toc a:hover { color: var(--ink); text-decoration-color: var(--ink); }
+
+/* Termino destacado dentro del texto. <mark> por semantica: marca un
+   pasaje relevante, no un enfasis de voz (eso es <strong>). */
+.post-content mark {
+  background: rgba(var(--acc-rgb), .16);
+  color: var(--ink); font-weight: 600;
+  padding: .12em .4em; border-radius: 5px;
+  border: 1px solid rgba(var(--acc-rgb), .28);
+}
+
+@media (max-width: 760px) {
+  .post-keypoints, .post-toc { padding: 20px 20px 22px; margin-bottom: 28px; }
+  .post-keypoints h2, .post-toc h2 { font-size: 19px; }
 }
 
 /* FAQ */
