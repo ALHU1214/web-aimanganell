@@ -369,7 +369,6 @@ function renderCardHtml(post) {
     `          <img src="${data.slug}/cover.jpg" alt="${escapeHtml(data.cover.alt)}" width="${width}" height="${height}" loading="lazy">\n` +
     '        </div>\n' +
     '        <div class="blog-card-body">\n' +
-    `          <span class="blog-card-cat">${escapeHtml(data.category)}</span>\n` +
     `          <h2>${escapeHtml(data.title)}</h2>\n` +
     `          <p>${escapeHtml(data.description)}</p>\n` +
     `          <time datetime="${data.date}">${formatDateHuman(data.date)}</time>\n` +
