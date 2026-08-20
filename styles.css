@@ -711,10 +711,12 @@ footer::before {
    sin el lema) sobre fondo oscuro, asi que necesita ser rectangular y
    bastante mas ancho para que el nombre se lea. */
 .author-avatar {
-  flex: none; width: 150px; border-radius: 12px;
-  background: rgba(232,242,239,.04);
-  border: 1px solid rgba(232,242,239,.1);
+  flex: none; width: 150px;
   display: flex; align-items: center; justify-content: center;
+  /* Sin fondo ni borde: el logo va suelto sobre el de la pagina. El
+     padding se queda aunque ya no se vea, para que el logo conserve
+     exactamente el tamano que tenia dentro del recuadro (118px) y la
+     separacion con el texto no cambie. */
   padding: 14px 16px;
 }
 .author-avatar img { width: 100%; height: auto; }
