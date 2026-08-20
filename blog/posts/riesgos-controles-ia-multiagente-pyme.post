@@ -4,7 +4,7 @@
   "title": "Cómo controlar los riesgos de la IA multiagente en pymes",
   "description": "Riesgos y controles para implantar sistemas de IA multiagente en una pyme: guía práctica para proteger datos, limitar permisos y automatizar con seguridad.",
   "keyword": "Riesgos y controles para implantar sistemas de IA multiagente en una pyme",
-   "category": "Automatización",
+  "category": "Automatización",
   "date": "2026-08-19",
   "cover": {
     "src": "riesgos-controles-ia-multiagente-pyme-cover.jpg",
@@ -23,10 +23,17 @@
       "q": "¿Cuándo debe intervenir una persona antes de que el sistema ejecute una acción?",
       "a": "Debe existir aprobación humana para acciones críticas como pagos, borrados, cambios de datos maestros, descuentos fuera de política, altas de proveedores o envíos de comunicaciones sensibles. La persona responsable debe poder revisar la propuesta, las fuentes utilizadas y sus consecuencias, y además la empresa debe conservar un registro completo de la acción y de su aprobación."
     }
+  ],
+  "keyPoints": [
+    "<strong>El riesgo no es el modelo</strong>, es qué puede consultar y qué puede ejecutar.",
+    "<strong>Cuatro riesgos reales:</strong> acceso excesivo, uso indebido de herramientas, manipulación por contenido externo y fallo en cascada.",
+    "<strong>Mínimo privilegio</strong> e identidad propia por agente: separar leer de escribir cambia el impacto de un error.",
+    "<strong>Aprobación humana</strong> en pagos, borrados y datos maestros — real, no una notificación que nadie mira.",
+    "Sin registros no hay investigación posible: <strong>lo que no se traza, no se corrige</strong>."
   ]
 }
 ---
-<p>Implantar sistemas de <strong>IA multiagente en una pyme</strong> es útil: varios asistentes especializados clasifican información, preparan respuestas y coordinan tareas. Pero esa capacidad de actuar en cadena introduce riesgos que no existen cuando solo se usa un asistente para redactar textos.</p>
+<p>Implantar sistemas de <mark>IA multiagente en una pyme</mark> es útil: varios asistentes especializados clasifican información, preparan respuestas y coordinan tareas. Pero esa capacidad de actuar en cadena introduce riesgos que no existen cuando solo se usa un asistente para redactar textos.</p>
 
 <p>La clave: un sistema multiagente no son «varias IA trabajando solas». Es una arquitectura conectada a su CRM, su ERP, su correo y sus documentos. El riesgo no depende de si el modelo responde bien, sino de <strong>qué puede consultar, qué puede ejecutar, quién lo valida y si usted puede reconstruir lo ocurrido</strong>.</p>
 

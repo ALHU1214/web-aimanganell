@@ -72,7 +72,7 @@
         "https://aimanganell.com/blog/seguridad-reservas-agentes-ia/cover-1x1.jpg"
       ],
       "datePublished": "2026-08-11",
-      "dateModified": "2026-08-13T22:02:25+01:00",
+      "dateModified": "2026-08-20T19:10:42+01:00",
       "author": {
         "@type": "Person",
         "name": "Álvaro Manganell González",
@@ -175,17 +175,38 @@
 
       <!-- ============ CUERPO — sin clases, el CSS apunta a las etiquetas ============ -->
       <div class="post-content">
-<p>La <strong>seguridad de los agentes de IA en reservas hoteleras</strong> ya no es un asunto técnico: es operativo. Un agente puede atender a cualquier hora, comprobar inventario y confirmar reservas. El problema es que, para hacerlo, necesita tocar el PMS, el calendario y los datos del huésped.</p>
+<aside class="post-keypoints">
+    <h2>Puntos clave</h2>
+    <ul>
+      <li>Un chatbot responde; <strong>un agente ejecuta</strong>. Ahí cambia el mapa de riesgos.</li>
+      <li><strong>Confianza cero:</strong> toda entrada externa es no fiable por defecto, incluido lo que el agente lee.</li>
+      <li><strong>Separe funciones:</strong> el agente de disponibilidad consulta inventario, no cancela reservas.</li>
+      <li><strong>Enmascare antes del modelo:</strong> que trabaje con un identificador de reserva, no con el nombre y el documento.</li>
+      <li>Pruébelo con escenarios hostiles <strong>antes</strong> de que lo haga un cliente.</li>
+    </ul>
+  </aside>
+<nav class="post-toc" aria-label="Tabla de contenidos">
+    <h2>Tabla de contenidos</h2>
+    <ol>
+      <li><a href="#que-cambia-cuando-el-agente-puede-actuar">Qué cambia cuando el agente puede actuar</a></li>
+      <li><a href="#los-riesgos-principales">Los riesgos principales</a></li>
+      <li><a href="#confianza-cero-y-privilegios-minimos">Confianza cero y privilegios mínimos</a></li>
+      <li><a href="#controles-desde-el-primer-dia">Controles desde el primer día</a></li>
+      <li><a href="#pruebelo-antes-de-que-lo-pruebe-un-cliente">Pruébelo antes de que lo pruebe un cliente</a></li>
+      <li><a href="#lo-que-vemos-en-la-practica">Lo que vemos en la práctica</a></li>
+    </ol>
+  </nav>
+<p>La <mark>seguridad de los agentes de IA en reservas hoteleras</mark> ya no es un asunto técnico: es operativo. Un agente puede atender a cualquier hora, comprobar inventario y confirmar reservas. El problema es que, para hacerlo, necesita tocar el PMS, el calendario y los datos del huésped.</p>
 
 <p>La pregunta no es si automatizar. Es cómo hacerlo sin convertir el sistema en una puerta abierta a los datos de sus clientes.</p>
 
-<h2>Qué cambia cuando el agente puede actuar</h2>
+<h2 id="que-cambia-cuando-el-agente-puede-actuar">Qué cambia cuando el agente puede actuar</h2>
 
 <p>Un chatbot responde preguntas. Un agente <strong>ejecuta</strong>: consulta disponibilidad, modifica una reserva, emite un reembolso. Ahí el riesgo deja de ser solo el hackeo clásico de la plataforma y pasa a incluir algo nuevo: que el propio agente haga algo que no debía, porque interpretó mal una instrucción o porque alguien se la coló.</p>
 
 <p>Microsoft avisa de que cada interacción entre agentes, servicios y herramientas abre una oportunidad de filtración o de acción no autorizada. Puede ampliarlo en su guía sobre <a href="https://learn.microsoft.com/es-es/security/zero-trust/sfi/manage-agentic-risk">gestión del riesgo en sistemas agénticos</a>.</p>
 
-<h2>Los riesgos principales</h2>
+<h2 id="los-riesgos-principales">Los riesgos principales</h2>
 
 <ul>
   <li><strong>Exposición de datos del huésped.</strong> Nombres, teléfonos, historial de estancias, datos de pago. Si una consulta es «¿hay habitaciones el viernes?», el agente no necesita el historial de nadie para responder.</li>
@@ -195,7 +216,7 @@
   <li><strong>Decisiones que no se pueden explicar.</strong> Debe poder responder por qué se recomendó una opción o se rechazó una solicitud. <a href="https://witness.ai/blog/conversational-ai-hospitality/">Witness AI</a> lo trata en detalle para hostelería.</li>
 </ul>
 
-<h2>Confianza cero y privilegios mínimos</h2>
+<h2 id="confianza-cero-y-privilegios-minimos">Confianza cero y privilegios mínimos</h2>
 
 <p>Confianza cero significa tratar toda entrada externa como no fiable por defecto. Privilegios mínimos, dar al agente solo el acceso imprescindible para su tarea. En un hotel eso se traduce en separar funciones:</p>
 
@@ -205,7 +226,7 @@
   <li>Cualquier <strong>reembolso o cambio con impacto económico</strong>: propuesta del agente, aprobación de una persona.</li>
 </ul>
 
-<h2>Controles desde el primer día</h2>
+<h2 id="controles-desde-el-primer-dia">Controles desde el primer día</h2>
 
 <ul>
   <li><strong>Enmascarar antes del modelo.</strong> Que el agente trabaje con un identificador de reserva, no con el nombre completo ni el número de documento.</li>
@@ -214,13 +235,13 @@
   <li><strong>Registro de cada interacción:</strong> qué se pidió, qué consultó el agente, qué regla aplicó, qué herramienta usó y qué devolvió. Un registro que nadie revisa no es auditoría.</li>
 </ul>
 
-<h2>Pruébelo antes de que lo pruebe un cliente</h2>
+<h2 id="pruebelo-antes-de-que-lo-pruebe-un-cliente">Pruébelo antes de que lo pruebe un cliente</h2>
 
 <p>Las demostraciones internas no valen como validación. Diseñe escenarios reales: alguien que intenta modificar la reserva de otra persona, un mensaje que trata de convencer al agente de saltarse una política, una herramienta caída a mitad de operación. <a href="https://www.parloa.com/knowledge-hub/ai-travel-security/">Parloa</a> insiste en definir permisos y límites <em>antes</em> de procesar la primera interacción, no después.</p>
 
 <p>Si valora ejecutar el modelo en local para no sacar datos de huéspedes fuera, aquí analizamos las implicaciones: <a href="https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/">Muse Glimmer y los agentes de IA locales</a>. Y si su caso es más de CRM y ERP que de PMS, lo tratamos en <a href="https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/">seguridad de los agentes de IA en reservas empresariales</a>.</p>
 
-<h2>Lo que vemos en la práctica</h2>
+<h2 id="lo-que-vemos-en-la-practica">Lo que vemos en la práctica</h2>
 
 <p>Este mismo blog está automatizado, y al montarlo tuvimos que decidir exactamente lo que plantea el artículo. Al crear el token que publica en el repositorio, la opción cómoda era darle acceso a todo. Le dimos permiso a <strong>un solo repositorio y una sola función</strong>: escribir archivos. Nada más. Si mañana ese token se filtra, el daño está acotado de antemano.</p>
 

@@ -24,10 +24,17 @@
       "q": "¿Qué debo registrar para controlar la actividad del agente?",
       "a": "Registre quién inició la solicitud, qué información recibió el agente, qué decisión tomó, qué herramienta utilizó y qué cambio se aplicó. También conviene guardar las aprobaciones humanas y configurar alertas para detectar cancelaciones masivas, accesos denegados repetidos o consultas anómalas."
     }
+  ],
+  "keyPoints": [
+    "En CRM y ERP el error no es una respuesta rara: es <strong>una factura mal emitida</strong>.",
+    "<strong>Permisos por acción, no por aplicación:</strong> consultar un pedido sin poder cancelarlo.",
+    "Tres momentos, tres controles: <strong>lo que lee, lo que decide y lo que ejecuta</strong>.",
+    "<strong>Identidad técnica propia</strong> por agente. Nada de cuentas genéricas compartidas.",
+    "Sin trazabilidad no hay control <em>ni mejora</em>: no sabrá siquiera dónde falla."
   ]
 }
 ---
-<p>Cuando se habla de <strong>seguridad de los agentes de IA en reservas con CRM y ERP</strong>, el riesgo deja de ser abstracto: son cambios en registros reales, movimientos de dinero y datos de clientes.</p>
+<p>Cuando se habla de <mark>seguridad de los agentes de IA en reservas con CRM y ERP</mark>, el riesgo deja de ser abstracto: son cambios en registros reales, movimientos de dinero y datos de clientes.</p>
 
 <p>Un agente que «solo gestiona reservas» toca, en la práctica, su CRM, su facturación y su correo. Ahí un error no es una respuesta rara: es una factura mal emitida o un dato de cliente donde no debía estar.</p>
 

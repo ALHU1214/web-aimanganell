@@ -251,6 +251,59 @@ function buildFaqSchema(faq) {
   };
 }
 
+/* Convierte un titular en un id usable como ancla: sin tildes, sin
+   signos y en minusculas-con-guiones. */
+function headingId(text) {
+  return text
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/<[^>]+>/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
+/* Pone un id a cada <h2> del cuerpo y devuelve la lista, para poder
+   construir la tabla de contenidos sin que el autor la escriba a mano.
+   Se hace aqui y no en el .post para que los articulos que genera n8n
+   la tengan tambien sin tocar nada. */
+function addHeadingIds(html) {
+  const headings = [];
+  const out = html.replace(/<h2>(.*?)<\/h2>/g, (m, inner) => {
+    const text = inner.replace(/<[^>]+>/g, '').trim();
+    let id = headingId(text);
+    let n = 2;
+    while (headings.some(h => h.id === id)) id = headingId(text) + '-' + n++;
+    headings.push({ id, text });
+    return `<h2 id="${id}">${inner}</h2>`;
+  });
+  return { html: out, headings };
+}
+
+function renderTocHtml(headings) {
+  if (headings.length < 3) return '';   // con dos apartados no aporta nada
+  const items = headings
+    .map(h => `      <li><a href="#${h.id}">${escapeHtml(h.text)}</a></li>`)
+    .join('\n');
+  return `<nav class="post-toc" aria-label="Tabla de contenidos">
+    <h2>Tabla de contenidos</h2>
+    <ol>
+${items}
+    </ol>
+  </nav>`;
+}
+
+function renderKeyPointsHtml(points) {
+  if (!Array.isArray(points) || !points.length) return '';
+  const items = points.map(p => `      <li>${p}</li>`).join('\n');
+  return `<aside class="post-keypoints">
+    <h2>Puntos clave</h2>
+    <ul>
+${items}
+    </ul>
+  </aside>`;
+}
+
 function renderPost(template, data, bodyHtml, dateModified, coverVariants) {
   const slug = data.slug;
   const width = data.cover.width || 1600;
@@ -274,7 +327,12 @@ function renderPost(template, data, bodyHtml, dateModified, coverVariants) {
   const faqSchema = buildFaqSchema(data.faq);
   if (faqSchema) graph.push(faqSchema);
 
+  const withIds = addHeadingIds(bodyHtml);
+  bodyHtml = withIds.html;
+
   const replacements = {
+    '{{KEYPOINTS_HTML}}': renderKeyPointsHtml(data.keyPoints),
+    '{{TOC_HTML}}': renderTocHtml(withIds.headings),
     '{{TITLE}}': escapeHtml(data.title),
     '{{SEO_TITLE}}': escapeHtml(data.seoTitle || data.title),
     '{{DESCRIPTION}}': escapeHtml(data.description),

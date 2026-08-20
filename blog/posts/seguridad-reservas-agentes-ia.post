@@ -24,10 +24,17 @@
       "q": "¿Qué controles de seguridad hay que revisar antes de poner en producción un sistema de reservas con IA?",
       "a": "Es recomendable probar el sistema frente a inyecciones de instrucciones, intentos de suplantación, abusos de herramientas y solicitudes masivas. También deben configurarse el cifrado, el enmascaramiento de datos, los límites de acceso, los registros de auditoría y la monitorización continua."
     }
+  ],
+  "keyPoints": [
+    "Un chatbot responde; <strong>un agente ejecuta</strong>. Ahí cambia el mapa de riesgos.",
+    "<strong>Confianza cero:</strong> toda entrada externa es no fiable por defecto, incluido lo que el agente lee.",
+    "<strong>Separe funciones:</strong> el agente de disponibilidad consulta inventario, no cancela reservas.",
+    "<strong>Enmascare antes del modelo:</strong> que trabaje con un identificador de reserva, no con el nombre y el documento.",
+    "Pruébelo con escenarios hostiles <strong>antes</strong> de que lo haga un cliente."
   ]
 }
 ---
-<p>La <strong>seguridad de los agentes de IA en reservas hoteleras</strong> ya no es un asunto técnico: es operativo. Un agente puede atender a cualquier hora, comprobar inventario y confirmar reservas. El problema es que, para hacerlo, necesita tocar el PMS, el calendario y los datos del huésped.</p>
+<p>La <mark>seguridad de los agentes de IA en reservas hoteleras</mark> ya no es un asunto técnico: es operativo. Un agente puede atender a cualquier hora, comprobar inventario y confirmar reservas. El problema es que, para hacerlo, necesita tocar el PMS, el calendario y los datos del huésped.</p>
 
 <p>La pregunta no es si automatizar. Es cómo hacerlo sin convertir el sistema en una puerta abierta a los datos de sus clientes.</p>
 

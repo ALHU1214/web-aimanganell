@@ -24,10 +24,17 @@
       "q": "¿Los datos que proceso con Muse Glimmer salen de mi empresa?",
       "a": "Si se despliega localmente, determinados datos pueden procesarse dentro de los equipos o la red de la organización sin depender necesariamente de una API en la nube. Aun así, debes configurar correctamente los permisos, la seguridad y los registros, porque el uso local no elimina los riesgos de acceso indebido o de respuestas incorrectas."
     }
+  ],
+  "keyPoints": [
+    "<strong>Muse Glimmer</strong> es el modelo abierto de Meta para uso agéntico: 30B que caben en un solo equipo.",
+    "Se diferencia de un chat en tres cosas: <strong>razona en varios pasos, usa herramientas y se recupera de fallos</strong>.",
+    "<strong>Ejecutarlo en local</strong> da privacidad, control de versión, continuidad y coste predecible.",
+    "No es una decisión de IA, es <strong>una decisión de datos</strong>: qué información no debería salir de su empresa.",
+    "Ojo: lo local reduce la exposición de datos, <strong>no</strong> el riesgo de que el agente actúe mal."
   ]
 }
 ---
-<p><strong>Muse Glimmer</strong> es el modelo de pesos abiertos de Meta pensado para uso agéntico: 30.000 millones de parámetros y, sobre todo, un tamaño que cabe donde antes no cabían los agentes — un solo equipo, dentro de la empresa.</p>
+<p><mark>Muse Glimmer</mark> es el modelo de pesos abiertos de Meta pensado para uso agéntico: 30.000 millones de parámetros y, sobre todo, un tamaño que cabe donde antes no cabían los agentes — un solo equipo, dentro de la empresa.</p>
 
 <p>Lo interesante para una pyme no es la cifra de parámetros. Es lo que implica: que un agente pueda vivir cerca de sus datos en lugar de depender de un servicio remoto.</p>
 

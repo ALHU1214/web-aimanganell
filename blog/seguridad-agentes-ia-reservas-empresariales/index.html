@@ -72,7 +72,7 @@
         "https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/cover-1x1.jpg"
       ],
       "datePublished": "2026-08-12",
-      "dateModified": "2026-08-18T20:41:20+01:00",
+      "dateModified": "2026-08-20T19:10:42+01:00",
       "author": {
         "@type": "Person",
         "name": "Álvaro Manganell González",
@@ -175,11 +175,30 @@
 
       <!-- ============ CUERPO — sin clases, el CSS apunta a las etiquetas ============ -->
       <div class="post-content">
-<p>Cuando se habla de <strong>seguridad de los agentes de IA en reservas con CRM y ERP</strong>, el riesgo deja de ser abstracto: son cambios en registros reales, movimientos de dinero y datos de clientes.</p>
+<aside class="post-keypoints">
+    <h2>Puntos clave</h2>
+    <ul>
+      <li>En CRM y ERP el error no es una respuesta rara: es <strong>una factura mal emitida</strong>.</li>
+      <li><strong>Permisos por acción, no por aplicación:</strong> consultar un pedido sin poder cancelarlo.</li>
+      <li>Tres momentos, tres controles: <strong>lo que lee, lo que decide y lo que ejecuta</strong>.</li>
+      <li><strong>Identidad técnica propia</strong> por agente. Nada de cuentas genéricas compartidas.</li>
+      <li>Sin trazabilidad no hay control <em>ni mejora</em>: no sabrá siquiera dónde falla.</li>
+    </ul>
+  </aside>
+<nav class="post-toc" aria-label="Tabla de contenidos">
+    <h2>Tabla de contenidos</h2>
+    <ol>
+      <li><a href="#disene-permisos-por-accion-no-por-aplicacion">Diseñe permisos por acción, no por aplicación</a></li>
+      <li><a href="#controle-lo-que-el-agente-lee-decide-y-ejecuta">Controle lo que el agente lee, decide y ejecuta</a></li>
+      <li><a href="#sin-trazabilidad-no-hay-control-ni-mejora">Sin trazabilidad no hay control ni mejora</a></li>
+      <li><a href="#lo-que-vemos-en-la-practica">Lo que vemos en la práctica</a></li>
+    </ol>
+  </nav>
+<p>Cuando se habla de <mark>seguridad de los agentes de IA en reservas con CRM y ERP</mark>, el riesgo deja de ser abstracto: son cambios en registros reales, movimientos de dinero y datos de clientes.</p>
 
 <p>Un agente que «solo gestiona reservas» toca, en la práctica, su CRM, su facturación y su correo. Ahí un error no es una respuesta rara: es una factura mal emitida o un dato de cliente donde no debía estar.</p>
 
-<h2>Diseñe permisos por acción, no por aplicación</h2>
+<h2 id="disene-permisos-por-accion-no-por-aplicacion">Diseñe permisos por acción, no por aplicación</h2>
 
 <p>El error habitual es dar acceso a una aplicación entera porque «lo necesita para funcionar». Lo correcto es bajar al nivel de acción:</p>
 
@@ -192,7 +211,7 @@
 
 <p>Cada agente con su propia identidad técnica. Nada de una cuenta genérica compartida: si algo sale mal, hay que poder saber quién lo hizo y revocarle el acceso sin tumbar el resto. Microsoft lo desarrolla en su guía sobre <a href="https://learn.microsoft.com/es-es/security/zero-trust/sfi/secure-agentic-systems">sistemas agénticos seguros</a>.</p>
 
-<h2>Controle lo que el agente lee, decide y ejecuta</h2>
+<h2 id="controle-lo-que-el-agente-lee-decide-y-ejecuta">Controle lo que el agente lee, decide y ejecuta</h2>
 
 <p>Son tres momentos distintos y cada uno necesita su control:</p>
 
@@ -204,7 +223,7 @@
 
 <p>La misma lógica, aplicada al sector hotelero y al PMS, está en <a href="https://aimanganell.com/blog/seguridad-reservas-agentes-ia/">seguridad de los agentes de IA en las reservas de hotel</a>.</p>
 
-<h2>Sin trazabilidad no hay control ni mejora</h2>
+<h2 id="sin-trazabilidad-no-hay-control-ni-mejora">Sin trazabilidad no hay control ni mejora</h2>
 
 <p>Si no queda registrado qué consultó el agente, qué decidió, qué herramienta usó y con qué parámetros, no puede investigar un incidente ni corregir el proceso. Y sin eso tampoco puede mejorarlo: no sabrá dónde falla.</p>
 
@@ -212,7 +231,7 @@
 
 <p>Si está valorando ejecutar el modelo en local para que los datos no salgan de casa, aquí lo analizamos: <a href="https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/">Muse Glimmer y los agentes de IA locales</a>.</p>
 
-<h2>Lo que vemos en la práctica</h2>
+<h2 id="lo-que-vemos-en-la-practica">Lo que vemos en la práctica</h2>
 
 <p>Hace unos días, montando una automatización propia, tuvimos que decidir si darle a un agente acceso a la configuración del DNS de nuestro dominio. Era cómodo: cinco registros que habría creado en un minuto. Dijimos que no. Ese permiso deja modificar cómo se sirve el sitio entero, y a cambio ahorraba dos minutos de trabajo manual. <strong>La cuenta no salía.</strong></p>
 

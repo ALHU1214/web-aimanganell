@@ -72,7 +72,7 @@
         "https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/cover-1x1.jpg"
       ],
       "datePublished": "2026-08-10",
-      "dateModified": "2026-08-12T00:30:33+01:00",
+      "dateModified": "2026-08-20T19:10:42+01:00",
       "author": {
         "@type": "Person",
         "name": "Álvaro Manganell González",
@@ -175,11 +175,31 @@
 
       <!-- ============ CUERPO — sin clases, el CSS apunta a las etiquetas ============ -->
       <div class="post-content">
-<p><strong>Muse Glimmer</strong> es el modelo de pesos abiertos de Meta pensado para uso agéntico: 30.000 millones de parámetros y, sobre todo, un tamaño que cabe donde antes no cabían los agentes — un solo equipo, dentro de la empresa.</p>
+<aside class="post-keypoints">
+    <h2>Puntos clave</h2>
+    <ul>
+      <li><strong>Muse Glimmer</strong> es el modelo abierto de Meta para uso agéntico: 30B que caben en un solo equipo.</li>
+      <li>Se diferencia de un chat en tres cosas: <strong>razona en varios pasos, usa herramientas y se recupera de fallos</strong>.</li>
+      <li><strong>Ejecutarlo en local</strong> da privacidad, control de versión, continuidad y coste predecible.</li>
+      <li>No es una decisión de IA, es <strong>una decisión de datos</strong>: qué información no debería salir de su empresa.</li>
+      <li>Ojo: lo local reduce la exposición de datos, <strong>no</strong> el riesgo de que el agente actúe mal.</li>
+    </ul>
+  </aside>
+<nav class="post-toc" aria-label="Tabla de contenidos">
+    <h2>Tabla de contenidos</h2>
+    <ol>
+      <li><a href="#que-es-y-por-que-importa">Qué es y por qué importa</a></li>
+      <li><a href="#que-gana-ejecutandolo-en-local">Qué gana ejecutándolo en local</a></li>
+      <li><a href="#que-hace-falta-para-moverlo">Qué hace falta para moverlo</a></li>
+      <li><a href="#que-deberia-hacer-ahora-un-responsable-de-negocio">Qué debería hacer ahora un responsable de negocio</a></li>
+      <li><a href="#el-verdadero-significado-de-muse-glimmer">El verdadero significado de Muse Glimmer</a></li>
+    </ol>
+  </nav>
+<p><mark>Muse Glimmer</mark> es el modelo de pesos abiertos de Meta pensado para uso agéntico: 30.000 millones de parámetros y, sobre todo, un tamaño que cabe donde antes no cabían los agentes — un solo equipo, dentro de la empresa.</p>
 
 <p>Lo interesante para una pyme no es la cifra de parámetros. Es lo que implica: que un agente pueda vivir cerca de sus datos en lugar de depender de un servicio remoto.</p>
 
-<h2>Qué es y por qué importa</h2>
+<h2 id="que-es-y-por-que-importa">Qué es y por qué importa</h2>
 
 <p>Meta lo presentó como un modelo abierto orientado a agentes, no a conversación. Los detalles están en el <a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model">anuncio oficial</a> y en su <a href="https://huggingface.co/blog/muse-glimmer">ficha en Hugging Face</a>.</p>
 
@@ -191,7 +211,7 @@
   <li><strong>Recuperación ante fallos:</strong> si una herramienta no responde, reintenta o cambia de estrategia en vez de bloquearse.</li>
 </ul>
 
-<h2>Qué gana ejecutándolo en local</h2>
+<h2 id="que-gana-ejecutandolo-en-local">Qué gana ejecutándolo en local</h2>
 
 <ul>
   <li><strong>Privacidad.</strong> Los datos no salen de su infraestructura. Para expedientes, nóminas o historiales de cliente, eso cambia por completo el análisis de riesgo.</li>
@@ -200,11 +220,11 @@
   <li><strong>Coste predecible.</strong> Sin factura por token que se dispare cuando el uso crece.</li>
 </ul>
 
-<h2>Qué hace falta para moverlo</h2>
+<h2 id="que-hace-falta-para-moverlo">Qué hace falta para moverlo</h2>
 
 <p>Es la parte que se suele pasar por alto: 30B no se ejecutan en cualquier portátil. NVIDIA publicó su guía para <a href="https://developer.nvidia.com/blog/run-local-agentic-ai-workflows-with-metas-muse-glimmer-on-nvidia/">flujos agénticos locales</a>, y AMD la suya para <a href="https://www.amd.com/en/blogs/2026/run-meta-muse-glimmer-30b-on-amd-ryzen-ai-max-and-radeon-gpus.html">Ryzen AI Max y Radeon</a>. Para probarlo sin montar infraestructura, <a href="https://lmstudio.ai/models/muse-glimmer">LM Studio</a> es el camino corto.</p>
 
-<h2>Qué debería hacer ahora un responsable de negocio</h2>
+<h2 id="que-deberia-hacer-ahora-un-responsable-de-negocio">Qué debería hacer ahora un responsable de negocio</h2>
 
 <ol>
   <li><strong>No lo trate como una decisión de IA, sino de datos.</strong> La pregunta es qué información no debería salir de su empresa. Si la respuesta es «bastante», lo local deja de ser un capricho técnico.</li>
@@ -213,7 +233,7 @@
   <li><strong>Aplique los mismos controles</strong> que a cualquier agente: permisos mínimos, aprobación humana en lo crítico y registro de acciones. Ejecutar en local reduce la exposición de datos, <strong>no</strong> el riesgo de que el agente haga algo que no debía. Lo desarrollamos en <a href="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/">riesgos y controles de la IA multiagente</a>.</li>
 </ol>
 
-<h2>El verdadero significado de Muse Glimmer</h2>
+<h2 id="el-verdadero-significado-de-muse-glimmer">El verdadero significado de Muse Glimmer</h2>
 
 <p>La relevancia no está en los 30B. Está en que los agentes de IA pueden dejar de ser servicios remotos, caros y dependientes de grandes plataformas, para convertirse en herramientas que viven cerca de los datos y de las personas que los usan.</p>
 
