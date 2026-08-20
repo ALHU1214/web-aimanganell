@@ -706,12 +706,18 @@ footer::before {
   margin-top: 56px; display: flex; align-items: center; gap: 18px; padding: 26px 28px;
   border-radius: 16px; border: 1px solid rgba(232,242,239,.1); background: rgba(232,242,239,.03);
 }
+/* Caja del logo del autor. Deja de ser un circulo claro con solo el
+   simbolo: ahora lleva el logo completo (simbolo mas "AI MANGANELL",
+   sin el lema) sobre fondo oscuro, asi que necesita ser rectangular y
+   bastante mas ancho para que el nombre se lea. */
 .author-avatar {
-  flex: none; width: 56px; height: 56px; border-radius: 50%;
-  background: var(--ink);
+  flex: none; width: 150px; border-radius: 12px;
+  background: rgba(232,242,239,.04);
+  border: 1px solid rgba(232,242,239,.1);
   display: flex; align-items: center; justify-content: center;
+  padding: 14px 16px;
 }
-.author-avatar img { width: 60%; height: auto; }
+.author-avatar img { width: 100%; height: auto; }
 .author-name { margin: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
 .author-role { font-size: 13px; font-weight: 500; color: rgba(232,242,239,.5); }
 .author-bio { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: rgba(232,242,239,.65); }
