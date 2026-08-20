@@ -218,6 +218,11 @@ nav {
    lo marca como enlace y le da el enfasis. */
 .hl { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 1px; padding: 0 .1em; }
 .hl:hover { color: var(--ink); }
+/* La version que NO es enlace (consultoria: alli apuntaba a la propia
+   pagina y se quito) va sin subrayado. En la home .hl sigue siendo un
+   <a> real hacia consultoria y conserva el suyo, que es lo que lo marca
+   como pinchable. */
+span.hl { text-decoration: none; }
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .lead-form .grid-2, .lead-form > .field-wrap { margin-bottom: 14px; }
