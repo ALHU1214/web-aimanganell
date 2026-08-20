@@ -630,7 +630,10 @@ footer::before {
 }
 .post-meta {
   margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
-  font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  /* Antes iba en monoespaciada, en mayusculas y con letter-spacing. Se
+     pasa a la tipografia de lectura y caja normal: es un dato, no una
+     etiqueta tecnica, y asi no compite con el titular. */
+  font-family: var(--font-2); font-size: 14px; letter-spacing: 0;
   color: rgba(232,242,239,.55);
 }
 .post-meta time { color: var(--acc2); }
@@ -720,11 +723,13 @@ footer::before {
 
 /* Termino destacado dentro del texto. <mark> por semantica: marca un
    pasaje relevante, no un enfasis de voz (eso es <strong>). */
+/* Solo color, sin recuadro: el fondo y el borde llamaban demasiado la
+   atencion y rompian la linea de texto. background:none es necesario
+   porque el navegador pinta <mark> con fondo amarillo por defecto. */
 .post-content mark {
-  background: rgba(var(--acc-rgb), .16);
-  color: var(--ink); font-weight: 600;
-  padding: .12em .4em; border-radius: 5px;
-  border: 1px solid rgba(var(--acc-rgb), .28);
+  background: none;
+  color: var(--acc2);
+  font-weight: 600;
 }
 
 @media (max-width: 760px) {
