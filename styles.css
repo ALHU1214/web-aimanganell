@@ -385,7 +385,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    justo donde la primera y la ultima tarjeta. */
 .wrap-wide { max-width: 1120px; }
 .sec-title {
-  margin: 0 0 54px; text-align: center; font-size: clamp(30px, 3.4vw, 48px); font-weight: 400;
+  margin: 0 0 54px; text-align: center; font-size: clamp(25px, 2.8vw, 40px); font-weight: 400;
   line-height: 1.2; letter-spacing: -.02em; color: var(--ink); text-wrap: balance;
 }
 
@@ -482,7 +482,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   background: radial-gradient(ellipse 70% 36% at 50% 75%, rgba(var(--acc-rgb), .14), transparent 65%);
 }
 .contacto-head { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; text-align: center; }
-.contacto-head h2 { margin: 0; font-size: 42px; font-weight: 400; letter-spacing: -.01em; }
+.contacto-head h2 { margin: 0; font-size: 35px; font-weight: 400; letter-spacing: -.01em; }
 .contacto .form-sec { margin-top: 34px; z-index: 2; }
 
 /* garantía total */
@@ -496,7 +496,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   box-shadow: 0 0 70px rgba(var(--acc-rgb), .25), 0 0 160px rgba(var(--acc-rgb), .12);
   text-align: center;
 }
-.total-box h2 { margin: 0; font-size: clamp(32px, 3.6vw, 48px); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); }
+.total-box h2 { margin: 0; font-size: clamp(27px, 3vw, 40px); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); }
 .total-box > p { margin: 26px auto 0; max-width: 640px; font-size: 18px; line-height: 1.6; color: var(--ink); text-wrap: pretty; }
 .plazas {
   margin-top: 38px; padding: 20px 26px; border-radius: 10px;
@@ -860,7 +860,7 @@ footer::before {
 
   /* "Solicita tu AI & Cyber AMG™" a 42px fijos tampoco entra ni
      partiendo en dos líneas. */
-  .contacto-head h2 { font-size: clamp(24px, 7.5vw, 42px); }
+  .contacto-head h2 { font-size: clamp(22px, 6.3vw, 35px); }
 
   .p2-kicker { font-size: 17px; line-height: 1.5; }
 
