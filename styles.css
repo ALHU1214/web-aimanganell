@@ -93,22 +93,6 @@ a:hover { color: var(--acc2); }
 img { display: block; }
 ::selection { background: rgba(var(--acc-rgb), .3); }
 [hidden] { display: none !important; }
-
-/* ============================================================
-   FONDO DEL BLOG
-   Textura propia para el listado y los articulos. Sin filtros, sin
-   capas oscuras encima y sin tocar opacidad: se ve tal cual es.
-   El color de respaldo cubre el hueco mientras carga la imagen y en
-   navegadores sin WebP.
-   ============================================================ */
-.blog-page,
-.post-page {
-  background-color: #011622;
-  background-image: url('assets/fondo-blog.webp');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-}
 /* Texto que no se ve pero que siguen leyendo Google y los lectores de
    pantalla. Se usa para conservar el <h1> de la portada del blog: la
    cabecera visible se quito, pero una pagina sin h1 pierde su titular
