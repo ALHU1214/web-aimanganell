@@ -91,6 +91,35 @@
   ]
 }
 </script>
+
+<!-- El sitio y esta página como tales. Van aparte de la entidad de negocio porque
+     dateModified es propiedad de CreativeWork, no de Organization: ponerla dentro
+     del ProfessionalService sería marcado inválido aunque parsee. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://aimanganell.com/#website",
+      "name": "AI MANGANELL",
+      "url": "https://aimanganell.com/",
+      "inLanguage": "es-ES",
+      "publisher": { "@id": "https://aimanganell.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://aimanganell.com/#webpage",
+      "url": "https://aimanganell.com/",
+      "name": "AI MANGANELL · Consultoría IA & Ciberseguridad para empresas",
+      "isPartOf": { "@id": "https://aimanganell.com/#website" },
+      "about": { "@id": "https://aimanganell.com/#organization" },
+      "inLanguage": "es-ES",
+      "dateModified": "2026-08-25"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
