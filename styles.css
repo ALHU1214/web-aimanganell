@@ -220,28 +220,36 @@ nav {
   margin: 0 0 18px; font-size: clamp(24px, 6.4vw, 34px); font-weight: 400; letter-spacing: -.01em;
   text-align: center; line-height: 1.15;
 }
-/* El nombre del servicio va en el color del titular, no en azul: es un
-   <a>, asi que hay que ganar tambien a la regla generica de enlaces y a
-   su :hover, o volveria a tenirse. El subrayado rojo se queda: es lo que
-   lo marca como enlace y le da el enfasis. */
-.hl { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 1px; padding: 0 .1em; }
+/* El nombre del servicio va en el color del titular, no en azul: en la
+   home es un <a>, asi que hay que ganar tambien a la regla generica de
+   enlaces y a su :hover, o volveria a tenirse. El enfasis lo pone el
+   subrayado, en el azul de marca (el mismo del bloque que asoma detras
+   de la tarjeta). */
+.hl { color: var(--ink); text-decoration: underline; text-decoration-color: var(--acc); text-decoration-thickness: 2px; text-underline-offset: 1px; padding: 0 .1em; }
 .hl:hover { color: var(--ink); }
 /* La version que NO es enlace (consultoria: alli apuntaba a la propia
-   pagina y se quito) va sin subrayado. En la home .hl sigue siendo un
-   <a> real hacia consultoria y conserva el suyo, que es lo que lo marca
-   como pinchable. */
+   pagina y se quito) va sin subrayado: sin destino al que ir, la raya
+   solo prometeria un enlace que no existe. El subrayado se queda en la
+   home, donde .hl si es un <a> real hacia consultoria. */
 span.hl { text-decoration: none; }
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .lead-form .grid-2, .lead-form > .field-wrap { margin-bottom: 14px; }
 .lead-form-2 .grid-2, .lead-form-2 > .field-wrap { margin-bottom: 0; }
 
-.field-wrap { display: flex; flex-direction: column; gap: 6px; }
+.field-wrap { display: flex; flex-direction: column; gap: 10px; }
+/* Misma tipografia que el resto de la pagina y que el texto que se
+   escribe en el campo, en caja normal y sin tracking. Antes iba en
+   monoespaciada a 11px con .1em de separacion y en mayusculas: parecia
+   la etiqueta de un panel tecnico, no la pregunta de un formulario. */
 .field-wrap label {
-  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
-  color: rgba(232,242,239,.55); text-align: left;
+  font-family: var(--font-1); font-size: 15px; font-weight: 400; letter-spacing: 0;
+  color: var(--ink); text-align: left;
 }
-.req { color: var(--red); }
+/* El asterisco de obligatorio va del mismo blanco que su etiqueta: en
+   rojo se leia como un error ya cometido, no como "este campo hace
+   falta". El aviso de campo vacio ya lo da .form-error. */
+.req { color: var(--ink); }
 .opt { color: rgba(232,242,239,.35); }
 
 .field {
@@ -305,8 +313,6 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .sent-title { font-size: 20px; font-weight: 700; color: var(--acc2); }
 .btn-cal { align-self: center; padding: 16px 34px; border-radius: 12px; font-size: 16px; }
 
-.form-logo { display: flex; flex-direction: column; align-items: center; margin-bottom: 4px; }
-.form-logo img { height: 106px; width: auto; max-width: 100%; }
 
 /* ============================================================
    PÁGINA 2 · CONSULTORÍA
@@ -326,8 +332,14 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 }
 .p2-body { position: relative; z-index: 1; animation: p2fade .5s ease-out both; }
 
+/* Ocupa exactamente la primera pantalla: al abrir consultoria se ve el
+   video entero y nada mas, y lo que viene detras aparece solo al hacer
+   scroll. El 100vh es el respaldo para navegadores sin svh; el bloque
+   de mas abajo lo sustituye por 100svh, que en movil si descuenta la
+   barra de direcciones. La nav va fija encima, asi que no resta alto:
+   el relleno superior es lo que evita que el titular se le meta debajo. */
 .p2-hero {
-  position: relative; overflow: hidden; min-height: 82vh;
+  position: relative; overflow: hidden; min-height: 100vh;
   display: flex; align-items: center; justify-content: center; padding: 96px 48px;
   background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(var(--acc-rgb), .13), transparent 70%);
 }
@@ -347,8 +359,15 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   animation: p2zoom .7s .06s cubic-bezier(.22,.8,.3,1) both; transform-origin: 50% 0;
 }
 .p2-kicker { font-size: 22px; line-height: 1.5; color: var(--ink); }
+/* El padding de abajo no es aire decorativo: el titular se pinta con
+   background-clip:text, y el degradado solo cubre la caja de fondo del
+   elemento. La cola de la "g" de "integrar" baja por debajo de esa caja,
+   se queda sin degradado que recortar y desaparece: se ve la letra
+   cortada. Con .14em la caja llega mas abajo que el descendente y la
+   letra sale entera. En em para que acompane al clamp del tamano. */
 .p2-hero-copy h1 {
-  margin: 34px 0 0; font-size: clamp(38px, 4.4vw, 64px); font-weight: 700; line-height: 1.16;
+  margin: 34px 0 0; padding-bottom: .14em;
+  font-size: clamp(38px, 4.4vw, 64px); font-weight: 700; line-height: 1.16;
   letter-spacing: -.02em; color: var(--ink); max-width: 26ch; text-wrap: balance;
 }
 /* Relleno en degradado. max-width sube de 16ch a 26ch para que el titular
@@ -415,7 +434,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   box-shadow: 0 0 50px rgba(var(--acc-rgb), .28);
 }
 .ben-ico { font-size: 34px; line-height: 1; }
-.ben-card p { margin: 0; font-size: 17.5px; line-height: 1.85; color: rgba(232,242,239,.8); text-wrap: pretty; }
+.ben-card p { margin: 0; font-size: 17.5px; line-height: 1.85; color: var(--ink); text-wrap: pretty; }
 
 /* garantía (banda) */
 /* El halo exterior se apaga del todo y vuelve a encenderse. Keyframes
@@ -461,7 +480,11 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   font-size: 34px; font-weight: 700; line-height: 1.1;
   letter-spacing: -.02em; color: var(--acc);
 }
-.obt-facts-note { margin: 16px 0 0; text-align: center; font-size: 14px; color: rgba(232,242,239,.45); }
+/* Cuelga de la cifra, dentro de su misma columna: es la letra pequena
+   del precio, no una nota del bloque entero. El margen va a 0 porque el
+   hueco lo pone ya el gap de .obt-fact, y align-items:center del padre
+   la deja centrada bajo el importe. */
+.obt-facts-note { margin: 0; text-align: center; font-size: 14px; color: rgba(232,242,239,.45); }
 .cross { color: var(--red); font-size: 18px; line-height: 1.4; flex: none; }
 
 /* es para ti */
@@ -975,14 +998,15 @@ footer::before {
 }
 
 /* --- 3 · Altura del hero de consultoría -------------------------
-   82vh en iOS/Android se mide contra el alto de pantalla SIN la
+   100vh en iOS/Android se mide contra el alto de pantalla SIN la
    barra de direcciones, así que la sección queda más alta que la
-   ventana visible real. svh sí la descuenta.
+   ventana visible real y el hero se sale por abajo. svh sí la
+   descuenta, y es lo que hace que ocupe la pantalla justa.
    (.hero-wrap de la home se deja tal cual: min-height:0 en el
    padre + 100vh en .hero-inner, que ya controla la altura desde
    dentro — sumarlo en los dos la duplicaría.)                    */
 @media (max-width: 760px) {
-  .p2-hero { min-height: 78svh; padding-top: 100px; padding-bottom: 64px; }
+  .p2-hero { min-height: 100svh; padding-top: 100px; padding-bottom: 64px; }
 }
 
 /* --- 4 · Overflow: red de seguridad -----------------------------
