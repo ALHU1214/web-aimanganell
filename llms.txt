@@ -1,0 +1,47 @@
+# AI MANGANELL
+
+> Consultoría de automatización con inteligencia artificial y ciberseguridad para pymes.
+> Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden.
+
+Contacto: hola@aimanganell.com. Base en Tenerife, Canarias; servicio en remoto a toda España.
+Fundador: Álvaro Manganell González.
+
+## Qué hacemos
+
+- **AI & Cyber AMG™** — Diagnóstico previo a cualquier automatización: mapeamos los procesos,
+  revisamos los riesgos de seguridad y detectamos dónde la IA aporta valor y dónde no.
+  **Desde 697 €**, entrega en **10–15 días**. El importe final depende de la complejidad y el
+  alcance, y se descuenta íntegro si se contrata AMG MAX™ en los 30 días siguientes.
+
+## Páginas
+
+- [Inicio](https://aimanganell.com/): qué hacemos y cómo trabajamos.
+- [AI & Cyber AMG™](https://aimanganell.com/consultoria/): en qué consiste el diagnóstico de
+  IA y ciberseguridad para pymes.
+- [Blog](https://aimanganell.com/blog/): artículos sobre automatización con IA y
+  ciberseguridad para pymes: qué automatizar, en qué orden y los errores habituales.
+
+## Artículos
+
+- [Cómo controlar los riesgos de la IA multiagente en pymes](https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/):
+  riesgos y controles para implantar sistemas de IA multiagente, proteger datos y limitar permisos.
+- [Seguridad de agentes IA en reservas con CRM](https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/):
+  cómo proteger el CRM, el ERP y la facturación con permisos y aprobaciones.
+- [Agentes IA en reservas hoteleras](https://aimanganell.com/blog/seguridad-reservas-agentes-ia/):
+  protección de los datos de huéspedes y control de acceso en las reservas de un hotel.
+- [Muse Glimmer: automatización local con IA](https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/):
+  el modelo abierto de Meta que lleva agentes de IA locales al Mac y al PC.
+
+## Legal
+
+- [Aviso legal](https://aimanganell.com/legal/aviso-legal/)
+- [Política de privacidad](https://aimanganell.com/legal/privacidad/)
+- [Política de cookies](https://aimanganell.com/legal/cookies/)
+
+## Notas
+
+Actualizado el 2026-08-25. Precio y plazo verificados contra /consultoria/.
+
+Todo el contenido de este archivo está también en el HTML de las páginas correspondientes:
+no hay nada aquí que un crawler no pueda leer navegando el sitio. Si cambia el precio en
+/consultoria/, hay que cambiarlo aquí: son cuatro sitios en esa página más esta línea.

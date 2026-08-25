@@ -3,36 +3,44 @@
 Todo lo de este documento lo tienes que hacer tú (cuenta de GitHub,
 DNS, Search Console) — nada de esto lo puede hacer Claude Code por ti.
 
-## 🚫 BLOQUEANTE — no publicar con el formulario activo
+## 🚫 BLOQUEANTE — el aviso legal no identifica al responsable
 
-El **Aviso legal** y la **Política de privacidad** tienen los datos
-identificativos del responsable marcados como huecos sin rellenar:
+*Revisado el 2026-08-25. Este bloqueante sigue abierto, pero por la mitad
+que queda, no por la que ya se resolvió.*
 
-```
-NIF [NIF PENDIENTE]
-Domicilio [DOMICILIO PENDIENTE]
-```
+**Resuelto:** los huecos visibles `[NIF PENDIENTE]` y `[DOMICILIO PENDIENTE]`
+ya no están, ni en el repositorio ni en producción. Eso era lo que el
+texto anterior llamaba "peor que no tener aviso legal".
 
-No están inventados a propósito — hay que esperar al alta de
-autónomo para tener NIF y domicilio fiscal reales. Pero **mientras
-falten, el sitio no puede recoger datos de nadie**: el formulario de
-contacto trata datos personales (RGPD/LOPDGDD) y la LSSI-CE exige que
-el aviso legal identifique de verdad al responsable del sitio. Un
-aviso legal con placeholders visibles es peor que no tener aviso
-legal — muestra que el sitio no cumple.
+**Sigue pendiente:** el aviso legal no publica NIF ni domicilio fiscal. Hoy
+en producción solo dice *"este sitio web es titularidad de AI MANGANELL,
+con domicilio en Tenerife (Canarias, España)"*, que no identifica a nadie
+en el sentido que pide la ley.
 
-**Antes de publicar con el formulario activo:**
+El formulario de contacto trata datos personales (RGPD/LOPDGDD) y la
+LSSI-CE exige que el aviso legal identifique de verdad al responsable del
+sitio. Mientras falten NIF y domicilio fiscal, esa exigencia no se cumple.
+Nada de esto es asesoramiento legal: es la condición que este mismo
+documento se puso, y no está cumplida.
+
+**Para cerrarlo:**
 1. Dar de alta como autónomo (o la figura que corresponda).
 2. Pasarme NIF y domicilio fiscal.
-3. Sustituyo los dos huecos en `legal/aviso-legal/index.html` y
-   `legal/privacidad/index.html` (aparecen dos veces cada uno: en su
-   propio contenido y en el modal legal que se repite en cada página
-   del sitio — lo hago yo, no hay que tocarlo a mano en varios
-   sitios).
+3. Los añado en `legal/aviso-legal/index.html` y `legal/privacidad/index.html`
+   (en su propio contenido y en el modal legal que se repite en cada página
+   del sitio — lo hago yo, no hay que tocarlo a mano en varios sitios), y
+   además en el JSON-LD de la portada: `vatID` para el NIF y `streetAddress`
+   dentro de `address`, que hoy solo llega a nivel de localidad.
 
-Si quieres publicar el sitio *antes* de tener el alta (por ejemplo,
-para enseñarlo o probarlo), la única forma segura es con el
-formulario desactivado — dímelo si llega ese caso y vemos cómo.
+Si quieres publicar *antes* del alta —para enseñarlo o probarlo— la única
+forma segura es con el formulario desactivado.
+
+### Lo que NO es este bloqueante
+
+No tiene nada que ver con Supabase. El formulario ya no escribe directo
+contra la base de datos: pasa por la Edge Function `submit-lead` con
+Turnstile y service role key, cerrado el 2026-08-12 y verificado con fila
+real. Eso está resuelto y no forma parte de este bloqueante.
 
 ## 1. Repositorio en GitHub — ✅ hecho
 
