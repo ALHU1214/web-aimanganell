@@ -34,11 +34,12 @@ Tres partes, en este orden exacto:
 | `title` | Sí | texto | Se usa en `<title>`, `<h1>`, `og:title`. |
 | `description` | Sí | texto, ~150-160 car. | Meta description y `og:description`. |
 | `keyword` | No | texto | Keyword principal. Se guarda en `<meta name="keywords">`; no tiene más efecto en SEO (Google la ignora), es sobre todo para trazabilidad del propio workflow. |
-| `category` | Sí | texto corto | Aparece en la cabecera del post (badge + línea de metadatos). |
+| `category` | Sí | texto corto | **Ya no se muestra en la página** (se quitó el badge y la línea de metadatos el 20/08/2026). Sigue siendo obligatorio: alimenta `articleSection` del JSON-LD y el filtro del listado, que aparece solo si hay dos categorías o más. |
 | `date` | Sí | `YYYY-MM-DD` | El build falla si no cumple este formato. |
 | `cover.src` | Sí | nombre de archivo | La imagen debe subirse a `blog/posts/` (esta carpeta), con ese mismo nombre, en el mismo commit que el `.post`. |
 | `cover.alt` | Sí | texto | Alt real y descriptivo, no vacío. |
 | `cover.width` / `cover.height` | No | número | Por defecto 1600×900. Solo hace falta si la imagen tiene otro tamaño. |
+| `keyPoints` | No | array de strings (HTML inline permitido) | Alimenta la caja **«Puntos clave»** que abre el artículo. 4-6 entradas, una línea cada una, empezando por el concepto en `<strong>`. Si falta, la caja no se pinta. |
 | `faq` | No | array de `{ "q": "...", "a": "..." }` | Cualquier número de preguntas, incluido 0. |
 | `noindex` | No | `true` / `false` | `true` añade `<meta name="robots" content="noindex, nofollow">` **y** excluye el post del listado, de `sitemap.xml` y de `blog/rss.xml`. Para contenido de prueba, no para posts reales. |
 
@@ -54,6 +55,32 @@ del archivo. HTML semántico — `<h2>`, `<h3>`, `<p>`, `<ul>`, `<ol>`,
 El CSS del sitio ya da estilo a esas etiquetas dentro de `.post-content`,
 así que si el generador de contenido las añade, no pasa nada (se
 ignoran), pero no hacen falta.
+
+## Longitud y estructura del cuerpo
+
+Criterio fijado el 20/08/2026, tras reescribir los cuatro posts
+publicados: se pasó de ~2.000-3.000 palabras a 500-850.
+
+- **Extensión: 600-900 palabras.** Ni una más. Los artículos largos
+  de relleno se leían en diagonal y nadie llegaba al final.
+- **Nada de párrafos largos encadenados.** Todo lo que sea una
+  enumeración va en `<ul>`; todo lo que sea una secuencia de pasos,
+  en `<ol>`. En prosa solo la entradilla y los cierres.
+- **Cada `<li>` empieza por su concepto en `<strong>`**, seguido de
+  dos puntos o un punto. Es lo que permite escanear sin leer.
+- **4-6 apartados `<h2>` por artículo.** El generador les pone `id`
+  automáticamente y monta con ellos la tabla de contenidos, que
+  aparece sola a partir de tres apartados.
+- **La palabra clave va en `<mark>`** la primera vez que aparece en
+  el cuerpo, y solo esa vez. Se pinta en azul claro, sin recuadro.
+- **Un enlace por fuente externa.** Antes se repetía la misma URL
+  hasta 15 veces en un mismo post: perjudica la lectura y el SEO.
+- **Enlaces internos a otros posts:** hasta 3, y solo donde vengan
+  a cuento.
+- **Cerrar con un apartado de observación propia** («Lo que vemos en
+  la práctica» o similar): un caso real, corto. Es lo único del
+  artículo que no se puede copiar de otra web, y es lo que lo
+  diferencia del contenido genérico de IA.
 
 ## Lo que NO hay que generar
 
