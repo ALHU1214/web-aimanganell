@@ -97,6 +97,28 @@ function cropImage(srcPath, destPath, targetW, targetH) {
   }
 }
 
+// reencoda la portada a JPEG en vez de copiarla en crudo. Hace falta
+// porque las portadas que publica n8n llegan como PNG con nombre .jpg y
+// pesan alrededor de 2 MB cada una; el listado del blog carga esa imagen
+// en cada tarjeta, asi que iban varios MB por visita. Mismo -q:v que los
+// recortes, para que las tres imagenes de un post se vean igual.
+// Reencoda siempre, tambien si la fuente ya es JPEG: no acumula perdida
+// porque cada build parte del original de blog/posts/, no de la salida
+// anterior. Si no hay ffmpeg devuelve false y quien llama copia el
+// archivo tal cual, que es como funcionaba antes.
+function encodeCover(srcPath, destPath) {
+  try {
+    execFileSync('ffmpeg', [
+      '-y', '-i', srcPath,
+      '-q:v', '3',
+      destPath
+    ], { stdio: ['ignore', 'ignore', 'ignore'] });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 // genera cover-4x3.jpg y cover-1x1.jpg junto a cover.jpg, recortando
 // desde el centro de la portada original (pensado para fuente 16:9,
 // que es el valor por defecto de cover.width/height)
@@ -549,7 +571,9 @@ function build() {
       fs.mkdirSync(outDir, { recursive: true });
 
       const coverDestPath = path.join(outDir, 'cover.jpg');
-      fs.copyFileSync(coverSrcPath, coverDestPath);
+      if (!encodeCover(coverSrcPath, coverDestPath)) {
+        fs.copyFileSync(coverSrcPath, coverDestPath);
+      }
       const coverVariants = generateCoverVariants(
         coverDestPath, outDir, data.cover.width || 1600, data.cover.height || 900
       );

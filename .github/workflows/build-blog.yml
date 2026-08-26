@@ -23,7 +23,7 @@ jobs:
           # usa "git log" por archivo para calcular dateModified (JSON-LD)
           fetch-depth: 0
 
-      - name: Instalar ffmpeg (recortes de portada en varios ratios)
+      - name: Instalar ffmpeg (comprime la portada y saca sus recortes)
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
       - name: Generar páginas del blog
