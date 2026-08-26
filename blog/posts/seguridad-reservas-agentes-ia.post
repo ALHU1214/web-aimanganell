@@ -75,7 +75,7 @@
 
 <h2>Pruébelo antes de que lo pruebe un cliente</h2>
 
-<p>Las demostraciones internas no valen como validación. Diseñe escenarios reales: alguien que intenta modificar la reserva de otra persona, un mensaje que trata de convencer al agente de saltarse una política, una herramienta caída a mitad de operación. <a href="https://www.parloa.com/knowledge-hub/ai-travel-security/">Parloa</a> insiste en definir permisos y límites <em>antes</em> de procesar la primera interacción, no después.</p>
+<p>Las demostraciones internas no valen como validación. Diseñe escenarios reales: alguien que intenta modificar la reserva de otra persona, un mensaje que trata de convencer al agente de saltarse una política, una herramienta caída a mitad de operación. Los permisos y los límites se definen <em>antes</em> de procesar la primera interacción, no después.</p>
 
 <p>Si valora ejecutar el modelo en local para no sacar datos de huéspedes fuera, aquí analizamos las implicaciones: <a href="https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/">Muse Glimmer y los agentes de IA locales</a>. Y si su caso es más de CRM y ERP que de PMS, lo tratamos en <a href="https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/">seguridad de los agentes de IA en reservas empresariales</a>.</p>
 
