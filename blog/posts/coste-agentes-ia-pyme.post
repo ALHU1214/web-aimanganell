@@ -5,7 +5,6 @@
   "description": "El coste real de implantar agentes de IA en una pyme: descubre precios, gastos ocultos y claves para presupuestar una solución rentable y segura hoy.",
   "keyword": "El coste real de implantar agentes de IA en una pyme",
   "category": "Automatización",
-  "noindex": true,
   "date": "2026-08-25",
   "cover": {
     "src": "coste-agentes-ia-pyme-cover.jpg",
@@ -90,4 +89,4 @@
 
 <p>La conclusión es sencilla: un agente de IA barato puede servir para probar una idea, pero un agente útil requiere proceso, integración, control y mantenimiento. La inversión correcta no es la más baja; es la que elimina trabajo repetitivo de forma fiable, sin crear nuevos problemas operativos o de seguridad.</p>
 <h2>Lo que vemos en la práctica</h2>
-<p>[PENDIENTE: caso real]</p>
+<p>En una de las empresas con las que hemos trabajado había un chatbot contratado desde hacía meses. Funcionaba, estaba pagado y no lo usaba nadie: nunca le cargaron la información con la que debía responder. La herramienta no era el problema. El problema era que se compró antes de decidir qué tenía que contestar, con qué documentación y quién iba a mantenerla al día. Ese trabajo previo no aparecía en ningún presupuesto, así que no lo hizo nadie. Es el coste que más se repite y el que menos se presupuesta: no el de la tecnología, sino el de ordenar lo que la tecnología necesita para servir de algo.</p>
