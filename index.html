@@ -36,20 +36,18 @@
      (sin calle): la base está en Tenerife/Canarias y el servicio cubre
      también península en remoto, ver areaServed.
 
-     PENDIENTE: sameAs de la EMPRESA. El de la persona ya está puesto, abajo en founder
-     (LinkedIn de Álvaro), que es lo que hoy ancla la entidad a un perfil real y verificable.
-     Falta el de la empresa: página de LinkedIn de compañía y ficha de Google Business.
-     Importa porque hay un homónimo con más presencia en la misma provincia (Abella &
-     Manganell, un despacho de abogados en La Laguna): cuantas menos fuentes digan que esta
-     empresa existe, más fácil es que un modelo que busque "Manganell Tenerife" acabe allí.
+     sameAs: la empresa ya tiene su página de LinkedIn, abajo. La persona tiene la suya
+     aparte, en founder (perfil personal de Álvaro). Son dos entidades distintas y cada
+     perfil cuelga de la suya: el de compañía no describe a una persona ni al revés.
 
-     Cuando existan esos perfiles, descomentar y pegar las URLs reales. No poner ninguna que
-     no se haya abierto y comprobado:
+     Importa tenerlos porque hay un homónimo con más presencia en la misma provincia
+     (Abella & Manganell, un despacho de abogados en La Laguna): cuantas menos fuentes
+     digan que esta empresa existe, más fácil es que un modelo que busque
+     "Manganell Tenerife" acabe allí.
 
-       "sameAs": [
-         "https://www.linkedin.com/company/...",
-         "https://g.page/..."
-       ],
+     PENDIENTE: la ficha de Google Business. Cuando exista, se añade su URL al sameAs de
+     abajo. Es la que más pesa para búsquedas locales, y el JSON-LD la respalda pero no
+     la sustituye. No poner ninguna URL que no se haya abierto y comprobado.
 -->
 <script type="application/ld+json">
 {
@@ -75,6 +73,9 @@
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Canarias" },
     { "@type": "Country", "name": "España" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/aimanganell/"
   ],
   "founder": {
     "@type": "Person",
