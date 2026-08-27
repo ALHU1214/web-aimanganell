@@ -61,6 +61,10 @@ const AUTHOR_PERSON = {
   name: 'Álvaro Manganell González',
   url: SITE_URL + '/',
   jobTitle: 'Fundador',
+  // mismo perfil que declara el nodo founder de index.html: enlaza a la
+  // persona que firma los posts con un perfil real y verificable, que es
+  // lo que sostiene el E-E-A-T del autor.
+  sameAs: ['https://www.linkedin.com/in/alvaromanganell'],
   worksFor: ORGANIZATION
 };
 

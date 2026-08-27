@@ -35,13 +35,14 @@
      (sin calle): la base está en Tenerife/Canarias y el servicio cubre
      también península en remoto, ver areaServed.
 
-     PENDIENTE: sameAs. Es el campo que le dice a un modelo "esos perfiles y esta web son
-     la misma entidad", y hoy no hay ninguno: aimanganell.com es la única fuente que dice
-     que esta empresa existe. Ojo, además, con que hay un homónimo con más presencia en la
-     misma provincia (Abella & Manganell, un despacho de abogados en La Laguna): sin sameAs,
-     un modelo que busque "Manganell Tenerife" puede acabar en ellos.
+     PENDIENTE: sameAs de la EMPRESA. El de la persona ya está puesto, abajo en founder
+     (LinkedIn de Álvaro), que es lo que hoy ancla la entidad a un perfil real y verificable.
+     Falta el de la empresa: página de LinkedIn de compañía y ficha de Google Business.
+     Importa porque hay un homónimo con más presencia en la misma provincia (Abella &
+     Manganell, un despacho de abogados en La Laguna): cuantas menos fuentes digan que esta
+     empresa existe, más fácil es que un modelo que busque "Manganell Tenerife" acabe allí.
 
-     Cuando existan los perfiles, descomentar y pegar las URLs reales. No poner ninguna que
+     Cuando existan esos perfiles, descomentar y pegar las URLs reales. No poner ninguna que
      no se haya abierto y comprobado:
 
        "sameAs": [
@@ -79,7 +80,10 @@
     "@type": "Person",
     "name": "Álvaro Manganell González",
     "jobTitle": "Fundador",
-    "url": "https://aimanganell.com/"
+    "url": "https://aimanganell.com/",
+    "sameAs": [
+      "https://www.linkedin.com/in/alvaromanganell"
+    ]
   },
   "contactPoint": [
     {
@@ -236,6 +240,7 @@
       <div class="foot-brand-row">
         <img class="foot-logo" src="assets/logo-h-a.png" alt="AI MANGANELL" width="985" height="168">
         <div class="foot-social" role="group" aria-label="Redes sociales">
+          <a href="https://www.linkedin.com/in/alvaromanganell" target="_blank" rel="me noopener" aria-label="LinkedIn de Álvaro Manganell"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
         </div>
       </div>
       <div class="foot-legal">
