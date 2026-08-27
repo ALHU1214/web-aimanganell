@@ -30,8 +30,9 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="contraste-minimo.css">
 
-<!-- JSON-LD: entidad de negocio. Sin teléfono: el contacto es por
-     formulario y email. Dirección a nivel de localidad, región y país
+<!-- JSON-LD: entidad de negocio. Sin teléfono ni correo: el contacto
+     es por formulario y calendario, y el único correo publicado es
+     legal@, que vive solo en las páginas legales. Dirección a nivel de localidad, región y país
      (sin calle): la base está en Tenerife/Canarias y el servicio cubre
      también península en remoto, ver areaServed.
 
@@ -58,7 +59,6 @@
   "name": "AI MANGANELL",
   "url": "https://aimanganell.com/",
   "description": "Consultoría de automatización con inteligencia artificial y ciberseguridad para pymes. Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden.",
-  "email": "contacto@aimanganell.com",
   "logo": {
     "@type": "ImageObject",
     "url": "https://aimanganell.com/assets/logo-h-a.png",
@@ -84,15 +84,7 @@
     "sameAs": [
       "https://www.linkedin.com/in/alvaromanganell"
     ]
-  },
-  "contactPoint": [
-    {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "contacto@aimanganell.com",
-      "availableLanguage": ["es"]
-    }
-  ]
+  }
 }
 </script>
 
@@ -248,9 +240,6 @@
         <a class="foot-link" href="/legal/cookies/" data-legal="cookies">Política de Cookies</a>
         <a class="foot-link" href="/legal/aviso-legal/" data-legal="aviso">Aviso Legal</a>
         <a class="foot-link foot-link-subtle" href="#" id="reopen-cookies">Configurar cookies</a>
-      </div>
-      <div class="foot-email">
-        <a class="foot-link" href="mailto:contacto@aimanganell.com">contacto@aimanganell.com</a>
       </div>
       <div class="foot-symbol">
         <img src="assets/favicon.png" alt="AI MANGANELL" width="256" height="256">
