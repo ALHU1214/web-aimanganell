@@ -116,8 +116,11 @@ Pages). **Falta lo único que no puedo hacer yo: el DNS.**
   cada ejecución (hace falta para las variantes de imagen del blog).
   En local ya está instalado en esta máquina.
 - Teléfono: decisión final del usuario, sin publicarlo en ningún
-  sitio. Contacto solo por formulario y `hola@aimanganell.com` — ni
-  en el footer ni en el JSON-LD de la home (`ProfessionalService`).
+  sitio — ni en el footer ni en el JSON-LD de la home
+  (`ProfessionalService`). El JSON-LD tampoco lleva correo ya:
+  ni `email` ni `contactPoint`. El contacto comercial va por
+  formulario, calendario y `contacto@aimanganell.com` en el footer; `legal@aimanganell.com`
+  vive solo dentro de las tres páginas legales.
 - El footer **ya no muestra** "Responsable: AI MANGANELL · Canarias,
   España" — esos datos identificativos viven solo dentro del aviso
   legal y la política de privacidad, que es donde corresponde

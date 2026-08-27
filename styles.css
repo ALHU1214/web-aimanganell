@@ -588,6 +588,8 @@ footer::before {
 .foot-link-subtle:hover { color: var(--acc); }
 
 
+.foot-email { text-align: center; font-size: 16px; letter-spacing: .01em; }
+
 .foot-symbol { display: flex; justify-content: center; }
 .foot-symbol img { height: 90px; width: auto; animation: foot-float 4s ease-in-out infinite; }
 @keyframes foot-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
