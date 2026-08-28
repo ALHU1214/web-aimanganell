@@ -34,3 +34,7 @@ desktop.ini
 # pooler...) — se regenera con `supabase link`, no es código del
 # proyecto y no debe commitearse
 /supabase/.temp/
+
+# Piezas de marca para redes: pesan MB y no las sirve la web.
+# Viven aqui por comodidad, pero no deben publicarse.
+assets/BANNER*.png
