@@ -48,7 +48,7 @@ const ORGANIZATION = {
   url: SITE_URL + '/',
   logo: {
     '@type': 'ImageObject',
-    url: SITE_URL + '/assets/logos/horizontal.png',
+    url: SITE_URL + '/assets/logos/horizontal-x.png',
     width: 1970,
     height: 336
   }
