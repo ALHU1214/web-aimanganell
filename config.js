@@ -5,6 +5,12 @@
 
 window.AM_CONFIG = {
 
+  // WhatsApp de la pagina de gracias. Con formato internacional y sin
+  // signos: 34612345678. Si se deja vacio, el bloque de WhatsApp de
+  // /gracias/ no se muestra (main.js lo deja oculto).
+  waNumber: '34650903265',
+  waMsg: 'Hola, acabo de solicitar el AI & Cyber AMG en la web.',
+
   // Calendario donde se agenda la llamada
   calUrl: 'https://cal.com/aimanganell/llamada-inicial',
 

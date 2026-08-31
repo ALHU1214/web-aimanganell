@@ -146,10 +146,19 @@ nav {
 }
 .nav-logo { display: flex; align-items: center; flex-shrink: 0; }
 .nav-logo img { height: 36px; width: auto; }
+/* El translateY es un ajuste optico, no geometrico: el flexbox ya centra
+   este bloque y el logo en la misma linea, pero lo que se ve del logo son
+   las letras de AI MANGANELL, y lo que se ve aqui son mayusculas. Con
+   line-height:1 la caja de texto reserva sitio para unos descendentes que
+   ninguna de estas palabras usa, asi que las mayusculas quedan un pelo
+   altas respecto a las del logo aunque las cajas esten cuadradas. Los
+   2px lo compensan. Se mueve el grupo entero, boton incluido, para que la
+   fila siga leyendose como una sola linea. */
 .nav-links {
   display: flex; align-items: center; gap: 22px;
   font-size: 16px; font-weight: 600; letter-spacing: .03em; line-height: 1;
   flex-shrink: 1; min-width: 0;
+  transform: translateY(2px);
 }
 .nav-link { display: inline-flex; align-items: center; color: #fff; white-space: nowrap; }
 .nav-link:hover { color: var(--acc); }
@@ -365,7 +374,8 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    se queda sin degradado que recortar y desaparece: se ve la letra
    cortada. Con .14em la caja llega mas abajo que el descendente y la
    letra sale entera. En em para que acompane al clamp del tamano. */
-.p2-hero-copy h1 {
+.p2-hero-copy h1,
+.gracias-head h1 {
   margin: 34px 0 0; padding-bottom: .14em;
   font-size: clamp(38px, 4.4vw, 64px); font-weight: 700; line-height: 1.16;
   letter-spacing: -.02em; color: var(--ink); max-width: 26ch; text-wrap: balance;
@@ -379,7 +389,8 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    El color de la regla de arriba es el respaldo: sin soporte de
    background-clip:text el titular se ve en --ink, no invisible. */
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .p2-hero-copy h1 {
+  .p2-hero-copy h1,
+  .gracias-head h1 {
     background-image: linear-gradient(180deg, var(--ink) 22%, var(--acc2) 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -983,7 +994,8 @@ footer::before {
   /* el h1 lleva max-width:16ch — ch es relativo al tamaño de
      fuente, así que bajar el font-size también reduce esa caja
      y evita que fuerce un ancho fijo mayor que la pantalla. */
-  .p2-hero-copy h1 { margin-top: 20px; font-size: clamp(26px, 8vw, 64px); }
+  .p2-hero-copy h1,
+  .gracias-head h1 { margin-top: 20px; font-size: clamp(26px, 8vw, 64px); }
   .p2-hero-copy p { margin-top: 18px; font-size: 16.5px; }
   .p2-hero-copy .btn-acc {
     margin-top: 30px; padding: 16px 24px; font-size: 15.5px;
@@ -1030,4 +1042,180 @@ body { overflow-x: clip; }
    cambia nada visualmente salvo en ese caso límite.               */
 @media (max-width: 420px) {
   .blog-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PÁGINA DE GRACIAS (/gracias/)
+   Destino del formulario. Reutiliza la paleta y los botones del
+   resto del sitio; lo único propio es el ritmo vertical, porque
+   aquí no hay secciones a pantalla completa sino un solo hilo
+   de lectura estrecho que baja hasta el CTA.
+   ============================================================ */
+/* --- fondo de la página, sacado del vídeo del hero ---------------
+   Los azules no son elegidos a ojo: son los que devuelve assets/hero.mp4
+   al muestrear 32 fotogramas y agrupar sus píxeles por color. De más a
+   menos peso: #010002 (74% del vídeo), #050c22, #102545, #103f73,
+   #306d9a y #62a4cb. Aquí se usan en ese mismo orden de profundidad —
+   la base casi negra abajo, el azul claro como brillo alto.
+
+   Va en el body y no en un ::before fijo porque el body ya tiene montado
+   el sistema de capas con la textura de ruido, y porque lleva
+   overflow-x:clip, que puede convertirlo en bloque contenedor de los
+   elementos fixed y dejar el fondo desplazándose con el scroll.
+   La clase la lleva el <html> para poder pintar también el color de
+   fondo del propio lienzo, que es lo que se ve al hacer overscroll.
+   La textura queda fija y los degradados acompañan al scroll, igual que
+   en el body normal: un fondo entero en attachment:fixed castiga el
+   scroll y aquí no aporta nada.
+
+   La textura no es el ruido fractal del resto del sitio sino el patrón
+   de laberinto de la og image (reacción-difusión). Está generada con
+   scripts/genera-textura.js sobre una malla que envuelve por los bordes,
+   así que el mosaico repite sin costura; se sirve a 256px pero se pinta
+   a 128, que es la densidad de la og — y de paso queda nítida en
+   pantallas de doble densidad.                                       */
+.pagina-gracias,
+.pagina-gracias body { background-color: #010002; }
+.pagina-gracias body {
+  background-image:
+    url('assets/textura-difusion.png'),
+    radial-gradient(ellipse 110% 38% at 50% 0%,   rgba(98,164,203,.18), rgba(98,164,203,0) 100%),
+    radial-gradient(ellipse 95% 45% at 6% 16%,    rgba(16,63,115,.42),  rgba(16,63,115,0)  100%),
+    radial-gradient(ellipse 90% 45% at 96% 54%,   rgba(48,109,154,.16), rgba(48,109,154,0) 100%),
+    radial-gradient(ellipse 130% 42% at 50% 100%, rgba(16,37,69,.42),   rgba(16,37,69,0)   100%),
+    linear-gradient(180deg, #050c22 0%, #030812 45%, #010002 100%);
+  background-position: top left, top center, top center, top center, bottom center, top center;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 128px 128px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed, scroll, scroll, scroll, scroll, scroll;
+}
+
+/* Las tarjetas heredaban --card (#0a1613), que es un verde azulado: sobre
+   este fondo azul marino tiraba a verde. Se cambian por un azul de la
+   misma familia del vídeo, y translúcido para que los degradados de
+   detrás se noten a través. */
+.gracias { --panel: rgba(9, 20, 40, .72); }
+
+.gracias { padding: calc(var(--sec-pad) + 20px) 48px var(--sec-pad); }
+.gracias-wrap { max-width: 720px; margin: 0 auto; }
+
+/* El titular usa el mismo formato que la portada de consultoría (tamaño,
+   peso y el relleno en degradado): ese formato vive en las reglas de
+   .p2-hero-copy h1, que se comparten. Aquí solo va la caja que lo
+   centra. La animación de entrada también se comparte; la regla global
+   de prefers-reduced-motion la neutraliza. */
+.gracias-head {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  max-width: 900px; margin: 0 auto 44px;
+  animation: p2zoom .7s .06s cubic-bezier(.22,.8,.3,1) both; transform-origin: 50% 0;
+}
+/* En consultoría ese margen separa el titular del kicker que lleva
+   encima; aquí el titular es lo primero de la página y no hay nada de
+   lo que separarse. Va después de las media queries a propósito: así
+   anula también el margin-top que la versión móvil vuelve a poner. */
+.gracias-head h1 { margin-top: 0; }
+
+.gracias-card {
+  display: flex; gap: 18px; align-items: flex-start;
+  border-radius: 18px; background: var(--panel);
+  border: 1px solid rgba(var(--acc-rgb), .25);
+  padding: 26px 28px; box-shadow: 0 24px 60px rgba(0,0,0,.45);
+}
+.gracias-card p { margin: 0; font-size: 16px; line-height: 1.6; color: rgba(232,242,239,.86); }
+.gracias-check {
+  flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; margin-top: 2px;
+  background: rgba(var(--acc-rgb), .16); color: var(--acc2);
+}
+.gracias-check svg { width: 17px; height: 17px; }
+
+/* ---------- CTA principal ---------- */
+.gracias-cta {
+  margin-top: 40px; text-align: center; border-radius: 18px;
+  padding: 34px 28px;
+  border: 1px solid rgba(var(--acc-rgb), .32);
+  background:
+    radial-gradient(ellipse 90% 120% at 50% 0%, rgba(var(--acc-rgb), .18), rgba(var(--acc-rgb), 0) 70%),
+    var(--panel);
+}
+.gracias-cta-txt { margin: 0 0 24px; font-size: 16.5px; line-height: 1.6; color: rgba(232,242,239,.86); }
+.gracias-cal {
+  display: inline-block; padding: 17px 38px; border-radius: 999px;
+  font-size: 17px; box-shadow: 0 0 32px rgba(var(--acc-rgb), .4);
+}
+.gracias-cta-nota { margin: 18px 0 0; font-size: 13.5px; color: rgba(232,242,239,.55); }
+
+.gracias-h2 {
+  margin: 64px 0 22px; font-size: clamp(22px, 5vw, 30px);
+  font-weight: 700; letter-spacing: -.015em;
+}
+
+/* ---------- pasos ---------- */
+.gracias-pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+/* Cada paso es una sola frase, asi que el numero se centra con el texto
+   en vez de anclarse arriba: alineado al borde superior quedaria
+   descolgado en las filas de una linea, que son la mayoria. */
+.gracias-pasos li {
+  display: flex; gap: 18px; align-items: center;
+  border-radius: 14px; background: var(--panel);
+  border: 1px solid rgba(232,242,239,.09); padding: 20px 22px;
+}
+.gracias-num {
+  flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--acc); color: #07100e;
+  font-weight: 800; font-size: 14px;
+}
+.gracias-pasos p { margin: 0; font-size: 16px; line-height: 1.5; color: rgba(232,242,239,.86); }
+
+/* ---------- WhatsApp ---------- */
+/* Este bloque sí es una tarjeta con barra de acento, a diferencia del
+   resto de la página: no es un paso más del proceso sino una condición
+   del servicio, y la barra lo separa del hilo de lectura para que se lea
+   como un aparte. El borde va en el azul de marca y no en el verde del
+   botón: el verde identifica el canal de WhatsApp, y usarlo también aquí
+   le quitaría ese significado. */
+.gracias-wa {
+  margin-top: 64px; padding: 30px 32px;
+  border-radius: 14px; border-left: 3px solid var(--acc);
+  background: var(--panel);
+}
+.gracias-wa .gracias-h2 { margin: 0 0 14px; }
+.gracias-wa p { margin: 0 0 24px; font-size: 15.5px; line-height: 1.6; color: rgba(232,242,239,.75); }
+/* Verde de WhatsApp, no el azul de marca: aquí el color es la
+   señal de qué canal se abre, y reconocerlo importa más que la
+   coherencia cromática. */
+.gracias-wa-btn {
+  display: inline-flex; align-items: center; gap: 11px;
+  padding: 15px 30px; border-radius: 999px;
+  background: #25d366; color: #07100e; font-weight: 800; font-size: 16px;
+}
+.gracias-wa-btn:hover { background: #4ae085; color: #07100e; }
+.gracias-wa-btn svg { width: 21px; height: 21px; }
+
+/* ---------- enlaces ---------- */
+.gracias-links { display: flex; flex-direction: column; gap: 10px; }
+.gracias-links a {
+  display: flex; flex-direction: column; gap: 3px;
+  border-radius: 14px; padding: 18px 22px;
+  background: var(--panel); border: 1px solid rgba(232,242,239,.09);
+  color: var(--ink);
+}
+.gracias-links a:hover { border-color: rgba(var(--acc-rgb), .5); color: var(--ink); }
+.gracias-links strong { font-size: 16px; font-weight: 700; }
+.gracias-links span { font-size: 14.5px; color: rgba(232,242,239,.65); }
+
+.gracias-mail {
+  margin: 48px 0 0; text-align: center;
+  font-size: 14.5px; color: rgba(232,242,239,.6);
+}
+
+@media (max-width: 760px) {
+  .gracias { padding: 100px 20px var(--sec-pad); }
+  .gracias-cta { padding: 28px 20px; }
+  .gracias-cal { display: block; padding: 16px 24px; }
+}
+@media (max-width: 520px) {
+  .gracias { padding-left: 16px; padding-right: 16px; }
+  .gracias-card { padding: 22px 20px; }
 }

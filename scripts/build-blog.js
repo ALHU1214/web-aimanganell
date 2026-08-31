@@ -30,6 +30,9 @@ const MESES = [
 // incluye legal/* (llevan noindex) ni blog/<slug>/ (esas se añaden
 // solas desde blog/posts/). Si se añade una página nueva a mano al
 // sitio, hay que añadirla aquí también para que salga en el sitemap.
+// gracias/ tampoco entra: es el destino del formulario y lleva noindex.
+// Si se indexara, llegaria gente sin haberlo rellenado y falsearia las
+// conversiones.
 const STATIC_PAGES = [
   { relPath: 'index.html', url: SITE_URL + '/' },
   { relPath: path.join('consultoria', 'index.html'), url: SITE_URL + '/consultoria/' }

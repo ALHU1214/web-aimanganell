@@ -180,11 +180,18 @@
     });
   };
 
+  // Devuelve una promesa que se resuelve cuando han salido todas las
+  // peticiones. El submit la espera antes de redirigir a /gracias/: si
+  // redirigiera de inmediato, el navegador podria abortar un fetch aun
+  // en vuelo y el lead se perderia. keepalive es el segundo cinturon —
+  // permite que la peticion sobreviva a la descarga de la pagina.
   function sendLead(data, turnstileToken, origen) {
+    var pending = [];
     var sb = CFG.supabase || {};
     if (sb.url) {
-      fetch(sb.url + '/functions/v1/submit-lead', {
+      pending.push(fetch(sb.url + '/functions/v1/submit-lead', {
         method: 'POST',
+        keepalive: true,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nombre: data.nombre,
@@ -196,23 +203,23 @@
           notas: data.biz ? 'Tipo de negocio: ' + data.biz : '',
           turnstileToken: turnstileToken || ''
         })
-      }).catch(function () {});
+      }).catch(function () {}));
     }
     if (CFG.webhookUrl) {
-      fetch(CFG.webhookUrl, {
+      pending.push(fetch(CFG.webhookUrl, {
         method: 'POST',
+        keepalive: true,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      }).catch(function () {});
+      }).catch(function () {}));
     }
+    return Promise.all(pending);
   }
 
   $$('.lead-form').forEach(function (form) {
-    var card    = form.closest('.form-card');
-    var sentBox = $('.form-sent', card);
-    var errBox  = $('.form-error', form);
-    var calLink = $('.btn-cal', card);
-    var origen  = form.classList.contains('lead-form-2') ? 'Consultoría' : 'Landing web';
+    var errBox = $('.form-error', form);
+    var btn    = $('button[type="submit"]', form);
+    var origen = form.classList.contains('lead-form-2') ? 'Consultoría' : 'Landing web';
 
     function fail(msg) {
       errBox.textContent = msg;
@@ -240,26 +247,84 @@
       var token = (window.turnstile && form._turnstileId != null)
         ? window.turnstile.getResponse(form._turnstileId)
         : '';
-      sendLead(d, token, origen);
+      var enviado = sendLead(d, token, origen);
       if (window.turnstile && form._turnstileId != null) {
         window.turnstile.reset(form._turnstileId);
       }
 
-      var url = (CFG.calUrl || '#') +
-        ((CFG.calUrl || '').indexOf('?') > -1 ? '&' : '?') +
-        'name=' + encodeURIComponent(d.nombre) + '&email=' + encodeURIComponent(d.email);
-      if (calLink) calLink.href = url;
+      // Nombre y email viajan por sessionStorage, no por la URL: /gracias/
+      // los necesita solo para prerrellenar el calendario, y meterlos en
+      // la query los dejaria en el historial, en el Referer y en cada
+      // informe de analitica. El origen si va en la URL — no es dato
+      // personal y permite separar las conversiones de cada formulario.
+      try {
+        sessionStorage.setItem('am_lead', JSON.stringify({
+          nombre: d.nombre,
+          email:  d.email
+        }));
+      } catch (err) {}
 
-      form.hidden = true;
-      sentBox.hidden = false;
-
-      try { window.open(url, '_blank'); } catch (err) {}
       if (window.gtag) window.gtag('event', 'generate_lead');
       if (window.fbq)  window.fbq('track', 'Lead');
+
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+      }
+
+      // Se redirige cuando el lead ha salido, pero como muy tarde a los
+      // 2,5 s: si la red va mal, el usuario ve su pagina de gracias
+      // igualmente y la peticion termina sola gracias a keepalive.
+      var saltado = false;
+      function irAGracias() {
+        if (saltado) return;
+        saltado = true;
+        window.location.href = '/gracias/?o=' + encodeURIComponent(origen);
+      }
+      enviado.then(irAGracias, irAGracias);
+      setTimeout(irAGracias, 2500);
     });
   });
 
-  /* ---------- 6 · modal legal — contenido bajo demanda ----------
+  /* ---------- 6 · página de gracias ----------
+     Solo hace algo en /gracias/. El formulario deja nombre y email en
+     sessionStorage justo antes de redirigir (ver sección 5); aquí se
+     leen para prerrellenar el calendario. Si no hay nada guardado
+     — entrada directa por URL, pestaña nueva, un navegador que bloquea
+     el almacenamiento — la página se ve igual, solo que con el enlace
+     del calendario limpio. */
+  var gracias = $('.gracias');
+  if (gracias) {
+    var lead = null;
+    try { lead = JSON.parse(sessionStorage.getItem('am_lead') || 'null'); } catch (err) {}
+
+    var calBtn = $('.gracias-cal', gracias);
+    if (calBtn && CFG.calUrl) {
+      var calHref = CFG.calUrl;
+      if (lead && lead.nombre && lead.email) {
+        calHref += (calHref.indexOf('?') > -1 ? '&' : '?') +
+          'name=' + encodeURIComponent(lead.nombre) +
+          '&email=' + encodeURIComponent(lead.email);
+      }
+      calBtn.href = calHref;
+    }
+
+    // El bloque de WhatsApp viene oculto del HTML y solo se destapa si
+    // hay número en config.js: mejor no enseñarlo que enseñar un botón
+    // que no lleva a ninguna parte.
+    var waBox = $('.gracias-wa', gracias);
+    if (waBox) {
+      var waNum = (CFG.waNumber || '').replace(/[^0-9]/g, '');
+      var waBtn = $('.gracias-wa-btn', waBox);
+      if (waNum && waBtn) {
+        waBtn.href = 'https://wa.me/' + waNum +
+          (CFG.waMsg ? '?text=' + encodeURIComponent(CFG.waMsg) : '');
+        waBox.hidden = false;
+      }
+    }
+  }
+
+  /* ---------- 7 · modal legal — contenido bajo demanda ----------
      Los tres documentos ya existen como páginas reales (/legal/...).
      En vez de incrustar ~1500 palabras duplicadas en el DOM de CADA
      página, el modal hace fetch() a la página real y muestra solo su
@@ -323,7 +388,7 @@
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeLegal(); });
   document.addEventListener('keydown', function (e) { if (modal && e.key === 'Escape' && !modal.hidden) closeLegal(); });
 
-  /* ---------- 7 · cookies y analítica ----------
+  /* ---------- 8 · cookies y analítica ----------
      GA solo se inyecta si el usuario acepta todas las cookies.
      Con "solo esenciales" (o sin elegir aún) no se carga el script
      en absoluto, ni siquiera en modo "denegado": el propio <script>
@@ -389,7 +454,7 @@
     closeLegal();
     if (bar) bar.hidden = false;
   });
-  /* ---------- 8 · reveal al hacer scroll (una sola vez) ----------
+  /* ---------- 9 · reveal al hacer scroll (una sola vez) ----------
      Los bloques se marcan desde esta lista de selectores en vez de
      escribir data-reveal en el HTML de cada página: el HTML servido
      queda limpio, que es lo que necesita el modal legal (hace fetch
@@ -409,7 +474,12 @@
     '#page2 .form-sec',
     '.legal-page-wrap > h1',
     '.legal-page-wrap > .legal-date',
-    '.legal-page .legal-body > *'   // .legal-page excluye el .legal-body del modal, que se rellena por innerHTML
+    '.legal-page .legal-body > *',  // .legal-page excluye el .legal-body del modal, que se rellena por innerHTML
+    // En /gracias/ se revela solo de los pasos hacia abajo: el titular,
+    // la confirmacion y el boton de reservar tienen que verse en el primer
+    // pintado, sin esperar a ninguna transicion.
+    '.gracias-pasos > li',
+    '.gracias-links > a'
   ];
 
   (function initReveal() {

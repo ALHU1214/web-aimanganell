@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- la clase la usa styles.css para darle a esta pagina el fondo sacado
+     del video del hero, sin tocar el del resto del sitio -->
+<html lang="es" class="pagina-gracias">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitud recibida · AI MANGANELL</title>
+<meta name="description" content="Hemos recibido tu solicitud de AI &amp; Cyber AMG™. Reserva aquí la llamada inicial de 20 minutos.">
+<!-- Pagina de conversion: se llega a ella solo tras enviar el formulario.
+     noindex para que no salga en Google — si saliera, entraria gente sin
+     haber rellenado nada y falsearia las conversiones. A proposito SIN
+     Disallow en robots.txt: si se bloqueara el rastreo, Google nunca
+     llegaria a leer esta etiqueta. Tampoco esta en STATIC_PAGES de
+     scripts/build-blog.js, asi que queda fuera del sitemap. -->
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://aimanganell.com/gracias/">
+<link rel="icon" type="image/png" href="../assets/favicon-am.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../contraste-minimo.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="../assets/logos/horizontal-x.png" alt="AI MANGANELL" width="1970" height="336">
+  </a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">HOME</a>
+    <a href="/consultoria/" class="nav-link">AI &amp; CYBER AMG&trade;</a>
+    <a href="/blog/" class="nav-link">BLOG</a>
+    <a href="/#formulario" class="nav-cta">CONTACTO</a>
+  </div>
+</nav>
+
+<main class="gracias">
+  <div class="gracias-wrap">
+
+    <div class="gracias-head">
+      <h1>Solicitud recibida</h1>
+    </div>
+
+    <div class="gracias-card">
+      <span class="gracias-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 7"/></svg>
+      </span>
+      <p>Tu solicitud de <strong>AI &amp; Cyber AMG&trade;</strong> ya nos ha llegado. La revisamos antes de hablar contigo, para no hacerte repetir lo que ya nos has contado.</p>
+    </div>
+
+    <!-- ============ CTA: RESERVAR ============ -->
+    <div class="gracias-cta">
+      <p class="gracias-cta-txt">
+        Reserva ya la <strong>llamada inicial</strong>: 20 minutos por videollamada
+        para ver tu caso y decirte si el servicio encaja con tu empresa.
+      </p>
+      <a class="btn-acc gracias-cal" href="https://cal.com/aimanganell/llamada-inicial" target="_blank" rel="noopener">Reservar mi llamada &rarr;</a>
+      <p class="gracias-cta-nota">Eliges tú el hueco. Y si prefieres no reservar ahora, te contactamos nosotros.</p>
+    </div>
+
+    <!-- ============ QUE PUEDES ESPERAR ============ -->
+    <h2 class="gracias-h2">Qué puedes esperar ahora</h2>
+    <ol class="gracias-pasos">
+      <li>
+        <span class="gracias-num">1</span>
+        <p>Revisión personalizada de tu solicitud por parte de nuestro equipo técnico.</p>
+      </li>
+      <li>
+        <span class="gracias-num">2</span>
+        <p>Contacto directo para agendar una llamada exploratoria.</p>
+      </li>
+      <li>
+        <span class="gracias-num">3</span>
+        <p>Envío de los siguientes pasos si calificas para el diagnóstico.</p>
+      </li>
+    </ol>
+
+    <!-- ============ WHATSAPP ============
+         Se muestra solo si hay numero en config.js (waNumber). Mientras
+         este vacio, main.js deja el bloque oculto: mejor sin bloque que
+         con un boton que no lleva a ninguna parte. -->
+    <div class="gracias-wa" hidden>
+      <h2 class="gracias-h2">Nota importante</h2>
+      <p>Solo aceptamos 3 empresas nuevas por mes para garantizar calidad en la entrega. Responderemos por orden de llegada. Si tu caso es urgente, puedes escribirnos directamente por WhatsApp:</p>
+      <a class="gracias-wa-btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.25-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23z"/></svg>
+        <span>Escribir por WhatsApp</span>
+      </a>
+    </div>
+
+    <!-- ============ MIENTRAS TANTO ============ -->
+    <h2 class="gracias-h2">Mientras tanto</h2>
+    <div class="gracias-links">
+      <a href="/blog/">
+        <strong>El blog</strong>
+        <span>Artículos sobre IA y ciberseguridad aplicadas a la pyme.</span>
+      </a>
+      <a href="https://www.linkedin.com/company/aimanganell/" target="_blank" rel="noopener">
+        <strong>AI MANGANELL en LinkedIn</strong>
+        <span>La página de la consultora.</span>
+      </a>
+      <a href="https://www.linkedin.com/in/alvaromanganell" target="_blank" rel="me noopener">
+        <strong>Álvaro Manganell</strong>
+        <span>El perfil personal, en primera persona.</span>
+      </a>
+    </div>
+
+    <p class="gracias-mail">
+      ¿Alguna duda antes de la llamada? Escríbenos a
+      <a href="mailto:contacto@aimanganell.com">contacto@aimanganell.com</a>
+    </p>
+
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-brand-row">
+    <img class="foot-logo" src="../assets/logos/horizontal-x.png" alt="AI MANGANELL" width="1970" height="336">
+    <div class="foot-social" role="group" aria-label="Redes sociales">
+      <a href="https://www.linkedin.com/in/alvaromanganell" target="_blank" rel="me noopener" aria-label="LinkedIn de Álvaro Manganell"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+  </div>
+  <div class="foot-legal">
+    <a class="foot-link" href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a>
+    <a class="foot-link" href="/legal/cookies/" data-legal="cookies">Política de Cookies</a>
+    <a class="foot-link" href="/legal/aviso-legal/" data-legal="aviso">Aviso Legal</a>
+    <a class="foot-link foot-link-subtle" href="#" id="reopen-cookies">Configurar cookies</a>
+  </div>
+  <div class="foot-email">
+    <a class="foot-link" href="mailto:contacto@aimanganell.com">contacto@aimanganell.com</a>
+  </div>
+  <div class="foot-symbol">
+    <img src="../assets/logos/simbolo-a.png" alt="AI MANGANELL" width="256" height="256">
+  </div>
+  <p class="foot-copy">&copy; 2026 AI MANGANELL, todos los derechos reservados</p>
+</footer>
+
+<!-- ============ COOKIES ============ -->
+<div id="cookie-bar" hidden>
+  <p>Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Consulta nuestra <a href="/legal/cookies/" data-legal="cookies">Política de cookies</a> y la <a href="/legal/privacidad/" data-legal="priv">Política de privacidad</a>.</p>
+  <div class="cookie-btns">
+    <button type="button" class="btn-ghost" id="cookie-reject">Solo esenciales</button>
+    <button type="button" class="btn-acc btn-sm" id="cookie-accept">Aceptar todas</button>
+  </div>
+</div>
+
+<!-- ============ MODAL LEGAL ============ -->
+<div id="legal-modal" hidden>
+  <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="legal-title">
+    <button type="button" class="legal-close" aria-label="Cerrar">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+    </button>
+    <h2 id="legal-title"></h2>
+    <p class="legal-date">ÚLTIMA ACTUALIZACIÓN · AGOSTO 2026</p>
+    <div class="legal-body"><p>Cargando…</p></div>
+  </div>
+</div>
+
+<script src="../config.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>
