@@ -10,6 +10,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
@@ -124,6 +125,42 @@ function encodeCover(srcPath, destPath) {
   } catch (e) {
     return false;
   }
+}
+
+// --- cache de portadas -------------------------------------------
+// Las portadas se rehacian en CADA build. No acumulaban perdida (cada
+// build parte del original de blog/posts/), pero si generaban un JPEG
+// nuevo cada vez: el ffmpeg de una maquina de desarrollo y el del runner
+// de GitHub no escriben los mismos bytes con la misma entrada y el mismo
+// -q:v. Resultado: cada build sobrescribia la version de la otra maquina
+// y el repositorio acumulaba un binario nuevo por ejecucion sin que
+// nadie hubiera tocado el post. Se veia en el historial como un
+// ping-pong perfecto entre dos tamanos, 101447 y 101508 bytes.
+//
+// Ahora, junto a la portada generada, se guarda el hash de la imagen de
+// origen. Si no ha cambiado, no se toca el JPEG: da igual que ffmpeg
+// hubiera producido otros bytes, porque ni se le llama.
+//
+// RECETA entra en el hash a proposito: si algun dia se cambia la calidad
+// o el recorte, cambia el hash y las portadas se rehacen solas. Sin eso,
+// tocar -q:v no tendria ningun efecto sobre las que ya existen.
+const RECETA = 'q3';
+
+function hashPortada(srcPath, width, height) {
+  return crypto.createHash('sha256')
+    .update(fs.readFileSync(srcPath))
+    .update(`|${width}x${height}|${RECETA}`)
+    .digest('hex');
+}
+
+// que variantes DEBERIAN existir para este tamano, mirando solo los
+// numeros: es la misma condicion que aplica generateCoverVariants
+function variantesPrevistas(width, height) {
+  const lista = [];
+  const w43 = Math.round((height * 4) / 3);
+  if (w43 <= width) lista.push({ file: 'cover-4x3.jpg', width: w43, height });
+  if (height <= width) lista.push({ file: 'cover-1x1.jpg', width: height, height });
+  return lista;
 }
 
 // genera cover-4x3.jpg y cover-1x1.jpg junto a cover.jpg, recortando
@@ -578,12 +615,33 @@ function build() {
       fs.mkdirSync(outDir, { recursive: true });
 
       const coverDestPath = path.join(outDir, 'cover.jpg');
-      if (!encodeCover(coverSrcPath, coverDestPath)) {
-        fs.copyFileSync(coverSrcPath, coverDestPath);
+      const anchoPortada = data.cover.width || 1600;
+      const altoPortada = data.cover.height || 900;
+
+      // se rehace la portada solo si cambio la imagen de origen (o la
+      // receta), o si falta alguno de los archivos que deberia haber
+      const hashPath = path.join(outDir, '.cover-hash');
+      const hashNuevo = hashPortada(coverSrcPath, anchoPortada, altoPortada);
+      const hashViejo = fs.existsSync(hashPath)
+        ? fs.readFileSync(hashPath, 'utf8').trim()
+        : null;
+      const previstas = variantesPrevistas(anchoPortada, altoPortada);
+      const estanTodas = fs.existsSync(coverDestPath) &&
+        previstas.every(v => fs.existsSync(path.join(outDir, v.file)));
+
+      let coverVariants;
+      if (hashViejo === hashNuevo && estanTodas) {
+        coverVariants = previstas;
+        console.log(`· blog/${data.slug}/  portada sin cambios, se reutiliza`);
+      } else {
+        if (!encodeCover(coverSrcPath, coverDestPath)) {
+          fs.copyFileSync(coverSrcPath, coverDestPath);
+        }
+        coverVariants = generateCoverVariants(
+          coverDestPath, outDir, anchoPortada, altoPortada
+        );
+        fs.writeFileSync(hashPath, hashNuevo + '\n', 'utf8');
       }
-      const coverVariants = generateCoverVariants(
-        coverDestPath, outDir, data.cover.width || 1600, data.cover.height || 900
-      );
 
       const dateModified = gitLastModifiedISO(`blog/posts/${file}`) || data.date;
       const html = renderPost(template, data, bodyHtml, dateModified, coverVariants);
