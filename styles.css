@@ -145,7 +145,19 @@ nav {
   padding: 26px 32px 12px;
 }
 .nav-logo { display: flex; align-items: center; flex-shrink: 0; }
-.nav-logo img { height: 36px; width: auto; }
+/* El filtro no es un retoque estetico: compensa una perdida. El logo se
+   pinta a 36px desde un PNG de 336px de alto, y esa reduccion de 9x
+   diluye los trazos finos de AI MANGANELL contra el fondo oscuro. Medido
+   en el navegador, a 36px el 5% mas brillante de las letras se queda en
+   236 frente a 254 del #fff de .nav-link, que va justo al lado; y el
+   azul del simbolo sale rgb(6,95,194) cuando el del archivo es
+   rgb(0,113,235). O sea que TODO el logo llega apagado, no solo las
+   letras. brightness(1.12) devuelve las dos cosas a su sitio: las letras
+   suben a 250 y el azul a rgb(6,110,218). Se eligio 1.12 y no mas porque
+   a partir de ahi las letras ya no mejoran y el azul empieza a pasarse.
+   Preparar el PNG ya reducido con lanczos y enfoque se probo: sale peor,
+   no es un problema de calidad de escalado sino de tamano. */
+.nav-logo img { height: 36px; width: auto; filter: brightness(1.12); }
 /* El translateY es un ajuste optico, no geometrico: el flexbox ya centra
    este bloque y el logo en la misma linea, pero lo que se ve del logo son
    las letras de AI MANGANELL, y lo que se ve aqui son mayusculas. Con
@@ -1051,7 +1063,11 @@ body { overflow-x: clip; }
    aquí no hay secciones a pantalla completa sino un solo hilo
    de lectura estrecho que baja hasta el CTA.
    ============================================================ */
-/* --- fondo de la página, sacado del vídeo del hero ---------------
+/* --- fondo sacado del vídeo del hero -----------------------------
+   Lo llevan /gracias/ y todo el blog (portada y posts). Se activa con
+   la clase .fondo-video en el <html>; en el blog la ponen las dos
+   plantillas de scripts/, no el HTML generado, que se rehace solo.
+
    Los azules no son elegidos a ojo: son los que devuelve assets/hero.mp4
    al muestrear 32 fotogramas y agrupar sus píxeles por color. De más a
    menos peso: #010002 (74% del vídeo), #050c22, #102545, #103f73,
@@ -1074,9 +1090,9 @@ body { overflow-x: clip; }
    así que el mosaico repite sin costura; se sirve a 256px pero se pinta
    a 128, que es la densidad de la og — y de paso queda nítida en
    pantallas de doble densidad.                                       */
-.pagina-gracias,
-.pagina-gracias body { background-color: #010002; }
-.pagina-gracias body {
+.fondo-video,
+.fondo-video body { background-color: #010002; }
+.fondo-video body {
   background-image:
     url('assets/textura-difusion.png'),
     radial-gradient(ellipse 110% 38% at 50% 0%,   rgba(98,164,203,.18), rgba(98,164,203,0) 100%),
@@ -1218,4 +1234,61 @@ body { overflow-x: clip; }
 @media (max-width: 520px) {
   .gracias { padding-left: 16px; padding-right: 16px; }
   .gracias-card { padding: 22px 20px; }
+}
+
+/* ============================================================
+   MENÚ DE MÓVIL
+   Por debajo de 700px los tres enlaces y el botón dejan de caber al
+   lado del logo: a 660px ya se tocan (medido en el navegador). Más
+   abajo el problema se agrava — de ahí el .nav-cta{display:none} de la
+   consulta de 420px, que ocultaba el CTA precisamente porque no cabía.
+   Con el panel deja de hacer falta esconder nada: cabe todo, y el CTA
+   vuelve a estar disponible en móvil.
+   ============================================================ */
+.nav-burger { display: none; }
+
+@media (max-width: 700px) {
+  .nav-burger {
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+    gap: 5px; width: 44px; height: 44px; padding: 0;   /* 44px = objetivo táctil mínimo */
+    border: 0; background: transparent; cursor: pointer;
+  }
+  .nav-burger span {
+    display: block; width: 24px; height: 2px; border-radius: 2px; background: #fff;
+    transition: transform .25s cubic-bezier(.22,.8,.3,1), opacity .18s;
+  }
+  /* las tres barras se convierten en una X al abrir */
+  nav.abierto .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.abierto .nav-burger span:nth-child(2) { opacity: 0; }
+  nav.abierto .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* El panel se sale por arriba y entra deslizando. z-index:-1 lo deja
+     por debajo del logo y del botón, que son hermanos suyos dentro del
+     nav, para que sigan visibles y se pueda cerrar con el mismo botón.
+     Al ser position:fixed sale del flujo, así que el space-between del
+     nav reparte solo logo y botón: no hace falta ningún order. */
+  .nav-links {
+    position: fixed; top: 0; left: 0; right: 0; z-index: -1;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 88px 20px 26px;
+    background: #061019;
+    border-bottom: 1px solid rgba(var(--acc-rgb), .28);
+    box-shadow: 0 26px 60px rgba(0,0,0,.55);
+    transform: translateY(-100%);
+    transition: transform .32s cubic-bezier(.22,.8,.3,1);
+  }
+  nav.abierto .nav-links { transform: translateY(0); }
+
+  .nav-links .nav-link {
+    padding: 17px 2px; font-size: 16px;
+    border-top: 1px solid rgba(232,242,239,.10);
+  }
+  /* gana al `.nav-cta { display:none }` de la consulta de 420px, que
+     existía justamente porque el botón no cabía en la barra. Aquí ya no
+     está en la barra, así que vuelve a tener sitio. */
+  .nav-links .nav-cta {
+    display: inline-flex; justify-content: center;
+    margin-top: 20px; padding: 15px 22px; font-size: 15px;
+    animation: none;   /* sin el glow palpitante dentro del panel */
+  }
 }

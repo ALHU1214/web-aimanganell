@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- la clase la usa styles.css para darle a esta pagina el fondo sacado
-     del video del hero, sin tocar el del resto del sitio -->
-<html lang="es" class="pagina-gracias">
+<!-- fondo-video: fondo sacado de los colores de assets/hero.mp4, con la
+     textura de la og image. Lo comparte con el blog; lo define styles.css -->
+<html lang="es" class="fondo-video">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,10 @@
   <a href="/" class="nav-logo">
     <img src="../assets/logos/horizontal-x.png" alt="AI MANGANELL" width="1970" height="336">
   </a>
-  <div class="nav-links">
+  <button type="button" class="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
     <a href="/" class="nav-link">HOME</a>
     <a href="/consultoria/" class="nav-link">AI &amp; CYBER AMG&trade;</a>
     <a href="/blog/" class="nav-link">BLOG</a>

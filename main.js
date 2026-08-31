@@ -532,4 +532,46 @@
     els.forEach(function (el) { io.observe(el); });
   })();
 
+  /* ---------- 10 · menú de móvil ----------
+     El panel y la animación viven en styles.css, dentro de la consulta
+     de 700px. Aquí solo se conmuta la clase, se mantiene aria-expanded
+     en sintonía y se cierra en los tres casos en que el usuario espera
+     que se cierre: al pulsar un enlace, con Escape, y al ensanchar la
+     ventana por encima del punto de corte (si no, al girar el móvil el
+     panel se quedaría abierto y desplazado sobre el contenido). */
+  var barra = $('nav');
+  var burger = $('.nav-burger', barra);
+  if (barra && burger) {
+    var panel = $('.nav-links', barra);
+
+    function cerrarMenu() {
+      if (!barra.classList.contains('abierto')) return;
+      barra.classList.remove('abierto');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Abrir menú');
+    }
+
+    burger.addEventListener('click', function () {
+      var abierto = barra.classList.toggle('abierto');
+      burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    });
+
+    if (panel) {
+      $$('a', panel).forEach(function (a) {
+        a.addEventListener('click', cerrarMenu);
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') cerrarMenu();
+    });
+
+    window.matchMedia('(min-width: 701px)').addEventListener
+      ? window.matchMedia('(min-width: 701px)').addEventListener('change', cerrarMenu)
+      : window.addEventListener('resize', function () {
+          if (window.innerWidth > 700) cerrarMenu();
+        });
+  }
+
 })();
