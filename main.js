@@ -252,11 +252,12 @@
         window.turnstile.reset(form._turnstileId);
       }
 
-      // Nombre y email viajan por sessionStorage, no por la URL: /gracias/
-      // los necesita solo para prerrellenar el calendario, y meterlos en
-      // la query los dejaria en el historial, en el Referer y en cada
-      // informe de analitica. El origen si va en la URL — no es dato
-      // personal y permite separar las conversiones de cada formulario.
+      // Nada de esto viaja por la URL. Nombre y email porque son datos
+      // personales y en la query quedarian en el historial, en el Referer
+      // y en cada informe de analitica. Y el origen porque ensuciaba la
+      // barra de direcciones con un ?o=Landing%20web a cambio de nada:
+      // solo servia para separar las conversiones de cada formulario, y
+      // eso se hace mejor como parametro del evento, aqui abajo.
       try {
         sessionStorage.setItem('am_lead', JSON.stringify({
           nombre: d.nombre,
@@ -264,8 +265,8 @@
         }));
       } catch (err) {}
 
-      if (window.gtag) window.gtag('event', 'generate_lead');
-      if (window.fbq)  window.fbq('track', 'Lead');
+      if (window.gtag) window.gtag('event', 'generate_lead', { origen: origen });
+      if (window.fbq)  window.fbq('track', 'Lead', { content_category: origen });
 
       if (btn) {
         btn.disabled = true;
@@ -279,7 +280,7 @@
       function irAGracias() {
         if (saltado) return;
         saltado = true;
-        window.location.href = '/gracias/?o=' + encodeURIComponent(origen);
+        window.location.href = '/gracias/';
       }
       enviado.then(irAGracias, irAGracias);
       setTimeout(irAGracias, 2500);

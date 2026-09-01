@@ -1080,9 +1080,11 @@ body { overflow-x: clip; }
    elementos fixed y dejar el fondo desplazándose con el scroll.
    La clase la lleva el <html> para poder pintar también el color de
    fondo del propio lienzo, que es lo que se ve al hacer overscroll.
-   La textura queda fija y los degradados acompañan al scroll, igual que
-   en el body normal: un fondo entero en attachment:fixed castiga el
-   scroll y aquí no aporta nada.
+   Todas las capas van con attachment:scroll, la textura incluida. Con
+   fixed el navegador tiene que repintar el fondo entero en cada
+   fotograma del scroll, y aquí no se gana nada a cambio: al ser un
+   mosaico uniforme, que se quede quieta o que acompañe al contenido se
+   ve exactamente igual. Es gratis, así que scroll.
 
    La textura no es el ruido fractal del resto del sitio sino el patrón
    de laberinto de la og image (reacción-difusión). Está generada con
@@ -1103,7 +1105,7 @@ body { overflow-x: clip; }
   background-position: top left, top center, top center, top center, bottom center, top center;
   background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: 128px 128px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-  background-attachment: fixed, scroll, scroll, scroll, scroll, scroll;
+  background-attachment: scroll, scroll, scroll, scroll, scroll, scroll;
 }
 
 /* Las tarjetas heredaban --card (#0a1613), que es un verde azulado: sobre
