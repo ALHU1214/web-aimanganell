@@ -50,11 +50,16 @@ const ORGANIZATION = {
   '@id': SITE_URL + '/#organization',
   name: 'AI MANGANELL',
   url: SITE_URL + '/',
+  // Estas medidas son las del archivo real, no un dato decorativo: si se
+  // vuelve a cambiar el PNG hay que cambiarlas aqui tambien. Ojo, que en
+  // los posts NO salen de post-template.html sino de aqui, asi que
+  // corregirlas solo en la plantilla no sirve — el siguiente build las
+  // revierte (ya paso).
   logo: {
     '@type': 'ImageObject',
     url: SITE_URL + '/assets/logos/horizontal-x.png',
-    width: 1970,
-    height: 336
+    width: 657,
+    height: 112
   }
 };
 
