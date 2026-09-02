@@ -729,8 +729,20 @@ footer::before {
 .post-content blockquote p { margin: 0; font-size: 1.05em; line-height: 1.65; }
 .post-content blockquote p + p { margin-top: .7em; }
 
-.post-content a { text-decoration-color: rgba(var(--acc-rgb), .45); text-underline-offset: .15em; }
-.post-content a:hover { text-decoration-color: var(--acc2); }
+/* Los enlaces del articulo tenian color y estilo de subrayado, pero nunca
+   llegaban a subrayarse: la regla generica "a { text-decoration: none }" deja
+   text-decoration-line en none, y sin linea, text-decoration-color no pinta
+   nada. Quedaban solo en color, y encima en --acc, que da 4.00 sobre el fondo
+   del post cuando el minimo para texto es 4.5. Resultado: se veian igual que
+   el parrafo y nadie los encontraba. Se enciende el subrayado y el color pasa
+   a --acc2, que da 8.74. */
+.post-content a {
+  color: var(--acc2);
+  text-decoration: underline;
+  text-decoration-color: rgba(122, 182, 255, .5);
+  text-underline-offset: .15em;
+}
+.post-content a:hover { color: var(--acc2); text-decoration-color: var(--acc2); }
 .post-content a:focus-visible { outline: 2px solid var(--acc2); outline-offset: 3px; border-radius: 2px; }
 
 .post-content strong { color: var(--ink); font-weight: 700; }
