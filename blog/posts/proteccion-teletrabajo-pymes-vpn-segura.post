@@ -5,7 +5,6 @@
   "description": "Protección del teletrabajo en pymes mediante una VPN segura: descubre cómo cifrar accesos, limitar permisos y reforzar mejor la ciberseguridad de tu empresa.",
   "keyword": "Protección del teletrabajo en pymes mediante una VPN segura",
   "category": "Automatización",
-  "noindex": true,
   "date": "2026-09-02",
   "cover": {
     "src": "proteccion-teletrabajo-pymes-vpn-segura-cover.jpg",
@@ -106,4 +105,4 @@
 
 <p>Instalar una VPN sin gestionar estos elementos no ofrece la protección que la empresa espera.</p>
 <h2>Lo que vemos en la práctica</h2>
-<p>[PENDIENTE: caso real]</p>
+<p>En una empresa con la que hemos trabajado, una persona que se había marchado meses antes seguía teniendo activo su correo corporativo. No lo detectó ningún sistema de seguridad: se dieron cuenta ellos mismos, por casualidad. Nadie había hecho nada mal a propósito. Simplemente, dar de baja los accesos no era tarea de nadie en concreto, así que no la hizo nadie. Es el patrón que más se repite: se invierte en la parte técnica —la VPN, el cifrado, el doble factor— y se deja sin dueño la parte que hay que revisar cada pocos meses. Una conexión cifrada no sirve de mucho si la cuenta que la usa debería haberse cerrado en primavera.</p>
