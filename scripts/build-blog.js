@@ -284,6 +284,12 @@ function validatePost(data, bodyHtml, filePath) {
     console.warn(`⚠ ${filePath}: el <title> final mide ${effectiveTitle.length} caracteres (> 60): "${effectiveTitle}"${data.seoTitle ? '' : ' — añade "seoTitle" para acortarlo sin tocar el H1'}`);
   }
   avisarFormato(bodyHtml, filePath);
+  // n8n deja el post con noindex y con un marcador donde va el caso real, para
+  // que se rellene a mano antes de publicarlo. Si alguien quita el noindex sin
+  // rellenarlo, ese "[PENDIENTE...]" sale publicado tal cual.
+  if (!data.noindex && /\[PENDIENTE/i.test(bodyHtml)) {
+    console.warn(`⚠ ${filePath}: se publica (sin noindex) con un marcador [PENDIENTE...] todavía en el texto`);
+  }
 }
 
 // Los limites no son un criterio inventado: salen de medir los posts que ya
