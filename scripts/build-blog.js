@@ -283,6 +283,36 @@ function validatePost(data, bodyHtml, filePath) {
   if (effectiveTitle.length > 60) {
     console.warn(`⚠ ${filePath}: el <title> final mide ${effectiveTitle.length} caracteres (> 60): "${effectiveTitle}"${data.seoTitle ? '' : ' — añade "seoTitle" para acortarlo sin tocar el H1'}`);
   }
+  avisarFormato(bodyHtml, filePath);
+}
+
+// Los limites no son un criterio inventado: salen de medir los posts que ya
+// funcionan. Van entre 500 y 900 palabras, en 4 a 6 apartados, con una o
+// varias listas y sin parrafos que pasen de 60 palabras. Un post que se sale
+// de ahi se lee como un ladrillo al lado de los demas, que es justo lo que
+// hubo que arreglar a mano en el de costes.
+// Son avisos, nunca errores: el build no debe bloquear una publicacion de n8n
+// por una cuestion de estilo, solo dejar constancia en el log.
+function avisarFormato(bodyHtml, filePath) {
+  const parrafos = (bodyHtml.match(/<p>([\s\S]*?)<\/p>/g) || [])
+    .map(p => p.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length);
+  const palabras = bodyHtml.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  const h2 = (bodyHtml.match(/<h2>/g) || []).length;
+  const listas = (bodyHtml.match(/<ul>|<ol>/g) || []).length;
+  const largos = parrafos.filter(n => n > 60).length;
+
+  if (palabras < 450 || palabras > 950) {
+    console.warn(`⚠ ${filePath}: ${palabras} palabras; los demas posts van entre 500 y 900`);
+  }
+  if (h2 < 4 || h2 > 6) {
+    console.warn(`⚠ ${filePath}: ${h2} apartados H2; lo habitual son entre 4 y 6`);
+  }
+  if (listas === 0) {
+    console.warn(`⚠ ${filePath}: sin ninguna lista; son las que hacen el texto escaneable`);
+  }
+  if (largos) {
+    console.warn(`⚠ ${filePath}: ${largos} parrafo(s) de mas de 60 palabras; en pantalla se leen como bloques macizos`);
+  }
 }
 
 function renderFaqHtml(faq) {
