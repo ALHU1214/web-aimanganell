@@ -915,7 +915,19 @@ footer::before {
 @media (max-width: 1120px) { .ben-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px)  { .obt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .para-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 600px)  { .obt-grid { grid-template-columns: minmax(0, 1fr); } .obt-facts { flex-direction: column; gap: 30px; } }
-@media (max-width: 560px)  { .ben-grid { grid-template-columns: minmax(0, 1fr); } }
+/* En una sola columna, el min-height de 340px que iguala las tarjetas en
+   escritorio deja de tener sentido: cada una ocupa su propia fila, asi que
+   el alto fijo solo anade hueco vacio debajo de un texto de tres lineas.
+   Se quita y se igualan con grid-auto-rows:1fr, que las ajusta todas al alto
+   de la mas larga en vez de a una medida inventada. El relleno, la separacion
+   con el icono y el interlineado bajan tambien: a 390px de ancho el aire de
+   escritorio se lee como espacio suelto. */
+@media (max-width: 560px) {
+  .ben-grid { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 16px; }
+  .ben-card { min-height: 0; gap: 16px; padding: 22px 20px 24px; }
+  .ben-ico { font-size: 28px; }
+  .ben-card p { font-size: 16.5px; line-height: 1.55; }
+}
 
 @media (max-width: 760px) {
   :root { --sec-pad: 58px; }
