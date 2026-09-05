@@ -126,7 +126,22 @@
       });
     }
     video.addEventListener('pause', function () { video.play().catch(function () {}); });
-    video.play().catch(function () {});
+
+    // iOS no arranca solo en Modo de bajo consumo, y algunos navegadores
+    // tampoco si la pestana llega en segundo plano: en esos casos se queda el
+    // poster con el boton de play. Se reintenta al primer gesto del usuario,
+    // que es lo unico que levanta el bloqueo, y el listener se quita solo.
+    video.play().catch(function () {
+      var arrancar = function () {
+        video.play().catch(function () {});
+        ['touchstart', 'pointerdown', 'scroll'].forEach(function (ev) {
+          window.removeEventListener(ev, arrancar);
+        });
+      };
+      ['touchstart', 'pointerdown', 'scroll'].forEach(function (ev) {
+        window.addEventListener(ev, arrancar, { once: false, passive: true });
+      });
+    });
   }
 
   setupVideo($('#hero-video'), CFG.heroVideo, { fade: true, srcMobile: CFG.heroVideoMobile });

@@ -939,7 +939,14 @@ footer::before {
      marca, que ademas es donde cae el titular: gana contraste al no leerse
      sobre imagen. */
   .hero-video video,
-  .p2-hero-video { object-fit: contain; object-position: center top; }
+  .p2-hero-video {
+    object-fit: contain; object-position: center top;
+    /* Al no llenar la caja, el video termina en una linea horizontal seca que
+       cruza el texto. La mascara lo desvanece en su ultimo tramo para que se
+       funda con el fondo en vez de cortarse. */
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  }
   .form-card { padding: 26px 20px 22px; }
   .form-shadow { transform: translate(7px, 7px); box-shadow: none; }
   .lead-form h2 { margin-bottom: 12px; }
