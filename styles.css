@@ -1056,7 +1056,15 @@ footer::before {
      relleno interno desperdicia demasiado ancho en ~330px */
   .total-box { padding: 28px 20px; }
   .total-box > p { margin-top: 18px; font-size: 16px; }
-  .plazas { margin-top: 26px; padding: 16px 18px; }
+  /* El "!" se iba a su propia linea: .plazas es flex con wrap y en movil el
+     texto no cabe a su lado, asi que lo empujaba arriba. Con nowrap se queda
+     donde tiene que estar, justo antes de "Plazas", y flex-start lo alinea
+     con la primera linea en vez de centrarlo contra las tres. */
+  .plazas {
+    margin-top: 26px; padding: 16px 18px;
+    flex-wrap: nowrap; align-items: flex-start; gap: 8px; text-align: left;
+  }
+  .plazas-bang { flex: none; }
   .plazas-bang, .plazas span:last-child { font-size: 15px; }
 }
 
