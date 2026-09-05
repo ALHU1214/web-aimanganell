@@ -427,10 +427,14 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    52px es lo que mide alli el titular, medido sobre la captura. */
 .p2-hero-copy h1 {
   font-size: clamp(38px, 3.6vw, 52px);
-  /* 960 y no 900: medido con la propia Poppins 700 a 52px y con el tracking
-     de -.02em, la primera linea del titular mide 899px. Con el tope en 900
-     entraba por un pixel, asi que cualquier redondeo del navegador la partia
-     en tres. Con 960 quedan 61px de holgura y siempre caen dos.
+  /* Sin negrita: el peso 700 de la regla de arriba lo comparte con el titular
+     de /gracias/, que si la lleva, asi que se pisa aqui y no alli. */
+  font-weight: 500;
+  /* 960 y no 900: medido con la propia Poppins a 52px y con el tracking de
+     -.02em, la primera linea del titular media 899px en peso 700. Con el tope
+     en 900 entraba por un pixel, asi que cualquier redondeo del navegador la
+     partia en tres. Con 960 quedan 61px de holgura y siempre caen dos; en
+     peso 500 la linea es aun mas corta, asi que el margen solo crece.
      El contenedor .p2-hero-copy tambien subio, porque limitaba antes que esto. */
   max-width: 960px;
 }
@@ -453,15 +457,8 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   }
 }
 .p2-hero-copy p { margin: 26px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: rgba(232,242,239,.72); text-wrap: pretty; }
-/* El boton de la portada usa el mismo tratamiento tipografico que los
-   titulares de seccion: Poppins 500 y -0.5px de tracking. Sin negrita, que es
-   lo que lo separaba del resto. El peso 800 viene de .btn-acc, asi que hay que
-   declararlo aqui para pisarlo. El tamano y el relleno no se tocan. */
 .p2-hero-copy .btn-acc {
-  margin-top: 52px; padding: 22px 44px; font-size: 19px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  letter-spacing: -.5px;
+  margin-top: 52px; padding: 22px 44px; font-weight: 700; font-size: 19px;
   box-shadow: 0 0 40px rgba(var(--acc-rgb), .3);
 }
 .btn-palpita { animation: latido 2.6s ease-in-out infinite; }
