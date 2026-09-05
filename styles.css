@@ -488,7 +488,10 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   padding: 0;
   background: none;
   font-family: 'Poppins', sans-serif;
-  font-size: 39px;
+  /* 28px en movil y 48px en escritorio. Antes iba a 39px fijos, que en un
+     movil de 360px partia "Beneficios Clave" en dos lineas y en escritorio se
+     quedaba por debajo de lo que da el ancho disponible. */
+  font-size: clamp(1.75rem, 4vw, 3rem);
   font-weight: 500;
   font-style: normal;
   line-height: 1.2;
@@ -996,7 +999,17 @@ footer::before {
    ============================================================ */
 @media (max-width: 1120px) { .ben-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px)  { .obt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .para-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 600px)  { .obt-grid { grid-template-columns: minmax(0, 1fr); } .obt-facts { flex-direction: column; gap: 30px; } }
+@media (max-width: 600px)  { .obt-facts { flex-direction: column; gap: 30px; } }
+
+/* Las tres rejillas caen a una sola columna en el mismo punto, 768px. Antes
+   cada una lo hacia en el suyo (560, 600 y 900), asi que entre 600 y 768
+   convivian una a dos columnas, otra a una y otra a dos: en una tableta en
+   vertical se leia como tres criterios distintos. */
+@media (max-width: 768px) {
+  .ben-grid,
+  .obt-grid,
+  .para-grid { grid-template-columns: minmax(0, 1fr); }
+}
 /* En una sola columna, el min-height de 340px que iguala las tarjetas en
    escritorio deja de tener sentido: cada una ocupa su propia fila, asi que
    el alto fijo solo anade hueco vacio debajo de un texto de tres lineas.
@@ -1004,8 +1017,8 @@ footer::before {
    de la mas larga en vez de a una medida inventada. El relleno, la separacion
    con el icono y el interlineado bajan tambien: a 390px de ancho el aire de
    escritorio se lee como espacio suelto. */
-@media (max-width: 560px) {
-  .ben-grid { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 16px; }
+@media (max-width: 768px) {
+  .ben-grid { grid-auto-rows: 1fr; gap: 16px; }
   .ben-card { min-height: 0; gap: 16px; padding: 22px 20px 24px; }
   .ben-ico { font-size: 28px; }
   .ben-card p { font-size: 16.5px; line-height: 1.55; }
