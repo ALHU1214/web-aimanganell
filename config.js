@@ -21,11 +21,6 @@ window.AM_CONFIG = {
   // desde otra profundidad, esta ruta también hay que ajustarla.
   heroVideo: 'assets/hero.mp4',
   consultoriaVideo: '../assets/consultoria.mp4',
-  // Versiones para movil: 800px de ancho en vez de 1920. Pesan unos 120 KB
-  // frente a 2,5 MB, y a ese tamano no se distingue la diferencia. Si se
-  // dejan vacias, main.js usa la version grande en todas partes.
-  heroVideoMobile: 'assets/hero-movil.mp4',
-  consultoriaVideoMobile: '../assets/consultoria-movil.mp4',
   consultoriaVideoRate: 0.55,   // cámara lenta del vídeo de consultoría
 
   // Destino de los leads: la Edge Function submit-lead (supabase/functions/),

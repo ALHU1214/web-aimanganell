@@ -103,17 +103,18 @@
     video.loop = true;
 
     // en móvil con datos limitados o "reducir movimiento", no cargamos vídeo
-    var small  = window.matchMedia('(max-width:760px)').matches;
-    var conn   = navigator.connection || {};
-    var frugal = conn.saveData === true ||
-                 window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (small && frugal) { video.style.display = 'none'; return; }
+    // En movil no se usa video: los dos planos son 16:9 y la portada es una
+    // caja vertical, asi que no habia forma de encajarlos sin perder el
+    // encuadre o dejar media pantalla vacia. Se corta aqui y no solo en CSS
+    // para no descargar un archivo que no se va a ver.
+    var small = window.matchMedia('(max-width:760px)').matches;
+    if (small) { video.style.display = 'none'; return; }
 
-    video.preload = small ? 'metadata' : 'auto';
+    video.preload = 'auto';
     // En movil, el archivo ligero si existe. Se decide una sola vez al cargar y
     // no al redimensionar: cambiar el src en caliente reinicia el video, y girar
     // el telefono no justifica ese salto.
-    video.src = (small && opts.srcMobile) ? opts.srcMobile : src;
+    video.src = src;
     if (opts.rate) video.addEventListener('loadedmetadata', function () { video.playbackRate = opts.rate; });
 
     // fundido suave en los extremos del bucle
@@ -144,8 +145,8 @@
     });
   }
 
-  setupVideo($('#hero-video'), CFG.heroVideo, { fade: true, srcMobile: CFG.heroVideoMobile });
-  setupVideo($('.p2-hero-video'), CFG.consultoriaVideo, { rate: CFG.consultoriaVideoRate, srcMobile: CFG.consultoriaVideoMobile });
+  setupVideo($('#hero-video'), CFG.heroVideo, { fade: true });
+  setupVideo($('.p2-hero-video'), CFG.consultoriaVideo, { rate: CFG.consultoriaVideoRate });
 
   /* ---------- 3 · filtro de categoría del blog ---------- */
   // mejora progresiva: sin JS los botones no hacen nada y se ven todas

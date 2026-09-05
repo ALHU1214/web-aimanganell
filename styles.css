@@ -938,14 +938,18 @@ footer::before {
      completo, anclado arriba, y el resto del hero queda con el fondo de
      marca, que ademas es donde cae el titular: gana contraste al no leerse
      sobre imagen. */
-  .hero-video video,
-  .p2-hero-video {
-    object-fit: contain; object-position: center top;
-    /* Al no llenar la caja, el video termina en una linea horizontal seca que
-       cruza el texto. La mascara lo desvanece en su ultimo tramo para que se
-       funda con el fondo en vez de cortarse. */
-    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
-            mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  /* En movil no hay video. Son dos planos 16:9 en una caja vertical: recortados
+     perdian el sentido, y encajados dejaban una franja de imagen y el resto
+     vacio. Se quitan tambien los velos oscuros, que solo existian para atenuar
+     el video y sin el se comen el fondo. Queda la textura de marca, que es lo
+     que ya tenia la pagina debajo. main.js ademas ni descarga el archivo. */
+  .hero-video, .hero-veil, .hero-grad-x, .hero-grad-y,
+  .p2-hero-video, .p2-hero-veil { display: none; }
+
+  /* La home se queda con el mismo halo azul que consultoria, para que las dos
+     portadas se vean de la misma familia sin el video. */
+  .hero-wrap {
+    background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(var(--acc-rgb), .13), transparent 70%);
   }
   .form-card { padding: 26px 20px 22px; }
   .form-shadow { transform: translate(7px, 7px); box-shadow: none; }
