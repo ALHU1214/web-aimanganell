@@ -351,7 +351,17 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   position: absolute; bottom: -10px; border-radius: 50%;
   animation-name: float-up; animation-timing-function: linear; animation-iteration-count: infinite;
 }
-.p2-body { position: relative; z-index: 1; animation: p2fade .5s ease-out both; }
+/* La textura vive aqui y no en .p2-tiled porque .p2-body envuelve tambien el
+   hero: asi el fondo es uno solo y continuo de arriba abajo, sin que ninguna
+   seccion tenga el suyo. .p2-tiled se queda como clase porque de ella cuelgan
+   reglas de relleno, pero ya no pinta nada. */
+.p2-body {
+  position: relative; z-index: 1; animation: p2fade .5s ease-out both;
+  background-image: url(assets/fondo-tile.png);
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  background-position: top center;
+}
 
 /* Ocupa exactamente la primera pantalla: al abrir consultoria se ve el
    video entero y nada mas, y lo que viene detras aparece solo al hacer
@@ -362,7 +372,6 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .p2-hero {
   position: relative; overflow: hidden; min-height: 100vh;
   display: flex; align-items: center; justify-content: center; padding: 96px 48px;
-  background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(var(--acc-rgb), .13), transparent 70%);
 }
 .p2-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .p2-hero-veil {
@@ -417,13 +426,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 }
 
 /* fondo de textura que cubre el bloque central de la página 2 */
-.p2-tiled {
-  position: relative;
-  background-image: url(assets/fondo-tile.png);
-  background-repeat: repeat-y;
-  background-size: 100% auto;
-  background-position: top center;
-}
+.p2-tiled { position: relative; }
 
 .sec { padding: var(--sec-pad) 48px 0; }
 /* La primera seccion tras el hero es el unico caso que NO aporta el paso
@@ -537,12 +540,6 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
      tarjeta (14px de translate mas 50px de halo). Con 0 aqui, el
      navegador cortaba en seco el final del formulario. */
   position: relative; overflow: hidden; padding: var(--sec-pad) 48px 70px;
-  /* El degradado se recorta en la caja de la seccion, asi que tiene que
-     llegar a transparente ANTES del borde: centrado en 75% con radio
-     vertical 36%, se apaga al 98% de la altura. Antes iba centrado en
-     110% (por debajo de la seccion) y llegaba encendido al borde,
-     dejando una linea de corte justo encima de Garantia Total. */
-  background: radial-gradient(ellipse 70% 36% at 50% 75%, rgba(var(--acc-rgb), .14), transparent 65%);
 }
 .contacto-head { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; text-align: center; }
 .contacto-head h2 { margin: 0; font-size: 35px; font-weight: 400; letter-spacing: -.01em; }
@@ -946,11 +943,6 @@ footer::before {
   .hero-video, .hero-veil, .hero-grad-x, .hero-grad-y,
   .p2-hero-video, .p2-hero-veil { display: none; }
 
-  /* La home se queda con el mismo halo azul que consultoria, para que las dos
-     portadas se vean de la misma familia sin el video. */
-  .hero-wrap {
-    background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(var(--acc-rgb), .13), transparent 70%);
-  }
   .form-card { padding: 26px 20px 22px; }
   .form-shadow { transform: translate(7px, 7px); box-shadow: none; }
   .lead-form h2 { margin-bottom: 12px; }
