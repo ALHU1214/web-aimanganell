@@ -467,7 +467,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    justo donde la primera y la ultima tarjeta. */
 .wrap-wide { max-width: 1120px; }
 .sec-title {
-  margin: 0 0 54px; text-align: center; font-size: clamp(25px, 2.8vw, 40px); font-weight: 700;
+  margin: 0 0 54px; text-align: center; font-size: clamp(25px, 2.8vw, 40px); font-weight: 400;
   line-height: 1.2; letter-spacing: -.02em; color: var(--ink); text-wrap: balance;
 }
 
@@ -566,7 +566,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   position: relative; overflow: hidden; padding: var(--sec-pad) 48px 70px;
 }
 .contacto-head { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; text-align: center; }
-.contacto-head h2 { margin: 0; font-size: 35px; font-weight: 700; letter-spacing: -.01em; }
+.contacto-head h2 { margin: 0; font-size: 35px; font-weight: 400; letter-spacing: -.01em; }
 .contacto .form-sec { margin-top: 34px; z-index: 2; }
 
 /* garantía total */
