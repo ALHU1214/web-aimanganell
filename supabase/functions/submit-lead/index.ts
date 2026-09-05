@@ -9,6 +9,11 @@
 //   TURNSTILE_SECRET_KEY                     → hay que crearla a mano
 //     (`supabase secrets set TURNSTILE_SECRET_KEY=...`). Nunca debe vivir
 //     en el repo ni en config.js.
+//   CRM_WEBHOOK_URL, CRM_FORM_SECRET         → también a mano. Son el
+//     endpoint del CRM grande (/api/webhooks/form) y su FORM_SECRET. El
+//     secreto vive aquí, en el servidor, precisamente para que el
+//     navegador nunca lo vea. Si faltan, el lead se guarda igual en
+//     Supabase y simplemente no se espeja en el CRM.
 //
 // Deploy con verify_jwt = false (ver supabase/config.toml): el
 // formulario es público y no hay usuarios autenticados, así que no
@@ -52,6 +57,7 @@ Deno.serve(async (req) => {
   const mensaje = String(body.mensaje || '').trim();
   const origen = String(body.origen || 'Landing web').trim();
   const notas = String(body.notas || '').trim();
+  const biz = String(body.biz || '').trim();
   const turnstileToken = String(body.turnstileToken || '').trim();
 
   // Validación básica en servidor — la del navegador se puede saltar
@@ -111,5 +117,43 @@ Deno.serve(async (req) => {
     return json({ error: 'no se pudo guardar' }, 502);
   }
 
-  return json({ ok: true });
+  // Espejo en el CRM grande. Va después del insert y a propósito no
+  // corta el envío: el lead ya está guardado en Supabase, así que si el
+  // CRM está caído o tarda, el visitante no se entera — queda el error
+  // en los logs de la función y `crm: false` en la respuesta.
+  const crmUrl = Deno.env.get('CRM_WEBHOOK_URL');
+  const crmSecret = Deno.env.get('CRM_FORM_SECRET');
+  let crm = false;
+
+  if (crmUrl && crmSecret) {
+    try {
+      const crmRes = await fetch(crmUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-form-secret': crmSecret,
+        },
+        body: JSON.stringify({
+          name: nombre,
+          company: empresa,
+          email,
+          whatsapp: telefono,
+          businessType: biz,
+          message: mensaje,
+          origin: origen,
+        }),
+        // Sin tope, un CRM lento dejaría al visitante mirando el botón
+        // "Enviando…" hasta que main.js se rinde a los 2,5 s.
+        signal: AbortSignal.timeout(5000),
+      });
+      crm = crmRes.ok;
+      if (!crmRes.ok) {
+        console.error('el CRM rechazó el lead:', crmRes.status, await crmRes.text());
+      }
+    } catch (err) {
+      console.error('no se pudo avisar al CRM:', err);
+    }
+  }
+
+  return json({ ok: true, crm });
 });

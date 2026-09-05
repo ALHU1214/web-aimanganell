@@ -1077,7 +1077,14 @@ footer::before {
    padre + 100vh en .hero-inner, que ya controla la altura desde
    dentro — sumarlo en los dos la duplicaría.)                    */
 @media (max-width: 760px) {
-  .p2-hero { min-height: 100svh; padding-top: 100px; padding-bottom: 64px; }
+  /* El 100svh se puso para que el video ocupara la primera pantalla. En movil
+     ya no hay video, asi que lo unico que hacia era centrar cuatro lineas de
+     texto en una pantalla entera y dejar medio alto vacio bajo el boton: el
+     salto hasta Beneficios Clave era el triple que el de las demas secciones.
+     Sin alto forzado, el hero mide lo que ocupa y el hueco de abajo lo pone
+     --sec-pad, el mismo que separa todo lo demas. */
+  .p2-hero { min-height: 0; padding-top: 100px; padding-bottom: 0; }
+  .p2-tiled > .sec:first-child { padding-top: var(--sec-pad); }
 }
 
 /* --- 4 · Overflow: red de seguridad -----------------------------

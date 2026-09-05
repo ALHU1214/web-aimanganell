@@ -219,7 +219,11 @@
           telefono: data.telefono,
           mensaje: data.mensaje,
           origen: origen || 'Landing web',
-          notas: data.biz ? 'Tipo de negocio: ' + data.biz : '',
+          // Etiqueta legible, no el slug del <option>: esto acaba en las
+          // notas de Supabase y en el historial del CRM, y ahí "Servicios
+          // profesionales" se lee y "servicios-profesionales" no.
+          biz: data.bizLabel || '',
+          notas: data.bizLabel ? 'Tipo de negocio: ' + data.bizLabel : '',
           turnstileToken: turnstileToken || ''
         })
       }).catch(function () {}));
@@ -253,6 +257,8 @@
         email:    form.email.value.trim(),
         telefono: form.telefono.value.trim(),
         biz:      form.biz.value,
+        bizLabel: form.biz.options[form.biz.selectedIndex]
+                    ? form.biz.options[form.biz.selectedIndex].text.trim() : '',
         mensaje:  form.mensaje.value.trim()
       };
       if (!d.nombre || !d.empresa || d.email.indexOf('@') === -1 || !d.telefono || !d.biz) {
