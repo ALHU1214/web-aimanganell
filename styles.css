@@ -20,6 +20,16 @@
   src: url('assets/fonts/poppins-400.woff2') format('woff2');
 }
 @font-face {
+  /* Peso 500. Se auto-aloja como los otros cuatro y no se trae de Google
+     Fonts: la CSP del sitio declara font-src 'self', asi que una fuente
+     externa quedaria bloqueada por la propia cabecera. */
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('assets/fonts/poppins-500.woff2') format('woff2');
+}
+@font-face {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -470,9 +480,53 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    comparten borde izquierdo y derecho, asi que la barra empieza y acaba
    justo donde la primera y la ultima tarjeta. */
 .wrap-wide { max-width: 1120px; }
-.sec-title {
-  margin: 0 0 54px; text-align: center; font-size: clamp(25px, 2.8vw, 40px); font-weight: 400;
-  line-height: 1.2; letter-spacing: -.02em; color: var(--ink); text-wrap: balance;
+/* Titular de seccion. Medidas fijas a proposito, sin clamp ni escalado por
+   viewport: 39px en todos los anchos. */
+.sec-title,
+.contacto-head h2 {
+  margin: 8px 0 48px;
+  padding: 0;
+  background: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 39px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: -.5px;
+  word-spacing: 0;
+  text-transform: none;
+  color: #f8f8f8;
+  text-align: center;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+  filter: none;
+  mix-blend-mode: normal;
+  text-wrap: balance;
+}
+
+/* Entrada al hacer scroll. El disparo lo hace el IntersectionObserver que ya
+   vive en main.js, al que se ha anadido este selector: montar un segundo
+   observador solo para esto duplicaria el mecanismo. Los valores de la
+   transicion si son los pedidos, y son los que se ven. */
+.js-reveal .sec-title[data-reveal],
+.js-reveal .contacto-head h2[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all .8s ease 0s;
+}
+.js-reveal .sec-title[data-reveal].is-in,
+.js-reveal .contacto-head h2[data-reveal].is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Quien pide menos movimiento ve el titular ya colocado, sin animacion. */
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .sec-title[data-reveal],
+  .js-reveal .contacto-head h2[data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* beneficios */
@@ -570,7 +624,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   position: relative; overflow: hidden; padding: var(--sec-pad) 48px 70px;
 }
 .contacto-head { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; text-align: center; }
-.contacto-head h2 { margin: 0; font-size: 35px; font-weight: 400; letter-spacing: -.01em; }
+
 .contacto .form-sec { margin-top: 34px; z-index: 2; }
 
 /* garantía total */
@@ -1065,13 +1119,8 @@ footer::before {
 
   /* "Solicita tu AI & Cyber AMG™" a 42px fijos tampoco entra ni
      partiendo en dos líneas. */
-  /* Los tres titulares de seccion median 25, 24.6 y 27 px a 390 px de ancho:
-     tres tamanos distintos y los tres pequenos, porque su clamp escalaba con
-     vw pensando en escritorio y en movil caia siempre al suelo. Se unifican en
-     una sola medida que si crece con la pantalla: 37 px en un movil normal, 31
-     en uno estrecho y 40 como tope, que es donde ya empalma con escritorio. */
-  .sec-title,
-  .contacto-head h2,
+  /* .sec-title y .contacto-head h2 van a 39px fijos en todos los anchos, asi
+     que aqui solo queda Garantia Total, que conserva su propia escala. */
   .total-box h2 { font-size: clamp(34px, 10.6vw, 46px); }
 
   .p2-kicker { font-size: 17px; line-height: 1.5; }

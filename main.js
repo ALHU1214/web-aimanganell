@@ -497,6 +497,8 @@
     '#page2 .manifiesto > *',
     '#page2 .sec-total > *',
     '#page2 .contacto-head',
+    '.sec-title',
+    '.contacto-head h2',
     '#page2 .form-sec',
     '.legal-page-wrap > h1',
     '.legal-page-wrap > .legal-date',
@@ -553,7 +555,7 @@
         entry.target.classList.add('is-in');
         io.unobserve(entry.target);   // una sola vez: al volver a subir no se re-oculta
       });
-    }, { rootMargin: '0px 0px -60px 0px' });   // px fijos, no %: el margen negativo nunca puede superar la altura del footer y dejar un bloque sin disparar
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });   // px fijos, no %: el margen negativo nunca puede superar la altura del footer y dejar un bloque sin disparar
 
     els.forEach(function (el) { io.observe(el); });
   })();
