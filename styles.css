@@ -106,6 +106,11 @@ img { display: block; }
 @keyframes pulse    { 0%,100% { opacity:.5 } 50% { opacity:1 } }
 @keyframes palpita  { 0%,100% { transform:scale(1); border-color:rgba(255,197,61,.32); box-shadow:0 0 0 rgba(255,197,61,0) }
                       50%     { transform:scale(1.025); border-color:rgba(255,197,61,.6); box-shadow:0 0 22px rgba(255,197,61,.26) } }
+/* Late en el azul de marca. Es la misma idea que .plazas pero con su propia
+   regla: aquella usa el amarillo del aviso de plazas y ademas anima el borde,
+   que en un boton solido no se ve. */
+@keyframes latido   { 0%,100% { transform:scale(1);     box-shadow:0 0 26px rgba(var(--acc-rgb),.35) }
+                      50%     { transform:scale(1.035); box-shadow:0 0 44px rgba(var(--acc-rgb),.6) } }
 @keyframes glow     { 0%,100% { box-shadow:0 0 24px rgba(var(--acc-rgb),.55), 0 0 60px rgba(var(--acc-rgb),.3) }
                       50%     { box-shadow:0 0 36px rgba(var(--acc-rgb),.85), 0 0 90px rgba(var(--acc-rgb),.5) } }
 @keyframes float-up { 0% { transform:translateY(0); opacity:0 } 8% { opacity:1 } 92% { opacity:1 } 100% { transform:translateY(-115vh); opacity:0 } }
@@ -399,7 +404,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .gracias-head h1 {
   margin: 34px 0 0; padding-bottom: .14em;
   font-size: clamp(38px, 4.4vw, 64px); font-weight: 700; line-height: 1.16;
-  letter-spacing: -.02em; color: var(--ink); max-width: 26ch; text-wrap: balance;
+  letter-spacing: -.02em; color: var(--ink); max-width: 20ch; text-wrap: balance;
 }
 /* Relleno en degradado. max-width sube de 16ch a 26ch para que el titular
    se lea en dos lineas largas y no apilado en el centro. No desborda en
@@ -412,7 +417,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .p2-hero-copy h1,
   .gracias-head h1 {
-    background-image: linear-gradient(180deg, var(--ink) 22%, var(--acc2) 100%);
+    background-image: linear-gradient(135deg, var(--ink) 18%, var(--acc2) 62%, var(--ink) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -424,6 +429,11 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   margin-top: 52px; padding: 22px 44px; font-weight: 700; font-size: 19px;
   box-shadow: 0 0 40px rgba(var(--acc-rgb), .3);
 }
+.btn-palpita { animation: latido 2.6s ease-in-out infinite; }
+/* Quien haya pedido menos movimiento no ve el latido: la regla global de
+   prefers-reduced-motion reduce duraciones, pero una animacion en bucle
+   conviene apagarla del todo. */
+@media (prefers-reduced-motion: reduce) { .btn-palpita { animation: none; } }
 
 /* fondo de textura que cubre el bloque central de la página 2 */
 .p2-tiled { position: relative; }
@@ -443,7 +453,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    justo donde la primera y la ultima tarjeta. */
 .wrap-wide { max-width: 1120px; }
 .sec-title {
-  margin: 0 0 54px; text-align: center; font-size: clamp(25px, 2.8vw, 40px); font-weight: 400;
+  margin: 0 0 54px; text-align: center; font-size: clamp(25px, 2.8vw, 40px); font-weight: 700;
   line-height: 1.2; letter-spacing: -.02em; color: var(--ink); text-wrap: balance;
 }
 
@@ -542,7 +552,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   position: relative; overflow: hidden; padding: var(--sec-pad) 48px 70px;
 }
 .contacto-head { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; text-align: center; }
-.contacto-head h2 { margin: 0; font-size: 35px; font-weight: 400; letter-spacing: -.01em; }
+.contacto-head h2 { margin: 0; font-size: 35px; font-weight: 700; letter-spacing: -.01em; }
 .contacto .form-sec { margin-top: 34px; z-index: 2; }
 
 /* garantía total */
@@ -1051,12 +1061,15 @@ footer::before {
   /* el h1 lleva max-width:16ch — ch es relativo al tamaño de
      fuente, así que bajar el font-size también reduce esa caja
      y evita que fuerce un ancho fijo mayor que la pantalla. */
-  .p2-hero-copy h1,
   .gracias-head h1 { margin-top: 20px; font-size: clamp(26px, 8vw, 64px); }
-  .p2-hero-copy p { margin-top: 18px; font-size: 16.5px; }
+  /* Medidas tomadas de la referencia: en un movil de 390 px el titular ronda
+     los 42 px, el subtitulo los 21 y el boton ocupa el ancho completo. Lo que
+     habia (26 px de suelo, 16.5 el parrafo) se quedaba muy por debajo. */
+  .p2-hero-copy h1 { margin-top: 20px; font-size: clamp(32px, 10.8vw, 64px); }
+  .p2-hero-copy p { margin-top: 22px; font-size: clamp(17px, 5.4vw, 24px); line-height: 1.42; }
   .p2-hero-copy .btn-acc {
-    margin-top: 30px; padding: 16px 24px; font-size: 15.5px;
-    max-width: 100%; text-align: center;
+    margin-top: 38px; padding: 20px 28px; font-size: 18px;
+    width: 100%; max-width: 100%; text-align: center;
   }
 
   /* la caja de garantía total no desborda, pero 52px/48px de
