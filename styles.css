@@ -453,8 +453,15 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   }
 }
 .p2-hero-copy p { margin: 26px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: rgba(232,242,239,.72); text-wrap: pretty; }
+/* El boton de la portada usa el mismo tratamiento tipografico que los
+   titulares de seccion: Poppins 500 y -0.5px de tracking. Sin negrita, que es
+   lo que lo separaba del resto. El peso 800 viene de .btn-acc, asi que hay que
+   declararlo aqui para pisarlo. El tamano y el relleno no se tocan. */
 .p2-hero-copy .btn-acc {
-  margin-top: 52px; padding: 22px 44px; font-weight: 700; font-size: 19px;
+  margin-top: 52px; padding: 22px 44px; font-size: 19px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: -.5px;
   box-shadow: 0 0 40px rgba(var(--acc-rgb), .3);
 }
 .btn-palpita { animation: latido 2.6s ease-in-out infinite; }
