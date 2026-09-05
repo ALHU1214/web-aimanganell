@@ -393,7 +393,11 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   display: flex; flex-direction: column; align-items: center; text-align: center;
   animation: p2zoom .7s .06s cubic-bezier(.22,.8,.3,1) both; transform-origin: 50% 0;
 }
-.p2-kicker { font-size: 22px; line-height: 1.5; color: var(--ink); }
+/* Kicker y subtitulo en gris y no en --ink: en la portada el titular es lo
+   unico que va a pleno color, y estos dos lo acompanan un paso por detras.
+   .72 de alfa da 8.66 de contraste sobre este fondo, muy por encima del 4.5
+   que pide AA, asi que baja el peso visual sin tocar la legibilidad. */
+.p2-kicker { font-size: 22px; line-height: 1.5; color: rgba(232,242,239,.72); }
 /* El padding de abajo no es aire decorativo: el titular se pinta con
    background-clip:text, y el degradado solo cubre la caja de fondo del
    elemento. La cola de la "g" de "integrar" baja por debajo de esa caja,
@@ -438,7 +442,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
     -webkit-text-fill-color: transparent;
   }
 }
-.p2-hero-copy p { margin: 26px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: var(--ink); text-wrap: pretty; }
+.p2-hero-copy p { margin: 26px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: rgba(232,242,239,.72); text-wrap: pretty; }
 .p2-hero-copy .btn-acc {
   margin-top: 52px; padding: 22px 44px; font-weight: 700; font-size: 19px;
   box-shadow: 0 0 40px rgba(var(--acc-rgb), .3);
