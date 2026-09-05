@@ -6,8 +6,14 @@ on:
     paths:
       - 'blog/posts/**'
       - 'scripts/build-blog.js'
+      - 'scripts/sellar-assets.js'
       - 'scripts/post-template.html'
       - 'scripts/blog-index-template.html'
+      # los cuatro que se sellan: si cambian hay que renovar su ?v= en el HTML
+      - 'styles.css'
+      - 'contraste-minimo.css'
+      - 'main.js'
+      - 'config.js'
   workflow_dispatch:
 
 permissions:
@@ -29,11 +35,15 @@ jobs:
       - name: Generar páginas del blog
         run: node scripts/build-blog.js
 
+      # Va despues del build para sellar tambien las paginas recien generadas
+      - name: Sellar CSS y JS con su hash
+        run: node scripts/sellar-assets.js
+
       - name: Commit de las páginas generadas (si hay cambios)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog/ sitemap.xml robots.txt
+          git add blog/ sitemap.xml robots.txt index.html consultoria/ legal/ scripts/
           if git diff --cached --quiet; then
             echo "Sin cambios en las páginas generadas."
             exit 0
