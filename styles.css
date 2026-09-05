@@ -389,7 +389,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   background-size: 320px 320px;
 }
 .p2-hero-copy {
-  position: relative; z-index: 1; max-width: 900px; margin: 0 auto;
+  position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
   display: flex; flex-direction: column; align-items: center; text-align: center;
   animation: p2zoom .7s .06s cubic-bezier(.22,.8,.3,1) both; transform-origin: 50% 0;
 }
@@ -413,7 +413,12 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    52px es lo que mide alli el titular, medido sobre la captura. */
 .p2-hero-copy h1 {
   font-size: clamp(38px, 3.6vw, 52px);
-  max-width: 900px;
+  /* 960 y no 900: medido con la propia Poppins 700 a 52px y con el tracking
+     de -.02em, la primera linea del titular mide 899px. Con el tope en 900
+     entraba por un pixel, asi que cualquier redondeo del navegador la partia
+     en tres. Con 960 quedan 61px de holgura y siempre caen dos.
+     El contenedor .p2-hero-copy tambien subio, porque limitaba antes que esto. */
+  max-width: 960px;
 }
 /* Relleno en degradado. max-width sube de 16ch a 26ch para que el titular
    se lea en dos lineas largas y no apilado en el centro. No desborda en
