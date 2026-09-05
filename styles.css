@@ -1037,7 +1037,14 @@ footer::before {
 
   /* "Solicita tu AI & Cyber AMG™" a 42px fijos tampoco entra ni
      partiendo en dos líneas. */
-  .contacto-head h2 { font-size: clamp(22px, 6.3vw, 35px); }
+  /* Los tres titulares de seccion median 25, 24.6 y 27 px a 390 px de ancho:
+     tres tamanos distintos y los tres pequenos, porque su clamp escalaba con
+     vw pensando en escritorio y en movil caia siempre al suelo. Se unifican en
+     una sola medida que si crece con la pantalla: 37 px en un movil normal, 31
+     en uno estrecho y 40 como tope, que es donde ya empalma con escritorio. */
+  .sec-title,
+  .contacto-head h2,
+  .total-box h2 { font-size: clamp(31px, 9.5vw, 40px); }
 
   .p2-kicker { font-size: 17px; line-height: 1.5; }
 
