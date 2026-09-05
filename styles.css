@@ -406,6 +406,15 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   font-size: clamp(38px, 4.4vw, 64px); font-weight: 700; line-height: 1.16;
   letter-spacing: -.02em; color: var(--ink); max-width: 20ch; text-wrap: balance;
 }
+/* El titular de consultoria va aparte del de /gracias/: con 20ch y 64px se
+   partia en tres lineas estrechas y en la referencia son dos anchas. El tope
+   en px y no en ch porque ch depende del tamano de fuente, asi que al crecer
+   el texto la caja crecia con el y nunca llegaba a forzar el salto donde toca.
+   52px es lo que mide alli el titular, medido sobre la captura. */
+.p2-hero-copy h1 {
+  font-size: clamp(38px, 3.6vw, 52px);
+  max-width: 900px;
+}
 /* Relleno en degradado. max-width sube de 16ch a 26ch para que el titular
    se lea en dos lineas largas y no apilado en el centro. No desborda en
    movil: el padre es flex con align-items:center, asi que el ancho usado
@@ -424,7 +433,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
     -webkit-text-fill-color: transparent;
   }
 }
-.p2-hero-copy p { margin: 30px 0 0; max-width: 700px; font-size: 24px; line-height: 1.38; color: var(--ink); text-wrap: pretty; }
+.p2-hero-copy p { margin: 26px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: var(--ink); text-wrap: pretty; }
 .p2-hero-copy .btn-acc {
   margin-top: 52px; padding: 22px 44px; font-weight: 700; font-size: 19px;
   box-shadow: 0 0 40px rgba(var(--acc-rgb), .3);
