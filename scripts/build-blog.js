@@ -524,7 +524,7 @@ function renderBlogIndex(indexTemplate, listedPosts) {
       '@id': `${SITE_URL}/blog/#webpage`,
       url: `${SITE_URL}/blog/`,
       name: 'Blog · AI MANGANELL',
-      description: 'Artículos sobre automatización con IA y ciberseguridad para pymes: qué automatizar, en qué orden, y los errores más caros que vemos una y otra vez.'
+      description: 'Artículos sobre automatización con IA y ciberseguridad para empresas: qué automatizar, en qué orden, y los errores más caros que vemos una y otra vez.'
     },
     buildBreadcrumbSchema([
       { name: 'Inicio', url: `${SITE_URL}/` },
@@ -616,7 +616,7 @@ function buildRssXml(listedPosts) {
     '  <channel>\n' +
     '    <title>Blog · AI MANGANELL</title>\n' +
     `    <link>${SITE_URL}/blog/</link>\n` +
-    '    <description>Artículos sobre automatización con IA y ciberseguridad para pymes.</description>\n' +
+    '    <description>Artículos sobre automatización con IA y ciberseguridad para empresas.</description>\n' +
     '    <language>es</language>\n' +
     `    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n` +
     (items ? items + '\n' : '') +

@@ -1,19 +1,19 @@
 ---
 {
   "slug": "riesgos-controles-ia-multiagente-pyme",
-  "title": "Cómo controlar los riesgos de la IA multiagente en pymes",
-  "seoTitle": "Riesgos de la IA multiagente en pymes: guía de controles",
-  "description": "Riesgos y controles para implantar sistemas de IA multiagente en una pyme: guía práctica para proteger datos, limitar permisos y automatizar con seguridad.",
-  "keyword": "Riesgos y controles para implantar sistemas de IA multiagente en una pyme",
+  "title": "Cómo controlar los riesgos de la IA multiagente en empresas",
+  "seoTitle": "Riesgos de la IA multiagente en empresas: guía de controles",
+  "description": "Riesgos y controles para implantar sistemas de IA multiagente en una empresa: guía práctica para proteger datos, limitar permisos y automatizar con seguridad.",
+  "keyword": "Riesgos y controles para implantar sistemas de IA multiagente en una empresa",
   "category": "Automatización",
   "date": "2026-08-19",
   "cover": {
     "src": "riesgos-controles-ia-multiagente-pyme-cover.jpg",
-    "alt": "Fotografía editorial que ilustra Riesgos y controles para implantar sistemas de IA multiagente en una pyme"
+    "alt": "Fotografía editorial que ilustra Riesgos y controles para implantar sistemas de IA multiagente en una empresa"
   },
   "faq": [
     {
-      "q": "¿Qué tareas son adecuadas para empezar a probar un sistema de IA multiagente en una pyme?",
+      "q": "¿Qué tareas son adecuadas para empezar a probar un sistema de IA multiagente en una empresa?",
       "a": "Es recomendable comenzar por tareas repetitivas y de bajo riesgo, como clasificar solicitudes internas, localizar documentación aprobada, resumir información operativa o preparar borradores. Conviene limitar el primer piloto a uno o dos agentes y a un objetivo concreto, dejando para más adelante los pagos, los cambios en el ERP o las comunicaciones legales."
     },
     {
@@ -34,11 +34,11 @@
   ]
 }
 ---
-<p>Implantar sistemas de <mark>IA multiagente en una pyme</mark> es útil: varios asistentes especializados clasifican información, preparan respuestas y coordinan tareas. Pero esa capacidad de actuar en cadena introduce riesgos que no existen cuando solo se usa un asistente para redactar textos.</p>
+<p>Implantar sistemas de <mark>IA multiagente en una empresa</mark> es útil: varios asistentes especializados clasifican información, preparan respuestas y coordinan tareas. Pero esa capacidad de actuar en cadena introduce riesgos que no existen cuando solo se usa un asistente para redactar textos.</p>
 
 <p>La clave: un sistema multiagente no son «varias IA trabajando solas». Es una arquitectura conectada a su CRM, su ERP, su correo y sus documentos. El riesgo no depende de si el modelo responde bien, sino de <strong>qué puede consultar, qué puede ejecutar, quién lo valida y si usted puede reconstruir lo ocurrido</strong>.</p>
 
-<h2>Los cuatro riesgos de la IA multiagente en una pyme</h2>
+<h2>Los cuatro riesgos de la IA multiagente en una empresa</h2>
 
 <ul>
   <li><strong>Acceso excesivo.</strong> Un agente que prepara informes necesita consultar pedidos, no modificar precios ni exportar la base comercial. Los permisos «por si acaso» convierten un fallo en una fuga. Aplica igual al proteger el CRM y la facturación, como se explica en esta guía sobre <a href="https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/">seguridad de los agentes de IA en reservas conectadas al CRM</a>.</li>

@@ -1,6 +1,6 @@
 # AI MANGANELL
 
-> Consultoría de automatización con inteligencia artificial y ciberseguridad para pymes.
+> Consultoría de automatización con inteligencia artificial y ciberseguridad para empresas.
 > Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden.
 
 Contacto: formulario en https://aimanganell.com/#contacto o correo a contacto@aimanganell.com. Base en Tenerife, Canarias; servicio en remoto a toda España.
@@ -17,13 +17,13 @@ Fundador: Álvaro Manganell González.
 
 - [Inicio](https://aimanganell.com/): qué hacemos y cómo trabajamos.
 - [AI & Cyber AMG™](https://aimanganell.com/consultoria/): en qué consiste el diagnóstico de
-  IA y ciberseguridad para pymes.
+  IA y ciberseguridad para empresas.
 - [Blog](https://aimanganell.com/blog/): artículos sobre automatización con IA y
-  ciberseguridad para pymes: qué automatizar, en qué orden y los errores habituales.
+  ciberseguridad para empresas: qué automatizar, en qué orden y los errores habituales.
 
 ## Artículos
 
-- [Cómo controlar los riesgos de la IA multiagente en pymes](https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/):
+- [Cómo controlar los riesgos de la IA multiagente en empresas](https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/):
   riesgos y controles para implantar sistemas de IA multiagente, proteger datos y limitar permisos.
 - [Seguridad de agentes IA en reservas con CRM](https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/):
   cómo proteger el CRM, el ERP y la facturación con permisos y aprobaciones.
