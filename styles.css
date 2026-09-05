@@ -929,6 +929,17 @@ footer::before {
   .nav-cta { padding: 11px 18px; font-size: 13px; }
   .hero-wrap { min-height: 0; }
   .hero-inner { min-height: 100svh; padding-top: 88px; padding-bottom: 44px; }
+
+  /* Los dos videos son 16:9 y el hero en movil es una caja vertical, asi que
+     con object-fit:cover el navegador escalaba por altura y recortaba los
+     lados: en un iPhone se veia el 26% del ancho. Del hero desaparecia el
+     recorrido entero de la cinta y de consultoria el arco de la Tierra, que
+     es lo unico que da sentido al plano. Con contain se ve el fotograma
+     completo, anclado arriba, y el resto del hero queda con el fondo de
+     marca, que ademas es donde cae el titular: gana contraste al no leerse
+     sobre imagen. */
+  .hero-video video,
+  .p2-hero-video { object-fit: contain; object-position: center top; }
   .form-card { padding: 26px 20px 22px; }
   .form-shadow { transform: translate(7px, 7px); box-shadow: none; }
   .lead-form h2 { margin-bottom: 12px; }

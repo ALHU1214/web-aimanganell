@@ -110,7 +110,10 @@
     if (small && frugal) { video.style.display = 'none'; return; }
 
     video.preload = small ? 'metadata' : 'auto';
-    video.src = src;
+    // En movil, el archivo ligero si existe. Se decide una sola vez al cargar y
+    // no al redimensionar: cambiar el src en caliente reinicia el video, y girar
+    // el telefono no justifica ese salto.
+    video.src = (small && opts.srcMobile) ? opts.srcMobile : src;
     if (opts.rate) video.addEventListener('loadedmetadata', function () { video.playbackRate = opts.rate; });
 
     // fundido suave en los extremos del bucle
@@ -126,8 +129,8 @@
     video.play().catch(function () {});
   }
 
-  setupVideo($('#hero-video'), CFG.heroVideo, { fade: true });
-  setupVideo($('.p2-hero-video'), CFG.consultoriaVideo, { rate: CFG.consultoriaVideoRate });
+  setupVideo($('#hero-video'), CFG.heroVideo, { fade: true, srcMobile: CFG.heroVideoMobile });
+  setupVideo($('.p2-hero-video'), CFG.consultoriaVideo, { rate: CFG.consultoriaVideoRate, srcMobile: CFG.consultoriaVideoMobile });
 
   /* ---------- 3 · filtro de categoría del blog ---------- */
   // mejora progresiva: sin JS los botones no hacen nada y se ven todas
