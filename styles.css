@@ -157,7 +157,7 @@ nav {
    a partir de ahi las letras ya no mejoran y el azul empieza a pasarse.
    Preparar el PNG ya reducido con lanczos y enfoque se probo: sale peor,
    no es un problema de calidad de escalado sino de tamano. */
-.nav-logo img { height: 44px; width: auto; filter: brightness(1.12); }
+.nav-logo img { height: 36px; width: auto; filter: brightness(1.12); }
 /* El translateY es un ajuste optico, no geometrico: el flexbox ya centra
    este bloque y el logo en la misma linea, pero lo que se ve del logo son
    las letras de AI MANGANELL, y lo que se ve aqui son mayusculas. Con
