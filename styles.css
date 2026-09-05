@@ -157,7 +157,7 @@ nav {
    a partir de ahi las letras ya no mejoran y el azul empieza a pasarse.
    Preparar el PNG ya reducido con lanczos y enfoque se probo: sale peor,
    no es un problema de calidad de escalado sino de tamano. */
-.nav-logo img { height: 36px; width: auto; filter: brightness(1.12); }
+.nav-logo img { height: 44px; width: auto; filter: brightness(1.12); }
 /* El translateY es un ajuste optico, no geometrico: el flexbox ya centra
    este bloque y el logo en la misma linea, pero lo que se ve del logo son
    las letras de AI MANGANELL, y lo que se ve aqui son mayusculas. Con
@@ -924,7 +924,7 @@ footer::before {
   :root { --sec-pad: 58px; }
   nav, footer, .sec, .p2-hero, .contacto, .sec-total, .manifiesto, .post-page, .legal-page, .blog-page { padding-left: 20px; padding-right: 20px; }
   nav { padding-top: 14px; padding-bottom: 10px; }
-  .nav-logo img { height: 22px; }
+  .nav-logo img { height: 27px; }
   .nav-link { font-size: 13px; }
   .nav-cta { padding: 11px 18px; font-size: 13px; }
   .hero-wrap { min-height: 0; }
@@ -998,7 +998,7 @@ footer::before {
    así que ese se queda visible siempre.                          */
 @media (max-width: 600px) {
   nav { padding: 14px 16px 10px; }
-  .nav-logo img { height: 20px; }
+  .nav-logo img { height: 24px; }
   .nav-links { gap: 10px; }
   .nav-link { font-size: 12.5px; }
   .nav-cta { padding: 9px 16px; font-size: 12.5px; }
