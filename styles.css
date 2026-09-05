@@ -1068,7 +1068,7 @@ footer::before {
      en uno estrecho y 40 como tope, que es donde ya empalma con escritorio. */
   .sec-title,
   .contacto-head h2,
-  .total-box h2 { font-size: clamp(31px, 9.5vw, 40px); }
+  .total-box h2 { font-size: clamp(34px, 10.6vw, 46px); }
 
   .p2-kicker { font-size: 17px; line-height: 1.5; }
 
