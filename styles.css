@@ -1056,6 +1056,13 @@ footer::before {
   .hero-video, .hero-veil, .hero-grad-x, .hero-grad-y,
   .p2-hero-video, .p2-hero-veil { display: none; }
 
+  /* Y la capa de grano tambien. Cubre solo la portada, y con mix-blend-mode
+     overlay sobre un fondo oscuro lo oscurece y apaga las constelaciones. Como
+     el hero termina justo en el boton, la capa se cortaba ahi en seco y se veia
+     una linea horizontal cruzando el fondo. Existia para dar textura sobre el
+     video; sin video no aporta nada y rompe la continuidad. */
+  .noise { display: none; }
+
   .form-card { padding: 26px 20px 22px; }
   .form-shadow { transform: translate(7px, 7px); box-shadow: none; }
   .lead-form h2 { margin-bottom: 12px; }
