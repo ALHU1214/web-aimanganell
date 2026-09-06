@@ -1145,9 +1145,15 @@ footer::before {
 
   /* "Solicita tu AI & Cyber AMG™" a 42px fijos tampoco entra ni
      partiendo en dos líneas. */
-  /* .sec-title y .contacto-head h2 van a 39px fijos en todos los anchos, asi
-     que aqui solo queda Garantia Total, que conserva su propia escala. */
-  .total-box h2 { font-size: clamp(34px, 10.6vw, 46px); }
+  /* En movil el titular escala con el ancho hasta llenar el mismo bloque que
+     ocupan las tarjetas de su seccion: "Beneficios Clave" cubre entre el 96 y
+     el 98% del ancho util en todos los tamanos, en una sola linea. El clamp
+     base, 4vw, en movil caia siempre al suelo de 28px y dejaba el titular muy
+     por dentro de las tarjetas. Comprobado que ninguno de los cinco desborda:
+     el mas largo, "Que obtienes con el AI & Cyber AMG", parte en tres lineas. */
+  .sec-title,
+  .contacto-head h2,
+  .total-box h2 { font-size: clamp(32px, 10.7vw, 46px); }
 
   .p2-kicker { font-size: 17px; line-height: 1.5; }
 
