@@ -298,17 +298,28 @@
         btn.textContent = 'Enviando…';
       }
 
-      // Se redirige cuando el lead ha salido, pero como muy tarde a los
-      // 2,5 s: si la red va mal, el usuario ve su pagina de gracias
-      // igualmente y la peticion termina sola gracias a keepalive.
-      var saltado = false;
-      function irAGracias() {
-        if (saltado) return;
-        saltado = true;
-        window.location.href = '/gracias/';
+      // El boton confirma en verde y un segundo y medio despues salta a
+      // /gracias/. Esa pausa es la que hace que el envio se perciba como
+      // completado: sin ella la pagina cambia de golpe y no queda claro si
+      // llego o no.
+      //
+      // La confirmacion se muestra en cuanto el lead sale, o al segundo si la
+      // red va lenta, para no dejar al usuario mirando "Enviando..." mas de la
+      // cuenta. Redirigir antes de que termine la peticion no la pierde: sale
+      // con keepalive, asi que el navegador la completa aunque se cambie de
+      // pagina.
+      var confirmado = false;
+      function confirmarYSalir() {
+        if (confirmado) return;
+        confirmado = true;
+        if (btn) {
+          btn.textContent = 'Enviado ✓';
+          btn.classList.add('is-enviado');
+        }
+        setTimeout(function () { window.location.href = '/gracias/'; }, 1500);
       }
-      enviado.then(irAGracias, irAGracias);
-      setTimeout(irAGracias, 2500);
+      enviado.then(confirmarYSalir, confirmarYSalir);
+      setTimeout(confirmarYSalir, 1000);
     });
   });
 

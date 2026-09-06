@@ -119,13 +119,9 @@ img { display: block; }
 /* Late en el azul de marca. Es la misma idea que .plazas pero con su propia
    regla: aquella usa el amarillo del aviso de plazas y ademas anima el borde,
    que en un boton solido no se ve. */
-@keyframes latido   { 0%,100% { transform:scale(1);     box-shadow:0 0 26px rgba(var(--acc-rgb),.35) }
-                      50%     { transform:scale(1.035); box-shadow:0 0 44px rgba(var(--acc-rgb),.6) } }
-/* Variante para movil, donde el boton ocupa todo el ancho: ahi escalarlo hace
-   crecer la barra entera 13px y comerse el margen lateral, que se lee como un
-   salto. Solo respira el halo, y mas contenido. */
-@keyframes latido-plano { 0%,100% { box-shadow:0 0 20px rgba(var(--acc-rgb),.28) }
-                          50%     { box-shadow:0 0 34px rgba(var(--acc-rgb),.45) } }
+/* Solo escala: lo que late es el boton, no un halo detras. */
+@keyframes latido   { 0%,100% { transform:scale(1)    }
+                      50%     { transform:scale(1.04) } }
 @keyframes glow     { 0%,100% { box-shadow:0 0 24px rgba(var(--acc-rgb),.55), 0 0 60px rgba(var(--acc-rgb),.3) }
                       50%     { box-shadow:0 0 36px rgba(var(--acc-rgb),.85), 0 0 90px rgba(var(--acc-rgb),.5) } }
 @keyframes float-up { 0% { transform:translateY(0); opacity:0 } 8% { opacity:1 } 92% { opacity:1 } 100% { transform:translateY(-115vh); opacity:0 } }
@@ -340,6 +336,18 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 }
 .btn-acc:hover { background: var(--acc2); color: #07100e; }
 .btn-submit { padding: 18px; border-radius: 999px; font-size: 19px; box-shadow: 0 0 32px rgba(var(--acc-rgb), .4); }
+/* Confirmacion de envio. El verde es el #25d366 que ya usa el boton de
+   WhatsApp de /gracias/, no uno nuevo. La transicion hace que el cambio se
+   perciba como una respuesta y no como un salto, y se apaga con movimiento
+   reducido porque ahi el color debe cambiar de golpe. */
+.btn-submit.is-enviado,
+.btn-submit.is-enviado:hover {
+  background: #25d366;
+  color: #07100e;
+  box-shadow: 0 0 34px rgba(37, 211, 102, .45);
+  cursor: default;
+  transition: background .25s ease, box-shadow .25s ease;
+}
 .btn-sm { padding: 11px 22px; border-radius: 9px; font-size: 13.5px; font-weight: 700; }
 .btn-round { border-radius: 999px; }
 .btn-ghost {
@@ -462,16 +470,16 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   }
 }
 .p2-hero-copy p { margin: 26px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: rgba(232,242,239,.72); text-wrap: pretty; }
+/* Mismo tratamiento tipografico que los titulares de seccion: Poppins 500 y
+   -0.5px de tracking. El peso 800 viene de .btn-acc, asi que hay que
+   declararlo aqui para pisarlo. Sin box-shadow: el boton late por si mismo. */
 .p2-hero-copy .btn-acc {
-  margin-top: 52px; padding: 22px 44px; font-weight: 700; font-size: 19px;
-  box-shadow: 0 0 40px rgba(var(--acc-rgb), .3);
+  margin-top: 52px; padding: 22px 44px; font-size: 19px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: -.5px;
 }
 .btn-palpita { animation: latido 2.6s ease-in-out infinite; }
-/* Quien haya pedido menos movimiento no ve el latido: la regla global de
-   prefers-reduced-motion reduce duraciones, pero una animacion en bucle
-   conviene apagarla del todo. */
-/* La version con escalado se apaga; la plana de movil se reactiva mas abajo. */
-@media (prefers-reduced-motion: reduce) { .btn-palpita { animation: none; } }
 
 /* fondo de textura que cubre el bloque central de la página 2 */
 .p2-tiled { position: relative; }
@@ -1102,12 +1110,10 @@ footer::before {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 
-  /* Excepcion para el latido del CTA en movil. La preferencia de movimiento
-     reducido existe por el mareo que provocan los desplazamientos, los zooms y
-     el parallax; "latido-plano" no mueve nada, solo hace respirar el halo con
-     box-shadow. La variante de escritorio, que si escala el boton, se queda
-     desactivada arriba. */
-  .btn-palpita { animation: latido-plano 2.6s ease-in-out infinite !important; }
+  /* El latido del CTA se mantiene aunque el sistema pida menos movimiento: es
+     una decision explicita del cliente. Queda anotado que va en contra de esa
+     preferencia, porque ahora si hay movimiento real, un escalado del 4%. */
+  .btn-palpita { animation: latido 2.6s ease-in-out infinite !important; }
 }
 
 /* ============================================================
@@ -1192,7 +1198,6 @@ footer::before {
     width: 100%; max-width: 100%; text-align: center;
     box-shadow: 0 0 20px rgba(var(--acc-rgb), .28);
   }
-  .btn-palpita { animation-name: latido-plano; }
 
   /* la caja de garantía total no desborda, pero 52px/48px de
      relleno interno desperdicia demasiado ancho en ~330px */
