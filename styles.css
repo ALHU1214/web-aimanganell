@@ -377,7 +377,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
    reglas de relleno, pero ya no pinta nada. */
 .p2-body {
   position: relative; z-index: 1; animation: p2fade .5s ease-out both;
-  background-image: url(assets/fondo-tile.png);
+  background-image: url(assets/fondo-tile.webp);
   background-repeat: repeat-y;
   background-size: 100% auto;
   background-position: top center;
