@@ -1063,6 +1063,12 @@ footer::before {
      video; sin video no aporta nada y rompe la continuidad. */
   .noise { display: none; }
 
+  /* El lema "Primero claridad, despues IA." se cae en movil. Ocupa una
+     seccion entera para dos lineas, y entre el bloque de "Es para ti" y el
+     formulario alarga el scroll sin aportar informacion. Con la seccion fuera
+     se va tambien su relleno vertical. En escritorio se queda. */
+  .manifiesto { display: none; }
+
   .form-card { padding: 26px 20px 22px; }
   .form-shadow { transform: translate(7px, 7px); box-shadow: none; }
   .lead-form h2 { margin-bottom: 12px; }
