@@ -606,7 +606,9 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .para-grid { max-width: 940px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
 .para-item, .para-not {
   display: flex; gap: 16px; align-items: center; padding: 24px 26px; border-radius: 12px;
-  border: 1px solid rgba(var(--acc-rgb), .28); background: rgba(232,242,239,.03);
+  /* .45 y no .28: estas tarjetas quedaban por debajo de las de Beneficios
+     Clave, que van a .38, y el borde apenas se distinguia del fondo. */
+  border: 1px solid rgba(var(--acc-rgb), .45); background: rgba(232,242,239,.03);
 }
 .para-item span:last-child, .para-not span:last-child {
   font-size: 17px; font-weight: 600; line-height: 1.5; color: var(--ink); text-wrap: pretty;
