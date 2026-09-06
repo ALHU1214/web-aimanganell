@@ -121,6 +121,11 @@ img { display: block; }
    que en un boton solido no se ve. */
 @keyframes latido   { 0%,100% { transform:scale(1);     box-shadow:0 0 26px rgba(var(--acc-rgb),.35) }
                       50%     { transform:scale(1.035); box-shadow:0 0 44px rgba(var(--acc-rgb),.6) } }
+/* Variante para movil, donde el boton ocupa todo el ancho: ahi escalarlo hace
+   crecer la barra entera 13px y comerse el margen lateral, que se lee como un
+   salto. Solo respira el halo, y mas contenido. */
+@keyframes latido-plano { 0%,100% { box-shadow:0 0 20px rgba(var(--acc-rgb),.28) }
+                          50%     { box-shadow:0 0 34px rgba(var(--acc-rgb),.45) } }
 @keyframes glow     { 0%,100% { box-shadow:0 0 24px rgba(var(--acc-rgb),.55), 0 0 60px rgba(var(--acc-rgb),.3) }
                       50%     { box-shadow:0 0 36px rgba(var(--acc-rgb),.85), 0 0 90px rgba(var(--acc-rgb),.5) } }
 @keyframes float-up { 0% { transform:translateY(0); opacity:0 } 8% { opacity:1 } 92% { opacity:1 } 100% { transform:translateY(-115vh); opacity:0 } }
@@ -1177,7 +1182,9 @@ footer::before {
   .p2-hero-copy .btn-acc {
     margin-top: 38px; padding: 20px 28px; font-size: 18px;
     width: 100%; max-width: 100%; text-align: center;
+    box-shadow: 0 0 20px rgba(var(--acc-rgb), .28);
   }
+  .btn-palpita { animation-name: latido-plano; }
 
   /* la caja de garantía total no desborda, pero 52px/48px de
      relleno interno desperdicia demasiado ancho en ~330px */
