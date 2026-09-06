@@ -1220,7 +1220,11 @@ footer::before {
   /* 51px es lo que mide la nav fija en movil (14 + 27 del logo + 10), asi que
      de este relleno hay que descontarlos: con 116 quedan 65px de aire real
      entre la barra y el kicker. */
-  .p2-hero { min-height: 0; padding-top: 116px; padding-bottom: 0; }
+  /* overflow visible: el hero lo llevaba en hidden para recortar el video, y
+     en movil no hay video. Con el padding inferior a 0 el borde del hero cae
+     justo en el del boton, asi que el halo del CTA se cortaba en seco por
+     abajo en vez de difuminarse. */
+  .p2-hero { min-height: 0; padding-top: 116px; padding-bottom: 0; overflow: visible; }
   .p2-tiled > .sec:first-child { padding-top: var(--sec-pad); }
 }
 
