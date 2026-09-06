@@ -470,6 +470,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 /* Quien haya pedido menos movimiento no ve el latido: la regla global de
    prefers-reduced-motion reduce duraciones, pero una animacion en bucle
    conviene apagarla del todo. */
+/* La version con escalado se apaga; la plana de movil se reactiva mas abajo. */
 @media (prefers-reduced-motion: reduce) { .btn-palpita { animation: none; } }
 
 /* fondo de textura que cubre el bloque central de la página 2 */
@@ -1100,6 +1101,13 @@ footer::before {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+
+  /* Excepcion para el latido del CTA en movil. La preferencia de movimiento
+     reducido existe por el mareo que provocan los desplazamientos, los zooms y
+     el parallax; "latido-plano" no mueve nada, solo hace respirar el halo con
+     box-shadow. La variante de escritorio, que si escala el boton, se queda
+     desactivada arriba. */
+  .btn-palpita { animation: latido-plano 2.6s ease-in-out infinite !important; }
 }
 
 /* ============================================================
