@@ -27,7 +27,7 @@
 <link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/hero-poster.jpg" as="image">
-<link rel="stylesheet" href="styles.css?v=bdc063d7">
+<link rel="stylesheet" href="styles.css?v=b2c88390">
 <link rel="stylesheet" href="contraste-minimo.css?v=25e1daa4">
 
 <!-- JSON-LD: entidad de negocio. Sin teléfono ni correo: el contacto
@@ -45,9 +45,14 @@
      digan que esta empresa existe, más fácil es que un modelo que busque
      "Manganell Tenerife" acabe allí.
 
-     PENDIENTE: la ficha de Google Business. Cuando exista, se añade su URL al sameAs de
-     abajo. Es la que más pesa para búsquedas locales, y el JSON-LD la respalda pero no
-     la sustituye. No poner ninguna URL que no se haya abierto y comprobado.
+     La ficha de Google Business ya está en el sameAs, en su forma canónica por CID
+     (13000976217081620395, que es el 0xb46cbefcc073a7ab del enlace de Maps). No se usa
+     el enlace corto de compartir: ese llega cargado de parámetros de seguimiento y
+     apunta al buscador, no a la ficha. Google ya tiene además entidad propia para el
+     negocio, con kgmid /g/11zx78xs45.
+
+     Las dos URLs se han abierto y comprobado: la de LinkedIn responde y la del CID
+     redirige a la ficha.
 -->
 <script type="application/ld+json">
 {
@@ -75,7 +80,8 @@
     { "@type": "Country", "name": "España" }
   ],
   "sameAs": [
-    "https://www.linkedin.com/company/aimanganell/"
+    "https://www.linkedin.com/company/aimanganell/",
+    "https://maps.google.com/?cid=13000976217081620395"
   ],
   "founder": {
     "@type": "Person",
@@ -272,8 +278,8 @@
   </div>
 </div>
 
-<script src="config.js?v=31e9f89a"></script>
-<script src="main.js?v=979a03ff"></script>
+<script src="config.js?v=0ea9f6ad"></script>
+<script src="main.js?v=1c5da803"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstile" async defer></script>
 </body>
 </html>
