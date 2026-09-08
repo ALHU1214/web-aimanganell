@@ -388,6 +388,15 @@
       var parsed = new DOMParser().parseFromString(html, 'text/html');
       var source = parsed.querySelector('.legal-body');
       if (!source) throw new Error('sin .legal-body en la respuesta');
+      /* En la pagina real los apartados son h2, porque cuelgan de su h1.
+         Dentro del modal el titulo del documento ya es un h2, asi que se
+         bajan a h3 al inyectarlos: la jerarquia queda correcta en los dos
+         sitios sin duplicar el texto legal. */
+      $$('h2', source).forEach(function (h) {
+        var h3 = parsed.createElement('h3');
+        h3.innerHTML = h.innerHTML;
+        h.parentNode.replaceChild(h3, h);
+      });
       legalCache[doc] = source.innerHTML;
       return legalCache[doc];
     });

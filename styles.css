@@ -751,10 +751,12 @@ footer::before {
   color: rgba(232,242,239,.6); cursor: pointer; padding: 6px;
 }
 .legal-close:hover { color: var(--ink); }
-.legal-card h2 { margin: 0 0 6px; font-size: 28px; font-weight: 700; letter-spacing: -.01em; }
+.legal-card > h2 { margin: 0 0 6px; font-size: 28px; font-weight: 700; letter-spacing: -.01em; }
 .legal-date { margin: 0 0 24px; font-family: var(--mono); font-size: 11.5px; color: var(--acc); letter-spacing: .08em; }
 .legal-body { display: flex; flex-direction: column; gap: 20px; font-size: 14.5px; line-height: 1.7; color: rgba(232,242,239,.75); }
-.legal-body h3 { margin: 0 0 6px; font-size: 16px; color: var(--ink); }
+/* Los apartados son h2 en la pagina real (cuelgan del h1) y h3 dentro del
+   modal (cuelgan de su titulo); se ven igual en los dos sitios. */
+.legal-body h2, .legal-body h3 { margin: 0 0 6px; font-size: 16px; color: var(--ink); }
 .legal-body p { margin: 0; }
 .legal-body p + p { margin-top: 8px; }
 .legal-body strong { color: rgba(232,242,239,.9); }
