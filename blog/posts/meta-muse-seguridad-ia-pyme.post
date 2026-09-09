@@ -5,7 +5,6 @@
   "description": "Meta Muse: cómo evitar que la IA filtre información confidencial de tu pyme. Aprende a proteger datos, limitar accesos y formar a tu equipo sin riesgos.",
   "keyword": "Meta Muse: cómo evitar que la IA filtre información confidencial de tu pyme",
   "category": "Automatización",
-  "noindex": true,
   "date": "2026-09-09",
   "cover": {
     "src": "meta-muse-seguridad-ia-pyme-cover.jpg",
@@ -112,4 +111,6 @@
 
 <p>Así podrá aprovechar Meta Muse y otras soluciones de inteligencia artificial sin convertir la eficiencia en un riesgo para su pyme.</p>
 <h2>Lo que vemos en la práctica</h2>
-<p>[PENDIENTE: caso real]</p>
+<p>Salió en una reunión, casi de pasada. Preguntamos y apareció la cuenta de ChatGPT de un empleado: muchísimas sesiones, sin ningún orden, y dentro facturas, contratos y una lista de clientes, pegados tal cual para que se los resumiera.</p>
+<p>No había mala intención ni nada escondido. Simplemente nadie le había dicho nunca qué podía pegar y qué no, porque en esa empresa la norma no existía.</p>
+<p>Por eso el primer paso no es elegir herramienta ni automatizar nada: es decidir qué información no sale de casa y decírselo al equipo, antes de que cada uno lo decida por su cuenta.</p>
