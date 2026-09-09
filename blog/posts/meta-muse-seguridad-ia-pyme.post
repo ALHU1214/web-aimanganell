@@ -1,0 +1,115 @@
+---
+{
+  "slug": "meta-muse-seguridad-ia-pyme",
+  "title": "Evita fugas de información en tu pyme hoy",
+  "description": "Meta Muse: cómo evitar que la IA filtre información confidencial de tu pyme. Aprende a proteger datos, limitar accesos y formar a tu equipo sin riesgos.",
+  "keyword": "Meta Muse: cómo evitar que la IA filtre información confidencial de tu pyme",
+  "category": "Automatización",
+  "noindex": true,
+  "date": "2026-09-09",
+  "cover": {
+    "src": "meta-muse-seguridad-ia-pyme-cover.jpg",
+    "alt": "Fotografía editorial que ilustra Meta Muse: cómo evitar que la IA filtre información confidencial de tu pyme"
+  },
+  "faq": [
+    {
+      "q": "¿Qué información no debo introducir en una herramienta de IA?",
+      "a": "No introduzcas datos personales de clientes, proveedores o empleados, como DNI, teléfonos, direcciones o información bancaria. Tampoco debes compartir contratos, nóminas, contraseñas, estados financieros no publicados, listas de contactos ni planes comerciales confidenciales."
+    },
+    {
+      "q": "¿Cómo puedo utilizar la IA con datos reales sin ponerlos en riesgo?",
+      "a": "Antes de utilizar un caso real, elimina nombres, cifras identificativas y cualquier referencia que permita reconocer a una persona o empresa. Siempre que sea posible, trabaja con ejemplos anonimizados y utiliza únicamente herramientas aprobadas por la empresa."
+    },
+    {
+      "q": "¿Qué debo hacer si un empleado comparte información confidencial por error con una IA?",
+      "a": "Debes activar un protocolo de respuesta que indique a quién avisar, cómo evaluar la información expuesta y qué accesos deben bloquearse o revisarse. Documenta el incidente y valora, con asesoramiento legal si es necesario, si hay que informar a clientes, proveedores o autoridades."
+    }
+  ]
+}
+---
+<p><strong>Meta Muse: cómo evitar que la IA filtre información confidencial de tu pyme</strong> no consiste en prohibir toda herramienta de inteligencia artificial. Consiste en decidir qué información puede utilizarse, quién puede hacerlo y bajo qué condiciones.</p>
+
+<p>El mayor riesgo no suele ser la IA por sí sola. Aparece cuando un empleado copia un contrato, una conversación con un cliente, una hoja de cálculo o datos financieros en un chat sin valorar dónde quedará esa información.</p>
+
+<h2>El primer paso: definir qué datos no entran en una IA</h2>
+
+<p>Una pyme necesita una norma sencilla y por escrito: qué información está prohibido introducir en herramientas de IA generalistas, incluidas las utilizadas para redactar textos, resumir documentos o preparar campañas.</p>
+
+<p>No es suficiente con decir “tened cuidado”. El equipo debe saber reconocer la información sensible antes de pegarla en un prompt o subir un archivo.</p>
+
+<p>Como mínimo, prohíba introducir:</p>
+
+<ul>
+<li>Datos de clientes, proveedores o empleados.</li>
+<li>DNI, direcciones, teléfonos o información bancaria.</li>
+<li>Nóminas, contratos y expedientes laborales.</li>
+<li>Contraseñas, claves de acceso o configuraciones internas.</li>
+<li>Estados financieros no publicados y previsiones de ventas.</li>
+<li>Listados completos de contactos, conversaciones o correos.</li>
+<li>Planes comerciales, precios negociados y secretos de producto.</li>
+</ul>
+
+<p>Cuando sea necesario usar IA para trabajar sobre un caso real, elimine nombres, cifras identificativas y referencias que permitan reconocer a una persona o empresa. Trabaje con ejemplos anonimizados siempre que sea posible.</p>
+
+<h2>Clasifique la información antes de automatizar</h2>
+
+<p>La clasificación evita decisiones improvisadas. No requiere una burocracia excesiva: basta con distinguir claramente entre información pública, interna, confidencial y altamente confidencial.</p>
+
+<p><a href="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/">La información pública puede emplearse en herramientas abiertas. La interna requiere prudencia y autorización. La confidencial y altamente confidencial no debe salir de los sistemas aprobados por la empresa sin una revisión específica.</a></p>
+
+<p>Este criterio debe aplicarse también a los usos aparentemente inocentes. Por ejemplo, pedir a una IA que “mejore este correo” puede exponer una negociación comercial.</p>
+
+<p>Solicitar un resumen de una reunión puede revelar datos de clientes o decisiones estratégicas.</p>
+
+<p><a href="https://aimanganell.com/blog/muse-glimmer-agentes-ia-locales/">Antes de incorporar una nueva función de IA en Meta u otra plataforma, revise qué información procesa, quién puede acceder a ella y qué opciones de privacidad tiene configuradas.</a></p>
+
+<h2>Limite accesos y proteja las cuentas</h2>
+
+<p><a href="https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/">No todos los empleados necesitan acceder a las mismas herramientas, archivos o datos. Aplique el principio de mínimo acceso: cada persona debe contar solo con los permisos necesarios para realizar su trabajo.</a></p>
+
+<p>La <a href="https://www.ftc.gov/es/guia-para-negocios/protegiendo-pequenos-negocios/ciberseguridad">FTC recomienda limitar el acceso a la información sensible y cifrarla tanto almacenada como durante su envío</a>. Cifrar significa convertir los datos en información ilegible para quien no tenga autorización.</p>
+
+<p>También conviene separar las cuentas personales de las empresariales. Las herramientas de IA utilizadas para el trabajo deben estar vinculadas a cuentas corporativas, bajo control de la empresa y con permisos revisables.</p>
+
+<p>Active la verificación en dos pasos en todas las cuentas relevantes. Esta medida pide una segunda prueba de identidad, además de la contraseña, y reduce el riesgo de que un acceso robado termine en una filtración.</p>
+
+<p>Meta también recomienda reforzar la seguridad de las cuentas empresariales con estas medidas de protección.</p>
+
+<h2>Forme al equipo y supervise el uso real</h2>
+
+<p>La política de IA solo funciona si las personas la entienden y la aplican. Una sesión breve de formación práctica suele ser más útil que un documento largo que nadie lee.</p>
+
+<p>Explique al equipo ejemplos concretos:</p>
+
+<ul>
+<li>Qué no copiar en un chat.</li>
+<li>Cómo anonimizar un texto.</li>
+<li>A quién consultar ante una duda.</li>
+<li>Qué hacer si alguien ha compartido información por error.</li>
+</ul>
+
+<p>La formación debe repetirse cuando cambien las herramientas o se incorporen nuevas personas. Los errores suelen ocurrir por prisa, desconocimiento o una falsa sensación de seguridad, no por mala intención.</p>
+
+<p>Además, revise periódicamente quién tiene acceso a las herramientas, qué cuentas siguen activas y si existen descargas o exportaciones inusuales.</p>
+
+<p>Supervisar no significa vigilar cada tarea; significa detectar señales de riesgo antes de que se conviertan en un problema mayor.</p>
+
+<h2>Prepare un plan para cuando algo salga mal</h2>
+
+<p>Incluso con buenos controles, puede ocurrir que alguien introduzca datos confidenciales en una IA. La diferencia entre un incidente controlado y una crisis está en la rapidez y el orden de la respuesta.</p>
+
+<p>Su protocolo debe indicar:</p>
+
+<ul>
+<li>Quién recibe el aviso.</li>
+<li>Cómo se evalúa la información expuesta.</li>
+<li>Qué accesos se bloquean.</li>
+<li>Cómo se documenta lo ocurrido.</li>
+<li>Cuándo es necesario informar a clientes, proveedores o asesores legales.</li>
+</ul>
+
+<p>No espere a sufrir una filtración para decidir qué hacer. Establezca hoy una política clara, proteja las cuentas, forme al equipo y revise sus herramientas de IA.</p>
+
+<p>Así podrá aprovechar Meta Muse y otras soluciones de inteligencia artificial sin convertir la eficiencia en un riesgo para su pyme.</p>
+<h2>Lo que vemos en la práctica</h2>
+<p>[PENDIENTE: caso real]</p>
