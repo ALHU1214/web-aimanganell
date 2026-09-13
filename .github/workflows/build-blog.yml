@@ -43,7 +43,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog/ sitemap.xml robots.txt index.html consultoria/ legal/ scripts/
+          # '*.html' y no una lista de carpetas: sellar-assets.js toca TODAS
+          # las paginas, y con una lista fija las que faltaban (gracias/ y
+          # contacto-aimanganell/) se quedaban con un ?v= viejo en produccion.
+          git add blog/ sitemap.xml robots.txt '*.html'
           if git diff --cached --quiet; then
             echo "Sin cambios en las páginas generadas."
             exit 0
