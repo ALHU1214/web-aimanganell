@@ -57,16 +57,6 @@
   font-display: swap;
   src: url('assets/fonts/manrope.woff2') format('woff2');
 }
-/* DM Sans 500, solo para el titular de "Garantía Total" en consultoría.
-   Subconjunto latino de Google Fonts (licencia OFL), autoalojado por la
-   misma razón que Poppins: font-src 'self' en la CSP. */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('assets/fonts/dm-sans-500.woff2') format('woff2');
-}
 @font-face {
   font-family: 'IBM Plex Mono';
   font-style: normal;
@@ -1282,43 +1272,49 @@ body { overflow-x: clip; }
    aquí no hay secciones a pantalla completa sino un solo hilo
    de lectura estrecho que baja hasta el CTA.
    ============================================================ */
-/* --- fondo de textura: todas las páginas sin vídeo ---------------
-   Lo llevan /gracias/, /contacto-aimanganell/, las tres legales y todo
-   el blog (portada y posts). Home y consultoría no: tienen vídeo.
-   Se activa con la clase .fondo-textura en el <html>; en el blog la
-   ponen las dos plantillas de scripts/, no el HTML generado, que se
-   rehace solo.
+/* --- fondo sacado del vídeo del hero -----------------------------
+   Lo llevan /gracias/ y todo el blog (portada y posts). Se activa con
+   la clase .fondo-video en el <html>; en el blog la ponen las dos
+   plantillas de scripts/, no el HTML generado, que se rehace solo.
 
-   La textura es un "grunge" oscuro (assets/fondo-contacto-azul.webp,
-   2560x2560): el gris original (assets/fondo-contacto.webp, que se
-   conserva) pasado por una escala de azul marino:
-   #01020a -> #040818 -> #09132a -> #0e1e3a. Relieve de 1,11:1 entre
-   sombras y luces: a medio camino entre la primera versión (1,20:1, se
-   veía demasiado) y una super sutil (1,04:1, apenas se notaba).
-   Contraste: el texto claro y los titulares azules grandes pasan AA en
-   toda la textura. Los enlaces azules en texto normal (#0079fc) pasan
-   en el 98% y bajan de 4,5 solo sobre los arañazos más claros (el peor
-   punto, 3,81). Webp a calidad 75: 122 KB.
+   Los azules no son elegidos a ojo: son los que devuelve assets/hero.mp4
+   al muestrear 32 fotogramas y agrupar sus píxeles por color. De más a
+   menos peso: #010002 (74% del vídeo), #050c22, #102545, #103f73,
+   #306d9a y #62a4cb. Aquí se usan en ese mismo orden de profundidad —
+   la base casi negra abajo, el azul claro como brillo alto.
 
-   Tamaño fijado en % del ancho (158.7%) y no cover: con cover la
-   textura se escala según lo larga que sea la página, y en una página
-   corta saldría diminuta. Anclada arriba y repetida hacia abajo.
-
-   Va en el body y no en un ::before fijo porque el body lleva
+   Va en el body y no en un ::before fijo porque el body ya tiene montado
+   el sistema de capas con la textura de ruido, y porque lleva
    overflow-x:clip, que puede convertirlo en bloque contenedor de los
    elementos fixed y dejar el fondo desplazándose con el scroll.
    La clase la lleva el <html> para poder pintar también el color de
    fondo del propio lienzo, que es lo que se ve al hacer overscroll.
-   attachment:scroll y no fixed: con fixed el navegador repinta el
-   fondo entero en cada fotograma del scroll, e iOS lo ignora.       */
-.fondo-textura,
-.fondo-textura body { background-color: #010002; }
-.fondo-textura body {
-  background-image: url('assets/fondo-contacto-azul.webp');
-  background-size: 158.7% auto;
-  background-position: 50% 0;
-  background-repeat: repeat-y;
-  background-attachment: scroll;
+   Todas las capas van con attachment:scroll, la textura incluida. Con
+   fixed el navegador tiene que repintar el fondo entero en cada
+   fotograma del scroll, y aquí no se gana nada a cambio: al ser un
+   mosaico uniforme, que se quede quieta o que acompañe al contenido se
+   ve exactamente igual. Es gratis, así que scroll.
+
+   La textura no es el ruido fractal del resto del sitio sino el patrón
+   de laberinto de la og image (reacción-difusión). Está generada con
+   scripts/genera-textura.js sobre una malla que envuelve por los bordes,
+   así que el mosaico repite sin costura; se sirve a 256px pero se pinta
+   a 128, que es la densidad de la og — y de paso queda nítida en
+   pantallas de doble densidad.                                       */
+.fondo-video,
+.fondo-video body { background-color: #010002; }
+.fondo-video body {
+  background-image:
+    url('assets/textura-difusion.png'),
+    radial-gradient(ellipse 110% 38% at 50% 0%,   rgba(98,164,203,.18), rgba(98,164,203,0) 100%),
+    radial-gradient(ellipse 95% 45% at 6% 16%,    rgba(16,63,115,.42),  rgba(16,63,115,0)  100%),
+    radial-gradient(ellipse 90% 45% at 96% 54%,   rgba(48,109,154,.16), rgba(48,109,154,0) 100%),
+    radial-gradient(ellipse 130% 42% at 50% 100%, rgba(16,37,69,.42),   rgba(16,37,69,0)   100%),
+    linear-gradient(180deg, #050c22 0%, #030812 45%, #010002 100%);
+  background-position: top left, top center, top center, top center, bottom center, top center;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 128px 128px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: scroll, scroll, scroll, scroll, scroll, scroll;
 }
 
 /* Las tarjetas heredaban --card (#0a1613), que es un verde azulado: sobre
@@ -1457,9 +1453,30 @@ body { overflow-x: clip; }
    de una plantilla externa; solo cambian los colores, a la paleta del
    sitio. Todo va con prefijo ct- porque la plantilla usaba nombres
    genéricos (.hero, .container, label, input...) que aquí chocarían.
-   El fondo es el de todas las páginas sin vídeo (.fondo-textura en
-   <html>, definido en la sección de /gracias/).
+   El fondo es .fondo-textura en <html>, definido justo debajo.
    ============================================================ */
+
+/* --- fondo de textura ---------------------------------------------
+   Textura "grunge" oscura (assets/fondo-contacto-azul.webp, 2560x2560)
+   teñida con una escala de azul marino: #01020a -> #040818 -> #09132a
+   -> #0e1e3a. Relieve de 1,11:1 entre sombras y luces. Contraste: el
+   texto claro y los titulares azules grandes pasan AA en toda la
+   textura. Webp a calidad 75: 122 KB.
+   Tamaño fijado en % del ancho (158.7%) y no cover: con cover la
+   textura se escala según lo larga que sea la página, y en una página
+   corta saldría diminuta. Anclada arriba y repetida hacia abajo.
+   Se activa con .fondo-textura en el <html>, para poder pintar también
+   el lienzo que se ve al hacer overscroll. attachment:scroll y no
+   fixed, por lo mismo que .fondo-video. */
+.fondo-textura,
+.fondo-textura body { background-color: #010002; }
+.fondo-textura body {
+  background-image: url('assets/fondo-contacto-azul.webp');
+  background-size: 158.7% auto;
+  background-position: 50% 0;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
+}
 
 .ct {
   --ct-accent:       var(--acc);
@@ -1733,193 +1750,4 @@ body { overflow-x: clip; }
     margin-top: 20px; padding: 15px 22px; font-size: 15px;
     animation: none;   /* sin el glow palpitante dentro del panel */
   }
-}
-
-/* ============================================================
-   CONSULTORÍA · SISTEMA TIPOGRÁFICO Y DE ESPACIADO (.p2-dv)
-   Valores de una hoja de "design tokens" de referencia (tipografía,
-   espaciado, radios, tarjetas, botones, formulario) trasladados a los
-   elementos equivalentes de consultoría, con nuestros colores: el
-   amarillo de la referencia pasa a --acc, los blancos a --ink, las
-   tarjetas grises al panel azul marino de /gracias/ y contacto.
-   Todo cuelga de .p2-dv (en el #page2 de consultoria/index.html) para
-   no tocar la home, que comparte formulario y botones.
-   Se deja fuera a propósito: footer y nav (son de todo el sitio) y
-   los testimonios (consultoría no tiene; no se inventan).
-   Para volver al diseño anterior basta con quitar la clase del HTML.
-   ============================================================ */
-#page2.p2-dv {
-  --dv-heading:     #f8f8f8;
-  --dv-text-90:     rgba(232, 242, 239, .9);
-  --dv-text-80:     rgba(232, 242, 239, .8);
-  /* el #666 de la referencia da ~3,2 sobre fondo oscuro: no llega al 4,5
-     del texto normal. .55 es el mínimo del sitio (contraste-minimo.css) */
-  --dv-gray:        rgba(232, 242, 239, .55);
-  --dv-card-bg:     rgba(9, 20, 40, .72);
-  --dv-card-border: 1px solid rgba(var(--acc-rgb), .2);
-  --dv-sh-card:     0 20px 40px rgba(var(--acc-rgb), .2);
-  --dv-sh-btn:      0 10px 30px rgba(var(--acc-rgb), .4);
-  --sec-pad: 100px;                            /* padding vertical de cada sección */
-  line-height: 1.4;
-}
-
-/* --- hero --- */
-.p2-dv .p2-hero-copy h1 {
-  margin-bottom: 24px;
-  font-size: 48px; font-weight: 500; line-height: 1.2; letter-spacing: normal;
-}
-/* 1.4 y no el line-height:1 de la referencia: allí el subtítulo es de una
-   línea y aquí son dos; a 1 las líneas se montan. */
-.p2-dv .p2-kicker,
-.p2-dv .p2-hero-copy p { font-size: 22.4px; line-height: 1.4; color: var(--dv-text-80); }
-.p2-dv .p2-hero-copy p { margin-top: 0; max-width: 700px; }
-.p2-dv .p2-hero-copy .btn-acc {
-  margin-top: 40px; padding: 18px 40px;
-  font-size: 17.6px; font-weight: 700; letter-spacing: normal;
-  transition: box-shadow .3s;
-}
-/* sin el translateY de la referencia: el botón ya late (animación latido,
-   que usa transform) y el hover no podría moverlo */
-.p2-dv .p2-hero-copy .btn-acc:hover { box-shadow: var(--dv-sh-btn); }
-
-/* --- titulares de sección --- */
-.p2-dv .sec-title,
-.p2-dv .contacto-head h2 { font-size: 39px; line-height: 1.2; }
-
-/* --- contenedor y rejillas --- */
-.p2-dv .wrap,
-.p2-dv .wrap-wide { max-width: 1200px; }
-.p2-dv .ben-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
-.p2-dv .obt-grid,
-.p2-dv .para-grid { gap: 30px; }
-
-/* --- tarjetas --- */
-.p2-dv .ben-card,
-.p2-dv .obt-item,
-.p2-dv .para-item {
-  padding: 30px; border-radius: 15px;
-  background: var(--dv-card-bg); border: var(--dv-card-border);
-  transition: .3s;
-}
-.p2-dv .para-not { padding: 30px; border-radius: 15px; }
-.p2-dv .ben-card { min-height: 0; gap: 20px; }
-.p2-dv .ben-card:hover {
-  transform: translateY(-10px);
-  background: var(--dv-card-bg);
-  border-color: rgba(var(--acc-rgb), .2);
-  box-shadow: var(--dv-sh-card);
-}
-.p2-dv .ben-ico {
-  width: 45px; height: 45px; border-radius: 50%;
-  display: grid; place-items: center;
-  background: #010002; font-size: 18px; line-height: 1;
-}
-.p2-dv .ben-card p { font-size: 16px; line-height: 2; color: var(--dv-text-90); }
-
-/* --- precio y duración --- */
-.p2-dv .obt-fact-label {
-  font-family: var(--font-1); font-size: 16px; letter-spacing: 0;
-  text-transform: none; color: var(--dv-gray);
-}
-.p2-dv .obt-fact-value { font-size: 32px; font-weight: 700; color: var(--acc); }
-
-/* --- garantías --- */
-.p2-dv .guarantee-bar {
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(var(--acc-rgb), .1), transparent);
-}
-.p2-dv .total-box {
-  max-width: 700px; padding: 40px; border-radius: 20px;
-  border: 2px solid var(--acc);
-  background: linear-gradient(135deg, rgba(var(--acc-rgb), .1), transparent);
-  box-shadow: none;
-}
-.p2-dv .total-box h2 {
-  margin: 0 0 20px;
-  font-family: 'DM Sans', var(--font-1);
-  font-size: 43px; font-weight: 500; line-height: 1.3; letter-spacing: -.5px;
-  color: var(--dv-heading);
-}
-.p2-dv .total-box > p { margin-top: 0; }
-/* aviso de plazas: geometría de la referencia, color ámbar nuestro */
-.p2-dv .plazas { margin-top: 30px; padding: 20px; border-radius: 10px; }
-
-/* --- formulario --- */
-.p2-dv .form-sec { max-width: 600px; }
-/* El panel es translúcido y detrás asoma .form-shadow (bloque azul
-   desplazado): sin base opaca la tarjeta entera se teñía de azul. */
-.p2-dv .form-card {
-  padding: 40px; border-radius: 20px;
-  background: linear-gradient(var(--dv-card-bg), var(--dv-card-bg)), var(--bg);
-  border: var(--dv-card-border);
-}
-.p2-dv .form-shadow { border-radius: 20px; }
-.p2-dv .lead-form-2 { gap: 25px; }
-.p2-dv .field-wrap { gap: 8px; }
-.p2-dv .field-wrap label { font-size: 16px; font-weight: 400; color: var(--dv-heading); }
-/* Campos: los mismos recuadros que el formulario de /contacto-aimanganell/
-   (fondo, borde y radio de tarjeta + contorno interior), no los campos
-   planos sin borde de la hoja de referencia. */
-.p2-dv .field {
-  padding: 16px 20px; border-radius: 15px;
-  background-color: var(--dv-card-bg); border: var(--dv-card-border);
-  font-size: 16px; line-height: 1.4; color: var(--ink);
-  -webkit-appearance: none; appearance: none;
-  transition: .3s;
-  box-shadow: inset 0 0 22px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .04);
-}
-.p2-dv .field::placeholder { color: rgba(232, 242, 239, .55); }
-.p2-dv .field:hover { border-color: rgba(var(--acc-rgb), .45); }
-.p2-dv .field:focus {
-  border-color: var(--acc);
-  background-color: rgba(14, 30, 58, .8);
-  box-shadow:
-    inset 0 0 22px rgba(0, 0, 0, .55),
-    inset 0 1px 0 rgba(255, 255, 255, .06),
-    0 0 0 3px rgba(var(--acc-rgb), .12),
-    0 10px 30px rgba(var(--acc-rgb), .15);
-}
-.p2-dv .field:-webkit-autofill,
-.p2-dv .field:-webkit-autofill:hover,
-.p2-dv .field:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--ink);
-  -webkit-box-shadow: inset 0 0 0 1000px #0b1730, inset 0 0 22px rgba(0, 0, 0, .55);
-  caret-color: var(--ink);
-  transition: background-color 9999s ease-out;
-}
-.p2-dv .field-select {
-  cursor: pointer; padding-right: 48px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e8f2ef%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");
-  background-repeat: no-repeat; background-position: right 20px center; background-size: 14px;
-}
-.p2-dv .btn-submit {
-  padding: 20px; border-radius: 50px;
-  font-size: 19.2px; font-weight: 700; line-height: 1.5; letter-spacing: .3px;
-  box-shadow: none; transition: .3s;
-}
-.p2-dv .btn-submit:hover { transform: translateY(-2px); box-shadow: var(--dv-sh-btn); }
-.p2-dv .btn-submit.is-enviado,
-.p2-dv .btn-submit.is-enviado:hover { transform: none; box-shadow: 0 0 34px rgba(37, 211, 102, .45); }
-
-/* --- móvil: el único punto de corte de la referencia (768px) --- */
-@media (max-width: 768px) {
-  #page2.p2-dv { --sec-pad: 60px; }
-  .p2-dv .p2-hero-copy h1 { font-size: 32px; }
-  .p2-dv .sec-title,
-  .p2-dv .contacto-head h2 { font-size: 28.8px; }
-  /* 43px no cabe en una línea en un móvil de 360px */
-  .p2-dv .total-box h2 { font-size: 32px; }
-  .p2-dv .ben-grid,
-  .p2-dv .obt-grid,
-  .p2-dv .para-grid { grid-template-columns: 1fr; gap: 20px; }
-  /* anula el grid-auto-rows:1fr del bloque responsive: en una columna
-     igualaba todas las tarjetas a la más alta y dejaba huecos vacíos */
-  .p2-dv .ben-grid { grid-auto-rows: auto; }
-  .p2-dv .p2-hero-copy .btn-acc { padding: 18px 20px; }
-  .p2-dv .form-card { padding: 30px 20px; }
-  .p2-dv .total-box { padding: 30px 20px; }
-  .p2-dv .p2-kicker,
-  .p2-dv .p2-hero-copy p { font-size: 18px; }
-  .p2-dv .field { padding: 14px 16px; border-radius: 12px; }
-  .p2-dv .field-select { padding-right: 44px; background-position: right 16px center; }
 }
