@@ -265,7 +265,7 @@
         mensaje:  form.mensaje.value.trim()
       };
       if (!d.nombre || !d.empresa || d.email.indexOf('@') === -1 || !d.telefono || !d.biz) {
-        return fail('Rellena nombre, empresa, WhatsApp, email y tipo de negocio.');
+        return fail('Rellena nombre, empresa, teléfono, email y tipo de negocio.');
       }
       if (!form.acepta.checked) {
         return fail('Debes aceptar la política de privacidad.');
