@@ -242,7 +242,10 @@
   $$('.lead-form').forEach(function (form) {
     var errBox = $('.form-error', form);
     var btn    = $('button[type="submit"]', form);
-    var origen = form.classList.contains('lead-form-2') ? 'Consultoría' : 'Landing web';
+    // data-origen gana si está (lo lleva /contacto-aimanganell/); si no, se deduce
+    // como siempre para home y consultoría
+    var origen = form.getAttribute('data-origen') ||
+      (form.classList.contains('lead-form-2') ? 'Consultoría' : 'Landing web');
 
     function fail(msg) {
       errBox.textContent = msg;

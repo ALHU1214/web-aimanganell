@@ -1448,6 +1448,254 @@ body { overflow-x: clip; }
 }
 
 /* ============================================================
+   PÁGINA DE CONTACTO (/contacto-aimanganell/)
+   Bloque de contacto (hero + 3 tarjetas + formulario) traído tal cual
+   de una plantilla externa; solo cambian los colores, a la paleta del
+   sitio. Todo va con prefijo ct- porque la plantilla usaba nombres
+   genéricos (.hero, .container, label, input...) que aquí chocarían.
+   El fondo es .fondo-textura en <html>, definido justo debajo.
+   ============================================================ */
+
+/* --- fondo de textura ---------------------------------------------
+   Textura "grunge" oscura (assets/fondo-contacto-azul.webp, 2560x2560)
+   teñida con una escala de azul marino: #01020a -> #040818 -> #09132a
+   -> #0e1e3a. Relieve de 1,11:1 entre sombras y luces. Contraste: el
+   texto claro y los titulares azules grandes pasan AA en toda la
+   textura. Webp a calidad 75: 122 KB.
+   Tamaño fijado en % del ancho (158.7%) y no cover: con cover la
+   textura se escala según lo larga que sea la página, y en una página
+   corta saldría diminuta. Anclada arriba y repetida hacia abajo.
+   Se activa con .fondo-textura en el <html>, para poder pintar también
+   el lienzo que se ve al hacer overscroll. attachment:scroll y no
+   fixed, por lo mismo que .fondo-video. */
+.fondo-textura,
+.fondo-textura body { background-color: #010002; }
+.fondo-textura body {
+  background-image: url('assets/fondo-contacto-azul.webp');
+  background-size: 158.7% auto;
+  background-position: 50% 0;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
+}
+
+.ct {
+  --ct-accent:       var(--acc);
+  --ct-accent-dark:  var(--acc2);               /* pulsado en táctil; un azul más oscuro dejaba el texto por debajo de 4,5 */
+  --ct-gray:         rgba(232, 242, 239, .55);  /* primera línea del título */
+  --ct-card-bg:      rgba(9, 20, 40, .72);      /* el mismo panel de /gracias/ */
+  --ct-card-border:  rgba(var(--acc-rgb), .20);
+  --ct-on-accent:    #07100e;                   /* texto sobre el azul, como .btn-acc */
+
+  position: relative; z-index: 1;               /* por debajo de .particles (z 3), como .p2-body en consultoría */
+  flex: 1 0 auto;
+  padding: 150px 0 100px;
+  color: var(--ink); line-height: 1.6;
+}
+.ct-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+@keyframes ctFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- hero --- */
+.ct-hero { text-align: center; margin-bottom: 60px; animation: ctFadeUp 1s ease-out both; }
+.ct-hero h1 {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-1); font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500; line-height: 1.2;
+}
+.ct-title-gray { color: var(--ct-gray); }
+/* El nombre de marca en un azul más encendido que el del resto del bloque:
+   degradado del azul de marca al --acc2, con halo. text-shadow no sirve con
+   background-clip:text (se pinta por encima del relleno), por eso el halo
+   va con filter:drop-shadow. Sin soporte de background-clip queda en --acc2
+   liso: nunca invisible. */
+.ct-title-accent { color: var(--acc2); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .ct-title-accent {
+    background: linear-gradient(90deg, #1f8fff 0%, #5aa9ff 50%, var(--acc2) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    filter: drop-shadow(0 0 18px rgba(var(--acc-rgb), .55));
+  }
+}
+.ct-subtitle {
+  max-width: 600px; margin: 0 auto;
+  font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8;
+  color: rgba(232, 242, 239, .8);
+}
+
+/* --- rejilla: info a la izquierda, formulario a la derecha --- */
+.ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
+.ct-info { animation: ctFadeUp 1s ease-out .2s both; }
+
+/* --- tarjetas de info --- */
+.ct-item {
+  display: flex; align-items: flex-start; gap: 20px;
+  margin-bottom: 40px; padding: 30px;
+  background: var(--ct-card-bg);
+  border: 1px solid var(--ct-card-border);
+  border-radius: 15px;
+  transition: all .3s ease;
+}
+.ct-item:last-child { margin-bottom: 0; }
+.ct-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--ct-accent);
+}
+.ct-icon {
+  width: 60px; height: 60px; flex-shrink: 0;
+  background: var(--ct-accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ct-on-accent);
+}
+.ct-item-body h2 {
+  margin: 0 0 6px;
+  font-family: var(--font-1); font-size: clamp(1.6rem, 3vw, 2.7rem);
+  font-weight: 500; line-height: 1.3; letter-spacing: 0;
+  color: var(--ct-accent);
+}
+.ct-item-body p,
+.ct-item-body a { margin: 0; font-size: 1.1rem; color: rgba(232, 242, 239, .9); text-decoration: none; transition: color .3s; }
+.ct-item-body a:hover { color: var(--ct-accent); text-decoration: underline; }
+
+/* --- formulario --- */
+.ct-form-box {
+  background: var(--ct-card-bg);
+  padding: 50px; border-radius: 20px;
+  border: 1px solid var(--ct-card-border);
+  animation: ctFadeUp 1s ease-out .4s both;
+}
+.lead-form.ct-form { gap: 0; }
+.ct-group { margin-bottom: 25px; }
+.ct-group label { display: block; margin-bottom: 8px; font-weight: 500; color: rgba(232, 242, 239, .8); }
+/* Campos con el mismo formato que las tarjetas (.ct-item): mismo fondo,
+   borde y radio, más un contorno interior (sombra hacia dentro + luz
+   superior de 1px). El mismo efecto interior lo llevan también las
+   tarjetas y la caja del formulario, más abajo. */
+.ct-group input,
+.ct-group select,
+.ct-group textarea {
+  width: 100%; padding: 16px 20px;             /* proporcional al 30px de las tarjetas */
+  background-color: var(--ct-card-bg);         /* = .ct-item */
+  border: 1px solid var(--ct-card-border);     /* = .ct-item */
+  border-radius: 15px;                         /* = .ct-item */
+  color: var(--ink); font-family: inherit;
+  font-size: 16px;                             /* 16px evita el zoom automático en iOS */
+  line-height: 1.4;
+  transition: .3s;
+  -webkit-appearance: none; appearance: none;
+  box-shadow:
+    inset 0 0 22px rgba(0, 0, 0, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+/* .55 y no el .35 del original: por debajo de .55 el placeholder no llega a
+   4,5 de contraste (mismo mínimo que fija contraste-minimo.css) */
+.ct-group input::placeholder,
+.ct-group textarea::placeholder { color: rgba(232, 242, 239, .55); }
+.ct-group input:hover,
+.ct-group select:hover,
+.ct-group textarea:hover { border-color: rgba(var(--acc-rgb), .45); }
+.ct-group input:focus,
+.ct-group select:focus,
+.ct-group textarea:focus {
+  outline: none;
+  border-color: var(--ct-accent);
+  background-color: rgba(14, 30, 58, .8);
+  box-shadow:
+    inset 0 0 22px rgba(0, 0, 0, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .06),
+    0 0 0 3px rgba(var(--acc-rgb), .12),
+    0 10px 30px rgba(var(--acc-rgb), .15);
+}
+/* autorrelleno de Chrome: que no se ponga blanco */
+.ct-group input:-webkit-autofill,
+.ct-group input:-webkit-autofill:hover,
+.ct-group input:-webkit-autofill:focus,
+.ct-group textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--ink);
+  -webkit-box-shadow: inset 0 0 0 1000px #0b1730, inset 0 0 22px rgba(0, 0, 0, .55);
+  caret-color: var(--ink);
+  transition: background-color 9999s ease-out;
+}
+.ct-group textarea { resize: vertical; min-height: 150px; }
+/* appearance:none quita la flecha nativa del desplegable: se dibuja aquí
+   para que siga leyéndose como un selector y no como un campo de texto */
+.ct-group select {
+  cursor: pointer; padding-right: 48px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e8f2ef%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat; background-position: right 20px center; background-size: 14px;
+}
+
+/* el mismo efecto interior en las tarjetas y en la caja del formulario */
+.ct-item,
+.ct-form-box { box-shadow: inset 0 0 30px rgba(0, 0, 0, .35); }
+.ct-item:hover {
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, .35),
+    0 10px 30px rgba(var(--acc-rgb), .2);
+}
+.ct-group select option { color: var(--ct-on-accent); }
+.ct-form > .consent { margin-bottom: 20px; }
+.ct-form .turnstile-box:not(:empty) { margin-bottom: 20px; }
+
+.ct-submit {
+  width: 100%; padding: 20px;
+  background: var(--ct-accent);
+  border: none; border-radius: 50px;
+  font-family: inherit; font-size: 1rem; font-weight: 500;
+  color: var(--ct-on-accent);
+  cursor: pointer; transition: all .3s;
+  position: relative; overflow: hidden;
+}
+.ct-submit::before {                           /* onda blanca al pasar el ratón */
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 0; height: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, .3);
+  transform: translate(-50%, -50%);
+  transition: width .6s, height .6s;
+  pointer-events: none;
+}
+.ct-submit:hover::before { width: 600px; height: 600px; }
+.ct-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(var(--acc-rgb), .4); }
+/* main.js cambia el texto a "Enviado ✓" y añade .is-enviado: mismo verde
+   de confirmación que .btn-submit en home y consultoría */
+.ct-submit.is-enviado,
+.ct-submit.is-enviado:hover { background: #25d366; box-shadow: 0 0 34px rgba(37, 211, 102, .45); }
+
+@media (max-width: 768px) {
+  .ct { padding: 110px 0 60px; }
+  .ct-container { padding: 0 16px; }
+  .ct-hero { margin-bottom: 40px; }
+  .ct-hero h1 { font-size: 1.8rem; margin-bottom: 1rem; }
+  .ct-subtitle { font-size: .95rem; padding: 0 10px; }
+  .ct-grid { grid-template-columns: 1fr; gap: 30px; margin-top: 30px; }
+  .ct-info { order: 2; }                       /* en móvil el formulario va primero */
+  .ct-item { padding: 20px; margin-bottom: 20px; flex-direction: column; align-items: center; text-align: center; }
+  .ct-icon { width: 50px; height: 50px; margin: 0 auto 15px; }
+  .ct-item-body h2 { font-size: 1.6rem; margin-bottom: 8px; }
+  .ct-item-body p, .ct-item-body a { font-size: 1rem; }
+  .ct-form-box { padding: 30px 20px; order: 1; border-radius: 15px; }
+  .ct-group { margin-bottom: 20px; }
+  .ct-group label { font-size: .95rem; margin-bottom: 6px; }
+  .ct-group input, .ct-group select, .ct-group textarea { padding: 14px 16px; border-radius: 12px; }
+  .ct-group select { padding-right: 44px; background-position: right 16px center; }
+  .ct-group textarea { min-height: 120px; }
+  .ct-submit { padding: 18px; border-radius: 30px; margin-top: 10px; }
+}
+@media (max-width: 380px) {
+  .ct-hero h1 { font-size: 1.5rem; }
+  .ct-subtitle { font-size: .9rem; }
+  .ct-form-box { padding: 25px 15px; }
+  .ct-submit { font-size: .95rem; }
+  .ct-item-body h2 { font-size: 1.4rem; }
+}
+@media (hover: none) and (pointer: coarse) {
+  .ct-group input, .ct-group select, .ct-group textarea, .ct-submit { min-height: 48px; }
+  .ct-item:hover { transform: none; }
+  .ct-submit:hover::before { display: none; }
+  .ct-submit:active { transform: scale(.98); background: var(--ct-accent-dark); }
+}
+
+/* ============================================================
    MENÚ DE MÓVIL
    Por debajo de 700px los tres enlaces y el botón dejan de caber al
    lado del logo: a 660px ya se tocan (medido en el navegador). Más

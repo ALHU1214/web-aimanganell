@@ -36,7 +36,8 @@ const MESES = [
 // conversiones.
 const STATIC_PAGES = [
   { relPath: 'index.html', url: SITE_URL + '/' },
-  { relPath: path.join('consultoria', 'index.html'), url: SITE_URL + '/consultoria/' }
+  { relPath: path.join('consultoria', 'index.html'), url: SITE_URL + '/consultoria/' },
+  { relPath: path.join('contacto-aimanganell', 'index.html'), url: SITE_URL + '/contacto-aimanganell/' }
 ];
 
 // misma entidad en cada página — inline siempre (no @id cruzado entre
