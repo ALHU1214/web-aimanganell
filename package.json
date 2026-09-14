@@ -4,6 +4,7 @@
   "private": true,
   "description": "Sitio web de AI Manganell · Consultoría IA & Ciberseguridad",
   "scripts": {
+    "dev": "npx serve .",
     "build:css": "npx @tailwindcss/cli -i src/styles.css -o styles.css --minify",
     "build": "node scripts/build.js",
     "check": "tsc --noEmit",
