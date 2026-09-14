@@ -71,6 +71,11 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 
 .form-error { margin: 0 0 12px; font-size: 13.5px; color: #ff8c7a; }
 .lead-form-2 .form-error { margin-bottom: 0; }
+.field-error { margin-top: 5px; font-size: 13px; color: #ff8c7a; line-height: 1.4; display: block; }
+.field.is-invalid, .ct-group input.is-invalid, .ct-group select.is-invalid, .ct-group textarea.is-invalid {
+  border-color: #ff8c7a !important;
+  box-shadow: 0 0 10px rgba(255, 140, 122, .35) !important;
+}
 
 .btn-acc {
   border: none; background: var(--acc); color: #07100e; font-weight: 800;
