@@ -1384,9 +1384,6 @@ body { overflow-x: clip; }
   }
   .fondo-negro-movil .hero-video { background: transparent; }
   .fondo-negro-movil .hero-veil { background: rgba(0, 0, 0, .45); }
-  /* sin vídeo detrás, el formulario puede ser transparente como el de
-     consultoría y el de contacto; en escritorio sigue opaco */
-  .fondo-negro-movil #home .form-card { background: transparent; }
   /* fuera el resplandor azul de detrás del titular: sobre la textura
      negra se leía como una mancha, no como un halo */
   .hero-glow { display: none; }
@@ -1805,15 +1802,17 @@ body { overflow-x: clip; }
    Todo cuelga de .form-sec / .form-card, que solo existen en esos dos
    formularios. Si se toca un valor aquí, tocarlo también en .ct-*.
    ============================================================ */
-/* Sin la losa azul desplazada detrás: con la caja transparente se vería
-   entera a través. */
-.form-sec .form-shadow { display: none; }
+/* La tarjeta vuelve a ser opaca para que el bloque azul desplazado
+   (.form-shadow) se lea como un borde por la derecha y por abajo, como
+   al principio. Con la caja transparente se veia entero a traves. */
 .form-sec .form-card {
   padding: 50px; border-radius: 20px;
-  background: transparent;
+  background: var(--card);
   border: 1px solid rgba(var(--acc-rgb), .35);   /* = --ct-card-border */
   box-shadow: none;
 }
+/* mismo radio que la tarjeta, para que el borde azul la siga */
+.form-sec .form-shadow { border-radius: 20px; }
 /* 25px entre grupos, como .ct-group. Los formularios son columnas flex
    con sus propios gap y margin-bottom (distintos en home y consultoría):
    se unifica todo en el gap y los márgenes a 0. */
@@ -1901,13 +1900,6 @@ body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) {
   .form-card .btn-submit:hover { transform: none; }
 }
-
-/* La home es el único formulario que va sobre el vídeo del hero: con la
-   caja transparente se veía el vídeo a través de todo el formulario, así
-   que ahí conserva su fondo opaco de siempre (--card). Lo demás (campos
-   negros, luz solo por fuera al hacer clic y botón) es igual que en
-   contacto y consultoría. */
-#home .form-card { background: var(--card); }
 
 /* --- tipografía de los CTA, medida sobre la referencia ------------
    Botón de envío de los tres formularios: 19,2px, peso 700,
