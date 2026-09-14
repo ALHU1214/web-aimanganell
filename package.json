@@ -4,12 +4,15 @@
   "private": true,
   "description": "Sitio web de AI Manganell · Consultoría IA & Ciberseguridad",
   "scripts": {
-    "build": "esbuild src/main.ts --bundle --outfile=main.js --target=es2020 && esbuild src/config.ts --outfile=config.js --target=es2020",
+    "build:css": "npx @tailwindcss/cli -i src/styles.css -o styles.css --minify",
+    "build": "npm run build:css && esbuild src/main.ts --bundle --outfile=main.js --target=es2020 && esbuild src/config.ts --outfile=config.js --target=es2020",
     "check": "tsc --noEmit",
-    "watch": "esbuild src/main.ts --bundle --outfile=main.js --target=es2020 --watch"
+    "watch": "npx @tailwindcss/cli -i src/styles.css -o styles.css --watch"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.0.9",
     "esbuild": "^0.25.0",
+    "tailwindcss": "^4.0.9",
     "typescript": "^5.7.3"
   }
 }
