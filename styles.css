@@ -1376,6 +1376,9 @@ body { overflow-x: clip; }
   /* sin vídeo detrás, el formulario puede ser transparente como el de
      consultoría y el de contacto; en escritorio sigue opaco */
   .fondo-negro-movil #home .form-card { background: transparent; }
+  /* fuera el resplandor azul de detrás del titular: sobre la textura
+     negra se leía como una mancha, no como un halo */
+  .hero-glow { display: none; }
 }
 
 /* Las tarjetas heredaban --card (#0a1613), que es un verde azulado: sobre
