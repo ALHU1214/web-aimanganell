@@ -1373,6 +1373,9 @@ body { overflow-x: clip; }
   }
   .fondo-negro-movil .hero-video { background: transparent; }
   .fondo-negro-movil .hero-veil { background: rgba(0, 0, 0, .45); }
+  /* sin vídeo detrás, el formulario puede ser transparente como el de
+     consultoría y el de contacto; en escritorio sigue opaco */
+  .fondo-negro-movil #home .form-card { background: transparent; }
 }
 
 /* Las tarjetas heredaban --card (#0a1613), que es un verde azulado: sobre
