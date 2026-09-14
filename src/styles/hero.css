@@ -1,0 +1,42 @@
+/* ============================================================
+   PÁGINA 1 · HERO
+   ============================================================ */
+#home { flex: 1 0 auto; }
+.hero-wrap { position: relative; overflow: hidden; min-height: 100vh; }
+.hero-video { position: absolute; inset: 0; z-index: 0; background: #07100e; }
+.hero-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-veil { position: absolute; inset: 0; z-index: 1; background: rgba(7,16,14,.66); pointer-events: none; }
+.hero-grad-x { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,16,14,.55) 0%, rgba(7,16,14,0) 60%); }
+.hero-grad-y { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,16,14,.5) 0%, rgba(7,16,14,0) 55%); }
+
+.hero-inner {
+  position: relative; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;
+  max-width: 720px; margin: 0 auto; padding: 104px 24px 56px; min-height: 100vh;
+}
+.hero { position: relative; width: 100%; display: flex; flex-direction: column; justify-content: center; }
+.hero-glow { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); pointer-events: none; }
+.hero-copy { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 9px; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid rgba(var(--acc-rgb), .35); background: rgba(var(--acc-rgb), .07);
+  font-family: var(--mono); font-size: 11.5px; color: var(--acc2); letter-spacing: .08em;
+}
+.pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); animation: pulse 2s infinite; }
+
+.hero h1 {
+  margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: -.02em; line-height: 1.08;
+  font-size: clamp(34px, 4.6vw, 58px); max-width: 700px; text-wrap: pretty;
+}
+.hero-sub { margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(232,242,239,.75); max-width: 540px; text-wrap: pretty; }
+.hero-sub strong { color: var(--ink); }
+.hero-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; }
+.hero-list li { display: flex; gap: 8px; align-items: center; font-size: 12.5px; line-height: 1.3; color: rgba(232,242,239,.85); }
+.hero-list svg { width: 14px; height: 14px; flex: none; fill: none; stroke: var(--acc); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 760px) {
+  .hero-wrap { min-height: 0; }
+  .hero-inner { min-height: 100svh; padding-top: 88px; padding-bottom: 44px; }
+  .hero-video, .hero-veil, .hero-grad-x, .hero-grad-y, .hero-glow { display: none; }
+}
