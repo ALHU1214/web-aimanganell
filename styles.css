@@ -1353,6 +1353,28 @@ body { overflow-x: clip; }
    Con .fondo-negro se quita. El vídeo del hero va encima y no cambia. */
 .fondo-negro .p2-body { background: none; }
 
+/* --- la home en móvil, con la misma textura negra -----------------
+   Por debajo de 760px main.js no carga el vídeo del hero (los dos planos
+   son 16:9 y la portada es vertical), así que ese hueco lo tapaban el
+   fondo opaco de .hero-video y el velo. Con .fondo-negro-movil la home
+   usa en móvil la textura del resto del sitio: se quita ese fondo opaco
+   y el velo baja de .78 a .45 para que la textura se vea. El texto del
+   hero sigue muy por encima del mínimo de contraste (7,8 en el píxel más
+   claro de la textura). En escritorio no cambia nada: manda el vídeo. */
+@media (max-width: 760px) {
+  .fondo-negro-movil,
+  .fondo-negro-movil body { background-color: #000; }
+  .fondo-negro-movil body {
+    background-image: url('assets/fondo-contacto.webp');
+    background-size: 158.7% auto;
+    background-position: 50% 0;
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+  }
+  .fondo-negro-movil .hero-video { background: transparent; }
+  .fondo-negro-movil .hero-veil { background: rgba(0, 0, 0, .45); }
+}
+
 /* Las tarjetas heredaban --card (#0a1613), que es un verde azulado: sobre
    este fondo azul marino tiraba a verde. Se cambian por un azul de la
    misma familia del vídeo, y translúcido para que los degradados de
