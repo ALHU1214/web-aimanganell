@@ -12,9 +12,10 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node"
   },
-  "files": [
-    "src/types/global.d.ts",
-    "src/config.ts",
-    "src/main.ts"
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
