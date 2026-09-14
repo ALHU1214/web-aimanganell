@@ -1,0 +1,14 @@
+{
+  "name": "web-aimanganell",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de AI Manganell · Consultoría IA & Ciberseguridad",
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

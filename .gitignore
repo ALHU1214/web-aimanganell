@@ -25,6 +25,8 @@ desktop.ini
 # en silencio rompería el repo para cualquiera que lo clonara.
 !package.json
 !package-lock.json
+!tsconfig.json
+node_modules/
 
 # Estado interno del proyecto (arquitectura, IDs de Supabase,
 # pendientes de seguridad) — solo debe existir en local
