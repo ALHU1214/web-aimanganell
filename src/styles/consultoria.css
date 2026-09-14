@@ -227,6 +227,11 @@
 }
 .ct-title-gray { color: var(--ct-gray); }
 .ct-title-accent { color: var(--acc2); }
+/* Letra del logo, más grande que "Contacta con" */
+.ct-title-accent {
+  font-family: 'Montserrat', var(--font-1); font-weight: 600;
+  font-size: 1.2em; letter-spacing: .06em; margin-right: -.06em;
+}
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .ct-title-accent {
     background: linear-gradient(90deg, #1f8fff 0%, #5aa9ff 50%, var(--acc2) 100%);

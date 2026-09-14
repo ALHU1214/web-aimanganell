@@ -63,6 +63,13 @@
   font-display: swap;
   src: url('assets/fonts/ibm-plex-mono.woff2') format('woff2');
 }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/montserrat-600.woff2') format('woff2');
+}
 
 :root {
   --acc: #0071eb;          /* acento principal (mismo azul que los logos) */

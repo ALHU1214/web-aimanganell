@@ -66,6 +66,15 @@
   font-display: swap;
   src: url('assets/fonts/ibm-plex-mono.woff2') format('woff2');
 }
+@font-face {
+  /* La del logo (letras de "AI MANGANELL"). Solo la usa el nombre de marca
+     de la cabecera de contacto, por eso un único peso. */
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/montserrat-600.woff2') format('woff2');
+}
 
 :root {
   --acc: #0071eb;          /* acento principal (mismo azul que los logos) */
@@ -1607,6 +1616,14 @@ body { overflow-x: clip; }
    va con filter:drop-shadow. Sin soporte de background-clip queda en --acc2
    liso: nunca invisible. */
 .ct-title-accent { color: var(--acc2); }
+/* Con la letra del logo (Montserrat SemiBold, algo espaciada) y más grande
+   que "Contacta con", para que la línea de marca sea la más ancha. El
+   margen negativo quita el espacio que letter-spacing deja tras la última
+   L, que si no descentraría la línea. */
+.ct-title-accent {
+  font-family: 'Montserrat', var(--font-1); font-weight: 600;
+  font-size: 1.2em; letter-spacing: .06em; margin-right: -.06em;
+}
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .ct-title-accent {
     background: linear-gradient(90deg, #1f8fff 0%, #5aa9ff 50%, var(--acc2) 100%);
