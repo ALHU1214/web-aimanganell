@@ -1,51 +1,45 @@
 /* ============================================================
    AI MANGANELL · configuración
-   Todo lo que cambia al publicar está en este archivo.
+   Configuración de la aplicación cargada mediante variables
+   de entorno (build-time) o valores por defecto.
    ============================================================ */
 
-const config: AMConfig = {
+export const config: AMConfig = {
 
   // WhatsApp de la página de gracias. Con formato internacional y sin
   // signos: 34612345678. Si se deja vacío, el bloque de WhatsApp de
   // /gracias/ no se muestra (main.js lo deja oculto).
-  waNumber: '34650903265',
-  waMsg: 'Hola, acabo de solicitar el AI & Cyber AMG en la web.',
+  waNumber: process.env.WA_NUMBER || '34650903265',
+  waMsg: process.env.WA_MSG || 'Hola, acabo de solicitar el AI & Cyber AMG en la web.',
 
   // Calendario donde se agenda la llamada
-  calUrl: 'https://cal.com/aimanganell/llamada-inicial',
+  calUrl: process.env.CAL_URL || 'https://cal.com/aimanganell/llamada-inicial',
 
   // Vídeos de fondo. Deja '' para desactivar un vídeo.
-  // Ojo: son rutas relativas al documento que los usa, no a este archivo.
-  // heroVideo lo consume index.html (raíz); consultoriaVideo lo consume
-  // consultoria/index.html (un nivel más abajo) — si alguna vez se usan
-  // desde otra profundidad, esta ruta también hay que ajustarla.
-  heroVideo: 'assets/hero.mp4',
-  consultoriaVideo: '../assets/consultoria.mp4',
+  heroVideo: process.env.HERO_VIDEO || 'assets/hero.mp4',
+  consultoriaVideo: process.env.CONSULTORIA_VIDEO || '../assets/consultoria.mp4',
   consultoriaVideoRate: 0.55,   // cámara lenta del vídeo de consultoría
 
-  // Destino de los leads: la Edge Function submit-lead (supabase/functions/),
-  // desplegada en el mismo proyecto de supabase.url. Es el único punto que
-  // escribe en la tabla leads — el navegador ya no inserta directamente
-  // (ver supabase/functions/submit-lead/index.ts). key se deja como
-  // referencia del proyecto, no se usa ya para el insert.
+  // Destino de los leads: Edge Function submit-lead de Supabase
   supabase: {
-    url: 'https://dbntpdrvnxdhgvdcexrt.supabase.co',
-    key: 'sb_publishable_yoJZhGK0iJrHDNmj7uEBLA_42dE-kGf',
-    table: 'leads'
+    url: process.env.SUPABASE_URL || 'https://dbntpdrvnxdhgvdcexrt.supabase.co',
+    key: process.env.SUPABASE_KEY || 'sb_publishable_yoJZhGK0iJrHDNmj7uEBLA_42dE-kGf',
+    table: process.env.SUPABASE_TABLE || 'leads'
   },
 
   // Webhook opcional. Recibe el lead en JSON.
-  webhookUrl: '',
+  webhookUrl: process.env.WEBHOOK_URL || '',
 
-  // Cloudflare Turnstile (protección anti-spam de los formularios de
-  // contacto). Site Key, pública por diseño.
-  turnstileSiteKey: '0x4AAAAAAENeLO4-8PHUoy9x',
+  // Cloudflare Turnstile (protección anti-spam). Site Key pública.
+  turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '0x4AAAAAAENeLO4-8PHUoy9x',
 
-  // Analítica. El script de GA solo se inyecta si el usuario acepta
-  // todas las cookies en el banner (o ya lo aceptó en una visita
-  // anterior); con "solo esenciales" no se carga en absoluto.
-  gaId: 'G-PLTXXWN26D',
-  metaPixelId: ''
+  // Analítica. GA y Meta Pixel.
+  gaId: process.env.GA_ID || 'G-PLTXXWN26D',
+  metaPixelId: process.env.META_PIXEL_ID || ''
 };
 
-window.AM_CONFIG = config;
+// Se asigna a window.AM_CONFIG por retrocompatibilidad si es necesario
+if (typeof window !== 'undefined') {
+  window.AM_CONFIG = config;
+}
+

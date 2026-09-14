@@ -7,15 +7,16 @@ import { initModalLegal } from './modules/modal-legal';
 import { initGestionCookies } from './modules/gestion-cookies';
 import { initScrollReveal } from './modules/scroll-reveal';
 import { initMenuMovil } from './modules/menu-movil';
+import { config } from './config';
 
 /* ============================================================
    AI MANGANELL · lógica de la web
-   Sin dependencias. Se apoya en window.AM_CONFIG (config.js).
+   Usa la configuración compilada desde src/config.ts.
    ============================================================ */
 (function (): void {
   'use strict';
 
-  const CFG: AMConfig = (window.AM_CONFIG || {}) as AMConfig;
+  const CFG = config;
 
   initNavegacion();
   initVideosFondo(CFG);
@@ -27,3 +28,4 @@ import { initMenuMovil } from './modules/menu-movil';
   initScrollReveal();
   initMenuMovil();
 })();
+

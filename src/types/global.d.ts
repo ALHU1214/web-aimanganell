@@ -53,3 +53,8 @@ interface Window {
   gtag?: (command: string, actionOrTarget: string | Date, params?: Record<string, unknown>) => void;
   fbq?: (command: string, eventName: string, params?: Record<string, unknown>) => void;
 }
+
+declare const process: {
+  env: Record<string, string | undefined>;
+};
+
