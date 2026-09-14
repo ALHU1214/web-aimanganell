@@ -21,6 +21,11 @@
 .hl { color: var(--ink); text-decoration: underline; text-decoration-color: var(--acc); text-decoration-thickness: 2px; text-underline-offset: 1px; padding: 0 .1em; }
 .hl:hover { color: var(--ink); }
 span.hl { text-decoration: none; }
+/* El enlace de la home se ilumina en azul al pasar el ratón o con teclado */
+a.hl { transition: text-shadow .25s; }
+a.hl:hover, a.hl:focus-visible {
+  text-shadow: 0 0 16px rgba(var(--acc-rgb), .9), 0 0 32px rgba(var(--acc-rgb), .45);
+}
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .lead-form .grid-2, .lead-form > .field-wrap { margin-bottom: 14px; }

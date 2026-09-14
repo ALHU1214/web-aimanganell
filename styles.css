@@ -282,6 +282,12 @@ nav {
    solo prometeria un enlace que no existe. El subrayado se queda en la
    home, donde .hl si es un <a> real hacia consultoria. */
 span.hl { text-decoration: none; }
+/* El enlace de la home se ilumina en azul al pasar el ratón (o al llegar
+   con el teclado). El texto sigue blanco; solo aparece el halo. */
+a.hl { transition: text-shadow .25s; }
+a.hl:hover, a.hl:focus-visible {
+  text-shadow: 0 0 16px rgba(var(--acc-rgb), .9), 0 0 32px rgba(var(--acc-rgb), .45);
+}
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .lead-form .grid-2, .lead-form > .field-wrap { margin-bottom: 14px; }
