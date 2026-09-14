@@ -82,7 +82,8 @@
   line-height: 1.3; font-size: clamp(19px, 2.4vw, 22px); color: var(--ink); text-wrap: balance;
 }
 .post-content p { margin: 0; text-wrap: pretty; }
-.post-content ul, .post-content ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: .65em; }
+.post-content ul { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: .65em; list-style-type: disc; }
+.post-content ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: .65em; list-style-type: decimal; }
 .post-content li { line-height: 1.7; }
 .post-content ul li::marker, .post-content ol li::marker { color: var(--acc); }
 .post-content blockquote {
@@ -115,10 +116,10 @@
   letter-spacing: -.01em; color: var(--ink);
   border-bottom: 1px solid rgba(var(--acc-rgb), .45);
 }
-.post-keypoints ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: .7em; }
+.post-keypoints ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: .7em; list-style-type: disc; }
 .post-keypoints li { font-size: 16.5px; line-height: 1.65; color: rgba(232,242,239,.86); }
 .post-keypoints li::marker { color: var(--acc2); }
-.post-toc ol { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: .55em; }
+.post-toc ol { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: .55em; list-style-type: decimal; }
 .post-toc li { font-size: 16px; line-height: 1.5; }
 .post-toc li::marker { color: var(--acc2); font-family: var(--mono); font-size: .85em; }
 .post-toc a { color: var(--acc2); text-decoration: underline; text-decoration-color: rgba(var(--acc-rgb), .5); text-underline-offset: .18em; }
