@@ -99,6 +99,17 @@ body {
   background-attachment: fixed, scroll;
 }
 a { color: var(--acc); text-decoration: none; }
+/* Enlaces dentro de un párrafo: subrayados, no solo azules. Lighthouse
+   avisa ("Links rely on color to be distinguishable", criterio 1.4.1 de
+   WCAG) porque quien no distingue el azul no ve que ahí hay un enlace.
+   Solo los que van embebidos en texto corrido: los del nav, el footer,
+   las tarjetas y los botones ya se distinguen por su forma o su caja. */
+.consent a,
+#cookie-bar a,
+.gracias-mail a,
+.gracias-cta-nota a,
+.post-content p a,
+.legal-body a { text-decoration: underline; text-underline-offset: 2px; }
 a:hover { color: var(--acc2); }
 img { display: block; }
 ::selection { background: rgba(var(--acc-rgb), .3); }
