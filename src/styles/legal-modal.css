@@ -64,7 +64,6 @@
   background-repeat: repeat-y;
   background-attachment: scroll;
 }
-.fondo-negro .p2-body { background: none; }
 
 @media (max-width: 760px) {
   .fondo-negro-movil, .fondo-negro-movil body { background-color: #000; }
@@ -201,9 +200,6 @@
 @media (max-width: 760px) {
   .legal-card { padding: 32px 22px 28px; }
   .legal-page { padding-top: 100px; padding-left: 20px; padding-right: 20px; }
-  .gracias { padding: 100px 20px var(--sec-pad); }
-  .gracias-cta { padding: 28px 20px; }
-  .gracias-cal { display: block; padding: 16px 24px; }
 }
 @media (max-width: 768px) {
   .gracias { padding: 60px 20px; }
@@ -212,10 +208,6 @@
   .gracias-card, .gracias-pasos li, .gracias-links a { padding: 20px; }
   .gracias-cta { padding: 30px 20px; }
   .gracias-cal { display: block; }
-}
-@media (max-width: 520px) {
-  .gracias { padding-left: 16px; padding-right: 16px; }
-  .gracias-card { padding: 22px 20px; }
 }
 @media (max-width: 420px) {
   .legal-page { padding-left: 16px; padding-right: 16px; }

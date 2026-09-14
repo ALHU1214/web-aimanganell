@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /* ============================================================
-   Sella styles.css, contraste-minimo.css, main.js y config.js con
-   ?v=<hash> en todas las paginas y plantillas.
+   Sella styles.css, contraste-minimo.css, main.js y la hoja de
+   consultoria con ?v=<hash> en todas las paginas y plantillas.
 
-   Por que: GitHub Pages sirve esos cuatro con Cache-Control max-age=14400,
+   Por que: GitHub Pages los sirve con Cache-Control max-age=14400,
    o sea cuatro horas. Un visitante que ya los tenga cacheados no vuelve a
    pedirlos aunque se publique una version nueva, asi que un cambio de CSS
    puede tardar horas en verse. El HTML, en cambio, caduca en diez minutos.
@@ -22,7 +22,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const ROOT = path.join(__dirname, '..');
-const SELLADOS = ['styles.css', 'contraste-minimo.css', 'main.js', 'config.js',
+const SELLADOS = ['styles.css', 'contraste-minimo.css', 'main.js',
   'assets/css/consultoria-formato-360.css'];
 
 // hash corto del contenido: 8 caracteres bastan para distinguir versiones

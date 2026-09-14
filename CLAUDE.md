@@ -15,6 +15,20 @@ sin que nadie la toque a mano. Trabajar sobre un repo obsoleto puede
 sobrescribir posts ya publicados o provocar conflictos al hacer push
 (ya ha pasado).
 
+## CSS y JS: se editan en `src/`, nunca en `styles.css` ni `main.js`
+
+`styles.css` y `main.js` los genera `npm run build` desde `src/styles/`
+y `src/*.ts`. Cualquier cambio hecho directamente en ellos se pierde en
+el siguiente build.
+
+**Por qué:** en septiembre de 2026, tras migrar a `src/`, se siguió
+editando `styles.css` a mano. Al fusionar, el archivo acabó con dos copias
+del CSS (la compilada y la antigua) que se pisaban entre sí: 157 KB en vez
+de 57, y un arreglo de colores de los desplegables anulado en producción.
+
+Flujo: editar en `src/` → `npm run build` → comprobar en local →
+commit de `src/` **y** de `styles.css`/`main.js` (Pages no compila nada).
+
 ## Si el pull trae cambios en posts o archivos generados, avisa
 
 Si el `git pull` trae cambios en `blog/posts/`, o en cualquier

@@ -10,27 +10,11 @@
   position: absolute; bottom: -10px; border-radius: 50%;
   animation-name: float-up; animation-timing-function: linear; animation-iteration-count: infinite;
 }
-.p2-body {
-  position: relative; z-index: 1; animation: p2fade .5s ease-out both;
-  background-image: url(assets/fondo-tile.webp);
-  background-repeat: repeat-y;
-  background-size: 100% auto;
-  background-position: top center;
-}
+.p2-body { position: relative; z-index: 1; animation: p2fade .5s ease-out both; }
 
 .p2-hero {
   position: relative; overflow: hidden; min-height: 100vh;
   display: flex; align-items: center; justify-content: center; padding: 96px 48px;
-}
-.p2-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-.p2-hero-veil {
-  position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(180deg, rgba(6,22,29,.82), rgba(6,22,29,.6) 45%, rgba(6,22,29,.95));
-}
-.noise {
-  position: absolute; inset: 0; pointer-events: none; opacity: .16; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 320px 320px;
 }
 .p2-hero-copy {
   position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
@@ -342,14 +326,15 @@
 
 @media (max-width: 760px) {
   #page2 { --sec-pad: 103px; }
-  .p2-hero-video, .p2-hero-veil, .noise, .manifiesto { display: none; }
+  .sec, .p2-hero, .contacto, .sec-total, .manifiesto { padding-left: 20px; padding-right: 20px; }
+  .manifiesto { display: none; }
   .manifiesto p { font-size: clamp(28px, 11vw, 130px); letter-spacing: -.03em; }
   .sec-title, .contacto-head h2, .total-box h2 { font-size: clamp(32px, 10.7vw, 46px); }
   .p2-kicker { font-size: clamp(16px, 4.6vw, 20px); line-height: 1.5; }
   .p2-hero-copy h1 { margin-top: 20px; font-size: clamp(26px, 8.2vw, 38px); }
   .p2-hero-copy p { margin-top: 22px; font-size: clamp(15px, 4.4vw, 20px); line-height: 1.42; }
   .p2-hero-copy .btn-acc {
-    margin-top: 38px; padding: 20px 28px; font-size: 18px;
+    margin-top: 38px; padding: 20px 28px;
     width: 100%; max-width: 100%; text-align: center;
     box-shadow: 0 0 20px rgba(var(--acc-rgb), .28);
   }
@@ -363,6 +348,10 @@
   .plazas-bang, .plazas span:last-child { font-size: 15px; }
   .p2-hero { min-height: 0; padding-top: 116px; padding-bottom: 0; overflow: visible; }
   .p2-tiled > .sec:first-child { padding-top: var(--sec-pad); }
+}
+
+@media (max-width: 420px) {
+  .sec, .p2-hero, .contacto, .sec-total, .manifiesto { padding-left: 16px; padding-right: 16px; }
 }
 
 @media (max-width: 768px) {

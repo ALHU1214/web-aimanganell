@@ -50,6 +50,7 @@ nav {
 }
 
 @media (max-width: 420px) {
+  nav { padding-left: 16px; padding-right: 16px; }
   .nav-cta { display: none; }
 }
 

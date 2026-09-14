@@ -39,7 +39,6 @@ const defaults = {
   WA_MSG: 'Hola, acabo de solicitar el AI & Cyber AMG en la web.',
   CAL_URL: 'https://cal.com/aimanganell/llamada-inicial',
   HERO_VIDEO: 'assets/hero.mp4',
-  CONSULTORIA_VIDEO: '../assets/consultoria.mp4',
   SUPABASE_URL: 'https://dbntpdrvnxdhgvdcexrt.supabase.co',
   SUPABASE_KEY: 'sb_publishable_yoJZhGK0iJrHDNmj7uEBLA_42dE-kGf',
   SUPABASE_TABLE: 'leads',
@@ -64,16 +63,6 @@ async function runBuild() {
   await esbuild.build({
     entryPoints: [path.join(ROOT, 'src/main.ts')],
     outfile: path.join(ROOT, 'main.js'),
-    bundle: true,
-    target: 'es2020',
-    minify: true,
-    define
-  });
-
-  console.log('⚡ Empaquetando JS (config.ts -> config.js)...');
-  await esbuild.build({
-    entryPoints: [path.join(ROOT, 'src/config.ts')],
-    outfile: path.join(ROOT, 'config.js'),
     bundle: true,
     target: 'es2020',
     minify: true,

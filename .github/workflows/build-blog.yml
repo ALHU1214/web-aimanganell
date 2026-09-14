@@ -13,7 +13,6 @@ on:
       - 'styles.css'
       - 'contraste-minimo.css'
       - 'main.js'
-      - 'config.js'
       - 'assets/css/consultoria-formato-360.css'
   workflow_dispatch:
 

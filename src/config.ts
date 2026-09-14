@@ -15,10 +15,8 @@ export const config: AMConfig = {
   // Calendario donde se agenda la llamada
   calUrl: process.env.CAL_URL || 'https://cal.com/aimanganell/llamada-inicial',
 
-  // Vídeos de fondo. Deja '' para desactivar un vídeo.
+  // Vídeo de fondo del hero de la home. Deja '' para desactivarlo.
   heroVideo: process.env.HERO_VIDEO || 'assets/hero.mp4',
-  consultoriaVideo: process.env.CONSULTORIA_VIDEO || '../assets/consultoria.mp4',
-  consultoriaVideoRate: 0.55,   // cámara lenta del vídeo de consultoría
 
   // Destino de los leads: Edge Function submit-lead de Supabase
   supabase: {
@@ -37,9 +35,4 @@ export const config: AMConfig = {
   gaId: process.env.GA_ID || 'G-PLTXXWN26D',
   metaPixelId: process.env.META_PIXEL_ID || ''
 };
-
-// Se asigna a window.AM_CONFIG por retrocompatibilidad si es necesario
-if (typeof window !== 'undefined') {
-  window.AM_CONFIG = config;
-}
 

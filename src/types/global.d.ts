@@ -9,8 +9,6 @@ interface AMConfig {
   waMsg: string;
   calUrl: string;
   heroVideo: string;
-  consultoriaVideo: string;
-  consultoriaVideoRate: number;
   supabase: AMSupabaseConfig;
   webhookUrl: string;
   turnstileSiteKey: string;
@@ -46,7 +44,6 @@ interface LeadFormElement extends HTMLFormElement {
 }
 
 interface Window {
-  AM_CONFIG?: AMConfig;
   onloadTurnstile?: () => void;
   turnstile?: TurnstileWidget;
   dataLayer?: unknown[];

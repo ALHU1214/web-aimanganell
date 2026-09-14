@@ -58,30 +58,11 @@ generadas sin error.
 Activado, Source = rama `master`, carpeta `/`. Primer build
 (`pages build and deployment`) completado con éxito.
 
-## 4. Dominio propio (aimanganell.com) — ⏳ falta el DNS, lo único que queda de infraestructura
+## 4. Dominio propio (aimanganell.com) — ✅ hecho
 
-El archivo `CNAME` con `aimanganell.com` ya está en el repo — GitHub
-ya lo detectó (`"cname":"aimanganell.com"` en la configuración de
-Pages). **Falta lo único que no puedo hacer yo: el DNS.**
-
-- [ ] En tu proveedor de DNS, registros **A** del dominio raíz
-      (`aimanganell.com`) apuntando a las 4 IPs de GitHub Pages:
-      ```
-      185.199.108.153
-      185.199.109.153
-      185.199.110.153
-      185.199.111.153
-      ```
-- [ ] Una vez el DNS resuelva (puede tardar de minutos a horas):
-      Settings → Pages → verás que "Enforce HTTPS" pasa a estar
-      disponible — actívalo en cuanto aparezca. GitHub emite el
-      certificado automáticamente al verificar el dominio, no hay
-      que pedirlo aparte.
-- Mientras tanto, el sitio ya es visible en
-  `https://alhu1214.github.io/web-aimanganell/`, aunque esa URL
-  redirige automáticamente a `aimanganell.com` (por el `CNAME`), así
-  que hasta que el DNS resuelva no vas a poder verlo cargar del todo
-  desde ningún sitio — es normal, no es que algo esté roto.
+`aimanganell.com` resuelve y sirve por HTTPS, con Cloudflare delante de
+GitHub Pages (comprobado el 2026-09-14). El `CNAME` del repo es el que
+le dice a Pages qué dominio es el suyo: no borrarlo.
 
 ## 5. Google Search Console
 
@@ -98,9 +79,8 @@ Pages). **Falta lo único que no puedo hacer yo: el DNS.**
 
 ## 6. Opcional, no bloqueante
 
-- [ ] Analítica: `config.js` tiene `gaId`/`metaPixelId` vacíos. Si
-      quieres analítica en producción, hace falta una propiedad GA4
-      (o Meta Pixel) tuya — pásame el ID y lo pongo.
+- [x] Analítica: GA4 activo (`gaId` en `src/config.ts`). Meta Pixel sigue
+      vacío (`metaPixelId`): si se quiere, pasar el ID.
 - [ ] Foto real para el bloque de autor de los posts (de momento usa
       el símbolo de la marca).
 - [ ] Iconos de redes sociales en el footer (hueco preparado, vacío

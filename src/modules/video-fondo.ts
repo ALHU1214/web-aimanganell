@@ -1,7 +1,6 @@
 import { $ } from './utils';
 
 interface VideoOpts {
-  rate?: number;
   fade?: boolean;
 }
 
@@ -24,12 +23,6 @@ function setupVideo(video: HTMLVideoElement | null, src?: string, opts?: VideoOp
 
   video.preload = 'auto';
   video.src = src;
-  if (opts.rate) {
-    const rate = opts.rate;
-    video.addEventListener('loadedmetadata', () => {
-      video.playbackRate = rate;
-    });
-  }
 
   if (opts.fade) {
     video.style.transition = 'opacity .35s linear';
@@ -56,8 +49,7 @@ function setupVideo(video: HTMLVideoElement | null, src?: string, opts?: VideoOp
   });
 }
 
-/* ---------- 2 · vídeos de fondo ---------- */
+/* ---------- 2 · vídeo de fondo del hero (solo la home) ---------- */
 export function initVideosFondo(config: AMConfig): void {
   setupVideo($('#hero-video') as HTMLVideoElement | null, config.heroVideo, { fade: true });
-  setupVideo($('.p2-hero-video') as HTMLVideoElement | null, config.consultoriaVideo, { rate: config.consultoriaVideoRate });
 }

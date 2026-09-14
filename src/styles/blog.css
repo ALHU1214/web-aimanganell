@@ -5,12 +5,6 @@
 /* Listado del Blog */
 .blog-page { padding: calc(var(--sec-pad) + 20px) 48px var(--sec-pad); }
 .blog-page-wrap { max-width: 1080px; margin: 0 auto; }
-.blog-page-header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 640px; margin-bottom: 44px; }
-.blog-page-header h1 {
-  margin: 0; font-family: var(--font-1); font-weight: 700; letter-spacing: -.02em;
-  line-height: 1.15; font-size: clamp(32px, 5vw, 52px); text-wrap: balance;
-}
-.blog-page-header p { margin: 0; font-size: 16.5px; line-height: 1.6; color: rgba(232,242,239,.75); text-wrap: pretty; }
 
 .blog-filter { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 40px; }
 .blog-filter-btn {
@@ -32,7 +26,6 @@
 .blog-card-cover { line-height: 0; aspect-ratio: 16 / 9; }
 .blog-card-cover img { width: 100%; height: 100%; object-fit: cover; }
 .blog-card-body { display: flex; flex-direction: column; gap: 10px; padding: 22px 24px 26px; flex: 1; }
-.blog-card-cat { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--acc2); }
 .blog-card-body h2 { margin: 0; font-family: var(--font-1); font-weight: 700; font-size: 19px; line-height: 1.35; color: var(--ink); letter-spacing: -.01em; }
 .blog-card-body p {
   margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(232,242,239,.7); flex: 1;
@@ -158,7 +151,6 @@
 .author-avatar { flex: none; width: 150px; display: flex; align-items: center; justify-content: center; padding: 14px 16px; }
 .author-avatar img { width: 100%; height: auto; }
 .author-name { margin: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
-.author-role { font-size: 13px; font-weight: 500; color: rgba(232,242,239,.5); }
 .author-bio { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: rgba(232,242,239,.65); }
 
 .post-cta {

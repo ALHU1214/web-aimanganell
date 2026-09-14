@@ -8,7 +8,7 @@
 //     por Supabase en cualquier Edge Function, no hace falta configurarlas.
 //   TURNSTILE_SECRET_KEY                     → hay que crearla a mano
 //     (`supabase secrets set TURNSTILE_SECRET_KEY=...`). Nunca debe vivir
-//     en el repo ni en config.js.
+//     en el repo ni en src/config.ts.
 //   CRM_WEBHOOK_URL, CRM_FORM_SECRET         → también a mano. Son el
 //     endpoint del CRM grande (/api/webhooks/form) y su FORM_SECRET. El
 //     secreto vive aquí, en el servidor, precisamente para que el
