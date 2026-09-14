@@ -46,7 +46,7 @@ span.hl { text-decoration: none; }
 }
 .field::placeholder { color: rgba(232,242,239,.35); }
 textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
-.field-select option { color: #07100e; }
+.field-select option, select option { background-color: #000; color: #e8f2ef; }
 
 .consent {
   display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5;
