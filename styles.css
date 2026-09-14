@@ -66,15 +66,6 @@
   font-display: swap;
   src: url('assets/fonts/ibm-plex-mono.woff2') format('woff2');
 }
-@font-face {
-  /* La del logo (letras de "AI MANGANELL"). Solo la usa el nombre de marca
-     de la cabecera de contacto, por eso un único peso. */
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('assets/fonts/montserrat-600.woff2') format('woff2');
-}
 
 :root {
   --acc: #0071eb;          /* acento principal (mismo azul que los logos) */
@@ -1615,21 +1606,42 @@ body { overflow-x: clip; }
    background-clip:text (se pinta por encima del relleno), por eso el halo
    va con filter:drop-shadow. Sin soporte de background-clip queda en --acc2
    liso: nunca invisible. */
-.ct-title-accent { color: var(--acc2); }
-/* Con la letra del logo (Montserrat SemiBold, algo espaciada) y más grande
-   que "Contacta con", para que la línea de marca sea la más ancha. El
-   margen negativo quita el espacio que letter-spacing deja tras la última
-   L, que si no descentraría la línea. */
+/* background/filter a cero: el bloque compilado de la línea 2 aún pinta el
+   degradado recortado al texto en este <span> de fuera, y con él
+   reaparecería el texto oculto. El degradado va ahora en los de dentro. */
 .ct-title-accent {
-  font-family: 'Montserrat', var(--font-1); font-weight: 600;
-  font-size: 1.2em; letter-spacing: .06em; margin-right: -.06em;
+  color: var(--acc2); background: none; filter: none;
+  -webkit-text-fill-color: currentColor;
 }
+.ct-title-logo { display: none; }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .ct-title-accent {
+  .ct-title-texto {
     background: linear-gradient(90deg, #1f8fff 0%, #5aa9ff 50%, var(--acc2) 100%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent;
     filter: drop-shadow(0 0 18px rgba(var(--acc-rgb), .55));
+  }
+}
+/* Con máscara: se pintan las letras exactas del logo (nombre-mascara.webp,
+   sacada del logo grande) con el mismo degradado y halo, y más anchas que
+   "Contacta con". El texto real sigue en el <h1> para Google y lectores de
+   pantalla, oculto a la vista como .sr-only. El halo va en el <span> de
+   fuera: filter se aplica antes que mask, así que en el mismo elemento la
+   máscara recortaría el halo. Sin soporte de máscara se queda el texto. */
+@supports ((mask-image: none) or (-webkit-mask-image: none)) {
+  .ct-title-accent {
+    display: inline-block; max-width: 100%; margin-top: .25em;
+    filter: drop-shadow(0 0 18px rgba(var(--acc-rgb), .55));
+  }
+  .ct-title-texto {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+  .ct-title-logo {
+    display: block; width: 10.5em; max-width: 100%; aspect-ratio: 1440 / 116;
+    background: linear-gradient(90deg, #1f8fff 0%, #5aa9ff 50%, var(--acc2) 100%);
+    -webkit-mask: url('assets/logos/nombre-mascara.webp') center / contain no-repeat;
+    mask: url('assets/logos/nombre-mascara.webp') center / contain no-repeat;
   }
 }
 .ct-subtitle {

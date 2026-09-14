@@ -227,17 +227,31 @@
 }
 .ct-title-gray { color: var(--ct-gray); }
 .ct-title-accent { color: var(--acc2); }
-/* Letra del logo, más grande que "Contacta con" */
-.ct-title-accent {
-  font-family: 'Montserrat', var(--font-1); font-weight: 600;
-  font-size: 1.2em; letter-spacing: .06em; margin-right: -.06em;
-}
+.ct-title-logo { display: none; }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .ct-title-accent {
+  .ct-title-texto {
     background: linear-gradient(90deg, #1f8fff 0%, #5aa9ff 50%, var(--acc2) 100%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent;
     filter: drop-shadow(0 0 18px rgba(var(--acc-rgb), .55));
+  }
+}
+/* Letras exactas del logo como máscara, mismo degradado y halo. El texto
+   real queda oculto a la vista para Google y lectores de pantalla. */
+@supports ((mask-image: none) or (-webkit-mask-image: none)) {
+  .ct-title-accent {
+    display: inline-block; max-width: 100%; margin-top: .25em;
+    filter: drop-shadow(0 0 18px rgba(var(--acc-rgb), .55));
+  }
+  .ct-title-texto {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+  .ct-title-logo {
+    display: block; width: 10.5em; max-width: 100%; aspect-ratio: 1440 / 116;
+    background: linear-gradient(90deg, #1f8fff 0%, #5aa9ff 50%, var(--acc2) 100%);
+    -webkit-mask: url('assets/logos/nombre-mascara.webp') center / contain no-repeat;
+    mask: url('assets/logos/nombre-mascara.webp') center / contain no-repeat;
   }
 }
 .ct-subtitle {
