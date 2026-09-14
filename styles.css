@@ -1815,6 +1815,12 @@ body { overflow-x: clip; }
 }
 /* mismo radio que la tarjeta, para que el borde azul la siga */
 .form-sec .form-shadow { border-radius: 20px; }
+/* En móvil, no: ahí el formulario se queda transparente y sin el bloque
+   azul detrás, como estaba. El borde desplazado es solo de escritorio. */
+@media (max-width: 760px) {
+  .form-sec .form-card { background: transparent; }
+  .form-sec .form-shadow { display: none; }
+}
 /* 25px entre grupos, como .ct-group. Los formularios son columnas flex
    con sus propios gap y margin-bottom (distintos en home y consultoría):
    se unifica todo en el gap y los márgenes a 0. */
