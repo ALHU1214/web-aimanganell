@@ -105,11 +105,19 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .sent-title { font-size: 20px; font-weight: 700; color: var(--acc2); }
 .btn-cal { align-self: center; padding: 16px 34px; border-radius: 12px; font-size: 16px; }
 
-/* Estilo unificado de cajas transparentes */
+/* Consultoría: caja transparente con contorno azul, igual que contacto */
 .form-sec .form-shadow { display: none; }
 .form-sec .form-card {
   padding: 50px; border-radius: 20px; background: transparent;
   border: 1px solid rgba(var(--acc-rgb), .35); box-shadow: none;
+}
+/* Home: tarjeta opaca con el bloque azul desplazado (borde por la derecha
+   y por abajo). Solo en escritorio; en móvil queda transparente. */
+#formulario .form-card { background: var(--card); }
+#formulario .form-shadow { display: block; border-radius: 20px; }
+@media (max-width: 760px) {
+  #formulario .form-card { background: transparent; }
+  #formulario .form-shadow { display: none; }
 }
 .form-card .lead-form { gap: 25px; }
 .form-card .lead-form > .field-wrap, .form-card .lead-form .grid-2,
@@ -154,8 +162,6 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
   background: #25d366; transform: none; box-shadow: 0 0 34px rgba(37, 211, 102, .45);
 }
 .form-card .btn-submit.is-enviado::before { display: none; }
-
-#home .form-card { background: var(--card); }
 
 .form-card .btn-submit,
 .btn-acc.btn-submit,

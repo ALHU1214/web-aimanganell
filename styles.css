@@ -213,26 +213,6 @@ nav {
   box-shadow: 0 0 36px rgba(var(--acc-rgb), .8), 0 0 80px rgba(var(--acc-rgb), .45);
 }
 
-/* Acceso a /consultoria/ desde la barra (solo la home lleva la clase).
-   Como enlace de texto se perdía entre HOME y BLOG. Lleva un brillo azul
-   que va y viene cada 3,2s: se nota con el rabillo del ojo, pero ni
-   parpadea ni se mueve, así que no molesta al leer. El texto sigue
-   blanco. Al pasar el ratón se queda encendido y quieto.
-   La regla global de prefers-reduced-motion lo apaga. */
-@keyframes brillo-consult {
-  0%, 100% { text-shadow: 0 0 0 rgba(var(--acc-rgb), 0); }
-  50%      { text-shadow: 0 0 14px rgba(var(--acc-rgb), .75), 0 0 28px rgba(var(--acc-rgb), .35); }
-}
-.nav-consult {
-  animation: brillo-consult 3.2s ease-in-out infinite;
-  transition: color .25s, text-shadow .25s;
-}
-.nav-consult:hover {
-  color: #fff;
-  text-shadow: 0 0 16px rgba(var(--acc-rgb), .9), 0 0 32px rgba(var(--acc-rgb), .45);
-  animation: none;
-}
-
 /* ============================================================
    PÁGINA 1 · HERO
    ============================================================ */
@@ -1804,22 +1784,24 @@ body { overflow-x: clip; }
    Todo cuelga de .form-sec / .form-card, que solo existen en esos dos
    formularios. Si se toca un valor aquí, tocarlo también en .ct-*.
    ============================================================ */
-/* La tarjeta vuelve a ser opaca para que el bloque azul desplazado
-   (.form-shadow) se lea como un borde por la derecha y por abajo, como
-   al principio. Con la caja transparente se veia entero a traves. */
+/* Consultoría: caja transparente con contorno azul, igual que contacto,
+   sin el bloque azul desplazado detrás. */
 .form-sec .form-card {
   padding: 50px; border-radius: 20px;
-  background: var(--card);
+  background: transparent;
   border: 1px solid rgba(var(--acc-rgb), .35);   /* = --ct-card-border */
   box-shadow: none;
 }
-/* mismo radio que la tarjeta, para que el borde azul la siga */
-.form-sec .form-shadow { border-radius: 20px; }
-/* En móvil, no: ahí el formulario se queda transparente y sin el bloque
-   azul detrás, como estaba. El borde desplazado es solo de escritorio. */
+.form-sec .form-shadow { display: none; }
+/* Home: conserva su estilo de siempre. La tarjeta es opaca para que el
+   bloque azul desplazado (.form-shadow) se lea como un borde por la
+   derecha y por abajo; con la caja transparente se vería entero a través.
+   Solo en escritorio: en móvil se queda transparente y sin el bloque. */
+#formulario .form-card { background: var(--card); }
+#formulario .form-shadow { display: block; border-radius: 20px; }
 @media (max-width: 760px) {
-  .form-sec .form-card { background: transparent; }
-  .form-sec .form-shadow { display: none; }
+  #formulario .form-card { background: transparent; }
+  #formulario .form-shadow { display: none; }
 }
 /* 25px entre grupos, como .ct-group. Los formularios son columnas flex
    con sus propios gap y margin-bottom (distintos en home y consultoría):

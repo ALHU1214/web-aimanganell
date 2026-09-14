@@ -26,16 +26,6 @@ nav {
   box-shadow: 0 0 36px rgba(var(--acc-rgb), .8), 0 0 80px rgba(var(--acc-rgb), .45);
 }
 
-.nav-consult {
-  animation: brillo-consult 3.2s ease-in-out infinite;
-  transition: color .25s, text-shadow .25s;
-}
-.nav-consult:hover {
-  color: #fff;
-  text-shadow: 0 0 16px rgba(var(--acc-rgb), .9), 0 0 32px rgba(var(--acc-rgb), .45);
-  animation: none;
-}
-
 .nav-burger { display: none; }
 
 @media (max-width: 760px) {
