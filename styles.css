@@ -200,6 +200,26 @@ nav {
   box-shadow: 0 0 36px rgba(var(--acc-rgb), .8), 0 0 80px rgba(var(--acc-rgb), .45);
 }
 
+/* Acceso a /consultoria/ desde la barra (solo la home lleva la clase).
+   Como enlace de texto se perdía entre HOME y BLOG. Lleva un brillo azul
+   que va y viene cada 3,2s: se nota con el rabillo del ojo, pero ni
+   parpadea ni se mueve, así que no molesta al leer. El texto sigue
+   blanco. Al pasar el ratón se queda encendido y quieto.
+   La regla global de prefers-reduced-motion lo apaga. */
+@keyframes brillo-consult {
+  0%, 100% { text-shadow: 0 0 0 rgba(var(--acc-rgb), 0); }
+  50%      { text-shadow: 0 0 14px rgba(var(--acc-rgb), .75), 0 0 28px rgba(var(--acc-rgb), .35); }
+}
+.nav-consult {
+  animation: brillo-consult 3.2s ease-in-out infinite;
+  transition: color .25s, text-shadow .25s;
+}
+.nav-consult:hover {
+  color: #fff;
+  text-shadow: 0 0 16px rgba(var(--acc-rgb), .9), 0 0 32px rgba(var(--acc-rgb), .45);
+  animation: none;
+}
+
 /* ============================================================
    PÁGINA 1 · HERO
    ============================================================ */
@@ -1272,50 +1292,66 @@ body { overflow-x: clip; }
    aquí no hay secciones a pantalla completa sino un solo hilo
    de lectura estrecho que baja hasta el CTA.
    ============================================================ */
-/* --- fondo sacado del vídeo del hero -----------------------------
-   Lo llevan /gracias/ y todo el blog (portada y posts). Se activa con
-   la clase .fondo-video en el <html>; en el blog la ponen las dos
-   plantillas de scripts/, no el HTML generado, que se rehace solo.
+/* --- fondo de textura: todas las páginas sin vídeo ---------------
+   Lo llevan /gracias/, /contacto-aimanganell/, las tres legales y todo
+   el blog (portada y posts). Home y consultoría no: tienen vídeo.
+   Se activa con la clase .fondo-textura en el <html>; en el blog la
+   ponen las dos plantillas de scripts/, no el HTML generado, que se
+   rehace solo.
 
-   Los azules no son elegidos a ojo: son los que devuelve assets/hero.mp4
-   al muestrear 32 fotogramas y agrupar sus píxeles por color. De más a
-   menos peso: #010002 (74% del vídeo), #050c22, #102545, #103f73,
-   #306d9a y #62a4cb. Aquí se usan en ese mismo orden de profundidad —
-   la base casi negra abajo, el azul claro como brillo alto.
+   La textura es un "grunge" oscuro (assets/fondo-contacto-azul.webp,
+   2560x2560): el gris original (assets/fondo-contacto.webp, que se
+   conserva) pasado por una escala de azul marino:
+   #01020a -> #040818 -> #09132a -> #0e1e3a. Relieve de 1,11:1 entre
+   sombras y luces: a medio camino entre la primera versión (1,20:1, se
+   veía demasiado) y una super sutil (1,04:1, apenas se notaba).
+   Contraste: el texto claro y los titulares azules grandes pasan AA en
+   toda la textura. Los enlaces azules en texto normal (#0079fc) pasan
+   en el 98% y bajan de 4,5 solo sobre los arañazos más claros (el peor
+   punto, 3,81). Webp a calidad 75: 122 KB.
 
-   Va en el body y no en un ::before fijo porque el body ya tiene montado
-   el sistema de capas con la textura de ruido, y porque lleva
+   Tamaño fijado en % del ancho (158.7%) y no cover: con cover la
+   textura se escala según lo larga que sea la página, y en una página
+   corta saldría diminuta. Anclada arriba y repetida hacia abajo.
+
+   Va en el body y no en un ::before fijo porque el body lleva
    overflow-x:clip, que puede convertirlo en bloque contenedor de los
    elementos fixed y dejar el fondo desplazándose con el scroll.
    La clase la lleva el <html> para poder pintar también el color de
    fondo del propio lienzo, que es lo que se ve al hacer overscroll.
-   Todas las capas van con attachment:scroll, la textura incluida. Con
-   fixed el navegador tiene que repintar el fondo entero en cada
-   fotograma del scroll, y aquí no se gana nada a cambio: al ser un
-   mosaico uniforme, que se quede quieta o que acompañe al contenido se
-   ve exactamente igual. Es gratis, así que scroll.
-
-   La textura no es el ruido fractal del resto del sitio sino el patrón
-   de laberinto de la og image (reacción-difusión). Está generada con
-   scripts/genera-textura.js sobre una malla que envuelve por los bordes,
-   así que el mosaico repite sin costura; se sirve a 256px pero se pinta
-   a 128, que es la densidad de la og — y de paso queda nítida en
-   pantallas de doble densidad.                                       */
-.fondo-video,
-.fondo-video body { background-color: #010002; }
-.fondo-video body {
-  background-image:
-    url('assets/textura-difusion.png'),
-    radial-gradient(ellipse 110% 38% at 50% 0%,   rgba(98,164,203,.18), rgba(98,164,203,0) 100%),
-    radial-gradient(ellipse 95% 45% at 6% 16%,    rgba(16,63,115,.42),  rgba(16,63,115,0)  100%),
-    radial-gradient(ellipse 90% 45% at 96% 54%,   rgba(48,109,154,.16), rgba(48,109,154,0) 100%),
-    radial-gradient(ellipse 130% 42% at 50% 100%, rgba(16,37,69,.42),   rgba(16,37,69,0)   100%),
-    linear-gradient(180deg, #050c22 0%, #030812 45%, #010002 100%);
-  background-position: top left, top center, top center, top center, bottom center, top center;
-  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-size: 128px 128px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-  background-attachment: scroll, scroll, scroll, scroll, scroll, scroll;
+   attachment:scroll y no fixed: con fixed el navegador repinta el
+   fondo entero en cada fotograma del scroll, e iOS lo ignora.       */
+.fondo-textura,
+.fondo-textura body { background-color: #010002; }
+.fondo-textura body {
+  background-image: url('assets/fondo-contacto-azul.webp');
+  background-size: 158.7% auto;
+  background-position: 50% 0;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
 }
+
+/* --- fondo negro: blog y /contacto-aimanganell/ -------------------
+   La misma textura "grunge" pero en su gris casi negro original
+   (assets/fondo-contacto.webp), sin teñir, sobre negro. Mismo tamaño,
+   anclaje y repetición que .fondo-textura. Webp a calidad 75: 86 KB.
+   Contraste: el texto claro pasa AA en toda la textura; los enlaces
+   azules en texto normal (#0079fc) pasan en el 99,4% y bajan de 4,5
+   solo sobre los arañazos más claros (peor punto, 3,02).
+   Se activa con .fondo-negro en <html>. */
+.fondo-negro,
+.fondo-negro body { background-color: #000; }
+.fondo-negro body {
+  background-image: url('assets/fondo-contacto.webp');
+  background-size: 158.7% auto;
+  background-position: 50% 0;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
+}
+/* Consultoría pinta su propio fondo (la constelación de fondo-tile.webp)
+   en .p2-body, que envuelve toda la página y taparía la textura del body.
+   Con .fondo-negro se quita. El vídeo del hero va encima y no cambia. */
+.fondo-negro .p2-body { background: none; }
 
 /* Las tarjetas heredaban --card (#0a1613), que es un verde azulado: sobre
    este fondo azul marino tiraba a verde. Se cambian por un azul de la
@@ -1453,37 +1489,15 @@ body { overflow-x: clip; }
    de una plantilla externa; solo cambian los colores, a la paleta del
    sitio. Todo va con prefijo ct- porque la plantilla usaba nombres
    genéricos (.hero, .container, label, input...) que aquí chocarían.
-   El fondo es .fondo-textura en <html>, definido justo debajo.
+   El fondo es el de todas las páginas sin vídeo (.fondo-textura en
+   <html>, definido en la sección de /gracias/).
    ============================================================ */
-
-/* --- fondo de textura ---------------------------------------------
-   Textura "grunge" oscura (assets/fondo-contacto-azul.webp, 2560x2560)
-   teñida con una escala de azul marino: #01020a -> #040818 -> #09132a
-   -> #0e1e3a. Relieve de 1,11:1 entre sombras y luces. Contraste: el
-   texto claro y los titulares azules grandes pasan AA en toda la
-   textura. Webp a calidad 75: 122 KB.
-   Tamaño fijado en % del ancho (158.7%) y no cover: con cover la
-   textura se escala según lo larga que sea la página, y en una página
-   corta saldría diminuta. Anclada arriba y repetida hacia abajo.
-   Se activa con .fondo-textura en el <html>, para poder pintar también
-   el lienzo que se ve al hacer overscroll. attachment:scroll y no
-   fixed, por lo mismo que .fondo-video. */
-.fondo-textura,
-.fondo-textura body { background-color: #010002; }
-.fondo-textura body {
-  background-image: url('assets/fondo-contacto-azul.webp');
-  background-size: 158.7% auto;
-  background-position: 50% 0;
-  background-repeat: repeat-y;
-  background-attachment: scroll;
-}
 
 .ct {
   --ct-accent:       var(--acc);
   --ct-accent-dark:  var(--acc2);               /* pulsado en táctil; un azul más oscuro dejaba el texto por debajo de 4,5 */
   --ct-gray:         rgba(232, 242, 239, .55);  /* primera línea del título */
-  --ct-card-bg:      rgba(9, 20, 40, .72);      /* el mismo panel de /gracias/ */
-  --ct-card-border:  rgba(var(--acc-rgb), .20);
+  --ct-card-border:  rgba(var(--acc-rgb), .35);  /* contorno de tarjetas y caja del formulario */
   --ct-on-accent:    #07100e;                   /* texto sobre el azul, como .btn-acc */
 
   position: relative; z-index: 1;               /* por debajo de .particles (z 3), como .p2-body en consultoría */
@@ -1528,10 +1542,12 @@ body { overflow-x: clip; }
 .ct-info { animation: ctFadeUp 1s ease-out .2s both; }
 
 /* --- tarjetas de info --- */
+/* Tarjetas y caja del formulario transparentes: solo el contorno azul,
+   se ve el fondo de la página a través. */
 .ct-item {
   display: flex; align-items: flex-start; gap: 20px;
   margin-bottom: 40px; padding: 30px;
-  background: var(--ct-card-bg);
+  background: transparent;
   border: 1px solid var(--ct-card-border);
   border-radius: 15px;
   transition: all .3s ease;
@@ -1559,7 +1575,7 @@ body { overflow-x: clip; }
 
 /* --- formulario --- */
 .ct-form-box {
-  background: var(--ct-card-bg);
+  background: transparent;
   padding: 50px; border-radius: 20px;
   border: 1px solid var(--ct-card-border);
   animation: ctFadeUp 1s ease-out .4s both;
@@ -1567,42 +1583,34 @@ body { overflow-x: clip; }
 .lead-form.ct-form { gap: 0; }
 .ct-group { margin-bottom: 25px; }
 .ct-group label { display: block; margin-bottom: 8px; font-weight: 500; color: rgba(232, 242, 239, .8); }
-/* Campos con el mismo formato que las tarjetas (.ct-item): mismo fondo,
-   borde y radio, más un contorno interior (sombra hacia dentro + luz
-   superior de 1px). El mismo efecto interior lo llevan también las
-   tarjetas y la caja del formulario, más abajo. */
+/* Campos: bloque negro sin contorno (el borde existe pero es transparente,
+   para que al hacer clic aparezca sin que el campo cambie de tamaño).
+   Mismo radio y relleno que las tarjetas. */
 .ct-group input,
 .ct-group select,
 .ct-group textarea {
   width: 100%; padding: 16px 20px;             /* proporcional al 30px de las tarjetas */
-  background-color: var(--ct-card-bg);         /* = .ct-item */
-  border: 1px solid var(--ct-card-border);     /* = .ct-item */
+  background-color: #000;
+  border: 1px solid transparent;
   border-radius: 15px;                         /* = .ct-item */
   color: var(--ink); font-family: inherit;
   font-size: 16px;                             /* 16px evita el zoom automático en iOS */
   line-height: 1.4;
   transition: .3s;
   -webkit-appearance: none; appearance: none;
-  box-shadow:
-    inset 0 0 22px rgba(0, 0, 0, .55),
-    inset 0 1px 0 rgba(255, 255, 255, .04);
 }
 /* .55 y no el .35 del original: por debajo de .55 el placeholder no llega a
    4,5 de contraste (mismo mínimo que fija contraste-minimo.css) */
 .ct-group input::placeholder,
 .ct-group textarea::placeholder { color: rgba(232, 242, 239, .55); }
-.ct-group input:hover,
-.ct-group select:hover,
-.ct-group textarea:hover { border-color: rgba(var(--acc-rgb), .45); }
+/* Al hacer clic: la luz va solo por fuera (borde azul, aro y halo); el
+   interior sigue negro. */
 .ct-group input:focus,
 .ct-group select:focus,
 .ct-group textarea:focus {
   outline: none;
   border-color: var(--ct-accent);
-  background-color: rgba(14, 30, 58, .8);
   box-shadow:
-    inset 0 0 22px rgba(0, 0, 0, .55),
-    inset 0 1px 0 rgba(255, 255, 255, .06),
     0 0 0 3px rgba(var(--acc-rgb), .12),
     0 10px 30px rgba(var(--acc-rgb), .15);
 }
@@ -1612,7 +1620,7 @@ body { overflow-x: clip; }
 .ct-group input:-webkit-autofill:focus,
 .ct-group textarea:-webkit-autofill {
   -webkit-text-fill-color: var(--ink);
-  -webkit-box-shadow: inset 0 0 0 1000px #0b1730, inset 0 0 22px rgba(0, 0, 0, .55);
+  -webkit-box-shadow: inset 0 0 0 1000px #000;
   caret-color: var(--ink);
   transition: background-color 9999s ease-out;
 }
@@ -1625,14 +1633,7 @@ body { overflow-x: clip; }
   background-repeat: no-repeat; background-position: right 20px center; background-size: 14px;
 }
 
-/* el mismo efecto interior en las tarjetas y en la caja del formulario */
-.ct-item,
-.ct-form-box { box-shadow: inset 0 0 30px rgba(0, 0, 0, .35); }
-.ct-item:hover {
-  box-shadow:
-    inset 0 0 30px rgba(0, 0, 0, .35),
-    0 10px 30px rgba(var(--acc-rgb), .2);
-}
+.ct-item:hover { box-shadow: 0 10px 30px rgba(var(--acc-rgb), .2); }
 .ct-group select option { color: var(--ct-on-accent); }
 .ct-form > .consent { margin-bottom: 20px; }
 .ct-form .turnstile-box:not(:empty) { margin-bottom: 20px; }
@@ -1693,6 +1694,160 @@ body { overflow-x: clip; }
   .ct-item:hover { transform: none; }
   .ct-submit:hover::before { display: none; }
   .ct-submit:active { transform: scale(.98); background: var(--ct-accent-dark); }
+}
+
+/* ============================================================
+   FORMULARIOS · MISMO ESTILO QUE CONTACTO (home y consultoría)
+   Los formularios .lead-form de home y consultoría copian el aspecto
+   del de /contacto-aimanganell/: caja transparente con contorno azul,
+   campos negros sin borde, luz solo por fuera al hacer clic y botón
+   en píldora con onda. Solo cambia la apariencia: campos, textos del
+   botón, validación, Turnstile y envío siguen igual (main.js).
+   Todo cuelga de .form-sec / .form-card, que solo existen en esos dos
+   formularios. Si se toca un valor aquí, tocarlo también en .ct-*.
+   ============================================================ */
+/* Sin la losa azul desplazada detrás: con la caja transparente se vería
+   entera a través. */
+.form-sec .form-shadow { display: none; }
+.form-sec .form-card {
+  padding: 50px; border-radius: 20px;
+  background: transparent;
+  border: 1px solid rgba(var(--acc-rgb), .35);   /* = --ct-card-border */
+  box-shadow: none;
+}
+/* 25px entre grupos, como .ct-group. Los formularios son columnas flex
+   con sus propios gap y margin-bottom (distintos en home y consultoría):
+   se unifica todo en el gap y los márgenes a 0. */
+.form-card .lead-form { gap: 25px; }
+.form-card .lead-form > .field-wrap,
+.form-card .lead-form .grid-2,
+.form-card .lead-form > .consent,
+.form-card .lead-form .form-error,
+.form-card .lead-form h2 { margin-bottom: 0; }
+.form-card .grid-2 { gap: 25px 20px; }
+.form-card .field-wrap { gap: 8px; }
+.form-card .field-wrap label { font-size: 16px; font-weight: 500; color: rgba(232, 242, 239, .8); }
+.form-card .field {
+  padding: 16px 20px; border-radius: 15px;
+  background-color: #000;
+  border: 1px solid transparent;   /* invisible, para que al hacer clic aparezca sin mover nada */
+  color: var(--ink); font-family: inherit; font-size: 16px; line-height: 1.4;
+  -webkit-appearance: none; appearance: none;
+  box-shadow: none;
+  transition: .3s;
+}
+.form-card .field-select {
+  cursor: pointer; padding-right: 48px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e8f2ef%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat; background-position: right 20px center; background-size: 14px;
+}
+.form-card textarea.field { min-height: 150px; }
+/* Al hacer clic: luz solo por fuera; el interior sigue negro. */
+.form-card .field:focus {
+  outline: none;
+  border-color: var(--acc);
+  box-shadow: 0 0 0 3px rgba(var(--acc-rgb), .12), 0 10px 30px rgba(var(--acc-rgb), .15);
+}
+.form-card .field:-webkit-autofill,
+.form-card .field:-webkit-autofill:hover,
+.form-card .field:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink);
+  -webkit-box-shadow: inset 0 0 0 1000px #000;
+  caret-color: var(--ink);
+  transition: background-color 9999s ease-out;
+}
+/* Botón: el de contacto. El texto de cada formulario no cambia. */
+.form-card .btn-submit {
+  position: relative; overflow: hidden;
+  width: 100%; padding: 20px; border-radius: 50px;
+  font-family: inherit; font-size: 1rem; font-weight: 500;
+  background: var(--acc); color: #07100e;
+  box-shadow: none;
+  transition: all .3s;
+}
+.form-card .btn-submit::before {                  /* onda blanca al pasar el ratón */
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 0; height: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, .3);
+  transform: translate(-50%, -50%);
+  transition: width .6s, height .6s;
+  pointer-events: none;
+}
+.form-card .btn-submit:hover::before { width: 600px; height: 600px; }
+.form-card .btn-submit:hover {
+  background: var(--acc); color: #07100e;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(var(--acc-rgb), .4);
+}
+/* "Enviado ✓": el verde de confirmación de siempre, sin onda ni salto */
+.form-card .btn-submit.is-enviado,
+.form-card .btn-submit.is-enviado:hover {
+  background: #25d366; transform: none;
+  box-shadow: 0 0 34px rgba(37, 211, 102, .45);
+}
+.form-card .btn-submit.is-enviado::before { display: none; }
+
+@media (max-width: 768px) {
+  .form-sec .form-card { padding: 30px 20px; border-radius: 15px; }
+  .form-card .field { padding: 14px; border-radius: 8px; }
+  .form-card .field-select { padding-right: 44px; background-position: right 14px center; }
+  .form-card textarea.field { min-height: 120px; }
+  .form-card .btn-submit { padding: 18px; border-radius: 30px; }
+}
+@media (hover: none) and (pointer: coarse) {
+  .form-card .field, .form-card .btn-submit { min-height: 48px; }
+  .form-card .btn-submit:hover::before { display: none; }
+  .form-card .btn-submit:active { transform: scale(.98); background: var(--acc2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-card .btn-submit:hover { transform: none; }
+}
+
+/* La home es el único formulario que va sobre el vídeo del hero: con la
+   caja transparente se veía el vídeo a través de todo el formulario, así
+   que ahí conserva su fondo opaco de siempre (--card). Lo demás (campos
+   negros, luz solo por fuera al hacer clic y botón) es igual que en
+   contacto y consultoría. */
+#home .form-card { background: var(--card); }
+
+/* --- tipografía de los CTA, medida sobre la referencia ------------
+   Botón de envío de los tres formularios: 19,2px, peso 700,
+   interlineado de 28,8px absolutos y 0,3px de tracking.
+   Incluye .ct-submit (contacto) para que los tres sigan siendo el
+   mismo botón; el archivo de referencia solo nombraba .btn-submit.
+   El .ct-form delante hace falta para ganar a la regla de 380px que
+   baja ese botón a .95rem. */
+.form-card .btn-submit,
+.btn-acc.btn-submit,
+.ct-form .ct-submit {
+  font-family: 'Poppins', sans-serif;
+  font-size: 19.2px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 28.8px;
+  letter-spacing: .3px;
+  word-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  text-align: center;
+}
+/* CTA del hero de consultoría ("Solicitar Análisis Personalizado"):
+   17,6px, peso 700, interlineado 22,4px y sin tracking. Va aquí y no en
+   la hoja de consultoría porque el hero vive fuera del <main class=fmt-360>
+   y desde allí no se puede alcanzar. .p2-hero-copy solo existe en
+   consultoría, así que no afecta a ninguna otra página. El relleno de la
+   caja no se toca: el archivo lo deja comentado. */
+.p2-hero-copy .btn-acc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17.6px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 22.4px;
+  letter-spacing: normal;
+  word-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  text-align: center;
 }
 
 /* ============================================================

@@ -22,7 +22,8 @@ const path = require('path');
 const crypto = require('crypto');
 
 const ROOT = path.join(__dirname, '..');
-const SELLADOS = ['styles.css', 'contraste-minimo.css', 'main.js', 'config.js'];
+const SELLADOS = ['styles.css', 'contraste-minimo.css', 'main.js', 'config.js',
+  'assets/css/consultoria-formato-360.css'];
 
 // hash corto del contenido: 8 caracteres bastan para distinguir versiones
 const hashes = {};

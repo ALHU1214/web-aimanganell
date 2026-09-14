@@ -9,11 +9,12 @@ on:
       - 'scripts/sellar-assets.js'
       - 'scripts/post-template.html'
       - 'scripts/blog-index-template.html'
-      # los cuatro que se sellan: si cambian hay que renovar su ?v= en el HTML
+      # los que se sellan: si cambian hay que renovar su ?v= en el HTML
       - 'styles.css'
       - 'contraste-minimo.css'
       - 'main.js'
       - 'config.js'
+      - 'assets/css/consultoria-formato-360.css'
   workflow_dispatch:
 
 permissions:

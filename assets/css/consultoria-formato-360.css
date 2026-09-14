@@ -1,0 +1,280 @@
+/* =============================================================
+   /consultoria/ · FORMATO "AI & Cyber 360™"
+   Geometría, espaciado, tipografía y efectos de la landing de
+   referencia aplicados a los bloques que ya tiene consultoría.
+
+   · Todo va bajo .fmt-360, que vive en el <main class="p2-tiled">:
+     no alcanza al nav, al footer, al hero ni a otras páginas.
+   · Colores: solo los tokens del sitio (--acc, --acc-rgb, --ink,
+     --red) y neutros derivados de 232,242,239. Donde la referencia
+     usa amarillo #fac51c, aquí va var(--acc).
+   · Se carga DESPUÉS de styles.css y contraste-minimo.css, solo en
+     consultoria/index.html. No se borra ninguna regla existente:
+     se sobrescriben desde aquí.
+   · Quitar la clase fmt-360 del <main> devuelve el diseño anterior.
+   ============================================================= */
+
+/* --- 1. ESTRUCTURA -------------------------------------------- */
+/* Interlineado base: 22,4px ABSOLUTOS, no un múltiplo. En la referencia
+   el tema lo fija en px, así que todo lo que no declara el suyo (el ✓ de
+   18px, "Duración", la cifra de 32px, el texto de la barra de 19,2px...)
+   se pinta con esos 22,4px aunque su letra sea más grande. Con un valor
+   sin unidades cada elemento crecería por su cuenta. */
+.fmt-360 { line-height: 22.4px; }
+/* Cada sección acolcha 100px arriba Y abajo: entre dos secciones hay
+   200px de aire (antes 100px, solo arriba). Es intencionado. */
+.fmt-360 .sec { padding: 100px 0; }
+/* Ancho útil 1100px: contenedor de 1140 con 20px de padding lateral. */
+.fmt-360 .wrap,
+.fmt-360 .wrap-wide { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+.fmt-360 .manifiesto,
+.fmt-360 .contacto,
+.fmt-360 .sec-total { padding: 100px 20px; }
+/* Beneficios: sin padding inferior, porque la barra de descuento
+   cuelga de la rejilla a 64px (en la referencia vive dentro de la
+   misma sección; esto lo reproduce sin mover el HTML). */
+.fmt-360 > .sec:first-child { padding: 100px 0 0; }
+.fmt-360 > .sec-tight { padding: 64px 0 100px; }
+
+/* --- 2. TÍTULOS DE SECCIÓN ------------------------------------ */
+.fmt-360 .sec-title,
+.fmt-360 .contacto-head h2 {
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -.5px;   /* lo que pinta el tema de la referencia, no el "normal" de su CSS fuente */
+  margin: 8px 0 48px;
+}
+.fmt-360 .sec-title,
+.fmt-360 .contacto-head h2 {
+  font-size: 39px;   /* 39px = render real de la referencia; cambiar a 48px si se prefiere el tamaño actual */
+}
+
+/* --- 3. BENEFICIOS CLAVE -------------------------------------- */
+.fmt-360 .ben-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.fmt-360 .ben-card {
+  display: block;
+  position: relative;
+  isolation: isolate;   /* sin contexto de apilamiento propio el ::before
+                           (z-index:-1) se hunde bajo el fondo de la
+                           sección y el efecto no se ve */
+  overflow: hidden;
+  min-height: 0;
+  padding: 30px;
+  border-radius: 15px;
+  transition: .3s;
+  background: rgba(232, 242, 239, .04);
+  border: 1px solid rgba(var(--acc-rgb), .2);
+}
+/* La luz: sobresale 2px por lado y el overflow la recorta contra el
+   radio, así que el borde también se enciende. */
+.fmt-360 .ben-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 15px;
+  background: linear-gradient(45deg, var(--acc), transparent);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity .3s;
+}
+.fmt-360 .ben-card:hover::before { opacity: .3; }
+/* Repite fondo y borde de reposo para anular el radial-gradient y el
+   border-color que la regla general aplica en hover. */
+/* Sin desplazamiento (decisión del usuario): la referencia eleva la
+   tarjeta 10px al pasar el ratón; aquí se queda quieta y solo se
+   ilumina (el lavado del ::before y el halo). */
+.fmt-360 .ben-card:hover {
+  box-shadow: 0 20px 40px rgba(var(--acc-rgb), .2);
+  background: rgba(232, 242, 239, .04);
+  border-color: rgba(var(--acc-rgb), .2);
+}
+/* DESVIACIÓN pedida por el usuario: los emojis se quedan como en
+   producción (sueltos, 34px / 28px en móvil, sin disco), así que aquí
+   no se toca su tamaño. Solo pasan a bloque con 20px debajo: al ser la
+   tarjeta display:block, el gap de 30px que los separaba del texto deja
+   de aplicar y ese aire lo pone el margen (como en la referencia). */
+.fmt-360 .ben-ico { display: block; margin-bottom: 20px; }
+/* 14,4px debajo: margen de párrafo que la referencia hereda del tema */
+.fmt-360 .ben-card p { margin: 0 0 14.4px; font-size: 16px; line-height: 2; color: rgba(232, 242, 239, .9); }
+
+/* --- 4. BARRA DE DESCUENTO ------------------------------------ */
+@keyframes fmt360-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(var(--acc-rgb), .3); }
+  50%      { box-shadow: 0 0 40px rgba(var(--acc-rgb), .6); }
+}
+.fmt-360 .guarantee-bar {
+  /* DESVIACIÓN: max-width 1100. La barra lleva también las clases
+     .wrap .wrap-wide (es su propio contenedor), así que con los 1140 de
+     arriba y su padding de 25px quedaría 20px más ancha por cada lado que
+     la rejilla de tarjetas. En la referencia vive dentro del contenedor
+     y mide lo mismo que la rejilla: 1100. */
+  max-width: 1100px;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid var(--acc);
+  box-shadow: none;
+  background: linear-gradient(135deg, rgba(var(--acc-rgb), .1), rgba(var(--acc-rgb), .05));
+  animation: fmt360-glow 3s ease infinite;
+}
+.fmt-360 .guarantee-bar p { font-size: 19.2px; font-weight: 400; line-height: 22.4px; }
+
+/* --- 5. ¿QUÉ OBTIENES? ---------------------------------------- */
+.fmt-360 .obt-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 0;
+}
+/* Sin reacción al ratón (decisión del usuario): la referencia desplaza
+   la casilla 10px y aclara el fondo en hover; aquí no. */
+.fmt-360 .obt-item {
+  gap: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(232, 242, 239, .03);
+}
+.fmt-360 .obt-item span:last-child { font-size: 16px; font-weight: 400; line-height: 1.4; }
+.fmt-360 .tick { font-size: 18px; line-height: 22.4px; }
+.fmt-360 .obt-facts { gap: 50px; margin-top: 48px; }
+.fmt-360 .obt-fact { gap: 0; }
+/* DESVIACIÓN: alfa .55 y no el .42 de la especificación. A .42 este
+   texto de 16px da ~3,6 de contraste, por debajo del 4,5 de AA, y
+   reabriría un fallo que contraste-minimo.css cerró el 19/08 (fija .55
+   como mínimo en .obt-fact-label y .obt-facts-note). Cambiar a .42 si
+   se prefiere el tono exacto de la referencia. */
+.fmt-360 .obt-fact-label {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 22.4px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: rgba(232, 242, 239, .55);
+  margin-bottom: 10px;
+}
+.fmt-360 .obt-fact-value {
+  margin: 0 0 14.4px;      /* margen de párrafo heredado del tema en la referencia */
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 22.4px;     /* sí, menos que la letra: así lo pinta la referencia */
+  letter-spacing: normal;
+  color: var(--acc);
+}
+.fmt-360 .obt-facts-note { font-size: 16px; color: rgba(232, 242, 239, .55); }
+
+/* --- 6. ¿ES PARA TI? ------------------------------------------ */
+.fmt-360 .para-grid { max-width: 1000px; gap: 20px; margin: 48px auto 0; }
+/* Sin reacción al ratón (decisión del usuario): la referencia las
+   agranda al 105% en hover; aquí no. */
+.fmt-360 .para-item,
+.fmt-360 .para-not {
+  gap: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(232, 242, 239, .04);
+  border: 1px solid rgba(var(--acc-rgb), .3);
+}
+.fmt-360 .para-not {
+  grid-column: 1 / -1;
+  max-width: 500px;
+  /* DESVIACIÓN: 20px arriba y no margin:0 auto. Aquí .para-not va
+     FUERA de .para-grid (es su hermana), así que no recibe el gap de 20px
+     de la rejilla como en la referencia, donde es su último hijo: con
+     margin 0 quedaría pegada a las casillas. */
+  margin: 20px auto 0;
+  opacity: .7;
+  border-color: rgba(255, 77, 61, .3);
+  background: rgba(232, 242, 239, .04);
+}
+.fmt-360 .para-item span:last-child,
+.fmt-360 .para-not span:last-child { font-size: 16px; font-weight: 400; line-height: 1.4; }
+.fmt-360 .para-item .tick { font-size: 18px; }
+.fmt-360 .cross { font-size: 16px; }
+
+/* --- 7. FORMULARIO -------------------------------------------- */
+/* El aspecto (caja transparente con contorno, campos negros, luz al
+   hacer clic, botón) es el mismo que en /contacto-aimanganell/ y vive en
+   styles.css, sección "FORMULARIOS · MISMO ESTILO QUE CONTACTO", común a
+   home y consultoría. Aquí solo va lo propio de esta página. */
+.fmt-360 .form-sec { max-width: 600px; }
+.fmt-360 .contacto .form-sec { margin-top: 0; }
+
+/* --- 8. GARANTÍA TOTAL ---------------------------------------- */
+.fmt-360 .total-box {
+  max-width: 700px;
+  padding: 40px;
+  border-radius: 20px;
+  border: 2px solid var(--acc);
+  box-shadow: none;
+  background: linear-gradient(135deg, rgba(var(--acc-rgb), .1), transparent);
+}
+/* "Garantía Total": lo que pinta el tema de la referencia (43px, peso
+   500, blanco, tracking -0,5), no el 1.8rem amarillo de su CSS fuente,
+   que el tema anula. En Poppins: no se añade la DM Sans del original.
+   Para el azul de marca, color: var(--acc). */
+.fmt-360 .total-box h2 {
+  font-size: 43px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.5px;
+  color: #f8f8f8;          /* el mismo blanco que los títulos de sección */
+  margin: 8px 0 20px;
+}
+.fmt-360 .total-box > p { margin: 0 auto; font-size: 16px; line-height: 1.6; }
+/* Aviso de plazas: geometría de la referencia, pero en el ámbar de
+   siempre (decisión del usuario). Color, borde y animación "palpita"
+   vienen de la regla general de .plazas y no se tocan aquí. La
+   referencia lo pinta en rojo con un pulso de escala: para esa versión,
+   borde rgba(255,77,61,.35), fondo rgba(255,77,61,.12),
+   un pulso de escala de 3s (scale 1 -> 1.05) y .plazas-bang en var(--red). */
+.fmt-360 .plazas {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.fmt-360 .plazas-bang { font-size: 16px; }
+.fmt-360 .plazas span:last-child { font-size: 16px; line-height: 1.6; }
+
+/* --- 9. RESPONSIVE (≤768px) ----------------------------------- */
+/* Todo lo de arriba ya gana a las media queries del sitio (760, 900,
+   1120px) por especificidad (.fmt-360 .x = 0,2,0 frente a .x = 0,1,0).
+   Aquí solo van los valores que cambian en móvil. Las reglas del sitio
+   que agrupan "nav, footer, .sec, .contacto..." no se tocan: estas las
+   pisan solo dentro de .fmt-360. */
+@media (max-width: 768px) {
+  .fmt-360 .sec { padding: 60px 0; }
+  .fmt-360 > .sec:first-child { padding: 60px 0 0; }
+  .fmt-360 > .sec-tight { padding: 64px 0 60px; }
+  .fmt-360 .manifiesto,
+  .fmt-360 .contacto,
+  .fmt-360 .sec-total { padding: 60px 20px; }
+
+  .fmt-360 .sec-title,
+  .fmt-360 .contacto-head h2 { font-size: 1.8rem; }
+  /* 43px no cabe en una linea dentro de la caja en un movil de 360px */
+  .fmt-360 .total-box h2 { font-size: 1.8rem; }
+
+  .fmt-360 .ben-grid,
+  .fmt-360 .obt-grid,
+  .fmt-360 .para-grid { grid-template-columns: 1fr; }
+  .fmt-360 .ben-grid { gap: 30px; }
+  .fmt-360 .ben-card { padding: 30px; min-height: 0; }
+  .fmt-360 .ben-card p { font-size: 16px; line-height: 2; }
+
+  .fmt-360 .para-grid { gap: 15px; }
+  .fmt-360 .para-not { max-width: 100%; margin-top: 15px; }
+
+  .fmt-360 .obt-facts { flex-direction: column; gap: 20px; }
+
+}
+
+/* --- 10. ACCESIBILIDAD ---------------------------------------- */
+/* (el latido ámbar de .plazas ya lo neutraliza la regla global de
+   prefers-reduced-motion del sitio) */
+@media (prefers-reduced-motion: reduce) {
+  .fmt-360 .guarantee-bar { animation: none; }
+  .fmt-360 .btn-submit:hover { transform: none; }
+}
