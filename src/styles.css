@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* ============================================================
+   AI MANGANELL · Hoja de estilos modular con Tailwind CSS v4
+   ============================================================ */
+
+@import "./styles/theme.css";
+@import "./styles/nav.css";
+@import "./styles/hero.css";
+@import "./styles/formulario.css";
+@import "./styles/consultoria.css";
+@import "./styles/blog.css";
+@import "./styles/legal-modal.css";
+@import "./styles/footer.css";
