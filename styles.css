@@ -1511,6 +1511,66 @@ body { overflow-x: clip; }
   .gracias-card { padding: 22px 20px; }
 }
 
+/* --- /gracias/ con el formato de consultoría ----------------------
+   Mismos valores que la hoja .fmt-360 de /consultoria/: interlineado de
+   22,4px absolutos, 100px de aire por sección, titular a 48px y títulos
+   a 39px con -0,5px, tarjetas de relleno 30 y radio 15 sobre el blanco
+   al 4% con filo azul, y cajas destacadas de 40/radio 20 con borde de
+   2px. Estas clases solo existen en esta página. */
+.gracias { padding: 100px 20px; line-height: 22.4px; }
+.gracias-head { margin-bottom: 48px; }
+.gracias-head h1 {
+  font-size: 48px; font-weight: 500; line-height: 1.2;
+  letter-spacing: normal; margin: 0 0 24px; padding-bottom: .14em;
+}
+.gracias-h2 {
+  margin: 100px 0 48px; font-size: 39px; line-height: 1.2;
+  font-weight: 500; letter-spacing: -.5px;
+}
+.gracias-card,
+.gracias-pasos li,
+.gracias-links a {
+  padding: 30px; border-radius: 15px;
+  background: rgba(232, 242, 239, .04);
+  border: 1px solid rgba(var(--acc-rgb), .2);
+}
+.gracias-card p,
+.gracias-pasos p { font-size: 16px; line-height: 22.4px; color: rgba(232, 242, 239, .9); }
+.gracias-pasos { gap: 20px; }
+.gracias-links { gap: 20px; }
+.gracias-links strong { font-size: 16px; }
+.gracias-links span { font-size: 16px; line-height: 22.4px; }
+/* caja del CTA: la de "Garantía Total" de consultoría */
+.gracias-cta {
+  margin-top: 48px; padding: 40px; border-radius: 20px;
+  border: 2px solid var(--acc);
+  background: linear-gradient(135deg, rgba(var(--acc-rgb), .1), transparent);
+}
+.gracias-cta-txt { font-size: 16px; line-height: 22.4px; color: rgba(232, 242, 239, .9); }
+/* botón con la tipografía de los CTA del sitio */
+.gracias-cal {
+  padding: 18px 40px; border-radius: 50px;
+  font-size: 17.6px; font-weight: 700; line-height: 22.4px; letter-spacing: normal;
+  box-shadow: none; transition: .3s;
+}
+.gracias-cal:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(var(--acc-rgb), .4); }
+.gracias-cta-nota,
+.gracias-mail { font-size: 16px; line-height: 22.4px; color: rgba(232, 242, 239, .55); }
+
+@media (max-width: 768px) {
+  .gracias { padding: 60px 20px; }
+  .gracias-head h1 { font-size: 32px; }
+  .gracias-h2 { font-size: 1.8rem; margin-top: 60px; }
+  .gracias-card,
+  .gracias-pasos li,
+  .gracias-links a { padding: 20px; }
+  .gracias-cta { padding: 30px 20px; }
+  .gracias-cal { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gracias-cal:hover { transform: none; }
+}
+
 /* ============================================================
    PÁGINA DE CONTACTO (/contacto-aimanganell/)
    Bloque de contacto (hero + 3 tarjetas + formulario) traído tal cual
