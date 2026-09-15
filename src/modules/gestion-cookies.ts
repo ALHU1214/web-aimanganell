@@ -6,7 +6,13 @@ export function initGestionCookies(config: AMConfig): void {
   let gaLoaded = false;
   let metaLoaded = false;
 
-  function loadGA(): void {
+  /* GA4 con Consent Mode v2 (modo avanzado): GA carga siempre, pero arranca
+     con todo denegado. Sin consentimiento no escribe cookies ni guarda un ID
+     de visitante: solo envía avisos anónimos de visita (GA4 no almacena IPs).
+     Al aceptar se concede analytics_storage y pasa a medición completa. Los
+     permisos de publicidad (ad_*) se quedan siempre denegados: no hay Google
+     Ads en la web. */
+  function loadGA(aceptadas: boolean): void {
     if (gaLoaded || !config.gaId) return;
     gaLoaded = true;
     window.dataLayer = window.dataLayer || [];
@@ -17,12 +23,25 @@ export function initGestionCookies(config: AMConfig): void {
       // eslint-disable-next-line prefer-rest-params
       window.dataLayer?.push(arguments);
     };
+    // 'default' tiene que ir antes de 'config' para que el primer envío ya
+    // salga con el estado correcto (quien aceptó en otra visita arranca
+    // concedido; así no se cuenta dos veces).
+    window.gtag('consent', 'default', {
+      analytics_storage: aceptadas ? 'granted' : 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
     window.gtag('js', new Date());
-    window.gtag('config', config.gaId, { anonymize_ip: true });
+    window.gtag('config', config.gaId);
     const s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + config.gaId;
     document.head.appendChild(s);
+  }
+
+  function consentimientoAnalitica(concedido: boolean): void {
+    window.gtag?.('consent', 'update', { analytics_storage: concedido ? 'granted' : 'denied' });
   }
 
   function loadMeta(): void {
@@ -47,16 +66,18 @@ export function initGestionCookies(config: AMConfig): void {
     fbq('track', 'PageView');
   }
 
+  // Con consentimiento: analítica completa y Meta Pixel (este no tiene modo
+  // sin cookies, así que solo carga si se acepta).
   function grant(): void {
-    loadGA();
+    consentimientoAnalitica(true);
     loadMeta();
   }
 
-  try {
-    const choice = localStorage.getItem('am_cookies');
-    if (!choice) { if (bar) bar.hidden = false; }
-    else if (choice === 'all') { grant(); }
-  } catch (err) { if (bar) bar.hidden = false; }
+  let choice: string | null = null;
+  try { choice = localStorage.getItem('am_cookies'); } catch (err) {}
+  loadGA(choice === 'all');   // siempre; en modo denegado salvo que ya aceptara
+  if (choice === 'all') loadMeta();
+  else if (!choice && bar) bar.hidden = false;
 
   const cookieAccept = $('#cookie-accept');
   if (cookieAccept) cookieAccept.addEventListener('click', () => {
@@ -75,6 +96,7 @@ export function initGestionCookies(config: AMConfig): void {
   if (reopenCookies) reopenCookies.addEventListener('click', (e: Event) => {
     e.preventDefault();
     try { localStorage.removeItem('am_cookies'); } catch (err) {}
+    consentimientoAnalitica(false);   // retirar el consentimiento hasta que vuelva a elegir
 
     const modal = $('#legal-modal');
     if (modal) modal.hidden = true;
