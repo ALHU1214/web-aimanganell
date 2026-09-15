@@ -49,6 +49,7 @@ interface Window {
   dataLayer?: unknown[];
   gtag?: (command: string, actionOrTarget: string | Date, params?: Record<string, unknown>) => void;
   fbq?: (command: string, eventName: string, params?: Record<string, unknown>) => void;
+  _fbq?: unknown;
 }
 
 declare const process: {

@@ -290,7 +290,8 @@
   -webkit-box-shadow: inset 0 0 0 1000px #000;
   caret-color: var(--ink); transition: background-color 9999s ease-out;
 }
-.ct-group textarea { resize: vertical; min-height: 150px; }
+/* crece solo con el texto (.autogrow en formulario-lead.ts): sin tirador ni scroll */
+.ct-group textarea { resize: none; overflow: hidden; min-height: 150px; }
 .ct-group select {
   cursor: pointer; padding-right: 48px;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e8f2ef%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");

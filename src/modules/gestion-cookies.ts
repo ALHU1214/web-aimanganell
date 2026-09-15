@@ -10,8 +10,12 @@ export function initGestionCookies(config: AMConfig): void {
     if (gaLoaded || !config.gaId) return;
     gaLoaded = true;
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function (...args: unknown[]): void {
-      window.dataLayer?.push(args);
+    // Tiene que ser `arguments`, no (...args): gtag.js solo procesa objetos
+    // Arguments del dataLayer e ignora los arrays. Con un array GA carga pero
+    // no envía nada (pasó tras la migración a TypeScript, sep. 2026).
+    window.gtag = function (): void {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer?.push(arguments);
     };
     window.gtag('js', new Date());
     window.gtag('config', config.gaId, { anonymize_ip: true });
@@ -28,13 +32,19 @@ export function initGestionCookies(config: AMConfig): void {
     s.async = true;
     s.src = 'https://connect.facebook.net/en_US/fbevents.js';
     document.head.appendChild(s);
-    window.fbq = function (...args: unknown[]): void {
-      if ((window.fbq as unknown as { queue?: unknown[] }).queue) {
-        (window.fbq as unknown as { queue: unknown[] }).queue.push(args);
-      }
-    };
-    window.fbq('init', config.metaPixelId);
-    window.fbq('track', 'PageView');
+    // Stub oficial de Meta: encola las llamadas (como `arguments`) hasta que
+    // fbevents.js carga y define callMethod. Sin la cola, los eventos se perdían.
+    type FbqStub = { (): void; callMethod?: (...a: unknown[]) => void; queue: unknown[]; push: unknown; loaded: boolean; version: string };
+    const n = function (): void {
+      // eslint-disable-next-line prefer-rest-params
+      if (n.callMethod) n.callMethod.apply(n, arguments as unknown as unknown[]); else n.queue.push(arguments);
+    } as FbqStub;
+    n.push = n; n.queue = []; n.loaded = true; n.version = '2.0';
+    if (!window._fbq) window._fbq = n;
+    const fbq = n as unknown as NonNullable<Window['fbq']>;
+    window.fbq = fbq;
+    fbq('init', config.metaPixelId);
+    fbq('track', 'PageView');
   }
 
   function grant(): void {

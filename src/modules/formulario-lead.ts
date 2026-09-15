@@ -189,12 +189,16 @@ function sendLead(
 
 /* ---------- autogrow & envío del formulario con validaciones ---------- */
 export function initFormularioLead(config: AMConfig): void {
-  // 1. Textarea autogrow
+  // 1. Textarea autogrow: el campo crece con el texto para que siempre se lea
+  // entero. scrollHeight no incluye el borde y los campos van con
+  // box-sizing: border-box, así que se suma (si no, corta 1-2px del final).
   $$<HTMLTextAreaElement>('.autogrow').forEach((t) => {
-    t.addEventListener('input', () => {
+    const ajustar = (): void => {
       t.style.height = 'auto';
-      t.style.height = t.scrollHeight + 'px';
-    });
+      t.style.height = t.scrollHeight + (t.offsetHeight - t.clientHeight) + 'px';
+    };
+    t.addEventListener('input', ajustar);
+    ajustar();   // por si el navegador lo rellena al volver a la página
   });
 
   // 2. Turnstile y renderizado
@@ -233,10 +237,13 @@ export function initFormularioLead(config: AMConfig): void {
       { el: form.mensaje, validator: validateMensaje }
     ];
 
-    // Escuchadores en tiempo real (al escribir y al salir del foco)
+    // Nada se marca en rojo hasta el primer envío fallido. A partir de ahí la
+    // validación va en tiempo real, para que cada campo se limpie al corregirlo.
+    let envioFallido = false;
     fieldsToValidate.forEach(({ el, validator }) => {
       if (!el) return;
       const validate = () => {
+        if (!envioFallido) return true;
         const res = validator(el.value);
         setFieldError(el, res.isValid ? '' : res.message);
         return res.isValid;
@@ -269,6 +276,7 @@ export function initFormularioLead(config: AMConfig): void {
       });
 
       if (hasError) {
+        envioFallido = true;
         fail('Por favor, corrige los errores señalados en el formulario.');
         if (firstInvalidEl) {
           (firstInvalidEl as HTMLElement).focus();
