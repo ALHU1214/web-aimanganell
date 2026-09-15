@@ -3,37 +3,22 @@
 Todo lo de este documento lo tienes que hacer tú (cuenta de GitHub,
 DNS, Search Console) — nada de esto lo puede hacer Claude Code por ti.
 
-## 🚫 BLOQUEANTE — el aviso legal no identifica al responsable
+## ⚠️ Aviso legal: falta el domicilio completo
 
-*Revisado el 2026-08-25. Este bloqueante sigue abierto, pero por la mitad
-que queda, no por la que ya se resolvió.*
+*Revisado el 2026-09-15.*
 
-**Resuelto:** los huecos visibles `[NIF PENDIENTE]` y `[DOMICILIO PENDIENTE]`
-ya no están, ni en el repositorio ni en producción. Eso era lo que el
-texto anterior llamaba "peor que no tener aviso legal".
+**Resuelto:** titular identificado con nombre y NIF — *Álvaro Manganell
+González, NIF 79087261J, que opera con el nombre comercial AI MANGANELL* —
+en el aviso legal y en la política de privacidad (el modal de cada página
+carga esos mismos textos, no hay copias que tocar), y `vatID` en el JSON-LD
+de la portada.
 
-**Sigue pendiente:** el aviso legal no publica NIF ni domicilio fiscal. Hoy
-en producción solo dice *"este sitio web es titularidad de AI MANGANELL,
-con domicilio en Tenerife (Canarias, España)"*, que no identifica a nadie
-en el sentido que pide la ley.
+**Sigue pendiente:** el domicilio solo llega a "Tenerife (Canarias,
+España)". La LSSI-CE pide el domicilio del titular. Nada de esto es
+asesoramiento legal.
 
-El formulario de contacto trata datos personales (RGPD/LOPDGDD) y la
-LSSI-CE exige que el aviso legal identifique de verdad al responsable del
-sitio. Mientras falten NIF y domicilio fiscal, esa exigencia no se cumple.
-Nada de esto es asesoramiento legal: es la condición que este mismo
-documento se puso, y no está cumplida.
-
-**Para cerrarlo:**
-1. Dar de alta como autónomo (o la figura que corresponda).
-2. Pasarme NIF y domicilio fiscal.
-3. Los añado en `legal/aviso-legal/index.html` y `legal/privacidad/index.html`
-   (en su propio contenido y en el modal legal que se repite en cada página
-   del sitio — lo hago yo, no hay que tocarlo a mano en varios sitios), y
-   además en el JSON-LD de la portada: `vatID` para el NIF y `streetAddress`
-   dentro de `address`, que hoy solo llega a nivel de localidad.
-
-Si quieres publicar *antes* del alta —para enseñarlo o probarlo— la única
-forma segura es con el formulario desactivado.
+**Para cerrarlo:** pasarme el domicilio completo y lo añado en los dos
+textos legales y como `streetAddress` en el `address` del JSON-LD.
 
 ### Lo que NO es este bloqueante
 
