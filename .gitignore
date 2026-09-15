@@ -40,3 +40,15 @@ node_modules/
 # Piezas de marca para redes: pesan MB y no las sirve la web.
 # Viven aqui por comodidad, pero no deben publicarse.
 assets/BANNER*.png
+
+# Logos que se usan fuera de la web (redes, documentos) pero que la web
+# no necesita: se quedan en local y no se publican. Los que usa la web
+# (horizontal-x, simbolo-a.webp, nombre-mascara.webp...) no van aqui.
+assets/logos/vertical-x.png
+assets/logos/vertical-lema-x.png
+assets/logos/vertical-lema-compacto-x.png
+assets/logos/monograma-negro-x.png
+assets/logos/simbolo-a.png
+assets/logos/logo fondo oscuro con nombre.png
+assets/logos/perfil logo.png
+assets/logos/upscalemedia-transformed.jpeg

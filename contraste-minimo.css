@@ -39,7 +39,6 @@
 .blog-card-body time,
 .obt-fact-label,
 .obt-facts-note,
-.author-role,
 footer { color: rgba(232, 242, 239, .55); }
 
 .field::placeholder { color: rgba(232, 242, 239, .55); }

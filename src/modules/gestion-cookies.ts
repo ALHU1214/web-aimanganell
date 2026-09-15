@@ -1,4 +1,4 @@
-import { $, $$ } from './utils';
+import { $ } from './utils';
 
 /* ---------- 8 · cookies y analítica ---------- */
 export function initGestionCookies(config: AMConfig): void {
