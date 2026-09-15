@@ -131,7 +131,15 @@ img { display: block; }
 }
 @keyframes ctFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
+/* Partículas de fondo en todas las páginas: las crea src/modules/particulas.ts */
+.particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
+.particles span {
+  position: absolute; bottom: -10px; border-radius: 50%;
+  animation-name: float-up; animation-timing-function: linear; animation-iteration-count: infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .particles { display: none; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   /* El latido del CTA se mantiene aunque el sistema pida menos movimiento:
      decisión explícita del cliente (escalado del 4%). */

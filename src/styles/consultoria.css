@@ -5,11 +5,6 @@
   --sec-pad: 234px;
   position: relative; font-family: var(--font-1); flex: 1 0 auto;
 }
-.particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
-.particles span {
-  position: absolute; bottom: -10px; border-radius: 50%;
-  animation-name: float-up; animation-timing-function: linear; animation-iteration-count: infinite;
-}
 .p2-body { position: relative; z-index: 1; animation: p2fade .5s ease-out both; }
 
 .p2-hero {
@@ -281,8 +276,8 @@
 }
 .ct-group input::placeholder, .ct-group textarea::placeholder { color: rgba(232, 242, 239, .55); }
 .ct-group input:focus, .ct-group select:focus, .ct-group textarea:focus {
-  outline: none; border-color: var(--ct-accent);
-  box-shadow: 0 0 0 3px rgba(var(--acc-rgb), .12), 0 10px 30px rgba(var(--acc-rgb), .15);
+  outline: none; border-color: transparent;
+  box-shadow: 0 0 22px rgba(var(--acc-rgb), .38);
 }
 .ct-group input:-webkit-autofill, .ct-group input:-webkit-autofill:hover,
 .ct-group input:-webkit-autofill:focus, .ct-group textarea:-webkit-autofill {

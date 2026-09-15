@@ -7,6 +7,7 @@ import { initModalLegal } from './modules/modal-legal';
 import { initGestionCookies } from './modules/gestion-cookies';
 import { initScrollReveal } from './modules/scroll-reveal';
 import { initMenuMovil } from './modules/menu-movil';
+import { initParticulas } from './modules/particulas';
 import { config } from './config';
 
 /* ============================================================
@@ -27,5 +28,6 @@ import { config } from './config';
   initGestionCookies(CFG);
   initScrollReveal();
   initMenuMovil();
+  initParticulas();
 })();
 
