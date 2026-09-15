@@ -132,4 +132,6 @@ en vez de publicar una página a medias.
 
 ## Ejemplo completo
 
-Ver [`ejemplo-post.post`](ejemplo-post.post) en esta misma carpeta.
+Cualquier post publicado sirve de modelo, por ejemplo
+[`coste-agentes-ia-pyme.post`](coste-agentes-ia-pyme.post) en esta misma
+carpeta (con tabla de contenidos y preguntas frecuentes).
