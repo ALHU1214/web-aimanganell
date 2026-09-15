@@ -82,6 +82,12 @@ las páginas ya generadas. **No se edita nada de eso a mano** — se
 sobrescribe en el próximo build. El formato exacto de un `.post` está
 documentado en [`blog/posts/README.md`](blog/posts/README.md).
 
+**Quién publica:** los posts los escribe y sube un workflow de **n8n que
+corre en local**, en el PC de Álvaro. Solo publica mientras ese n8n está
+encendido: con el PC apagado no sale ningún post. Lo que viene después
+sí es automático: el push de n8n dispara en GitHub el workflow
+`build-blog.yml`, que genera las páginas sin depender de ningún PC.
+
 El listado se genera ordenado por fecha descendente, con filtro por
 categoría (mejora progresiva: sin JS se ven todos los posts con enlaces
 reales; con JS, los botones filtran sin navegar). Los posts con

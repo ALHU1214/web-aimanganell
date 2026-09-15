@@ -86,6 +86,15 @@ le dice a Pages qué dominio es el suyo: no borrarlo.
 - [ ] Iconos de redes sociales en el footer (hueco preparado, vacío
       hasta que haya perfiles públicos que enlazar).
 
+## A tener en cuenta: el blog depende de un PC encendido
+
+El workflow de n8n que escribe y publica los posts corre en local, en el
+PC de Álvaro. Si ese PC está apagado o n8n cerrado, no se publica nada
+(no hay error visible en la web: simplemente no salen posts nuevos). Si
+algún día se quiere que publique sin depender del PC, hay que mover n8n a
+un servidor (n8n Cloud o un VPS). La generación de las páginas no tiene
+este problema: la hace GitHub Actions en la nube tras cada push.
+
 ## Ya resuelto, no hace falta tocar
 
 - RLS de Supabase en la tabla `leads` — verificado, solo permite

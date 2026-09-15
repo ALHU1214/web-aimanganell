@@ -7,7 +7,10 @@ Al empezar cualquier sesión de trabajo en este repo, haz `git pull`
 terminó con el repo sincronizado.
 
 **Por qué:** el workflow de n8n publica posts nuevos commiteando
-directamente a GitHub — sin pasar por esta máquina. Cuando eso pasa,
+directamente a GitHub por su API — sin pasar por esta copia del repo.
+(n8n corre en local, en el PC del usuario: solo publica mientras está
+encendido. Aun así sus commits no llegan a esta carpeta sin un pull.)
+Cuando eso pasa,
 GitHub Actions genera `blog/<slug>/`, `blog/index.html`,
 `sitemap.xml`, `robots.txt` y `blog/rss.xml`, y los commitea de
 vuelta automáticamente. La copia local se queda desactualizada sola,
