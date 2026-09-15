@@ -1,0 +1,271 @@
+/* ============================================================
+   GRACIAS — EFECTOS ESTILO DIVISUAL, ADAPTADOS A AI MANGANELL
+   Cárgalo DESPUÉS de styles.css y contraste-minimo.css:
+
+     <link rel="stylesheet" href="/gracias-efectos.css?v=1">
+
+   No hace falta tocar el HTML: todo apunta a tus clases actuales
+   (.gracias-head, .gracias-card, .gracias-cta, .gracias-pasos,
+    .gracias-links, .gracias-wa, .gracias-cal, .gracias-wa-btn).
+
+   Usa tus variables de marca (--acc, --acc-rgb, --acc2, --ink),
+   así que mantiene tu azul #0071eb automáticamente.
+   ============================================================ */
+
+/* ---------- Ajustes locales de este bloque ---------- */
+.gracias-wrap {
+  --gr-lift:   10px;                        /* cuánto se desplaza en hover */
+  --gr-edge:   rgba(var(--acc-rgb), 0.2);   /* borde en reposo */
+  --gr-edge-hi:rgba(var(--acc-rgb), 0.55);  /* borde en hover */
+  --gr-panel:  rgba(232, 242, 239, 0.04);   /* fondo de caja */
+  --gr-panel-hi: rgba(var(--acc-rgb), 0.06);/* fondo de caja en hover */
+}
+
+/* ============================================================
+   1. CABECERA — halo difuminado detrás del titular
+   ============================================================ */
+.gracias-head { position: relative; }
+
+.gracias-head::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(var(--acc-rgb), 0.35), transparent 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Baja el titular hasta el centro del halo: 80px es el centro del halo
+   (top -30px + 220px / 2) y .6em la mitad de la línea (line-height 1.2),
+   así cuadra con los 48px de escritorio y los 32px de móvil. Es margen
+   normal, así que todo lo de debajo baja lo mismo. */
+.gracias-head h1 { margin-top: calc(80px - 0.6em); }
+
+/* Degradado del H1 con más recorrido hacia el acento (como el original).
+   Si prefieres conservar el tuyo tal cual, borra este bloque. */
+.gracias-head h1 {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--acc2) 55%, var(--acc) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   2. CAJA DE CONFIRMACIÓN — borde degradado sutil
+   ============================================================ */
+.gracias-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  /* borde más marcado que el .2 de la hoja principal */
+  border-color: rgba(var(--acc-rgb), 0.45);
+}
+
+.gracias-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  /* la luz llega hasta la esquina opuesta (antes se apagaba al 60%) */
+  background: linear-gradient(45deg, var(--acc), transparent 100%);
+  border-radius: inherit;
+  opacity: 0.18;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   3. PASOS NUMERADOS — hover que desplaza
+   ============================================================ */
+.gracias-pasos li {
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.gracias-pasos li:hover {
+  transform: translateX(var(--gr-lift));
+  background: var(--gr-panel-hi);
+  border-color: var(--gr-edge-hi);
+}
+
+/* El número gana un aro de luz al pasar por encima */
+.gracias-num { transition: box-shadow 0.3s ease, transform 0.3s ease; }
+
+.gracias-pasos li:hover .gracias-num {
+  box-shadow: 0 0 0 5px rgba(var(--acc-rgb), 0.18);
+  transform: scale(1.06);
+}
+
+/* ============================================================
+   4. TARJETAS DE ENLACE — icono giratorio + barrido de brillo
+   ============================================================ */
+.gracias-links a {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Brillo que cruza la tarjeta de izquierda a derecha */
+.gracias-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(var(--acc-rgb), 0.14), transparent);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.gracias-links a:hover::before { left: 100%; }
+
+.gracias-links a:hover {
+  transform: translateX(var(--gr-lift));
+  background: var(--gr-panel-hi);
+  border-color: var(--acc);
+}
+
+/* Icono redondo */
+.gracias-links a > .gracias-link-ico {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--acc-rgb), 0.15);
+  border-radius: 50%;
+  transition: background 0.3s ease, transform 0.5s ease;
+}
+
+.gracias-links a > .gracias-link-ico svg {
+  width: 24px;
+  height: 24px;
+  color: var(--acc2);
+  transition: color 0.3s ease;
+}
+
+/* Gira 360° y se rellena de acento al pasar el ratón */
+.gracias-links a:hover > .gracias-link-ico {
+  background: var(--acc);
+  transform: rotate(360deg);
+}
+
+.gracias-links a:hover > .gracias-link-ico svg { color: #07100e; }
+
+/* Columna de textos. font-size/color inherit porque la regla
+   .gracias-links span de styles.css le daría al contenedor entero el
+   estilo de la descripción. El > sube la especificidad lo justo. */
+.gracias-links a > .gracias-link-txt {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* ============================================================
+   5. BOTONES — onda expansiva (ripple) al pasar el ratón
+   ============================================================ */
+.gracias-cal,
+.gracias-wa-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.gracias-cal::before,
+.gracias-wa-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.gracias-cal:hover::before,
+.gracias-wa-btn:hover::before { width: 420px; height: 420px; }
+
+.gracias-cal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 34px rgba(var(--acc-rgb), 0.42);
+}
+
+.gracias-wa-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+}
+
+/* ============================================================
+   6. BLOQUE CTA Y NOTA — respiración del borde
+   ============================================================ */
+.gracias-cta {
+  position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gracias-cta:hover {
+  border-color: var(--acc2);
+  box-shadow: 0 0 46px rgba(var(--acc-rgb), 0.16);
+}
+
+.gracias-wa {
+  transition: border-left-color 0.3s ease, background 0.3s ease;
+}
+
+.gracias-wa:hover {
+  border-left-color: var(--acc2);
+  background: var(--gr-panel-hi);
+}
+
+/* ============================================================
+   7. MÓVIL — sin desplazamientos laterales, icono más contenido
+   ============================================================ */
+@media (max-width: 768px) {
+  .gracias-wrap { --gr-lift: 0px; }
+  /* el círculo de 48px se come el ancho útil del texto en pantallas
+     estrechas: a 40px la descripción gana una línea menos de recorte */
+  .gracias-links a { gap: 14px; }
+  .gracias-links a > .gracias-link-ico { width: 40px; height: 40px; }
+  .gracias-links a > .gracias-link-ico svg { width: 20px; height: 20px; }
+}
+
+/* En pantallas táctiles el hover se queda "pegado" tras tocar la tarjeta:
+   el icono seguiría girado y la tarjeta desplazada hasta tocar otra cosa.
+   Con puntero fino (ratón) se mantiene todo el efecto. */
+@media (hover: none) {
+  .gracias-links a:hover { transform: none; }
+  .gracias-links a:hover::before { left: -100%; }
+  .gracias-links a:hover > .gracias-link-ico { transform: none; }
+  .gracias-cal:hover,
+  .gracias-wa-btn:hover { transform: none; }
+  .gracias-cal:hover::before,
+  .gracias-wa-btn:hover::before { width: 0; height: 0; }
+}
+
+/* ============================================================
+   8. ACCESIBILIDAD
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .gracias-wrap *,
+  .gracias-wrap *::before,
+  .gracias-wrap *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
