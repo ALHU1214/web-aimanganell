@@ -171,8 +171,24 @@
   .post-author { padding: 22px; }
 }
 
+/* Listado en móvil: tarjetas horizontales compactas (miniatura cuadrada +
+   título y fecha, sin extracto). En vertical cada tarjeta ocupaba casi la
+   pantalla entera; así caben 5-6 posts por pantalla. */
+@media (max-width: 640px) {
+  .blog-grid { grid-template-columns: 1fr; gap: 12px; }
+  .blog-card { flex-direction: row; border-radius: 14px; }
+  .blog-card:hover { transform: none; }
+  .blog-card-cover { flex: 0 0 108px; aspect-ratio: auto; min-height: 108px; }
+  .blog-card-body { padding: 12px 14px; gap: 6px; justify-content: center; }
+  .blog-card-body h2 {
+    font-size: 15.5px; line-height: 1.3;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .blog-card-body p { display: none; }
+  .blog-card-body time { margin-top: 0; padding-top: 2px; font-size: 12px; }
+}
+
 @media (max-width: 420px) {
-  .blog-grid { grid-template-columns: 1fr; }
   .post-page, .blog-page { padding-left: 16px; padding-right: 16px; }
 }
 @media (max-width: 480px) {
