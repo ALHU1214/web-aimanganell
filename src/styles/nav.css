@@ -33,12 +33,9 @@ nav {
   .nav-logo img { height: 27px; }
   .nav-link { font-size: 13px; }
   .nav-cta { padding: 11px 18px; font-size: 13px; }
-  nav {
-    background: rgba(6, 22, 29, .92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(232, 242, 239, .08);
-  }
+  /* En móvil el header es transparente, como en escritorio (sin fondo,
+     desenfoque ni línea inferior). El panel del menú hamburguesa lleva su
+     propio fondo, así que abierto sigue leyéndose bien. */
 }
 
 @media (max-width: 600px) {

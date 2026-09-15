@@ -202,7 +202,9 @@
   .legal-page { padding-top: 100px; padding-left: 20px; padding-right: 20px; }
 }
 @media (max-width: 768px) {
-  .gracias { padding: 60px 20px; }
+  /* 100px arriba, como .legal-page y el blog: con 60 el titular quedaba
+     debajo del header fijo (~67px en móvil). */
+  .gracias { padding: 100px 20px 60px; }
   .gracias-head h1 { font-size: 32px; }
   .gracias-h2 { font-size: 1.8rem; margin-top: 60px; }
   .gracias-card, .gracias-pasos li, .gracias-links a { padding: 20px; }
