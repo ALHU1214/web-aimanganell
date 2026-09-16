@@ -45,7 +45,8 @@ const defaults = {
   WEBHOOK_URL: '',
   TURNSTILE_SITE_KEY: '0x4AAAAAAENeLO4-8PHUoy9x',
   GA_ID: 'G-PLTXXWN26D',
-  META_PIXEL_ID: ''
+  META_PIXEL_ID: '',
+  CLARITY_ID: 'yj4btrkmcz'
 };
 
 // Mapa de defines para esbuild

@@ -33,6 +33,11 @@ export const config: AMConfig = {
 
   // Analítica. GA y Meta Pixel.
   gaId: process.env.GA_ID || 'G-PLTXXWN26D',
-  metaPixelId: process.env.META_PIXEL_ID || ''
+  metaPixelId: process.env.META_PIXEL_ID || '',
+
+  // Microsoft Clarity: mapas de calor y grabaciones de sesión. ID del
+  // proyecto (clarity.microsoft.com). Vacío = desactivado. Solo carga con
+  // consentimiento, y la CSP de Cloudflare debe permitir clarity.ms.
+  clarityId: process.env.CLARITY_ID || 'yj4btrkmcz'
 };
 

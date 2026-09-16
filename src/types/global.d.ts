@@ -14,6 +14,7 @@ interface AMConfig {
   turnstileSiteKey: string;
   gaId: string;
   metaPixelId: string;
+  clarityId: string;
 }
 
 interface LeadFormData {
@@ -50,6 +51,7 @@ interface Window {
   gtag?: (command: string, actionOrTarget: string | Date, params?: Record<string, unknown>) => void;
   fbq?: (command: string, eventName: string, params?: Record<string, unknown>) => void;
   _fbq?: unknown;
+  clarity?: (...args: unknown[]) => void;
 }
 
 declare const process: {

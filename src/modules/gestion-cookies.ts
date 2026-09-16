@@ -5,6 +5,7 @@ export function initGestionCookies(config: AMConfig): void {
   const bar = $('#cookie-bar');
   let gaLoaded = false;
   let metaLoaded = false;
+  let clarityLoaded = false;
 
   /* GA4 con Consent Mode v2 (modo avanzado): GA carga siempre, pero arranca
      con todo denegado. Sin consentimiento no escribe cookies ni guarda un ID
@@ -44,6 +45,29 @@ export function initGestionCookies(config: AMConfig): void {
     window.gtag?.('consent', 'update', { analytics_storage: concedido ? 'granted' : 'denied' });
   }
 
+  /* Microsoft Clarity: mapas de calor y grabaciones. Graba la sesión, así
+     que va con las analíticas: solo con consentimiento. El texto que se
+     escribe en los formularios lo enmascara Clarity por defecto (Masking:
+     Balanced en su panel; no bajarlo a Relaxed en esta web). */
+  function loadClarity(): void {
+    if (clarityLoaded || !config.clarityId) return;
+    clarityLoaded = true;
+    // cola del fragmento oficial: encola las llamadas hasta que carga el tag
+    if (!window.clarity) {
+      const q: unknown[] = [];
+      const stub = function (): void {
+        // eslint-disable-next-line prefer-rest-params
+        q.push(arguments);
+      } as unknown as NonNullable<Window['clarity']>;
+      (stub as unknown as { q: unknown[] }).q = q;
+      window.clarity = stub;
+    }
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.clarity.ms/tag/' + config.clarityId;
+    document.head.appendChild(s);
+  }
+
   function loadMeta(): void {
     if (metaLoaded || !config.metaPixelId) return;
     metaLoaded = true;
@@ -70,13 +94,14 @@ export function initGestionCookies(config: AMConfig): void {
   // sin cookies, así que solo carga si se acepta).
   function grant(): void {
     consentimientoAnalitica(true);
+    loadClarity();
     loadMeta();
   }
 
   let choice: string | null = null;
   try { choice = localStorage.getItem('am_cookies'); } catch (err) {}
   loadGA(choice === 'all');   // siempre; en modo denegado salvo que ya aceptara
-  if (choice === 'all') loadMeta();
+  if (choice === 'all') { loadClarity(); loadMeta(); }
   else if (!choice && bar) bar.hidden = false;
 
   const cookieAccept = $('#cookie-accept');
