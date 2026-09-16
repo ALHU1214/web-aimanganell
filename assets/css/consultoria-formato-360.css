@@ -269,6 +269,18 @@
 
   .fmt-360 .obt-facts { flex-direction: column; gap: 20px; }
 
+  /* Garantía Total en móvil, con la distribución de la referencia: caja con
+     más aire, título grande, todo centrado y el aviso de plazas centrado con
+     el "!" en la misma línea que el texto (antes a la izquierda, en columna). */
+  .fmt-360 .total-box { padding: 44px 24px 40px; }
+  .fmt-360 .total-box h2 { font-size: clamp(1.8rem, 9.4vw, 2.4rem); margin: 0 0 22px; }
+  .fmt-360 .total-box > p { font-size: 17px; line-height: 1.5; max-width: 30ch; }
+  .fmt-360 .plazas {
+    display: block; text-align: center;
+    margin-top: 32px; padding: 24px 18px 28px;
+  }
+  .fmt-360 .plazas-bang { display: inline; margin-right: 5px; font-size: 17px; }
+  .fmt-360 .plazas span:last-child { display: inline; font-size: 16.5px; line-height: 1.5; }
 }
 
 /* --- 10. ACCESIBILIDAD ---------------------------------------- */
