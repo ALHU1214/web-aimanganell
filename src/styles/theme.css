@@ -49,6 +49,17 @@
   font-display: swap;
   src: url('assets/fonts/poppins-800.woff2') format('woff2');
 }
+/* Respaldo con las medidas de Poppins (Arial reescalada). Mientras Poppins
+   no ha llegado el texto ocupa casi lo mismo, así que al cambiar de fuente
+   los párrafos apenas se recolocan (Lighthouse: "Web font loaded", CLS). */
+@font-face {
+  font-family: 'Poppins fallback';
+  src: local('Arial');
+  ascent-override: 93.62%;
+  descent-override: 31.21%;
+  line-gap-override: 8.92%;
+  size-adjust: 112.16%;
+}
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -75,7 +86,7 @@
   --blue: #3b8dff;
   --card: #0a1613;
   --sec-pad: 100px;        /* aire vertical entre secciones */
-  --font-1: 'Poppins', system-ui, sans-serif;
+  --font-1: 'Poppins', 'Poppins fallback', system-ui, sans-serif;
   --font-2: 'Manrope', system-ui, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
 }

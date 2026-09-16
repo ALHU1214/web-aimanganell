@@ -169,7 +169,7 @@ textarea.field { resize: none; overflow: hidden; line-height: 1.6; }
 .form-card .btn-submit,
 .btn-acc.btn-submit,
 .ct-form .ct-submit {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins fallback', sans-serif;
   font-size: 19.2px; font-weight: 700; font-style: normal;
   line-height: 28.8px; letter-spacing: .3px; word-spacing: 0;
   text-transform: none; text-decoration: none; text-align: center;

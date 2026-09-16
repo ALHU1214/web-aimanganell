@@ -41,12 +41,12 @@
 .p2-hero-copy p { margin: 26px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: rgba(232,242,239,.72); text-wrap: pretty; }
 .p2-hero-copy .btn-acc {
   margin-top: 52px; padding: 22px 44px; font-size: 19px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins fallback', sans-serif;
   font-weight: 500;
   letter-spacing: -.5px;
 }
 .p2-hero-copy .btn-acc {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins fallback', sans-serif;
   font-size: 17.6px; font-weight: 700; font-style: normal;
   line-height: 22.4px; letter-spacing: normal; word-spacing: 0;
   text-transform: none; text-decoration: none; text-align: center;
@@ -65,7 +65,7 @@
   margin: 8px 0 48px;
   padding: 0;
   background: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins fallback', sans-serif;
   font-size: clamp(1.75rem, 4vw, 3rem);
   font-weight: 500;
   font-style: normal;
