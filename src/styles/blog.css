@@ -63,7 +63,12 @@
 .post-content {
   font-family: var(--font-2); font-size: 18px; line-height: 1.75; color: rgba(232,242,239,.86);
 }
+/* Aire entre bloques (párrafos, listas, citas). Ojo: ninguna regla de un
+   elemento concreto (p, ul, ol, blockquote) debe declarar "margin: 0": tiene
+   más especificidad que esta y deja el texto como un bloque pegado (pasó). */
 .post-content > * + * { margin-top: 1.5em; }
+/* tras un subtítulo, menos aire: el título se lee unido a su texto */
+.post-content :is(h2, h3) + * { margin-top: .8em; }
 
 .post-content h2 {
   margin-top: 2.3em; font-family: var(--font-1); font-weight: 700; letter-spacing: -.015em;
@@ -74,13 +79,13 @@
   margin-top: 1.9em; font-family: var(--font-1); font-weight: 700; letter-spacing: -.01em;
   line-height: 1.3; font-size: clamp(19px, 2.4vw, 22px); color: var(--ink); text-wrap: balance;
 }
-.post-content p { margin: 0; text-wrap: pretty; }
-.post-content ul { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: .65em; list-style-type: disc; }
-.post-content ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: .65em; list-style-type: decimal; }
+/* sin text-wrap: pretty en párrafos: en móvil dejaba líneas cortas a mitad de frase */
+.post-content ul { padding-left: 1.3em; display: flex; flex-direction: column; gap: .65em; list-style-type: disc; }
+.post-content ol { padding-left: 1.3em; display: flex; flex-direction: column; gap: .65em; list-style-type: decimal; }
 .post-content li { line-height: 1.7; }
 .post-content ul li::marker, .post-content ol li::marker { color: var(--acc); }
 .post-content blockquote {
-  margin: 0; padding: 1.1em 1.4em; border-left: 3px solid var(--acc); border-radius: 0 12px 12px 0;
+  padding: 1.1em 1.4em; border-left: 3px solid var(--acc); border-radius: 0 12px 12px 0;
   background: rgba(var(--acc-rgb), .07); color: var(--ink);
 }
 .post-content blockquote p { margin: 0; font-size: 1.05em; line-height: 1.65; }

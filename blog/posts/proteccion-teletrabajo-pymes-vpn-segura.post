@@ -105,4 +105,8 @@
 
 <p>Instalar una VPN sin gestionar estos elementos no ofrece la protección que la empresa espera.</p>
 <h2>Lo que vemos en la práctica</h2>
-<p>En una empresa con la que hemos trabajado, una persona que se había marchado meses antes seguía teniendo activo su correo corporativo. No lo detectó ningún sistema de seguridad: se dieron cuenta ellos mismos, por casualidad. Nadie había hecho nada mal a propósito. Simplemente, dar de baja los accesos no era tarea de nadie en concreto, así que no la hizo nadie. Es el patrón que más se repite: se invierte en la parte técnica —la VPN, el cifrado, el doble factor— y se deja sin dueño la parte que hay que revisar cada pocos meses. Una conexión cifrada no sirve de mucho si la cuenta que la usa debería haberse cerrado en primavera.</p>
+<p>En una empresa con la que hemos trabajado, una persona que se había marchado meses antes seguía teniendo activo su correo corporativo. No lo detectó ningún sistema de seguridad: se dieron cuenta ellos mismos, por casualidad.</p>
+
+<p>Nadie había hecho nada mal a propósito. Simplemente, dar de baja los accesos no era tarea de nadie en concreto, así que no la hizo nadie.</p>
+
+<p>Es el patrón que más se repite: se invierte en la parte técnica —la VPN, el cifrado, el doble factor— y se deja sin dueño la parte que hay que revisar cada pocos meses. Una conexión cifrada no sirve de mucho si la cuenta que la usa debería haberse cerrado en primavera.</p>
