@@ -3,9 +3,13 @@ import { $ } from './utils';
 /* ---------- 8 · cookies y analítica ---------- */
 export function initGestionCookies(config: AMConfig): void {
   const bar = $('#cookie-bar');
-  let gaLoaded = false;
-  let metaLoaded = false;
-  let clarityLoaded = false;
+  // Medición solo en el dominio real: las pruebas en localhost (o en
+  // cualquier otra copia) no deben sumar visitas a GA4 ni a Clarity.
+  const produccion = /(^|\.)aimanganell\.com$/.test(location.hostname);
+  // Marcarlas como ya cargadas hace que los load*() no hagan nada fuera de producción
+  let gaLoaded = !produccion;
+  let metaLoaded = !produccion;
+  let clarityLoaded = !produccion;
 
   /* GA4 con Consent Mode v2 (modo avanzado): GA carga siempre, pero arranca
      con todo denegado. Sin consentimiento no escribe cookies ni guarda un ID
