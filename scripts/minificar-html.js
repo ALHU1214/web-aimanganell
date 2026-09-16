@@ -14,8 +14,10 @@ const { minify } = require('html-minifier-terser');
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, '_site');
 
-// Lo que nunca ha hecho falta servir (o no debe salir del repo)
-const EXCLUIR = new Set(['.git', '.github', 'node_modules', '_site', '.env', '.env.local']);
+// Lo que nunca ha hecho falta servir (o no debe salir del repo).
+// Además se salta todo lo que empieza por punto (.env.example,
+// .gitignore, .cover-hash...): Jekyll tampoco lo publicaba.
+const EXCLUIR = new Set(['node_modules', '_site']);
 
 const OPCIONES = {
   collapseWhitespace: true,
@@ -34,7 +36,7 @@ const OPCIONES = {
 function copiar(origen, destino) {
   fs.mkdirSync(destino, { recursive: true });
   for (const entrada of fs.readdirSync(origen, { withFileTypes: true })) {
-    if (EXCLUIR.has(entrada.name)) continue;
+    if (entrada.name.startsWith('.') || EXCLUIR.has(entrada.name)) continue;
     const de = path.join(origen, entrada.name);
     const a = path.join(destino, entrada.name);
     if (entrada.isDirectory()) copiar(de, a);
