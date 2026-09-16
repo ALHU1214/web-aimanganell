@@ -26,6 +26,10 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # deploy-pages solo publica desde el entorno que crea Pages
+    environment:
+      name: github-pages
+      url: https://aimanganell.com
     steps:
       - uses: actions/checkout@v4
         with:
