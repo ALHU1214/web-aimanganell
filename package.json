@@ -8,11 +8,13 @@
     "build:css": "npx @tailwindcss/cli -i src/styles.css -o styles.css --minify",
     "build": "node scripts/build.js",
     "check": "tsc --noEmit",
+    "build:site": "node scripts/minificar-html.js && npx serve _site",
     "watch": "npx @tailwindcss/cli -i src/styles.css -o styles.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.9",
     "esbuild": "^0.25.0",
+    "html-minifier-terser": "^7.2.0",
     "tailwindcss": "^4.0.9",
     "typescript": "^5.7.3"
   }

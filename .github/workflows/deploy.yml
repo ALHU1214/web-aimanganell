@@ -1,0 +1,49 @@
+name: Deploy Pages
+
+# Publica en GitHub Pages una copia con el HTML minificado (ver
+# scripts/minificar-html.js). Requiere Settings → Pages → Source =
+# "GitHub Actions".
+on:
+  push:
+    branches: [master]
+  # Los commits que hace "Build blog" con GITHUB_TOKEN no disparan
+  # otros workflows: sin esto, los posts nuevos no se publicarían.
+  workflow_run:
+    workflows: [Build blog]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una sola publicación a la vez; la más nueva gana
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # tras workflow_run, coger master tal y como lo dejó Build blog
+          ref: master
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Copia con HTML minificado
+        run: node scripts/minificar-html.js
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - uses: actions/deploy-pages@v4
