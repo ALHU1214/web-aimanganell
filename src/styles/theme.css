@@ -154,6 +154,20 @@ img { display: block; }
 .rise.d2 { animation-delay: .16s; }
 .rise.d3 { animation-delay: .24s; }
 
+/* En móvil, lo que se ve al entrar aparece ya pintado, sin animación de
+   entrada: esas animaciones arrancan en opacidad 0 y retrasaban la métrica
+   LCP varios segundos (Lighthouse móvil 72-80). El "html" delante da la
+   especificidad justa para ganar a las reglas de cada módulo, que van después. */
+@media (max-width: 760px) {
+  html .rise,
+  html .p2-body,
+  html .p2-hero-copy,
+  html .ct-hero,
+  html .gracias-head { animation: none; }
+  /* .ct-info y .ct-form-box conservan su entrada: sin ella, el reajuste al
+     cargar la tipografía cuenta como desplazamiento (CLS 0,13 en contacto). */
+}
+
 .js-reveal [data-reveal] {
   opacity: 0; transform: translateY(18px);
   transition: opacity .5s ease-out, transform .5s ease-out;

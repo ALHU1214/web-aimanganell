@@ -11,9 +11,7 @@ on:
       - 'scripts/blog-index-template.html'
       # los que se sellan: si cambian hay que renovar su ?v= en el HTML
       - 'styles.css'
-      - 'contraste-minimo.css'
       - 'main.js'
-      - 'assets/css/consultoria-formato-360.css'
   workflow_dispatch:
 
 permissions:

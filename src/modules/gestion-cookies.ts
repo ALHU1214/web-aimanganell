@@ -110,7 +110,12 @@ export function initGestionCookies(config: AMConfig): void {
   try { choice = localStorage.getItem('am_cookies'); } catch (err) {}
   loadGA(choice === 'all');   // siempre; en modo denegado salvo que ya aceptara
   if (choice === 'all') { loadClarity(); loadMeta(); }
-  else if (!choice && bar) bar.hidden = false;
+  else if (!choice && bar) {
+    // Se muestra con las fuentes ya cargadas: si aparece antes, al llegar
+    // Poppins cambia de alto y cuenta como desplazamiento (CLS).
+    const listo = document.fonts ? document.fonts.ready : Promise.resolve();
+    listo.then(() => { bar.hidden = false; }, () => { bar.hidden = false; });
+  }
 
   const cookieAccept = $('#cookie-accept');
   if (cookieAccept) cookieAccept.addEventListener('click', () => {

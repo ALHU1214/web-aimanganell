@@ -12,3 +12,9 @@
 @import "./styles/blog.css";
 @import "./styles/legal-modal.css";
 @import "./styles/footer.css";
+
+/* Antes eran hojas sueltas con su propio <link> (dos peticiones más que
+   bloqueaban el primer pintado). Van al final para conservar el orden en
+   que se cargaban: pisan a los módulos anteriores. */
+@import "./styles/contraste-minimo.css";
+@import "./styles/consultoria-formato-360.css";

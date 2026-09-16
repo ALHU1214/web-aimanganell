@@ -187,6 +187,38 @@ function generateCoverVariants(coverPath, outDir, width, height) {
   return variants;
 }
 
+// --- portadas en WebP a varios anchos ------------------------------
+// El listado mostraba miniaturas de ~110-380px cargando el JPEG de 1600px
+// (~100 KiB cada una) y la portada del post no tenia version ligera para
+// movil. Se generan cover-480/960/1600.webp desde la imagen ORIGINAL y se
+// sirven con srcset; cover.jpg se queda (og:image, JSON-LD, navegadores
+// sin srcset). Igual que los JPEG, solo se generan si faltan o si cambia
+// la imagen de origen, para no reescribir binarios en cada build.
+const ANCHOS_WEBP = [480, 960, 1600];
+
+function webpPrevistas(width) {
+  return ANCHOS_WEBP.filter(w => w <= width).map(w => ({ file: `cover-${w}.webp`, width: w }));
+}
+
+function encodeWebp(srcPath, destPath, width) {
+  try {
+    execFileSync('ffmpeg', [
+      '-y', '-i', srcPath,
+      '-vf', `scale=${width}:-2`,
+      '-c:v', 'libwebp', '-quality', '78',
+      destPath
+    ], { stdio: ['ignore', 'ignore', 'ignore'] });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// "cover-480.webp 480w, ..." con un prefijo de ruta ('' en el post, 'slug/' en el listado)
+function srcsetWebp(webps, prefijo) {
+  return (webps || []).map(v => `${prefijo}${v.file} ${v.width}w`).join(', ');
+}
+
 // serializa un objeto a JSON-LD dentro de <script>, escapando "<" para
 // que un valor con "</script>" dentro no pueda cortar el bloque
 function jsonLdScript(graph) {
@@ -412,7 +444,7 @@ ${items}
   </aside>`;
 }
 
-function renderPost(template, data, bodyHtml, dateModified, coverVariants) {
+function renderPost(template, data, bodyHtml, dateModified, coverVariants, webpVariants) {
   const slug = data.slug;
   const width = data.cover.width || 1600;
   const height = data.cover.height || 900;
@@ -455,6 +487,7 @@ function renderPost(template, data, bodyHtml, dateModified, coverVariants) {
     '{{COVER_ALT}}': escapeHtml(data.cover.alt),
     '{{COVER_WIDTH}}': String(width),
     '{{COVER_HEIGHT}}': String(height),
+    '{{COVER_SRCSET}}': srcsetWebp(webpVariants, ''),
     '{{BODY_HTML}}': bodyHtml,
     '{{FAQ_HTML}}': renderFaqHtml(data.faq),
     '{{JSONLD}}': jsonLdScript(graph)
@@ -467,14 +500,20 @@ function renderPost(template, data, bodyHtml, dateModified, coverVariants) {
   return html;
 }
 
-function renderCardHtml(post) {
+// Miniatura: en movil ocupa ~110px (recorte de un 16:9 → ~200px de ancho)
+// y en escritorio una columna de ~380px. Las dos primeras tarjetas son lo
+// primero que se ve: sin carga diferida.
+function renderCardHtml(post, indice) {
   const { data } = post;
   const width = data.cover.width || 1600;
   const height = data.cover.height || 900;
+  const srcset = srcsetWebp(post.webpVariants, `${data.slug}/`);
+  const responsive = srcset ? ` srcset="${srcset}" sizes="(max-width: 640px) 200px, 380px"` : '';
+  const carga = indice < 2 ? '' : ' loading="lazy"';
   return (
     `      <a class="blog-card" href="/blog/${data.slug}/" data-category="${escapeHtml(data.category)}">\n` +
     '        <div class="blog-card-cover">\n' +
-    `          <img src="${data.slug}/cover.jpg" alt="${escapeHtml(data.cover.alt)}" width="${width}" height="${height}" loading="lazy">\n` +
+    `          <img src="${data.slug}/cover.jpg"${responsive} alt="${escapeHtml(data.cover.alt)}" width="${width}" height="${height}"${carga} decoding="async">\n` +
     '        </div>\n' +
     '        <div class="blog-card-body">\n' +
     `          <h2>${escapeHtml(data.title)}</h2>\n` +
@@ -685,12 +724,20 @@ function build() {
         fs.writeFileSync(hashPath, hashNuevo + '\n', 'utf8');
       }
 
+      // WebP: se rehacen todas si cambio la portada; si no, solo las que falten
+      const portadaCambio = hashViejo !== hashNuevo;
+      const webpVariants = webpPrevistas(anchoPortada).filter(v => {
+        const dest = path.join(outDir, v.file);
+        if (!portadaCambio && fs.existsSync(dest)) return true;
+        return encodeWebp(coverSrcPath, dest, v.width);
+      });
+
       const dateModified = gitLastModifiedISO(`blog/posts/${file}`) || data.date;
-      const html = renderPost(template, data, bodyHtml, dateModified, coverVariants);
+      const html = renderPost(template, data, bodyHtml, dateModified, coverVariants, webpVariants);
       fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
 
       validSlugs.add(data.slug);
-      okPosts.push({ data, bodyHtml, dateModified });
+      okPosts.push({ data, bodyHtml, dateModified, webpVariants });
       console.log(`✓ blog/${data.slug}/  ←  blog/posts/${file}`);
     } catch (e) {
       fail(e.message);

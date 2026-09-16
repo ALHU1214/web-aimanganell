@@ -12,8 +12,9 @@
 <link rel="preload" href="../../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../styles.css?v=78675bf4">
-<link rel="stylesheet" href="../../contraste-minimo.css?v=be3f1a4d">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://region1.google-analytics.com">
+<link rel="stylesheet" href="../../styles.css?v=8ef58fae">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AI MANGANELL">
@@ -64,7 +65,7 @@
       </header>
 
       <figure class="post-cover">
-        <img src="cover.jpg" alt="{{COVER_ALT}}" width="{{COVER_WIDTH}}" height="{{COVER_HEIGHT}}" loading="lazy">
+        <img src="cover.jpg" srcset="{{COVER_SRCSET}}" sizes="(max-width: 760px) calc(100vw - 32px), 700px" alt="{{COVER_ALT}}" width="{{COVER_WIDTH}}" height="{{COVER_HEIGHT}}" fetchpriority="high">
       </figure>
 
       <!-- ============ CUERPO — sin clases, el CSS apunta a las etiquetas ============ -->
@@ -145,7 +146,7 @@
   </div>
 </div>
 
-<script src="../../main.js?v=c120c295"></script>
+<script src="../../main.js?v=64457d94"></script>
 
 </body>
 </html>

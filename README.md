@@ -23,7 +23,6 @@ web/
 │   └── config.ts        Ajustes: calendario, WhatsApp, Supabase, analítica…
 ├── styles.css           GENERADO desde src/styles — no editar a mano
 ├── main.js              GENERADO desde src/ — no editar a mano
-├── contraste-minimo.css Ajustes de contraste (a mano)
 ├── scripts/             Build del CSS/JS y generador del blog
 ├── sitemap.xml, robots.txt  Generados por el build del blog
 ├── DEPLOY.md            Checklist de publicación
@@ -99,8 +98,9 @@ node scripts/build-blog.js    # genera posts, listado, sitemap, robots y RSS
 ```
 
 Es Node puro, sin `npm install`. Necesita **ffmpeg** en el PATH para las
-variantes 4:3 y 1:1 de cada portada (sin él, el post se genera solo con
-la 16:9). En GitHub lo hace solo el workflow
+variantes 4:3 y 1:1 de cada portada y para las versiones WebP a 480, 960 y
+1600px que usan el listado y el post con `srcset` (sin ffmpeg, el post se
+genera solo con la portada 16:9 en JPEG). En GitHub lo hace solo el workflow
 `.github/workflows/build-blog.yml` en cada push que toque `blog/posts/`,
 las plantillas o los CSS/JS sellados.
 
