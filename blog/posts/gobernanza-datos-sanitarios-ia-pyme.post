@@ -1,22 +1,22 @@
 ---
 {
   "slug": "gobernanza-datos-sanitarios-ia-pyme",
-  "title": "Gobierna datos sanitarios con IA en tu pyme",
-  "description": "Gobernanza de datos sanitarios al implantar IA en una pyme: descubre controles, responsabilidades y claves para usar la IA de forma segura, legal y responsable.",
-  "keyword": "Gobernanza de datos sanitarios al implantar IA en una pyme",
+  "title": "Gobierna datos sanitarios con IA en tu empresa",
+  "description": "Gobernanza de datos sanitarios al implantar IA en una empresa: descubre controles, responsabilidades y claves para usar la IA de forma segura, legal y responsable.",
+  "keyword": "Gobernanza de datos sanitarios al implantar IA en una empresa",
   "category": "Automatización",
   "date": "2026-09-16",
   "cover": {
     "src": "gobernanza-datos-sanitarios-ia-pyme-cover.jpg",
-    "alt": "Fotografía editorial que ilustra Gobernanza de datos sanitarios al implantar IA en una pyme"
+    "alt": "Fotografía editorial que ilustra Gobernanza de datos sanitarios al implantar IA en una empresa"
   },
   "faq": [
     {
-      "q": "¿Qué datos sanitarios puede utilizar una pyme en una herramienta de IA?",
+      "q": "¿Qué datos sanitarios puede utilizar una empresa en una herramienta de IA?",
       "a": "Debe utilizar únicamente los datos necesarios para la finalidad aprobada, aplicando el principio de minimización. Cuando no sea necesario identificar al paciente, conviene usar datos seudonimizados y evitar introducir historiales completos o información sensible en herramientas públicas no autorizadas."
     },
     {
-      "q": "¿Qué debe comprobar una pyme antes de contratar un proveedor de IA sanitaria?",
+      "q": "¿Qué debe comprobar una empresa antes de contratar un proveedor de IA sanitaria?",
       "a": "Debe confirmar dónde se alojan los datos, si el proveedor los utiliza para entrenar otros sistemas, cómo comunica los incidentes y qué sucede al finalizar el contrato. También conviene exigir información sobre actualizaciones, cambios de versión, límites conocidos y posibilidades de auditoría."
     },
     {
@@ -26,7 +26,7 @@
   ]
 }
 ---
-<p>La <strong>gobernanza de datos sanitarios al implantar IA en una pyme</strong> determina si un proyecto aporta valor o se convierte en un riesgo legal, clínico y operativo. No consiste en acumular políticas: consiste en decidir qué datos se usan, para qué, quién puede acceder y cómo se controla el sistema después de ponerlo en marcha.</p>
+<p>La <strong>gobernanza de datos sanitarios al implantar IA en una empresa</strong> determina si un proyecto aporta valor o se convierte en un riesgo legal, clínico y operativo. No consiste en acumular políticas: consiste en decidir qué datos se usan, para qué, quién puede acceder y cómo se controla el sistema después de ponerlo en marcha.</p>
 
 <p>En salud, un dato aparentemente simple puede revelar información muy sensible. Por eso, antes de automatizar tareas o aplicar IA a procesos clínicos, la empresa debe establecer reglas claras y evidencias de que las cumple.</p>
 
@@ -34,7 +34,7 @@
 
 <p>La gobernanza del dato es el conjunto de responsabilidades, normas y controles que permiten usar información sanitaria de forma segura, legal y verificable. Debe cubrir el dato desde que entra en la empresa hasta que se elimina o conserva según corresponda.</p>
 
-<p>El objetivo no es frenar la innovación. Es evitar que una herramienta de IA reciba datos que no necesita, genere resultados poco fiables o deje a la pyme sin capacidad para explicar qué ocurrió ante una incidencia.</p>
+<p>El objetivo no es frenar la innovación. Es evitar que una herramienta de IA reciba datos que no necesita, genere resultados poco fiables o deje a la empresa sin capacidad para explicar qué ocurrió ante una incidencia.</p>
 
 <p>En el sector sanitario, la calidad, la trazabilidad y la interoperabilidad son especialmente importantes. La trazabilidad significa poder demostrar qué datos se utilizaron, qué versión del sistema los procesó, quién aprobó el uso y qué cambios se realizaron.</p>
 
@@ -59,13 +59,13 @@
 <li>Requisitos de protección de datos, producto sanitario o marcado CE que puedan aplicar.</li>
 </ul>
 
-<h2>Controles mínimos que una pyme debe implantar</h2>
+<h2>Controles mínimos que una empresa debe implantar</h2>
 
 <p>El primer control es la minimización: utilizar únicamente los datos necesarios para la finalidad aprobada. Si una IA puede organizar citas con información limitada, no debe recibir historiales clínicos completos.</p>
 
 <p>El segundo es restringir accesos. Aplique permisos por función y registre quién consulta, descarga o modifica información. La seudonimización, es decir, sustituir la identidad directa de una persona por un código, reduce el riesgo cuando no hace falta conocer al paciente.</p>
 
-<p><a href="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/">Estos principios de permisos limitados y controles claros también son aplicables al implantar sistemas de IA multiagente en una pyme</a>.</p>
+<p><a href="https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/">Estos principios de permisos limitados y controles claros también son aplicables al implantar sistemas de IA multiagente en una empresa</a>.</p>
 
 <p>También debe proteger los datos mientras se transmiten y almacenan, mantener copias de seguridad y revisar que el proveedor ofrece medidas de seguridad, soporte ante incidentes y documentación suficiente.</p>
 
@@ -79,7 +79,7 @@
 
 <h2>El proveedor no sustituye sus responsabilidades</h2>
 
-<p>Contratar una solución externa no transfiere por completo el riesgo. La pyme sigue siendo responsable de decidir qué datos entrega, con qué finalidad y bajo qué condiciones se usa la herramienta.</p>
+<p>Contratar una solución externa no transfiere por completo el riesgo. La empresa sigue siendo responsable de decidir qué datos entrega, con qué finalidad y bajo qué condiciones se usa la herramienta.</p>
 
 <p>Antes de firmar, exija respuestas claras sobre:</p>
 
@@ -108,7 +108,7 @@
 
 <p>Para sistemas con impacto clínico, revise además si hay diferencias de rendimiento entre grupos de pacientes. Un conjunto de datos poco representativo puede producir resultados menos fiables para determinadas poblaciones.</p>
 
-<p>La gobernanza de datos sanitarios al implantar IA en una pyme no exige una estructura burocrática desproporcionada. Exige decisiones documentadas, responsables identificados y controles que funcionen en la práctica. Ese es el punto de partida para usar IA con seguridad y mantener la confianza de pacientes, profesionales y socios.</p>
+<p>La gobernanza de datos sanitarios al implantar IA en una empresa no exige una estructura burocrática desproporcionada. Exige decisiones documentadas, responsables identificados y controles que funcionen en la práctica. Ese es el punto de partida para usar IA con seguridad y mantener la confianza de pacientes, profesionales y socios.</p>
 <h2>Lo que vemos en la práctica</h2>
 <p><h2>Lo que vemos en la práctica</h2>
 <p>Un escenario muy habitual: una clínica de fisioterapia con cuatro profesionales quiere automatizar la captación de pacientes y los recordatorios de cita. El formulario de contacto incluye un campo abierto del tipo «Cuéntanos qué te pasa», y el paciente escribe lo que cualquiera escribiría: una lesión, una operación reciente, un dolor crónico o incluso la medicación que toma. Con un flujo estándar, ese texto llega sin filtrar al CRM, a la herramienta de email marketing y a WhatsApp. Nadie ha decidido tratar datos de salud en tres proveedores distintos, pero ocurre.</p>
