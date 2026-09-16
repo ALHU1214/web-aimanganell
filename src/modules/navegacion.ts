@@ -1,35 +1,21 @@
 import { $, $$ } from './utils';
 
-/* ---------- 1 · navegación entre las dos páginas ---------- */
+/* ---------- 1 · navegación: anclas con scroll suave ----------
+   (La home y consultoría fueron una sola página con dos vistas que se
+   mostraban/ocultaban con data-go; ese mecanismo ya no existe.) */
 export function initNavegacion(): void {
-  const pages: { home: HTMLElement | null; info: HTMLElement | null } = {
-    home: $('#home'),
-    info: $('#page2')
-  };
-
-  function showPage(which: string, anchor?: string): void {
-    if (pages.home) pages.home.hidden = which !== 'home';
-    if (pages.info) pages.info.hidden = which !== 'info';
-    if (anchor) {
-      const el = document.getElementById(anchor);
-      if (el) {
-        window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
-        return;
-      }
-    }
-    window.scrollTo(0, 0);
-  }
-
-  $$('[data-go]').forEach((a) => {
-    a.addEventListener('click', (e: Event) => {
+  // "Más información" de la home: en escritorio va a /consultoria/; en móvil
+  // el contenido de consultoría está en la propia home (.solo-movil), así que
+  // baja hasta él. offsetParent es null cuando el bloque está oculto.
+  const info = $('.btn-info');
+  const bloque = document.getElementById('ai-cyber-amg');
+  if (info && bloque) {
+    info.addEventListener('click', (e: Event) => {
+      if (bloque.offsetParent === null) return;
       e.preventDefault();
-      const target = a.getAttribute('data-go');
-      if (!target) return;
-      const href = a.getAttribute('href') || '';
-      const anchor = href.charAt(0) === '#' && href.length > 1 && href !== '#page2' ? href.slice(1) : '';
-      showPage(target, anchor);
+      window.scrollTo({ top: bloque.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
     });
-  });
+  }
 
   // enlaces internos dentro de la página 2 (#contacto, #diagnostico…)
   $$('#page2 a[href^="#"]').forEach((a) => {

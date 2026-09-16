@@ -29,6 +29,7 @@
 <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="styles.css?v=9b0622ca">
 <link rel="stylesheet" href="contraste-minimo.css?v=be3f1a4d">
+<link rel="stylesheet" href="assets/css/consultoria-formato-360.css?v=f9e818bf">
 
 <!-- JSON-LD: entidad de negocio. Sin teléfono ni correo: el contacto
      es por formulario y calendario, y el único correo publicado es
@@ -129,14 +130,14 @@
 
 <!-- ============ NAV ============ -->
 <nav>
-  <a href="#" data-go="home" class="nav-logo">
+  <a href="/" class="nav-logo">
     <img src="assets/logos/horizontal-x.webp" alt="AI MANGANELL" width="469" height="80">
   </a>
   <button type="button" class="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
     <span></span><span></span><span></span>
   </button>
   <div class="nav-links" id="nav-links">
-    <a href="#" data-go="home" class="nav-link">HOME</a>
+    <a href="/" class="nav-link">HOME</a>
     <a href="/consultoria/" class="nav-link">AI &amp; CYBER AMG™</a>
     <a href="/blog/" class="nav-link">BLOG</a>
     <a href="/contacto-aimanganell/" class="nav-cta">CONTACTO</a>
@@ -170,6 +171,7 @@
             <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg><span>Dónde la IA aporta valor y dónde no</span></li>
             <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg><span>Plan priorizado por impacto y riesgo</span></li>
           </ul>
+          <a href="/consultoria/" class="btn-info rise d3">Más información <span aria-hidden="true">→</span></a>
         </div>
       </header>
 
@@ -232,6 +234,198 @@
         </div>
       </section>
     </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="solo-escritorio">
+      <div class="foot-brand-row">
+        <img class="foot-logo" src="assets/logos/horizontal-x.webp" alt="AI MANGANELL" width="469" height="80">
+        <div class="foot-social" role="group" aria-label="Redes sociales">
+          <a href="https://www.linkedin.com/in/alvaromanganell" target="_blank" rel="me noopener" aria-label="LinkedIn de Álvaro Manganell"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-legal">
+        <a class="foot-link" href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a>
+        <a class="foot-link" href="/legal/cookies/" data-legal="cookies">Política de Cookies</a>
+        <a class="foot-link" href="/legal/aviso-legal/" data-legal="aviso">Aviso Legal</a>
+        <a class="foot-link foot-link-subtle" href="#" id="reopen-cookies">Configurar cookies</a>
+      </div>
+      <div class="foot-email">
+        <a class="foot-link" href="mailto:contacto@aimanganell.com">contacto@aimanganell.com</a>
+      </div>
+      <div class="foot-symbol">
+        <img src="assets/logos/simbolo-a.webp" alt="AI MANGANELL" width="200" height="200">
+      </div>
+      <p class="foot-copy">© 2026 AI MANGANELL, todos los derechos reservados</p>
+    </footer>
+  </div>
+</div>
+
+<!-- ============ SOLO MÓVIL · AI & CYBER AMG™ debajo de la landing ============
+     Copia del contenido de /consultoria/ para que en móvil la home siga con él
+     al hacer scroll, con un único pie al final. En escritorio está oculto
+     (.solo-movil) y el botón "Más información" lleva a /consultoria/.
+     Si se cambia el texto de consultoría, cambiarlo también aquí. -->
+<div id="page2" class="page solo-movil">
+    <div class="p2-body">
+    <!-- PORTADA -->
+    <section class="p2-hero" id="ai-cyber-amg">
+      <div class="p2-hero-copy">
+        <span class="p2-kicker">Para empresas que quieren usar IA sin romper lo que ya funciona.</span>
+        <h2 class="p2-titulo">Escala y blinda tu empresa con IA y Ciberseguridad en 15 días o menos</h2>
+        <p>Accede a un diagnóstico técnico y estratégico para identificar riesgos críticos, oportunidades de automatización y arquitectura IA escalable.</p>
+        <a href="#contacto" class="btn-acc btn-round btn-palpita">Solicitar Análisis Personalizado</a>
+      </div>
+    </section>
+
+    <div class="p2-tiled fmt-360">
+      <!-- BENEFICIOS -->
+      <section class="sec">
+        <div class="wrap wrap-wide">
+          <h2 class="sec-title">Beneficios Clave</h2>
+          <div class="ben-grid">
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">🚀</span>
+              <p>Escalas sin fricción: vemos dónde la IA ahorra tiempo y coste real, y dónde solo añadiría ruido.</p>
+            </div>
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">🔒</span>
+              <p>Mitigas riesgos operativos: detectamos brechas de seguridad que podrían comprometer tu negocio.</p>
+            </div>
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">🧠</span>
+              <p>Tomas decisiones informadas: recibes un plan accionable, priorizado por impacto y riesgo.</p>
+            </div>
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">⚡</span>
+              <p>Resultados en semanas, sin interrumpir tu operativa actual.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GARANTÍA -->
+      <section class="sec sec-tight">
+        <div class="wrap wrap-wide guarantee-bar">
+          <p><span class="c-acc">✓</span> 100% del coste se descuenta si contratas AMG MAX™ tras el diagnóstico.</p>
+        </div>
+      </section>
+
+      <!-- QUÉ OBTIENES -->
+      <section class="sec" id="diagnostico">
+        <div class="wrap">
+          <h2 class="sec-title">¿Qué obtienes con el AI &amp; Cyber AMG™?</h2>
+          <div class="obt-grid">
+            <div class="obt-item"><span class="tick">✓</span><span>Mapa real de tus procesos clave y herramientas actuales</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Evaluación de ciberseguridad completa</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Análisis de oportunidades para integrar IA</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Plan priorizado por impacto y riesgo</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Sesión 1:1 de presentación del informe</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Informe detallado con los pasos siguientes</span></div>
+          </div>
+          <div class="obt-facts">
+            <div class="obt-fact">
+              <span class="obt-fact-label">Duración</span>
+              <span class="obt-fact-value">10–15 días</span>
+            </div>
+            <div class="obt-fact">
+              <span class="obt-fact-label">Inversión</span>
+              <span class="obt-fact-value">&gt;1.200 €</span>
+              <p class="obt-facts-note">(según complejidad y alcance)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ES PARA TI -->
+      <section class="sec">
+        <div class="wrap">
+          <h2 class="sec-title">¿Es para ti?</h2>
+          <div class="para-grid">
+            <div class="para-item"><span class="tick">✓</span><span>CEOs, fundadores y directores de empresas en crecimiento</span></div>
+            <div class="para-item"><span class="tick">✓</span><span>Empresas con procesos desordenados que nadie ha mapeado nunca</span></div>
+            <div class="para-item"><span class="tick">✓</span><span>Negocios con demasiada dependencia de personas clave</span></div>
+            <div class="para-item"><span class="tick">✓</span><span>Quien quiere hacerlo bien y con cabeza, no solo probar cosas</span></div>
+          </div>
+          <div class="para-not"><span class="cross">✗</span><span>No es para quien solo quiere probar herramientas sin ordenar nada antes</span></div>
+        </div>
+      </section>
+
+      <!-- MANIFIESTO -->
+      <section class="manifiesto">
+        <p>Primero claridad,<br><span class="c-acc">después IA.</span></p>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" class="contacto">
+        <div class="contacto-head">
+          <h2>Solicita tu <span class="hl">AI &amp; Cyber AMG™</span></h2>
+        </div>
+        <section id="formulario-contacto" class="form-sec">
+          <div class="form-stack">
+            <div class="form-shadow"></div>
+            <div class="form-card" data-m="form-card">
+              <form class="lead-form lead-form-2" novalidate>
+                <div class="field-wrap">
+                  <label for="p2-nombre">Nombre <span class="req">*</span></label>
+                  <input class="field" id="p2-nombre" name="nombre" type="text" autocomplete="name" maxlength="50">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-empresa">Empresa <span class="req">*</span></label>
+                  <input class="field" id="p2-empresa" name="empresa" type="text" autocomplete="organization" maxlength="50">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-biz">Tipo de negocio <span class="req">*</span></label>
+                  <select class="field field-select" id="p2-biz" name="biz">
+                    <option value="">Selecciona una opción</option>
+                    <option value="servicios-profesionales">Servicios profesionales (asesoría, legal, ingeniería)</option>
+                    <option value="industria">Industria y manufactura</option>
+                    <option value="construccion">Construcción e instalaciones</option>
+                    <option value="logistica">Logística y transporte</option>
+                    <option value="distribucion">Distribución y comercio B2B</option>
+                    <option value="tecnologia">Tecnología y software</option>
+                    <option value="salud">Salud y clínicas</option>
+                    <option value="inmobiliaria">Inmobiliaria y patrimonio</option>
+                    <option value="turismo">Turismo y hostelería</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-email">Email <span class="req">*</span></label>
+                  <input class="field" id="p2-email" name="email" type="email" autocomplete="email">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-tel">Teléfono <span class="req">*</span></label>
+                  <input class="field" id="p2-tel" name="telefono" type="tel" autocomplete="tel" maxlength="15">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-msg">¿Qué te gustaría mejorar con IA? <span class="opt">(opcional)</span></label>
+                  <textarea class="field autogrow" id="p2-msg" name="mensaje" rows="3" maxlength="300" placeholder="Describe brevemente tus principales desafíos o áreas que quieres optimizar..."></textarea>
+                </div>
+                <label class="consent">
+                  <input type="checkbox" name="acepta">
+                  <span>He leído y acepto la <a href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a> y el tratamiento de mis datos para ser contactado.</span>
+                </label>
+                <div class="turnstile-box"></div>
+                <p class="form-error" hidden></p>
+                <button type="submit" class="btn-acc btn-submit">Quiero que me contacten</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- GARANTÍA TOTAL -->
+      <section class="sec-total">
+        <div class="total-box">
+          <h2>Garantía Total</h2>
+          <p>100% del coste se descuenta si decides avanzar al proyecto completo <strong>AMG MAX™</strong> en los siguientes 30 días.</p>
+          <div class="plazas">
+            <span class="plazas-bang">!</span>
+            <span><strong>Plazas limitadas al mes</strong> para garantizar la calidad del trabajo.</span>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- ============ FOOTER ============ -->
     <footer>
