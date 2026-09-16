@@ -21,8 +21,12 @@ const REVEAL_SELECTORS = [
 export function initScrollReveal(): void {
   if (!('IntersectionObserver' in window)) return;
 
+  // En móvil el formulario de la home se ve desde el principio, sin subir
+  const movil = window.matchMedia('(max-width: 760px)').matches;
+  const selectores = movil ? REVEAL_SELECTORS.filter((s) => s !== '#home #formulario') : REVEAL_SELECTORS;
+
   const els: HTMLElement[] = [];
-  REVEAL_SELECTORS.forEach((sel) => {
+  selectores.forEach((sel) => {
     $$<HTMLElement>(sel).forEach((el) => { if (els.indexOf(el) === -1) els.push(el); });
   });
   if (!els.length) return;
