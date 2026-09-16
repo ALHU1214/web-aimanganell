@@ -35,6 +35,11 @@
 .legal-body p { margin: 0; }
 .legal-body p + p { margin-top: 8px; }
 .legal-body strong { color: rgba(232,242,239,.9); }
+/* listas (p. ej. las cookies de cada proveedor): el reset de Tailwind les quita las viñetas */
+.legal-body ul { margin: 8px 0 0; padding-left: 1.2em; list-style: disc; display: flex; flex-direction: column; gap: 8px; }
+.legal-body ul + p { margin-top: 8px; }
+.legal-body li::marker { color: var(--acc2); }
+.legal-body code { font-family: var(--mono); font-size: .9em; color: rgba(232,242,239,.9); }
 
 /* Páginas Legales Independientes */
 .legal-page { padding: calc(var(--sec-pad) + 20px) 48px var(--sec-pad); }

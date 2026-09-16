@@ -66,6 +66,10 @@ export function initGestionCookies(config: AMConfig): void {
     s.async = true;
     s.src = 'https://www.clarity.ms/tag/' + config.clarityId;
     document.head.appendChild(s);
+    // Desde oct. 2025 Clarity exige señal de consentimiento para visitas de
+    // la UE. Solo se carga tras aceptar, así que se concede la analítica;
+    // la publicitaria siempre denegada (no hay anuncios en la web).
+    window.clarity?.('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
   }
 
   function loadMeta(): void {
@@ -122,6 +126,7 @@ export function initGestionCookies(config: AMConfig): void {
     e.preventDefault();
     try { localStorage.removeItem('am_cookies'); } catch (err) {}
     consentimientoAnalitica(false);   // retirar el consentimiento hasta que vuelva a elegir
+    window.clarity?.('consent', false); // Clarity: borra sus cookies y deja de rastrear
 
     const modal = $('#legal-modal');
     if (modal) modal.hidden = true;

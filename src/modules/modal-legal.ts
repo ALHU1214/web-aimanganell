@@ -10,7 +10,11 @@ export function initModalLegal(): void {
     aviso: 'Aviso legal',
     cookies: 'Política de cookies'
   };
+  const dateEl = modal ? $('.legal-date', modal) : null;
   const legalCache: Record<string, string> = {};
+  // La fecha de "última actualización" también sale del documento cargado,
+  // para no tener que mantenerla a mano en el modal de cada página.
+  const dateCache: Record<string, string> = {};
 
   function fetchLegalBody(doc: string, url: string): Promise<string> {
     if (legalCache[doc]) return Promise.resolve(legalCache[doc]);
@@ -21,6 +25,8 @@ export function initModalLegal(): void {
       const parsed = new DOMParser().parseFromString(html, 'text/html');
       const source = parsed.querySelector('.legal-body');
       if (!source) throw new Error('sin .legal-body en la respuesta');
+      const fecha = parsed.querySelector('.legal-date');
+      if (fecha) dateCache[doc] = fecha.textContent || '';
       $$('h2', source).forEach((h) => {
         const h3 = parsed.createElement('h3');
         h3.innerHTML = h.innerHTML;
@@ -37,12 +43,14 @@ export function initModalLegal(): void {
       return;
     }
     if (titleEl) titleEl.textContent = titles[doc] || titles.priv;
+    if (dateEl) dateEl.hidden = true;   // hasta tener la fecha del documento
     bodyEl.innerHTML = '<p>Cargando…</p>';
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     fetchLegalBody(doc, url).then((html) => {
       if (modal.hidden) return;
       bodyEl.innerHTML = html;
+      if (dateEl && dateCache[doc]) { dateEl.textContent = dateCache[doc]; dateEl.hidden = false; }
     }).catch(() => {
       closeLegal();
       window.location.href = url;
