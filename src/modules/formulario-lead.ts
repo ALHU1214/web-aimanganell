@@ -1,4 +1,4 @@
-import { $, $$ } from './utils';
+import { $, $$, trasCarga, cargarScript } from './utils';
 
 interface FieldValidationResult {
   isValid: boolean;
@@ -213,6 +213,29 @@ export function initFormularioLead(config: AMConfig): void {
       });
     });
   };
+
+  // Turnstile (~200 KiB entre script y reto) ya no va en el HTML: se pide
+  // cuando el formulario se acerca a la pantalla o en cuanto alguien toca
+  // un campo, así no frena la carga de páginas donde el formulario queda
+  // abajo (consultoría). Tocar un campo lo carga al momento, con tiempo de
+  // sobra para que el reto esté resuelto antes de enviar.
+  const formularios = $$<LeadFormElement>('.lead-form');
+  if (formularios.length && config.turnstileSiteKey) {
+    let pedido = false;
+    const cargarTurnstile = (): void => {
+      if (pedido) return;
+      pedido = true;
+      cargarScript('https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstile');
+    };
+    formularios.forEach((f) => f.addEventListener('focusin', cargarTurnstile, { once: true }));
+    trasCarga(() => {
+      if (!('IntersectionObserver' in window)) { cargarTurnstile(); return; }
+      const io = new IntersectionObserver((entradas) => {
+        if (entradas.some((e) => e.isIntersecting)) { io.disconnect(); cargarTurnstile(); }
+      }, { rootMargin: '400px 0px' });
+      formularios.forEach((f) => io.observe(f));
+    });
+  }
 
   // 3. Validación y envío
   $$<LeadFormElement>('.lead-form').forEach((form) => {

@@ -1,4 +1,4 @@
-import { $ } from './utils';
+import { $, trasCarga, cargarScript } from './utils';
 
 /* ---------- 8 · cookies y analítica ---------- */
 export function initGestionCookies(config: AMConfig): void {
@@ -39,10 +39,10 @@ export function initGestionCookies(config: AMConfig): void {
     });
     window.gtag('js', new Date());
     window.gtag('config', config.gaId);
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + config.gaId;
-    document.head.appendChild(s);
+    // La cola (dataLayer) ya existe: las llamadas de consentimiento y la
+    // página vista esperan ahí. Solo se retrasa la descarga de gtag.js
+    // (172 KiB) para que no frene el primer pintado.
+    trasCarga(() => cargarScript('https://www.googletagmanager.com/gtag/js?id=' + config.gaId));
   }
 
   function consentimientoAnalitica(concedido: boolean): void {
@@ -66,10 +66,8 @@ export function initGestionCookies(config: AMConfig): void {
       (stub as unknown as { q: unknown[] }).q = q;
       window.clarity = stub;
     }
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.clarity.ms/tag/' + config.clarityId;
-    document.head.appendChild(s);
+    const id = config.clarityId;
+    trasCarga(() => cargarScript('https://www.clarity.ms/tag/' + id));
     // Desde oct. 2025 Clarity exige señal de consentimiento para visitas de
     // la UE. Solo se carga tras aceptar, así que se concede la analítica;
     // la publicitaria siempre denegada (no hay anuncios en la web).
@@ -79,10 +77,7 @@ export function initGestionCookies(config: AMConfig): void {
   function loadMeta(): void {
     if (metaLoaded || !config.metaPixelId) return;
     metaLoaded = true;
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://connect.facebook.net/en_US/fbevents.js';
-    document.head.appendChild(s);
+    trasCarga(() => cargarScript('https://connect.facebook.net/en_US/fbevents.js'));
     // Stub oficial de Meta: encola las llamadas (como `arguments`) hasta que
     // fbevents.js carga y define callMethod. Sin la cola, los eventos se perdían.
     type FbqStub = { (): void; callMethod?: (...a: unknown[]) => void; queue: unknown[]; push: unknown; loaded: boolean; version: string };

@@ -29,6 +29,12 @@ export function initScrollReveal(): void {
   selectores.forEach((sel) => {
     $$<HTMLElement>(sel).forEach((el) => { if (els.indexOf(el) === -1) els.push(el); });
   });
+  // Lo que ya está en pantalla al entrar no se oculta para volver a
+  // mostrarlo: ese parpadeo retrasaba el LCP (páginas legales, cabeceras).
+  const alto = window.innerHeight;
+  for (let i = els.length - 1; i >= 0; i--) {
+    if (els[i].getBoundingClientRect().top < alto) els.splice(i, 1);
+  }
   if (!els.length) return;
 
   els.forEach((el) => { el.setAttribute('data-reveal', ''); });
