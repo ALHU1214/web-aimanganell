@@ -6,8 +6,6 @@
   position: relative; font-family: var(--font-1); flex: 1 0 auto;
 }
 .p2-body { position: relative; z-index: 1; animation: p2fade .5s ease-out both; }
-/* Anclas ("Más información" en móvil, "Solicitar…"): que el header fijo no tape el destino */
-#ai-cyber-amg, #contacto, #diagnostico { scroll-margin-top: 80px; }
 
 .p2-hero {
   position: relative; overflow: hidden; min-height: 100vh;
@@ -19,19 +17,19 @@
   animation: p2zoom .7s .06s cubic-bezier(.22,.8,.3,1) both; transform-origin: 50% 0;
 }
 .p2-kicker { font-size: 22px; line-height: 1.5; color: rgba(232,242,239,.72); }
-.p2-hero-copy h1, .p2-hero-copy .p2-titulo,
+.p2-hero-copy h1,
 .gracias-head h1 {
   margin: 34px 0 0; padding-bottom: .14em;
   font-size: clamp(38px, 4.4vw, 64px); font-weight: 700; line-height: 1.16;
   letter-spacing: -.02em; color: var(--ink); max-width: 20ch; text-wrap: balance;
 }
-.p2-hero-copy h1, .p2-hero-copy .p2-titulo {
+.p2-hero-copy h1 {
   font-size: clamp(38px, 3.6vw, 52px);
   font-weight: 500;
   max-width: 960px;
 }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .p2-hero-copy h1, .p2-hero-copy .p2-titulo,
+  .p2-hero-copy h1,
   .gracias-head h1 {
     background-image: linear-gradient(135deg, var(--ink) 18%, var(--acc2) 62%, var(--ink) 100%);
     -webkit-background-clip: text;
@@ -329,7 +327,7 @@
   .manifiesto p { font-size: clamp(28px, 11vw, 130px); letter-spacing: -.03em; }
   .sec-title, .contacto-head h2, .total-box h2 { font-size: clamp(32px, 10.7vw, 46px); }
   .p2-kicker { font-size: clamp(16px, 4.6vw, 20px); line-height: 1.5; }
-  .p2-hero-copy h1, .p2-hero-copy .p2-titulo { margin-top: 20px; font-size: clamp(26px, 8.2vw, 38px); }
+  .p2-hero-copy h1 { margin-top: 20px; font-size: clamp(26px, 8.2vw, 38px); }
   .p2-hero-copy p { margin-top: 22px; font-size: clamp(15px, 4.4vw, 20px); line-height: 1.42; }
   .p2-hero-copy .btn-acc {
     margin-top: 38px; padding: 20px 28px;

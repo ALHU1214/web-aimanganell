@@ -131,12 +131,6 @@ img { display: block; }
 }
 @keyframes ctFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Bloques según dispositivo (misma frontera de 760px que el resto de la web).
-   La home los usa para, en móvil, seguir con el contenido de consultoría y un
-   único pie al final; en escritorio, la landing con su propio pie. */
-@media (min-width: 761px) { .solo-movil { display: none !important; } }
-@media (max-width: 760px) { .solo-escritorio { display: none !important; } }
-
 /* Partículas de fondo en todas las páginas: las crea src/modules/particulas.ts */
 .particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
 .particles span {

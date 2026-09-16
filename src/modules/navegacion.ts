@@ -1,22 +1,9 @@
-import { $, $$ } from './utils';
+import { $$ } from './utils';
 
 /* ---------- 1 · navegación: anclas con scroll suave ----------
    (La home y consultoría fueron una sola página con dos vistas que se
    mostraban/ocultaban con data-go; ese mecanismo ya no existe.) */
 export function initNavegacion(): void {
-  // "Más información" de la home: en escritorio va a /consultoria/; en móvil
-  // el contenido de consultoría está en la propia home (.solo-movil), así que
-  // baja hasta él. offsetParent es null cuando el bloque está oculto.
-  const info = $('.btn-info');
-  const bloque = document.getElementById('ai-cyber-amg');
-  if (info && bloque) {
-    info.addEventListener('click', (e: Event) => {
-      if (bloque.offsetParent === null) return;
-      e.preventDefault();
-      window.scrollTo({ top: bloque.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
-    });
-  }
-
   // enlaces internos dentro de la página 2 (#contacto, #diagnostico…)
   $$('#page2 a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e: Event) => {
