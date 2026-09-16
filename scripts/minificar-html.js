@@ -19,6 +19,14 @@ const OUT = path.join(ROOT, '_site');
 // .gitignore, .cover-hash...): Jekyll tampoco lo publicaba.
 const EXCLUIR = new Set(['node_modules', '_site']);
 
+// Archivos de trabajo que Pages publicaba sin que ninguna página los
+// use (DEPLOY.md lleva el NIF). Rutas relativas a la raíz del repo.
+const INTERNOS = new Set([
+  'CLAUDE.md', 'DEPLOY.md', 'README.md', 'ESTADO-PROYECTO.md',
+  'package.json', 'package-lock.json', 'tsconfig.json',
+  'src', 'scripts', 'supabase', 'blog/posts',
+]);
+
 const OPCIONES = {
   collapseWhitespace: true,
   conservativeCollapse: false,
@@ -38,6 +46,7 @@ function copiar(origen, destino) {
   for (const entrada of fs.readdirSync(origen, { withFileTypes: true })) {
     if (entrada.name.startsWith('.') || EXCLUIR.has(entrada.name)) continue;
     const de = path.join(origen, entrada.name);
+    if (INTERNOS.has(path.relative(ROOT, de).split(path.sep).join('/'))) continue;
     const a = path.join(destino, entrada.name);
     if (entrada.isDirectory()) copiar(de, a);
     else fs.copyFileSync(de, a);
