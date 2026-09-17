@@ -1,15 +1,44 @@
 import { $, trasCarga, cargarScript } from './utils';
 
+/* Devuelve false si este navegador está marcado como del equipo (no se mide).
+   Lee y aplica ?no-medir / ?medir, avisa con un mensaje breve y limpia la URL. */
+function sinMedicionInterna(): boolean {
+  const CLAVE = 'am_no_medir';
+  const q = new URLSearchParams(location.search);
+  let aviso = '';
+  try {
+    if (q.has('no-medir')) { localStorage.setItem(CLAVE, '1'); aviso = 'Este navegador ya no cuenta en las estadísticas.'; }
+    else if (q.has('medir')) { localStorage.removeItem(CLAVE); aviso = 'Este navegador vuelve a contar en las estadísticas.'; }
+  } catch (e) { /* sin almacenamiento: no se puede marcar */ }
+  if (aviso) {
+    q.delete('no-medir'); q.delete('medir');
+    const resto = q.toString();
+    history.replaceState(null, '', location.pathname + (resto ? '?' + resto : '') + location.hash);
+    const t = document.createElement('div');
+    t.textContent = aviso;
+    t.setAttribute('role', 'status');
+    t.style.cssText = 'position:fixed;left:50%;top:84px;transform:translateX(-50%);z-index:1000;' +
+      'padding:12px 20px;border-radius:12px;background:#061019;color:#e8f2ef;font:500 14px/1.4 Poppins,sans-serif;' +
+      'border:1px solid rgba(0,113,235,.6);box-shadow:0 0 22px rgba(0,113,235,.35)';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 4000);
+  }
+  try { return localStorage.getItem(CLAVE) !== '1'; } catch (e) { return true; }
+}
+
 /* ---------- 8 · cookies y analítica ---------- */
 export function initGestionCookies(config: AMConfig): void {
   const bar = $('#cookie-bar');
   // Medición solo en el dominio real: las pruebas en localhost (o en
   // cualquier otra copia) no deben sumar visitas a GA4 ni a Clarity.
   const produccion = /(^|\.)aimanganell\.com$/.test(location.hostname);
-  // Marcarlas como ya cargadas hace que los load*() no hagan nada fuera de producción
-  let gaLoaded = !produccion;
-  let metaLoaded = !produccion;
-  let clarityLoaded = !produccion;
+  // Navegadores del propio equipo fuera de las estadísticas: abrir la web con
+  // ?no-medir lo marca para siempre en ese navegador; ?medir lo desmarca.
+  const medir = sinMedicionInterna();
+  // Marcarlas como ya cargadas hace que los load*() no hagan nada
+  let gaLoaded = !produccion || !medir;
+  let metaLoaded = !produccion || !medir;
+  let clarityLoaded = !produccion || !medir;
 
   /* GA4 con Consent Mode v2 (modo avanzado): GA carga siempre, pero arranca
      con todo denegado. Sin consentimiento no escribe cookies ni guarda un ID
