@@ -149,14 +149,26 @@
 .post-faq summary:focus-visible { outline: 2px solid var(--acc2); outline-offset: 4px; border-radius: 6px; }
 .post-faq details p { margin: 0 0 20px; font-size: 15.5px; line-height: 1.7; color: rgba(232,242,239,.75); }
 
+/* Autor: monograma (sin texto, para no repetir el nombre) + "Escrito por" y
+   nombre; la bio va debajo. En escritorio el avatar ocupa las dos filas; en
+   móvil se queda en la fila del nombre y la bio usa todo el ancho. */
 .post-author {
-  margin-top: 56px; display: flex; align-items: center; gap: 18px; padding: 26px 28px;
+  margin-top: 56px; display: grid; grid-template-columns: auto 1fr; align-items: center;
+  column-gap: 22px; row-gap: 8px; padding: 26px 28px;
   border-radius: 16px; border: 1px solid rgba(232,242,239,.1); background: rgba(232,242,239,.03);
 }
-.author-avatar { flex: none; width: 150px; display: flex; align-items: center; justify-content: center; padding: 14px 16px; }
-.author-avatar img { width: 100%; height: auto; }
+.author-avatar {
+  grid-row: 1 / span 2; width: 76px; height: 76px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid rgba(var(--acc-rgb),.35);
+  background: radial-gradient(circle at 50% 45%, rgba(var(--acc-rgb),.16), rgba(232,242,239,.02) 70%);
+  box-shadow: 0 0 26px rgba(var(--acc-rgb),.16);
+}
+.author-avatar img { width: 44px; height: auto; }
+.author-head { align-self: end; }
+.author-kicker { margin: 0 0 2px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(232,242,239,.6); }
 .author-name { margin: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
-.author-bio { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: rgba(232,242,239,.65); }
+.author-bio { grid-column: 2; align-self: start; margin: 0; font-size: 14px; line-height: 1.6; color: rgba(232,242,239,.65); }
 
 .post-cta {
   margin-top: 56px; padding: 44px 40px; border-radius: 18px; text-align: center;
@@ -197,5 +209,9 @@
   .post-page, .blog-page { padding-left: 16px; padding-right: 16px; }
 }
 @media (max-width: 480px) {
-  .post-author { flex-direction: column; align-items: flex-start; text-align: left; }
+  .post-author { column-gap: 14px; row-gap: 14px; padding: 20px; }
+  .author-avatar { grid-row: auto; width: 56px; height: 56px; }
+  .author-avatar img { width: 32px; }
+  .author-head { align-self: center; }
+  .author-bio { grid-column: 1 / -1; }
 }
