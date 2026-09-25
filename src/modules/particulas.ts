@@ -1,7 +1,7 @@
 /* ---------- partículas de fondo (todas las páginas) ----------
    Puntos de luz que suben despacio por la pantalla. Se generan aquí, no en
    el HTML, para que todas las páginas tengan las mismas sin copiar marcado.
-   Todas menos el blog (/blog/...).
+   Todas menos la home y el blog (/blog/...).
    Reparto fijo, no aleatorio: cada carga se ve igual y no se amontonan.
    Con prefers-reduced-motion no se muestran (theme.css). */
 
@@ -14,8 +14,11 @@ const COLORES = [
 ];
 
 export function initParticulas(): void {
-  // En el blog no: distraen al leer (listado y posts)
-  if (location.pathname.startsWith('/blog/')) return;
+  // En el blog no: distraen al leer (listado y posts).
+  // En la home tampoco: ya tiene el vídeo de fondo del hero.
+  const ruta = location.pathname;
+  const esHome = ruta === '/' || ruta === '/index.html';
+  if (esHome || ruta.startsWith('/blog/')) return;
   let capa = document.querySelector<HTMLElement>('.particles');
   if (!capa) {
     capa = document.createElement('div');
