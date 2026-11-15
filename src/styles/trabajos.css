@@ -1,0 +1,202 @@
+/* ============================================================
+   TRABAJOS (/trabajos/) · portfolio para enseñar con el QR
+   Pensada primero para el móvil: es donde se abre al escanear.
+   Sin tarjetas: letra grande, líneas finas y las capturas reales
+   de cada web, que se deslizan dentro de su marco con el scroll
+   (src/modules/trabajos.ts) como si alguien la fuera recorriendo.
+   ============================================================ */
+.tr {
+  position: relative; z-index: 10;
+  width: 100%; max-width: 1180px; margin: 0 auto;
+  padding: 150px 48px 0;
+  --linea: rgba(232, 242, 239, .12);
+  --suave: rgba(232, 242, 239, .62);
+}
+
+.tr-etiqueta {
+  margin: 0 0 22px;
+  font-family: var(--mono); font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--acc2);
+}
+
+/* ---------- cabecera ---------- */
+.tr-titulo {
+  margin: 0; max-width: 11ch;
+  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .98;
+  font-size: clamp(44px, 8vw, 104px); text-wrap: balance;
+}
+.tr-entradilla {
+  margin: 30px 0 0; max-width: 34em;
+  font-family: var(--font-2); font-size: 18px; line-height: 1.6; color: rgba(232, 242, 239, .8);
+  text-wrap: pretty;
+}
+
+/* Índice como el de una revista: número, nombre y sector en una línea */
+.tr-indice { list-style: none; margin: 64px 0 0; padding: 0; border-top: 1px solid var(--linea); }
+.tr-indice a {
+  position: relative; display: grid; grid-template-columns: 52px 1fr auto; align-items: baseline;
+  gap: 4px 16px; padding: 20px 0; border-bottom: 1px solid var(--linea); color: var(--ink);
+}
+.tr-indice a::after {
+  content: ''; position: absolute; left: 0; bottom: -1px; width: 100%; height: 1px;
+  background: var(--acc); transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.tr-indice a:hover::after, .tr-indice a:focus-visible::after { transform: scaleX(1); }
+.tr-indice-num { font-family: var(--mono); font-size: 14px; color: var(--acc2); }
+.tr-indice-nombre {
+  font-weight: 700; text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(22px, 2.8vw, 32px); line-height: 1.1; transition: color .25s;
+}
+.tr-indice a:hover .tr-indice-nombre { color: var(--acc2); }
+.tr-indice-sector { font-family: var(--font-2); font-size: 15px; color: var(--suave); }
+
+/* ---------- cada proyecto ---------- */
+.tr-proyecto {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr);
+  grid-template-areas: "cabeza visor" "cuerpo visor";
+  grid-template-rows: auto 1fr;
+  column-gap: 56px; padding: 130px 0; border-bottom: 1px solid var(--linea);
+  scroll-margin-top: 40px;
+}
+/* Los pares, en espejo, para que la página no sea una plantilla repetida */
+.tr-proyecto:nth-of-type(even) { grid-template-columns: minmax(0, 8fr) minmax(0, 5fr); grid-template-areas: "visor cabeza" "visor cuerpo"; }
+.tr-cabeza { grid-area: cabeza; align-self: end; }
+.tr-cuerpo { grid-area: cuerpo; align-self: start; }
+.tr-visor  { grid-area: visor; align-self: center; }
+
+.tr-num {
+  margin: 0 0 22px;
+  font-weight: 800; line-height: .8; letter-spacing: -.04em;
+  font-size: clamp(96px, 12vw, 168px);
+  color: transparent; -webkit-text-stroke: 1.5px rgba(var(--acc-rgb), .8);
+}
+
+.tr-estado {
+  display: inline-flex; align-items: center; gap: 9px; margin: 0 0 16px;
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase;
+}
+.tr-estado::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+.tr-estado--cliente   { color: var(--acc2); }
+.tr-estado--propuesta { color: rgba(232, 242, 239, .7); }
+.tr-estado--propuesta::before { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
+/* "En desarrollo": el punto late, porque el trabajo sigue en marcha */
+.tr-estado--marcha { color: #ffc53d; }
+.tr-estado--marcha::before { animation: tr-latido 1.8s ease-in-out infinite; }
+@keyframes tr-latido {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 197, 61, .55); }
+  50%      { box-shadow: 0 0 0 7px rgba(255, 197, 61, 0); }
+}
+
+.tr-nombre {
+  margin: 0 0 14px;
+  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .95;
+  font-size: clamp(40px, 5.4vw, 74px); text-wrap: balance;
+}
+.tr-sector {
+  margin: 0; font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--suave);
+}
+
+.tr-desc {
+  margin: 32px 0 26px; max-width: 30em;
+  font-family: var(--font-2); font-size: 17px; line-height: 1.65; color: rgba(232, 242, 239, .84);
+  text-wrap: pretty;
+}
+.tr-hecho {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 8px 0; margin: 0 0 34px; padding: 0;
+  font-size: 15px; font-weight: 600;
+}
+.tr-hecho li:not(:last-child)::after { content: '/'; margin: 0 12px; color: var(--acc); font-weight: 400; }
+
+.tr-ver {
+  display: inline-flex; align-items: center; gap: 10px; padding-bottom: 7px;
+  border-bottom: 2px solid var(--acc); color: var(--ink); font-size: 16px; font-weight: 700;
+  transition: color .25s, border-color .25s;
+}
+.tr-ver span { transition: transform .25s; }
+.tr-ver:hover, .tr-ver:focus-visible { color: var(--acc2); border-color: var(--acc2); }
+.tr-ver:hover span { transform: translate(2px, -2px); }
+
+/* ---------- capturas ---------- */
+.tr-visor { position: relative; display: block; padding: 0 44px 56px 0; color: inherit; }
+.tr-proyecto:nth-of-type(even) .tr-visor { padding: 0 0 56px 44px; }
+.tr-marco {
+  position: relative; display: block; overflow: hidden;
+  border: 1px solid rgba(232, 242, 239, .16); background: #0b1419;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .6);
+}
+.tr-marco img { width: 100%; height: auto; will-change: transform; }
+.tr-marco--escritorio { aspect-ratio: 16 / 10; border-radius: 10px; }
+.tr-marco--movil {
+  position: absolute; right: 0; bottom: 0; width: 29%; aspect-ratio: 9 / 19;
+  border-radius: 20px; border-color: rgba(232, 242, 239, .26);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .7), 0 0 0 6px rgba(6, 22, 29, .9);
+}
+.tr-proyecto:nth-of-type(even) .tr-marco--movil { right: auto; left: 0; }
+.tr-visor:hover .tr-marco--escritorio,
+.tr-visor:focus-visible .tr-marco--escritorio { border-color: rgba(var(--acc-rgb), .6); }
+
+/* ---------- cierre ---------- */
+.tr-cierre { padding: 130px 0 120px; }
+.tr-cierre-titulo {
+  margin: 0; max-width: 13ch;
+  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .98;
+  font-size: clamp(40px, 6.6vw, 88px); text-wrap: balance;
+}
+.tr-cierre > p:not(.tr-etiqueta) {
+  margin: 30px 0 0; max-width: 36em;
+  font-family: var(--font-2); font-size: 18px; line-height: 1.65; color: rgba(232, 242, 239, .8);
+  text-wrap: pretty;
+}
+.tr-cierre-botones { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 22px; margin-top: 40px; }
+.tr-cierre .btn-info { margin-top: 0; }
+.tr-cierre-cta {
+  display: inline-flex; padding: 17px 44px; font-size: 18px;
+  box-shadow: 0 0 32px rgba(var(--acc-rgb), .45);
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1000px) {
+  .tr-proyecto, .tr-proyecto:nth-of-type(even) { column-gap: 40px; }
+  .tr-visor, .tr-proyecto:nth-of-type(even) .tr-visor { padding-bottom: 40px; }
+}
+
+/* ---------- móvil: una columna, solo la captura de móvil ---------- */
+@media (max-width: 760px) {
+  .tr { padding: 112px 20px 0; }
+  .tr-entradilla { font-size: 16.5px; margin-top: 24px; }
+  .tr-indice { margin-top: 44px; }
+  .tr-indice a { grid-template-columns: 40px 1fr; padding: 16px 0; }
+  .tr-indice-sector { grid-column: 2; font-size: 14px; }
+
+  .tr-proyecto, .tr-proyecto:nth-of-type(even) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "cabeza" "visor" "cuerpo";
+    grid-template-rows: auto;
+    padding: 76px 0;
+  }
+  .tr-num { font-size: 92px; margin-bottom: 18px; }
+  /* El visor es más alto que el marco: mientras se recorre ese hueco el
+     marco se queda quieto (sticky) y la web pasa por dentro de arriba abajo.
+     Así se ve primero su portada, que es lo que más luce. Solo el marco
+     abre el enlace; el hueco de debajo no. */
+  .tr-visor, .tr-proyecto:nth-of-type(even) .tr-visor {
+    margin-top: 30px; padding: 0;
+    height: calc(min(66svh, 540px) + 900px); pointer-events: none;
+  }
+  .tr-marco--escritorio { display: none; }
+  .tr-marco--movil, .tr-proyecto:nth-of-type(even) .tr-marco--movil {
+    position: sticky; top: 92px; left: auto; right: auto; width: 100%;
+    aspect-ratio: auto; height: min(66svh, 540px); border-radius: 16px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .65); pointer-events: auto;
+  }
+  .tr-desc { margin-top: 28px; font-size: 16.5px; }
+
+  .tr-cierre { padding: 84px 0 90px; }
+  .tr-cierre > p:not(.tr-etiqueta) { font-size: 16.5px; }
+  .tr-cierre-botones { flex-direction: column; align-items: stretch; }
+  .tr-cierre-cta, .tr-cierre .btn-info { justify-content: center; }
+}
+@media (max-width: 420px) {
+  .tr { padding-left: 16px; padding-right: 16px; }
+}

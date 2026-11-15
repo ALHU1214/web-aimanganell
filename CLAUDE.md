@@ -40,3 +40,22 @@ archivo generado (`blog/<slug>/`, `blog/index.html`, `sitemap.xml`,
 que se te haya pedido. Suele significar que n8n publicó un post
 nuevo (o editó uno existente) desde la última sesión, y conviene
 tenerlo en cuenta antes de seguir.
+
+## Página `/trabajos/` (portfolio del QR)
+
+*Creada el 15-nov-2026.* Es el portfolio que Álvaro enseña con un QR en las
+visitas a puerta fría. El QR (`https://aimanganell.com/trabajos/`) está en
+`../departamentos/revenue/portfolio-trabajos/`: **no cambiar la URL**, que
+ya está impresa o guardada en su móvil.
+
+- Lleva `noindex` y no está en el sitemap ni en el menú: es para el QR, y
+  así Google no la enseña al buscar "El Libanés", que no es cliente.
+- **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
+  saca las dos capturas a `assets/trabajos/`; luego se copia un `<article>`
+  de `trabajos/index.html`, se cambian textos, enlaces e imágenes y se añade
+  al índice de arriba. Las instrucciones están también en un comentario del HTML.
+- Cada proyecto lleva su estado real: Cliente, En desarrollo o Propuesta
+  (hecha por iniciativa propia, sin encargo). Nunca presentar una propuesta
+  como cliente ni poner resultados o cifras que el cliente no haya dicho.
+- Estilos en `src/styles/trabajos.css`; el movimiento de las capturas, en
+  `src/modules/trabajos.ts`.

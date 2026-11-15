@@ -8,6 +8,7 @@ import { initGestionCookies } from './modules/gestion-cookies';
 import { initScrollReveal } from './modules/scroll-reveal';
 import { initMenuMovil } from './modules/menu-movil';
 import { initParticulas } from './modules/particulas';
+import { initTrabajos } from './modules/trabajos';
 import { config } from './config';
 
 /* ============================================================
@@ -29,5 +30,6 @@ import { config } from './config';
   initScrollReveal();
   initMenuMovil();
   initParticulas();
+  initTrabajos();
 })();
 

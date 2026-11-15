@@ -15,7 +15,10 @@ const REVEAL_SELECTORS = [
   '.legal-page-wrap > .legal-date',
   '.legal-page .legal-body > *',
   '.gracias-pasos > li',
-  '.gracias-links > a'
+  '.gracias-links > a',
+  '.tr-proyecto > .tr-cabeza',
+  '.tr-proyecto > .tr-cuerpo',
+  '.tr-cierre > *'
 ];
 
 export function initScrollReveal(): void {
