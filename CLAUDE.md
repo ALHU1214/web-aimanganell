@@ -48,8 +48,12 @@ visitas a puerta fría. El QR (`https://aimanganell.com/trabajos/`) está en
 `../departamentos/revenue/portfolio-trabajos/`: **no cambiar la URL**, que
 ya está impresa o guardada en su móvil.
 
-- Lleva `noindex` y no está en el sitemap ni en el menú: es para el QR, y
-  así Google no la enseña al buscar "El Libanés", que no es cliente.
+- **Desde el 18-nov-2026 sale en el menú** («TRABAJOS», entre AI & CYBER AMG™
+  y BLOG, en todas las páginas y en las dos plantillas del blog de `scripts/`).
+  Sigue con `noindex` y fuera del sitemap (decisión de Álvaro): así Google no
+  la enseña al buscar "El Libanés", que no es cliente.
+- Con cinco enlaces, entre 761 y 960 px el menú va a 14 px (`src/styles/nav.css`).
+  Si se añade otro enlace, volver a medir de 700 a 1920 px.
 - **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
   saca las dos capturas a `assets/trabajos/`; luego se copia un `<article>`
   de `trabajos/index.html`, se cambian textos, enlaces e imágenes y se añade
