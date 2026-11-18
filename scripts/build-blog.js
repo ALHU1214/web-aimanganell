@@ -312,7 +312,7 @@ function validatePost(data, bodyHtml, filePath) {
       if (!item.q || !item.a) throw new Error(`${filePath}: faq[${i}] necesita "q" y "a"`);
     });
   }
-  const effectiveTitle = `${data.seoTitle || data.title} · AI MANGANELL`;
+  const effectiveTitle = `${data.seoTitle || data.title} - AI MANGANELL`;
   if (effectiveTitle.length > 60) {
     console.warn(`⚠ ${filePath}: el <title> final mide ${effectiveTitle.length} caracteres (> 60): "${effectiveTitle}"${data.seoTitle ? '' : ' — añade "seoTitle" para acortarlo sin tocar el H1'}`);
   }
@@ -563,7 +563,7 @@ function renderBlogIndex(indexTemplate, listedPosts) {
       '@type': 'CollectionPage',
       '@id': `${SITE_URL}/blog/#webpage`,
       url: `${SITE_URL}/blog/`,
-      name: 'Blog · AI MANGANELL',
+      name: 'Blog - AI MANGANELL',
       description: 'Artículos sobre automatización con IA y ciberseguridad para empresas: qué automatizar, en qué orden, y los errores más caros que vemos una y otra vez.'
     },
     buildBreadcrumbSchema([
@@ -654,7 +654,7 @@ function buildRssXml(listedPosts) {
   return '<?xml version="1.0" encoding="UTF-8"?>\n' +
     '<rss version="2.0">\n' +
     '  <channel>\n' +
-    '    <title>Blog · AI MANGANELL</title>\n' +
+    '    <title>Blog - AI MANGANELL</title>\n' +
     `    <link>${SITE_URL}/blog/</link>\n` +
     '    <description>Artículos sobre automatización con IA y ciberseguridad para empresas.</description>\n' +
     '    <language>es</language>\n' +

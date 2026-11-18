@@ -68,3 +68,12 @@ ya está impresa o guardada en su móvil.
   Se sacan con `scripts/logos-trabajos.py` (una receta por logo; instrucciones
   dentro) y cada uno lleva su alto en `.tr-logo--<slug>` para que pesen igual.
   Nunca a color: con los colores de cada marca la página parece un collage.
+
+## Títulos de pestaña: con guion
+
+*18-nov-2026, Álvaro.* Todos los títulos (`<title>`, `og:title`,
+`twitter:title` y el `name` del JSON-LD) separan con guion: `Página - AI MANGANELL`.
+Nunca barra `|` ni punto `·`. La home es la única con la marca delante
+(`AI MANGANELL - Consultoría de IA y ciberseguridad en Canarias`), a propósito.
+Los posts del blog salen de `scripts/build-blog.js` y `scripts/post-template.html`,
+que ya lo llevan así.
