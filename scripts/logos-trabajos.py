@@ -12,7 +12,8 @@ cada uno viene distinto:
 - ELNUBA: recortado sobre transparente -> su silueta, con rayas del mismo
   grosor donde el lápiz cambia de pieza (franjas, madera y mina).
 - Salomn: huella y letras claras dentro de un círculo negro -> lo claro.
-  El original es pequeño (600 px): se amplía antes de trazarlo.
+  El original es pequeño (600 px): se amplía antes de trazarlo. Sin la
+  línea «COMIDA AFRICANA», que a ese tamaño no se lee.
 - El Libanés: cartel con relieve -> letras blancas y cedro verde, sin el
   borde exterior ni la franja blanca central.
 Necesita numpy, pillow, scipy y potracer (pip install potracer).
@@ -162,6 +163,14 @@ if not solo or 'salom' in solo:
     claro = np.clip((lum - .3) / .4, 0, 1) * (a[..., 3] > .5)
     m = reescalar(claro, 5)
     m = ndi.gaussian_filter(m, 3.5) > .5
+    # Sin «COMIDA AFRICANA»: a 60-100 px de alto sus letras miden menos de
+    # 2 px y no se leen (Álvaro, 18-nov-2026). Es la última línea del logo:
+    # lo que queda por debajo del último hueco horizontal en blanco.
+    filas = np.where(m.any(1))[0]
+    saltos = np.where(np.diff(filas) > 1)[0]
+    corte_y = filas[saltos[-1]] + 1
+    assert (filas.max() - corte_y) < .1 * (filas.max() - filas.min()), 'la última línea no parece el eslogan'
+    m[corte_y:] = False
     svg('salomn', m, turdsize=40, alphamax=1.2)
 
 # ---------- El Libanés ----------

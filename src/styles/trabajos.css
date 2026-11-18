@@ -86,7 +86,7 @@
   padding-left: clamp(22px, 2.4vw, 34px); border-left: 1px solid var(--linea);
   box-sizing: content-box; flex: 0 1 auto; min-width: 0; object-fit: contain; object-position: left center;
 }
-.tr-logo--salomn     { --alto: 104px; }
+.tr-logo--salomn     { --alto: 98px; }
 .tr-logo--el-libanes { --alto: 86px; }
 .tr-logo--elnuba     { --alto: 62px; }
 
