@@ -63,3 +63,8 @@ ya está impresa o guardada en su móvil.
   como cliente ni poner resultados o cifras que el cliente no haya dicho.
 - Estilos en `src/styles/trabajos.css`; el movimiento de las capturas, en
   `src/modules/trabajos.ts`.
+- **Logos (18-nov-2026):** cada proyecto lleva el logo del cliente al lado
+  del número, plano y en nuestro azul (`assets/trabajos/logo-<slug>.webp`).
+  Se sacan con `scripts/logos-trabajos.py` (una receta por logo; instrucciones
+  dentro) y cada uno lleva su alto en `.tr-logo--<slug>` para que pesen igual.
+  Nunca a color: con los colores de cada marca la página parece un collage.
