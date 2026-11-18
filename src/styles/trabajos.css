@@ -86,7 +86,7 @@
   padding-left: clamp(22px, 2.4vw, 34px); border-left: 1px solid var(--linea);
   box-sizing: content-box; flex: 0 1 auto; min-width: 0; object-fit: contain; object-position: left center;
 }
-.tr-logo--salomn     { --alto: 98px; }
+.tr-logo--salomn     { --alto: 147px; }  /* con TENERIFE y COMIDA AFRICANA: más alto, para que se lean */
 .tr-logo--el-libanes { --alto: 86px; }
 .tr-logo--elnuba     { --alto: 62px; }
 
@@ -184,6 +184,7 @@
 @media (min-width: 761px) and (max-width: 1100px) {
   .tr-firma { flex-direction: column; align-items: flex-start; gap: 22px; }
   .tr-logo { padding-left: 0; border-left: 0; height: calc(var(--alto) * .8); }
+  .tr-logo--salomn { height: var(--alto); }
 }
 
 /* ---------- móvil: una columna, solo la captura de móvil ---------- */
@@ -203,6 +204,8 @@
   .tr-num { font-size: 92px; margin-bottom: 18px; }
   .tr-firma { gap: 20px; margin-bottom: 18px; }
   .tr-logo { height: calc(var(--alto) * .62); padding-left: 20px; }
+  /* Salomn encoge menos: COMIDA AFRICANA no puede bajar de unos 10 px */
+  .tr-logo--salomn { height: calc(var(--alto) * .85); }
   /* El visor es más alto que el marco: mientras se recorre ese hueco el
      marco se queda quieto (sticky) y la web pasa por dentro de arriba abajo.
      Así se ve primero su portada, que es lo que más luce. Solo el marco

@@ -12,8 +12,10 @@ cada uno viene distinto:
 - ELNUBA: recortado sobre transparente -> su silueta, con rayas del mismo
   grosor donde el lápiz cambia de pieza (franjas, madera y mina).
 - Salomn: huella y letras claras dentro de un círculo negro -> lo claro.
-  El original es pequeño (600 px): se amplía antes de trazarlo. Sin la
-  línea «COMIDA AFRICANA», que a ese tamaño no se lee.
+  El original es pequeño (600 px): se amplía antes de trazarlo. OJO: el
+  logo que se publica sale de scripts/logo-salomn-trabajos.py (huella +
+  SALOMN + TENERIFE + COMIDA AFRICANA, legible a 150 px); este solo da
+  la huella y SALOMN.
 - El Libanés: cartel con relieve -> letras blancas y cedro verde, sin el
   borde exterior ni la franja blanca central.
 Necesita numpy, pillow, scipy y potracer (pip install potracer).

@@ -67,7 +67,13 @@ ya está impresa o guardada en su móvil.
   del número, plano y en nuestro azul, en vector (`assets/trabajos/logo-<slug>.svg`,
   nítido en cualquier pantalla). Se sacan con `scripts/logos-trabajos.py`
   (una receta por logo, trazado con potrace; instrucciones dentro). Las rayas
-  del lápiz de ELNUBA se dibujan desde su geometría, no calcadas y cada uno lleva su alto en `.tr-logo--<slug>` para que pesen igual.
+  del lápiz de ELNUBA se dibujan desde su geometría, no calcadas.
+- **Salomn (18-nov-2026, Álvaro):** el logo dice SALOMN, TENERIFE y COMIDA
+  AFRICANA (se llama «Salomn Tenerife»). Su eslogan original no se leía a ese
+  tamaño, así que se compone aparte con `scripts/logo-salomn-trabajos.py`
+  (huella y SALOMN calcados, TENERIFE y COMIDA AFRICANA en Montserrat) y va
+  más alto que los otros dos, al lado del número (eligió eso antes que
+  ponerlos debajo) y cada uno lleva su alto en `.tr-logo--<slug>` para que pesen igual.
   Nunca a color: con los colores de cada marca la página parece un collage.
 
 ## Títulos de pestaña: con guion
