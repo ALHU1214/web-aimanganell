@@ -157,12 +157,16 @@
   font-family: var(--font-2); font-size: 18px; line-height: 1.65; color: rgba(232, 242, 239, .8);
   text-wrap: pretty;
 }
-.tr-cierre-botones { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 22px; margin-top: 40px; }
-.tr-cierre .btn-info { margin-top: 0; }
-.tr-cierre-cta {
-  display: inline-flex; padding: 17px 44px; font-size: 18px;
-  box-shadow: 0 0 32px rgba(var(--acc-rgb), .45);
+.tr-cierre-botones { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 18px 22px; margin-top: 40px; }
+/* Los dos botones, del mismo alto y con la misma letra (19-nov-2026, Álvaro:
+   «Hablemos» se veía más gordo que el otro). Solo cambia el relleno. */
+.tr-cierre-cta,
+.tr-cierre .btn-info {
+  box-sizing: border-box; min-height: 58px; margin-top: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 36px; font-size: 17px; font-weight: 700; line-height: 1.2;
 }
+.tr-cierre-cta { box-shadow: 0 0 32px rgba(var(--acc-rgb), .45); }
 
 /* ---------- tablet ---------- */
 @media (max-width: 1000px) {
