@@ -12,12 +12,18 @@ Fundador: Álvaro Manganell González.
   revisamos los riesgos de seguridad y detectamos dónde la IA aporta valor y dónde no.
   **Desde 1.200 €**, entrega en **10–15 días**. El importe final depende de la complejidad y el
   alcance, y se descuenta íntegro si se contrata AMG MAX™ en los 30 días siguientes.
+- **Diseño y desarrollo web** — Páginas web a medida para negocios de Tenerife y del resto de
+  Canarias, adaptadas al móvil y con el posicionamiento en Google (SEO) trabajado desde el
+  principio, junto con la imagen de marca y la ficha de Google. Trabajos en
+  https://aimanganell.com/trabajos/.
 
 ## Páginas
 
 - [Inicio](https://aimanganell.com/): qué hacemos y cómo trabajamos.
 - [AI & Cyber AMG™](https://aimanganell.com/consultoria/): en qué consiste el diagnóstico de
   IA y ciberseguridad para empresas.
+- [Trabajos](https://aimanganell.com/trabajos/): webs, imagen de marca y fichas de Google que
+  hemos hecho para negocios de Tenerife, con enlace a cada web en directo.
 - [Blog](https://aimanganell.com/blog/): artículos sobre automatización con IA y
   ciberseguridad para empresas: qué automatizar, en qué orden y los errores habituales.
 

@@ -8,7 +8,8 @@ Uso:
 De cada logo se saca solo el dibujo y las letras (una máscara en blanco y
 negro, a alta resolución), se pasa a curvas con potrace y se guarda como
 logo-<slug>.svg, relleno plano en azul. Cada logo tiene su receta porque
-cada uno viene distinto:
+cada uno viene distinto. De cada logo sale también su símbolo
+(logo-<slug>-simbolo.svg: lápiz, huella y cedro) para el índice de arriba:
 - ELNUBA: recortado sobre transparente -> su silueta, con rayas del mismo
   grosor donde el lápiz cambia de pieza (franjas, madera y mina).
 - Salomn: huella y letras claras dentro de un círculo negro -> lo claro.
@@ -155,6 +156,20 @@ if not solo or 'elnuba' in solo:
     corte &= lapiz            # las rayas solo cortan el lápiz, nunca la «E» de al lado
     m = lleno & ~corte
     m = ndi.gaussian_filter(m.astype(float), 1.5)
+    # Símbolo para el índice: solo el lápiz, de la cúpula a la punta (sin la
+    # raya ondulada ni las letras). La punta es donde el cono es más estrecho.
+    x0, x1 = np.where(lapiz[tope:inicio_ondas].any(0))[0][[0, -1]]
+    y_fin = int(fin_mad[xs_f].max())
+    ancho_fila = lapiz[:, x0:x1 + 1].sum(1)
+    # bajando desde la mina, el cono se estrecha; donde vuelve a ensancharse
+    # empieza la raya ondulada: ahí se corta
+    punta = y_fin + 20
+    while punta + 1 < H and ancho_fila[punta + 1] <= ancho_fila[punta] + 1:
+        punta += 1
+    punta -= 6
+    simbolo = np.zeros_like(m); simbolo[tope:punta + 1, x0:x1 + 1] = m[tope:punta + 1, x0:x1 + 1]
+    simbolo *= lapiz
+    svg('elnuba-simbolo', reescalar(simbolo, .5) > .5, turdsize=20)
     m = reescalar(m, .5) > .5
     svg('elnuba', m, turdsize=20)
 
@@ -165,6 +180,11 @@ if not solo or 'salom' in solo:
     claro = np.clip((lum - .3) / .4, 0, 1) * (a[..., 3] > .5)
     m = reescalar(claro, 5)
     m = ndi.gaussian_filter(m, 3.5) > .5
+    # Símbolo para el índice: la huella (todo lo que va encima de SALOMN)
+    filas = np.where(m.any(1))[0]
+    saltos = np.where(np.diff(filas) > 1)[0]
+    huella = m.copy(); huella[filas[saltos[-2]] + 1:] = False
+    svg('salomn-simbolo', huella, turdsize=40, alphamax=1.2)
     # Sin «COMIDA AFRICANA»: a 60-100 px de alto sus letras miden menos de
     # 2 px y no se leen (Álvaro, 18-nov-2026). Es la última línea del logo:
     # lo que queda por debajo del último hueco horizontal en blanco.
@@ -203,6 +223,8 @@ if not solo or 'libanes' in solo:
     letras = ndi.binary_opening(letras, iterations=1)
     lab_l, nl = ndi.label(letras); tl = np.bincount(lab_l.ravel()); tl[0] = 0
     letras = np.isin(lab_l, np.where(tl > 90)[0])
+    # Símbolo para el índice: el cedro solo
+    svg('el-libanes-simbolo', reescalar(ndi.gaussian_filter(cedro.astype(float), 1.6), 2) > .5, turdsize=30)
     m = (letras | cedro).astype(float)
     m = reescalar(ndi.gaussian_filter(m, 1.6), 2) > .5
     svg('el-libanes', m, turdsize=30)

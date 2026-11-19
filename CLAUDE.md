@@ -50,21 +50,32 @@ ya está impresa o guardada en su móvil.
 
 - **Desde el 18-nov-2026 sale en el menú** («TRABAJOS», entre AI & CYBER AMG™
   y BLOG, en todas las páginas y en las dos plantillas del blog de `scripts/`).
-  Sigue con `noindex` y fuera del sitemap (decisión de Álvaro): así Google no
-  la enseña al buscar "El Libanés", que no es cliente.
+- **Desde el 19-nov-2026 está indexada** (Álvaro): sin `noindex`, en el sitemap
+  (`STATIC_PAGES` de `scripts/build-blog.js`) y en `llms.txt`. Es la página para
+  las búsquedas de **diseño y desarrollo web en Tenerife y Canarias**: título
+  «Diseño y desarrollo web en Tenerife - AI MANGANELL», y esas palabras en la
+  entradilla, el texto del cierre, los `alt` y el JSON-LD (`CollectionPage` +
+  `Service`). Ojo: al estar indexada, quien busque «El Libanés» puede dar con ella.
+- **Aspecto (19-nov-2026, Álvaro):** título y cierre centrados, con el formato del
+  título de AI & Cyber AMG™ (Poppins 500, sin mayúsculas) pero sin su degradado
+  ni su zoom. **Nada de números grandes de contorno (01, 02, 03: «se nota IA»),
+  ni etiquetas pequeñas (Trabajos · Tenerife, El siguiente), ni estados (Cliente,
+  En desarrollo, Propuesta), ni la línea de sector bajo cada nombre.** En el
+  índice, el símbolo de cada cliente (huella, lápiz, cedro) en lugar del número.
 - Con cinco enlaces, entre 761 y 960 px el menú va a 14 px (`src/styles/nav.css`).
   Si se añade otro enlace, volver a medir de 700 a 1920 px.
 - **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
   saca las dos capturas a `assets/trabajos/`; luego se copia un `<article>`
   de `trabajos/index.html`, se cambian textos, enlaces e imágenes y se añade
   al índice de arriba. Las instrucciones están también en un comentario del HTML.
-- Cada proyecto lleva su estado real: Cliente, En desarrollo o Propuesta
-  (hecha por iniciativa propia, sin encargo). Nunca presentar una propuesta
-  como cliente ni poner resultados o cifras que el cliente no haya dicho.
+- Sin etiqueta de estado, la descripción dice lo que es cada uno (por ejemplo,
+  El Libanés: «la diseñamos por iniciativa propia, sin encargo»). Nunca
+  presentar una propuesta como cliente ni poner resultados o cifras que el
+  cliente no haya dicho.
 - Estilos en `src/styles/trabajos.css`; el movimiento de las capturas, en
   `src/modules/trabajos.ts`.
-- **Logos (18-nov-2026):** cada proyecto lleva el logo del cliente al lado
-  del número, plano y en nuestro azul, en vector (`assets/trabajos/logo-<slug>.svg`,
+- **Logos (18-nov-2026):** cada proyecto lleva el logo del cliente encima del
+  nombre (desde el 19-nov ya sin número al lado), plano y en nuestro azul, en vector (`assets/trabajos/logo-<slug>.svg`,
   nítido en cualquier pantalla). Se sacan con `scripts/logos-trabajos.py`
   (una receta por logo, trazado con potrace; instrucciones dentro). Las rayas
   del lápiz de ELNUBA se dibujan desde su geometría, no calcadas.
@@ -72,9 +83,10 @@ ya está impresa o guardada en su móvil.
   AFRICANA (se llama «Salomn Tenerife»). Su eslogan original no se leía a ese
   tamaño, así que se compone aparte con `scripts/logo-salomn-trabajos.py`
   (huella y SALOMN calcados, TENERIFE y COMIDA AFRICANA en Montserrat) y va
-  más alto que los otros dos, al lado del número (eligió eso antes que
-  ponerlos debajo) y cada uno lleva su alto en `.tr-logo--<slug>` para que pesen igual.
-  Nunca a color: con los colores de cada marca la página parece un collage.
+  más alto que los otros dos. Cada uno lleva su alto en `.tr-logo--<slug>` para
+  que pesen igual. El script también saca el símbolo de cada uno
+  (`logo-<slug>-simbolo.svg`) para el índice. Nunca a color: con los colores de
+  cada marca la página parece un collage.
 
 ## Títulos de pestaña: con guion
 
