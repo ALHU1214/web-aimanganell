@@ -41,18 +41,22 @@ que se te haya pedido. Suele significar que n8n publicó un post
 nuevo (o editó uno existente) desde la última sesión, y conviene
 tenerlo en cuenta antes de seguir.
 
-## Página `/trabajos/` (portfolio del QR)
+## Página `/diseno-web/` (portfolio; antes `/trabajos/`)
 
-*Creada el 15-nov-2026.* Es el portfolio que Álvaro enseña con un QR en las
-visitas a puerta fría. El QR (`https://aimanganell.com/trabajos/`) está en
-`../departamentos/revenue/portfolio-trabajos/`: **no cambiar la URL**, que
-ya está impresa o guardada en su móvil.
+*Creada el 15-nov-2026 en `/trabajos/`.* Es el portfolio que Álvaro enseña con
+un QR en las visitas a puerta fría. **19-nov-2026 (Álvaro): la dirección pasa a
+`/diseno-web/`** (sin ñ: en una URL saldría `dise%C3%B1o`). El QR
+(`https://aimanganell.com/trabajos/`, en `../departamentos/revenue/portfolio-trabajos/`)
+sigue impreso, así que **`trabajos/index.html` se queda como desvío** a
+`/diseno-web/` (meta refresh + `location.replace`, `noindex` y canónica a la
+nueva): **no borrarlo**. Las carpetas y nombres internos (`assets/trabajos/`,
+`trabajos.css`, `trabajos.ts`, clases `tr-`) no cambian: no se ven.
 
 - **Desde el 18-nov-2026 sale en el menú**, entre AI & CYBER AMG™ y BLOG, en
   todas las páginas y en las dos plantillas del blog de `scripts/`. **Desde el
   19-nov se llama «DISEÑO WEB»** (antes «TRABAJOS»): dice qué ofreces y le da a
-  Google un enlace con la palabra clave desde cada página. La URL sigue siendo
-  `/trabajos/` (la del QR). Los tres enlaces de cada proyecto dicen «Ver la web».
+  Google un enlace con la palabra clave desde cada página. El menú enlaza a
+  `/diseno-web/`. Los tres enlaces de cada proyecto dicen «Ver la web».
 - **Desde el 19-nov-2026 está indexada** (Álvaro): sin `noindex`, en el sitemap
   (`STATIC_PAGES` de `scripts/build-blog.js`) y en `llms.txt`. Es la página para
   las búsquedas de **diseño y desarrollo web en Tenerife y Canarias**: título
@@ -78,7 +82,7 @@ ya está impresa o guardada en su móvil.
   Si se añade otro enlace, volver a medir de 700 a 1920 px.
 - **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
   saca las dos capturas a `assets/trabajos/`; luego se copia un `<article>`
-  de `trabajos/index.html`, se cambian textos, enlaces e imágenes y se añade
+  de `diseno-web/index.html`, se cambian textos, enlaces e imágenes y se añade
   al índice de arriba. Las instrucciones están también en un comentario del HTML.
 - Sin etiqueta de estado, la descripción dice lo que es cada uno (por ejemplo,
   El Libanés: «la diseñamos por iniciativa propia, sin encargo»). Nunca

@@ -16,14 +16,14 @@ Fundador: Álvaro Manganell González.
   Canarias, adaptadas al móvil y preparadas para salir en Google (SEO) y en las respuestas de
   asistentes de IA como ChatGPT, Gemini o Perplexity (posicionamiento en IA), junto con la
   imagen de marca y la ficha de Google. Trabajos en
-  https://aimanganell.com/trabajos/.
+  https://aimanganell.com/diseno-web/.
 
 ## Páginas
 
 - [Inicio](https://aimanganell.com/): qué hacemos y cómo trabajamos.
 - [AI & Cyber AMG™](https://aimanganell.com/consultoria/): en qué consiste el diagnóstico de
   IA y ciberseguridad para empresas.
-- [Diseño web](https://aimanganell.com/trabajos/): webs, imagen de marca y fichas de Google que
+- [Diseño web](https://aimanganell.com/diseno-web/): webs, imagen de marca y fichas de Google que
   hemos hecho para negocios de Tenerife, con enlace a cada web en directo.
 - [Blog](https://aimanganell.com/blog/): artículos sobre automatización con IA y
   ciberseguridad para empresas: qué automatizar, en qué orden y los errores habituales.

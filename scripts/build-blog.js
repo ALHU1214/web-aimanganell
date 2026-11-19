@@ -38,8 +38,9 @@ const STATIC_PAGES = [
   { relPath: 'index.html', url: SITE_URL + '/' },
   { relPath: path.join('consultoria', 'index.html'), url: SITE_URL + '/consultoria/' },
   { relPath: path.join('contacto-aimanganell', 'index.html'), url: SITE_URL + '/contacto-aimanganell/' },
-  // 19-nov-2026: indexada (Álvaro), para las búsquedas de diseño y desarrollo web
-  { relPath: path.join('trabajos', 'index.html'), url: SITE_URL + '/trabajos/' }
+  // 19-nov-2026: indexada (Álvaro), para las búsquedas de diseño y desarrollo web.
+  // Antes en /trabajos/, que ahora es solo un desvío para el QR (sin indexar).
+  { relPath: path.join('diseno-web', 'index.html'), url: SITE_URL + '/diseno-web/' }
 ];
 
 // misma entidad en cada página — inline siempre (no @id cruzado entre
