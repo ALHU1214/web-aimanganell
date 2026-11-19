@@ -45,11 +45,13 @@ tenerlo en cuenta antes de seguir.
 
 *Creada el 15-nov-2026 en `/trabajos/`.* Es el portfolio que Álvaro enseña con
 un QR en las visitas a puerta fría. **19-nov-2026 (Álvaro): la dirección pasa a
-`/diseno-web/`** (sin ñ: en una URL saldría `dise%C3%B1o`). El QR
-(`https://aimanganell.com/trabajos/`, en `../departamentos/revenue/portfolio-trabajos/`)
-sigue impreso, así que **`trabajos/index.html` se queda como desvío** a
+`/diseno-web/`** (sin ñ: en una URL saldría `dise%C3%B1o`). El QR no estaba
+impreso (Álvaro): se rehízo apuntando a `https://aimanganell.com/diseno-web/`
+(`../departamentos/revenue/portfolio-trabajos/qr-diseno-web-movil.png` y
+`qr-diseno-web.svg`). **`trabajos/index.html` se queda como desvío** a
 `/diseno-web/` (meta refresh + `location.replace`, `noindex` y canónica a la
-nueva): **no borrarlo**. Las carpetas y nombres internos (`assets/trabajos/`,
+nueva), porque Google tenía `/trabajos/` indexada y alguien puede tenerla
+guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
 `trabajos.css`, `trabajos.ts`, clases `tr-`) no cambian: no se ven.
 
 - **Desde el 18-nov-2026 sale en el menú**, entre AI & CYBER AMG™ y BLOG, en
