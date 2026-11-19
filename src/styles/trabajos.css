@@ -2,8 +2,8 @@
    TRABAJOS (/trabajos/) · portfolio (también el del QR) e indexada
    para las búsquedas de diseño y desarrollo web en Tenerife.
    Pensada primero para el móvil: es donde se abre al escanear.
-   Sin tarjetas ni etiquetas: títulos como los del resto de la web
-   (Poppins 500, sin mayúsculas, centrados), el logo de cada cliente
+   Sin tarjetas ni etiquetas: títulos grandes en mayúsculas (los de
+   la cabecera y el cierre, centrados), el logo de cada cliente
    en nuestro azul y las capturas reales de cada web, que se deslizan
    dentro de su marco con el scroll (src/modules/trabajos.ts).
    19-nov-2026 (Álvaro): fuera los números pequeños del índice (01-03,
@@ -19,13 +19,18 @@
   --suave: rgba(232, 242, 239, .62);
 }
 
-/* ---------- títulos: el mismo formato que el de AI & Cyber AMG™
-   (.p2-hero-copy h1), pero sin su degradado ni su zoom ---------- */
-.tr-titulo,
+/* ---------- títulos: grandes, en mayúsculas y centrados ----------
+   19-nov-2026 (Álvaro): se probó el formato del título de AI & Cyber AMG™
+   (Poppins 500, sin mayúsculas) y prefirió el tamaño de siempre, centrado. */
+.tr-titulo {
+  margin: 0 auto; max-width: 11ch;
+  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .98;
+  font-size: clamp(44px, 8vw, 104px); text-wrap: balance;
+}
 .tr-cierre-titulo {
-  margin: 0 auto; max-width: 960px; padding-bottom: .14em;
-  font-size: clamp(38px, 3.6vw, 52px); font-weight: 500; line-height: 1.16;
-  letter-spacing: -.02em; color: var(--ink); text-wrap: balance;
+  margin: 0 auto; max-width: 13ch;
+  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .98;
+  font-size: clamp(40px, 6.6vw, 88px); text-wrap: balance;
 }
 
 /* ---------- cabecera, centrada ---------- */
@@ -52,8 +57,8 @@
 .tr-indice-simbolo--elnuba img { height: 44px; }   /* el lápiz es estrecho: algo más alto para pesar igual */
 .tr-indice a:hover .tr-indice-simbolo img { transform: scale(1.08); }
 .tr-indice-nombre {
-  font-weight: 500; letter-spacing: -.5px;
-  font-size: clamp(22px, 2.6vw, 30px); line-height: 1.15; transition: color .25s;
+  font-weight: 700; text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(22px, 2.8vw, 32px); line-height: 1.1; transition: color .25s;
 }
 .tr-indice a:hover .tr-indice-nombre { color: var(--acc2); }
 .tr-indice-sector { font-family: var(--font-2); font-size: 15px; color: var(--suave); }
@@ -102,8 +107,8 @@
 
 .tr-nombre {
   margin: 0;
-  font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 500; line-height: 1.2;
-  letter-spacing: -.5px; text-wrap: balance;
+  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .95;
+  font-size: clamp(40px, 5.4vw, 74px); text-wrap: balance;
 }
 
 .tr-desc {
@@ -175,7 +180,6 @@
 /* ---------- móvil: una columna, solo la captura de móvil ---------- */
 @media (max-width: 760px) {
   .tr { padding: 112px 20px 0; }
-  .tr-titulo, .tr-cierre-titulo { font-size: clamp(26px, 8.2vw, 38px); }
   .tr-entradilla { font-size: 16.5px; margin-top: 22px; }
   .tr-indice { margin-top: 44px; }
   .tr-indice a { grid-template-columns: 44px 1fr; padding: 16px 0; }

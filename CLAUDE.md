@@ -56,9 +56,9 @@ ya está impresa o guardada en su móvil.
   «Diseño y desarrollo web en Tenerife - AI MANGANELL», y esas palabras en la
   entradilla, el texto del cierre, los `alt` y el JSON-LD (`CollectionPage` +
   `Service`). Ojo: al estar indexada, quien busque «El Libanés» puede dar con ella.
-- **Aspecto (19-nov-2026, Álvaro):** título y cierre centrados, con el formato del
-  título de AI & Cyber AMG™ (Poppins 500, sin mayúsculas) pero sin su degradado
-  ni su zoom. **Nada de etiquetas pequeñas (Trabajos · Tenerife, El siguiente),
+- **Aspecto (19-nov-2026, Álvaro):** título y cierre **centrados, grandes y en
+  mayúsculas, como estaban** (se probó el formato del título de AI & Cyber AMG™,
+  Poppins 500 sin mayúsculas, y prefirió el tamaño de siempre). **Nada de etiquetas pequeñas (Trabajos · Tenerife, El siguiente),
   ni estados (Cliente, En desarrollo, Propuesta), ni la línea de sector bajo cada
   nombre.** En el índice, el símbolo de cada cliente (huella, lápiz, cedro) en
   lugar de los números pequeños 01-03 («se nota IA»). **Los números grandes de
