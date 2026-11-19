@@ -94,6 +94,13 @@ async def capturar(navegador, slug, url, nombre, perfil):
     destino = SALIDA / f"{slug}-{nombre}.webp"
     img.save(destino, "WEBP", quality=72, method=6)
     print(f"{destino.relative_to(RAIZ)}  {img.width}x{img.height}  {destino.stat().st_size // 1024} KB")
+    # Versiones pequeñas para el srcset de diseno-web/index.html (19-nov-2026):
+    # cada pantalla baja la que necesita (móvil 400/640/780, escritorio 700/1200).
+    for ancho in {"movil": [400, 640], "escritorio": [700]}[nombre]:
+        peque = img.resize((ancho, round(img.height * ancho / img.width)), Image.LANCZOS)
+        d = SALIDA / f"{slug}-{nombre}-{ancho}.webp"
+        peque.save(d, "WEBP", quality=72, method=6)
+        print(f"{d.relative_to(RAIZ)}  {peque.width}x{peque.height}  {d.stat().st_size // 1024} KB")
 
 
 async def main(slug, url):

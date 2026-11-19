@@ -92,6 +92,10 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   cliente no haya dicho.
 - Estilos en `src/styles/trabajos.css`; el movimiento de las capturas, en
   `src/modules/trabajos.ts`.
+- **Rendimiento (19-nov-2026):** cada captura tiene versiones pequeñas
+  (`-movil-400/-640`, `-escritorio-700`) que salen solas de
+  `scripts/capturas-trabajos.py`, y cada `<img>` lleva su `srcset`: al añadir
+  un proyecto, copiar también el `srcset` y cambiar el nombre.
 - **Logos (18-nov-2026):** cada proyecto lleva el logo del cliente al lado
   del número grande, plano y en nuestro azul, en vector (`assets/trabajos/logo-<slug>.svg`,
   nítido en cualquier pantalla). Se sacan con `scripts/logos-trabajos.py`

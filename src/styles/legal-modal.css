@@ -81,6 +81,10 @@
   }
   .fondo-negro-movil .hero-video { background: transparent; }
   .fondo-negro-movil .hero-veil { background: rgba(0, 0, 0, .45); }
+  /* En el móvil el fondo se ve a ~600 px de ancho: la versión de 1600 px
+     (68 KB) basta y se descodifica 2,5 veces más rápido que la de 2560. */
+  .fondo-negro body,
+  .fondo-negro-movil body { background-image: url('assets/fondo-contacto-movil.webp'); }
 }
 
 /* Página /gracias/ */

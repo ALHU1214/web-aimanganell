@@ -16,11 +16,24 @@ nav {
 }
 .nav-link { display: inline-flex; align-items: center; color: #fff; white-space: nowrap; }
 .nav-link:hover { color: var(--acc); }
+/* El brillo que late (antes, @keyframes glow animando box-shadow) obligaba a
+   repintar el botón en cada fotograma, en todas las páginas. Ahora el brillo
+   de reposo es fijo y el extra va en una capa (::after) que solo cambia de
+   opacidad: lo mueve la tarjeta gráfica sin repintar (19-nov-2026). Mismo
+   ritmo (2,4 s) y casi el mismo resplandor arriba. */
 .nav-cta {
+  position: relative;
   display: inline-flex; align-items: center; padding: 10px 22px; border-radius: 999px;
   background: var(--acc); color: #07100e; font-weight: 700; white-space: nowrap;
-  animation: glow 2.4s ease-in-out infinite;
+  box-shadow: 0 0 24px rgba(var(--acc-rgb), .55), 0 0 60px rgba(var(--acc-rgb), .3);
 }
+.nav-cta::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  box-shadow: 0 0 36px rgba(var(--acc-rgb), .6), 0 0 90px rgba(var(--acc-rgb), .35);
+  opacity: 0; pointer-events: none; will-change: opacity;
+  animation: glow-capa 2.4s ease-in-out infinite;
+}
+@keyframes glow-capa { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
 .nav-cta:hover {
   background: var(--acc2); color: #07100e;
   box-shadow: 0 0 36px rgba(var(--acc-rgb), .8), 0 0 80px rgba(var(--acc-rgb), .45);
@@ -94,6 +107,7 @@ nav {
   }
   .nav-links .nav-cta {
     display: inline-flex; justify-content: center;
-    margin-top: 20px; padding: 15px 22px; font-size: 15px; animation: none;
+    margin-top: 20px; padding: 15px 22px; font-size: 15px; animation: none; box-shadow: none;
   }
+  .nav-links .nav-cta::after { display: none; }
 }
