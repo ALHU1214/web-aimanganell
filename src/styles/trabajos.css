@@ -2,8 +2,8 @@
    TRABAJOS (/trabajos/) · portfolio (también el del QR) e indexada
    para las búsquedas de diseño y desarrollo web en Tenerife.
    Pensada primero para el móvil: es donde se abre al escanear.
-   Sin tarjetas ni etiquetas: títulos grandes en mayúsculas (los de
-   la cabecera y el cierre, centrados), el logo de cada cliente
+   Sin tarjetas ni etiquetas, con las reglas de la página de AI & Cyber
+   AMG™ (ver «mismas reglas» abajo), el logo de cada cliente
    en nuestro azul y las capturas reales de cada web, que se deslizan
    dentro de su marco con el scroll (src/modules/trabajos.ts).
    19-nov-2026 (Álvaro): fuera los números pequeños del índice (01-03,
@@ -19,25 +19,28 @@
   --suave: rgba(232, 242, 239, .62);
 }
 
-/* ---------- títulos: grandes, en mayúsculas y centrados ----------
-   19-nov-2026 (Álvaro): se probó el formato del título de AI & Cyber AMG™
-   (Poppins 500, sin mayúsculas) y prefirió el tamaño de siempre, centrado. */
-.tr-titulo {
-  margin: 0 auto; max-width: 11ch;
-  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .98;
-  font-size: clamp(44px, 8vw, 104px); text-wrap: balance;
-}
+/* ---------- mismas reglas que la página de AI & Cyber AMG™ ----------
+   19-nov-2026 (Álvaro): «que no sean dos estilos distintos». Todo en
+   Poppins (var(--font-1)), nada en mayúsculas. El título y el cierre, como
+   el manifiesto de consultoría («Primero claridad, después IA.», .manifiesto p):
+   grandes, 700, interlineado .94 y tracking -.045em, en blanco y azul. Los
+   nombres de cada proyecto, como sus títulos de sección (.sec-title). */
+.tr-titulo,
 .tr-cierre-titulo {
-  margin: 0 auto; max-width: 13ch;
-  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .98;
-  font-size: clamp(40px, 6.6vw, 88px); text-wrap: balance;
+  margin: 0 auto; font-weight: 700; line-height: .94; letter-spacing: -.045em;
+  color: var(--ink); text-wrap: balance;
 }
+.tr-titulo        { max-width: 1100px; font-size: clamp(44px, 6.6vw, 96px); }
+/* la parte azul, siempre en su línea (como «después IA.» en el manifiesto) */
+.tr-titulo .c-blue,
+.tr-cierre-titulo .c-blue { display: block; }
+.tr-cierre-titulo { max-width: 14ch; font-size: clamp(40px, 6.6vw, 88px); }
 
 /* ---------- cabecera, centrada ---------- */
 .tr-cab { text-align: center; }
 .tr-entradilla {
   margin: 26px auto 0; max-width: 40em;
-  font-family: var(--font-2); font-size: 19px; line-height: 1.6; color: rgba(232, 242, 239, .8);
+  font-size: 20px; line-height: 1.55; color: rgba(232, 242, 239, .72);
   text-wrap: pretty;
 }
 
@@ -57,11 +60,11 @@
 .tr-indice-simbolo--elnuba img { height: 44px; }   /* el lápiz es estrecho: algo más alto para pesar igual */
 .tr-indice a:hover .tr-indice-simbolo img { transform: scale(1.08); }
 .tr-indice-nombre {
-  font-weight: 700; text-transform: uppercase; letter-spacing: -.01em;
-  font-size: clamp(22px, 2.8vw, 32px); line-height: 1.1; transition: color .25s;
+  font-weight: 500; letter-spacing: -.5px;
+  font-size: clamp(22px, 2.6vw, 30px); line-height: 1.2; transition: color .25s;
 }
 .tr-indice a:hover .tr-indice-nombre { color: var(--acc2); }
-.tr-indice-sector { font-family: var(--font-2); font-size: 15px; color: var(--suave); }
+.tr-indice-sector { font-size: 15px; color: var(--suave); }
 
 /* ---------- cada proyecto ---------- */
 .tr-proyecto {
@@ -107,13 +110,13 @@
 
 .tr-nombre {
   margin: 0;
-  font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: .95;
-  font-size: clamp(40px, 5.4vw, 74px); text-wrap: balance;
+  font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 500; line-height: 1.2;
+  letter-spacing: -.5px; color: #f8f8f8; text-wrap: balance;
 }
 
 .tr-desc {
   margin: 24px 0 26px; max-width: 30em;
-  font-family: var(--font-2); font-size: 17px; line-height: 1.65; color: rgba(232, 242, 239, .84);
+  font-size: 16.5px; line-height: 1.85; color: rgba(232, 242, 239, .84);
   text-wrap: pretty;
 }
 .tr-hecho {
@@ -154,7 +157,7 @@
 .tr-cierre { padding: 130px 0 120px; text-align: center; }
 .tr-cierre > p {
   margin: 26px auto 0; max-width: 40em;
-  font-family: var(--font-2); font-size: 18px; line-height: 1.65; color: rgba(232, 242, 239, .8);
+  font-size: 18px; line-height: 1.75; color: rgba(232, 242, 239, .72);
   text-wrap: pretty;
 }
 .tr-cierre-botones { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 18px 22px; margin-top: 40px; }

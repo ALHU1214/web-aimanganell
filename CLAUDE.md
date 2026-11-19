@@ -63,9 +63,12 @@ ya está impresa o guardada en su móvil.
   «que te encuentren en Google (SEO) y también cuando alguien le pregunta a ChatGPT,
   Gemini o Perplexity por un negocio como el tuyo (posicionamiento en IA)». En ELNUBA,
   «Posicionamiento en Google y en IA» (vendido como «Google y ChatGPT»).
-- **Aspecto (19-nov-2026, Álvaro):** título y cierre **centrados, grandes y en
-  mayúsculas, como estaban** (se probó el formato del título de AI & Cyber AMG™,
-  Poppins 500 sin mayúsculas, y prefirió el tamaño de siempre). **Nada de etiquetas pequeñas (Trabajos · Tenerife, El siguiente),
+- **Aspecto (19-nov-2026, Álvaro): «que no sean dos estilos distintos»: sigue las
+  reglas de la página de AI & Cyber AMG™.** Todo en Poppins y nada en mayúsculas.
+  Título y cierre, centrados y grandes, como el manifiesto de consultoría
+  («Primero claridad, después IA.»: 700, blanco y la parte azul en su línea).
+  Nombres de cada proyecto, como sus títulos de sección (`.sec-title`: 500).
+  Si se cambia el estilo de consultoría, cambiar también este. **Nada de etiquetas pequeñas (Trabajos · Tenerife, El siguiente),
   ni estados (Cliente, En desarrollo, Propuesta), ni la línea de sector bajo cada
   nombre.** En el índice, el símbolo de cada cliente (huella, lápiz, cedro) en
   lugar de los números pequeños 01-03 («se nota IA»). **Los números grandes de
