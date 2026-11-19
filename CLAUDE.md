@@ -92,6 +92,17 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   cliente no haya dicho.
 - Estilos en `src/styles/trabajos.css`; el movimiento de las capturas, en
   `src/modules/trabajos.ts`.
+- **En el móvil, el recuadro tiene forma de móvil (19-nov-2026, Álvaro: «que no
+  se vea ampliada»):** proporción 390 × 844 (la de la captura), centrado y de
+  ~250 px de ancho, así que dentro cabe una pantalla entera de la web en pequeño.
+  Antes ocupaba todo el ancho y la web se veía casi a tamaño real. No volver a
+  ponerlo a todo el ancho. El `sizes` de las capturas de móvil va a `250px`.
+- **Salomn empieza en la carta (19-nov-2026, Álvaro: los platos son lo fuerte
+  de su web):** sus capturas van desde «La Carta» hasta el último plato, con la
+  barra de su web arriba. Lo hace solo el script (`ZONAS` en
+  `scripts/capturas-trabajos.py`): si se rehacen, sale igual. Para que otro
+  proyecto empiece en una sección, se añade ahí su slug con la sección de inicio
+  y la de final.
 - **Rendimiento (19-nov-2026):** cada captura tiene versiones pequeñas
   (`-movil-400/-640`, `-escritorio-700`) que salen solas de
   `scripts/capturas-trabajos.py`, y cada `<img>` lleva su `srcset`: al añadir
