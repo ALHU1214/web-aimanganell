@@ -48,8 +48,11 @@ visitas a puerta fría. El QR (`https://aimanganell.com/trabajos/`) está en
 `../departamentos/revenue/portfolio-trabajos/`: **no cambiar la URL**, que
 ya está impresa o guardada en su móvil.
 
-- **Desde el 18-nov-2026 sale en el menú** («TRABAJOS», entre AI & CYBER AMG™
-  y BLOG, en todas las páginas y en las dos plantillas del blog de `scripts/`).
+- **Desde el 18-nov-2026 sale en el menú**, entre AI & CYBER AMG™ y BLOG, en
+  todas las páginas y en las dos plantillas del blog de `scripts/`. **Desde el
+  19-nov se llama «DISEÑO WEB»** (antes «TRABAJOS»): dice qué ofreces y le da a
+  Google un enlace con la palabra clave desde cada página. La URL sigue siendo
+  `/trabajos/` (la del QR). Los tres enlaces de cada proyecto dicen «Ver la web».
 - **Desde el 19-nov-2026 está indexada** (Álvaro): sin `noindex`, en el sitemap
   (`STATIC_PAGES` de `scripts/build-blog.js`) y en `llms.txt`. Es la página para
   las búsquedas de **diseño y desarrollo web en Tenerife y Canarias**: título

@@ -22,7 +22,7 @@ Fundador: Álvaro Manganell González.
 - [Inicio](https://aimanganell.com/): qué hacemos y cómo trabajamos.
 - [AI & Cyber AMG™](https://aimanganell.com/consultoria/): en qué consiste el diagnóstico de
   IA y ciberseguridad para empresas.
-- [Trabajos](https://aimanganell.com/trabajos/): webs, imagen de marca y fichas de Google que
+- [Diseño web](https://aimanganell.com/trabajos/): webs, imagen de marca y fichas de Google que
   hemos hecho para negocios de Tenerife, con enlace a cada web en directo.
 - [Blog](https://aimanganell.com/blog/): artículos sobre automatización con IA y
   ciberseguridad para empresas: qué automatizar, en qué orden y los errores habituales.
