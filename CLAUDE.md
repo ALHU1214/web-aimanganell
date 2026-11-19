@@ -58,10 +58,12 @@ ya está impresa o guardada en su móvil.
   `Service`). Ojo: al estar indexada, quien busque «El Libanés» puede dar con ella.
 - **Aspecto (19-nov-2026, Álvaro):** título y cierre centrados, con el formato del
   título de AI & Cyber AMG™ (Poppins 500, sin mayúsculas) pero sin su degradado
-  ni su zoom. **Nada de números grandes de contorno (01, 02, 03: «se nota IA»),
-  ni etiquetas pequeñas (Trabajos · Tenerife, El siguiente), ni estados (Cliente,
-  En desarrollo, Propuesta), ni la línea de sector bajo cada nombre.** En el
-  índice, el símbolo de cada cliente (huella, lápiz, cedro) en lugar del número.
+  ni su zoom. **Nada de etiquetas pequeñas (Trabajos · Tenerife, El siguiente),
+  ni estados (Cliente, En desarrollo, Propuesta), ni la línea de sector bajo cada
+  nombre.** En el índice, el símbolo de cada cliente (huella, lápiz, cedro) en
+  lugar de los números pequeños 01-03 («se nota IA»). **Los números grandes de
+  contorno al lado del logo SÍ le gustan: no quitarlos** (se quitaron por error
+  el 19-nov y se volvieron a poner).
 - Con cinco enlaces, entre 761 y 960 px el menú va a 14 px (`src/styles/nav.css`).
   Si se añade otro enlace, volver a medir de 700 a 1920 px.
 - **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
@@ -74,8 +76,8 @@ ya está impresa o guardada en su móvil.
   cliente no haya dicho.
 - Estilos en `src/styles/trabajos.css`; el movimiento de las capturas, en
   `src/modules/trabajos.ts`.
-- **Logos (18-nov-2026):** cada proyecto lleva el logo del cliente encima del
-  nombre (desde el 19-nov ya sin número al lado), plano y en nuestro azul, en vector (`assets/trabajos/logo-<slug>.svg`,
+- **Logos (18-nov-2026):** cada proyecto lleva el logo del cliente al lado
+  del número grande, plano y en nuestro azul, en vector (`assets/trabajos/logo-<slug>.svg`,
   nítido en cualquier pantalla). Se sacan con `scripts/logos-trabajos.py`
   (una receta por logo, trazado con potrace; instrucciones dentro). Las rayas
   del lápiz de ELNUBA se dibujan desde su geometría, no calcadas.
