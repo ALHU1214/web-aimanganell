@@ -59,6 +59,10 @@ ya está impresa o guardada en su móvil.
   «Diseño y desarrollo web en Tenerife - AI MANGANELL», y esas palabras en la
   entradilla, el texto del cierre, los `alt` y el JSON-LD (`CollectionPage` +
   `Service`). Ojo: al estar indexada, quien busque «El Libanés» puede dar con ella.
+  También dice que posicionamos en IA (19-nov-2026, Álvaro), con palabras de cliente:
+  «que te encuentren en Google (SEO) y también cuando alguien le pregunta a ChatGPT,
+  Gemini o Perplexity por un negocio como el tuyo (posicionamiento en IA)». En ELNUBA,
+  «Posicionamiento en Google y en IA» (vendido como «Google y ChatGPT»).
 - **Aspecto (19-nov-2026, Álvaro):** título y cierre **centrados, grandes y en
   mayúsculas, como estaban** (se probó el formato del título de AI & Cyber AMG™,
   Poppins 500 sin mayúsculas, y prefirió el tamaño de siempre). **Nada de etiquetas pequeñas (Trabajos · Tenerife, El siguiente),
