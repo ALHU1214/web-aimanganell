@@ -31,7 +31,7 @@ export function initIndiceTrabajos(): void {
   if (ancla) ir(ancla, 'instant', false);
 }
 
-/* ---------- página /trabajos/ ----------
+/* ---------- página /diseno-web/ ----------
    Cada captura es más alta que su marco. Mientras se hace scroll, la
    captura sube dentro del marco: se ve la web pasar de arriba abajo, como
    si alguien la estuviera recorriendo. Sin scroll propio en el marco, para
@@ -39,14 +39,32 @@ export function initIndiceTrabajos(): void {
    se abre en directo.
    - Móvil: el marco es sticky dentro de un visor más alto (trabajos.css).
      La captura avanza mientras el marco está quieto, empezando por la portada.
-   - Escritorio: el marco se mueve con la página y la captura avanza desde
-     que asoma entero por abajo hasta que sale a medias por arriba. */
+   - Ordenador (20-nov-2026, Álvaro): la escena entera (.tr-escena) es sticky
+     y se queda centrada; el artículo mide una ventana más --tr-recorrido,
+     que se calcula aquí (lo que baja la captura: 1 px de rueda = 1 px de
+     web). La web pasa mientras la escena está quieta, desde su portada.
+   - Ventanas bajas, donde no cabe quieta (sin sticky): la captura avanza
+     desde que el marco asoma entero por abajo hasta que sale a medias por
+     arriba. */
 export function initTrabajos(): void {
   const marcos = $$<HTMLElement>('.tr-marco');
   if (!marcos.length) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+  const proyectos = $$<HTMLElement>('.tr-proyecto');
   let pendiente = false;
+
+  /* Lo que alarga cada proyecto: lo que más baja de sus capturas visibles. */
+  function medir(): void {
+    proyectos.forEach((proyecto) => {
+      let recorrido = 0;
+      proyecto.querySelectorAll<HTMLElement>('.tr-marco').forEach((marco) => {
+        const img = marco.querySelector('img');
+        if (img && marco.offsetParent) recorrido = Math.max(recorrido, img.offsetHeight - marco.clientHeight);
+      });
+      if (recorrido > 0) proyecto.style.setProperty('--tr-recorrido', `${Math.round(recorrido)}px`);
+    });
+  }
 
   function progreso(marco: HTMLElement, alto: number): number | null {
     const cs = getComputedStyle(marco);
@@ -56,6 +74,17 @@ export function initTrabajos(): void {
       const tramo = visor.height - marco.offsetHeight;
       if (tramo <= 0) return null;
       return ((parseFloat(cs.top) || 0) - visor.top) / tramo;
+    }
+    const escena = marco.closest<HTMLElement>('.tr-escena');
+    if (escena && escena.parentElement) {
+      const ce = getComputedStyle(escena);
+      if (ce.position === 'sticky') {
+        const articulo = escena.parentElement.getBoundingClientRect();
+        if (articulo.bottom < 0 || articulo.top > alto) return null;
+        const tramo = articulo.height - escena.offsetHeight;
+        if (tramo <= 0) return null;
+        return ((parseFloat(ce.top) || 0) - articulo.top) / tramo;
+      }
     }
     const r = marco.getBoundingClientRect();
     if (r.bottom < 0 || r.top > alto) return null;
@@ -67,15 +96,18 @@ export function initTrabajos(): void {
   function pintar(): void {
     pendiente = false;
     const alto = window.innerHeight;
+    // Primero se mide todo y luego se mueve: así el navegador no tiene que
+    // recalcular la página entre un marco y otro.
+    const cambios: Array<[HTMLImageElement, number]> = [];
     marcos.forEach((marco) => {
       const img = marco.querySelector('img');
       if (!img || !marco.offsetParent) return; // oculto (en móvil, el de escritorio)
       const recorrido = img.offsetHeight - marco.clientHeight;
       const p = progreso(marco, alto);
       if (p === null || recorrido <= 0) return;
-      const y = -Math.min(1, Math.max(0, p)) * recorrido;
-      img.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
+      cambios.push([img, -Math.min(1, Math.max(0, p)) * recorrido]);
     });
+    cambios.forEach(([img, y]) => { img.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`; });
   }
 
   function pedir(): void {
@@ -84,8 +116,13 @@ export function initTrabajos(): void {
     requestAnimationFrame(pintar);
   }
 
+  function rehacer(): void {
+    medir();
+    pedir();
+  }
+
   window.addEventListener('scroll', pedir, { passive: true });
-  window.addEventListener('resize', pedir);
-  marcos.forEach((m) => { m.querySelector('img')?.addEventListener('load', pedir); });
-  pedir();
+  window.addEventListener('resize', rehacer);
+  marcos.forEach((m) => { m.querySelector('img')?.addEventListener('load', rehacer); });
+  rehacer();
 }

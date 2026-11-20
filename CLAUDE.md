@@ -91,6 +91,20 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   proyecto a quien entre con un enlace antiguo con `#slug`. **No volver a
   poner `href="#…"` ni `id` en los proyectos.** Sin `noindex`: la página sigue
   indexada.
+- **En el ordenador, cada proyecto se queda quieto y centrado mientras pasa
+  su web (20-nov-2026, Álvaro: «que se centre en el medio y, al seguir bajando,
+  se scrollee la web sin que scrollee otra cosa, como alargar un poco la
+  página»).** Antes la captura empezaba a moverse en cuanto el marco asomaba
+  y al llegar al centro ya no se veía la portada. Ahora cada `<article>` lleva
+  dentro un `<div class="tr-escena">` (la rejilla) que es sticky y está
+  centrado en la ventana (relleno de 74 px, el alto del menú, para no quedar
+  debajo); el artículo mide una ventana más `--tr-recorrido`, que calcula
+  `trabajos.ts` con lo que baja la captura (1 px de rueda = 1 px de web).
+  Solo donde cabe entero: de 1101 px de ancho con 640 px de alto o más (de 640
+  a 759, número y logo algo menores), y de 761 a 1100 con 960 o más. En
+  ventanas más bajas, en el móvil y con «reducir movimiento», como antes
+  (comprobado igual que la versión anterior). Al añadir un proyecto, copiar
+  también su `tr-escena`.
 - **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
   saca las dos capturas a `assets/trabajos/`; luego se copia un `<article>`
   de `diseno-web/index.html`, se cambian textos, enlaces e imágenes y se añade

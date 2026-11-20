@@ -30,7 +30,7 @@ import { config } from './config';
   initScrollReveal();
   initMenuMovil();
   initParticulas();
-  initIndiceTrabajos();
-  initTrabajos();
+  initTrabajos();        // antes que el índice: alarga cada proyecto y así
+  initIndiceTrabajos();  // un enlace con #slug cae en su sitio
 })();
 

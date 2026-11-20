@@ -16,8 +16,8 @@ const REVEAL_SELECTORS = [
   '.legal-page .legal-body > *',
   '.gracias-pasos > li',
   '.gracias-links > a',
-  '.tr-proyecto > .tr-cabeza',
-  '.tr-proyecto > .tr-cuerpo',
+  '.tr-escena > .tr-cabeza',
+  '.tr-escena > .tr-cuerpo',
   '.tr-cierre > *'
 ];
 
