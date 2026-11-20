@@ -43,6 +43,9 @@ export function initIndiceTrabajos(): void {
      y se queda centrada; el artículo mide una ventana más --tr-recorrido,
      que se calcula aquí (lo que baja la captura: 1 px de rueda = 1 px de
      web). La web pasa mientras la escena está quieta, desde su portada.
+     Mientras está quieta, tampoco se mueven el fondo (capa .tr-fondo, que
+     baja con la página menos lo que llevan los proyectos quietos) ni las
+     partículas (.tr-quieto las pausa): solo pasa la web.
    - Ventanas bajas, donde no cabe quieta (sin sticky): la captura avanza
      desde que el marco asoma entero por abajo hasta que sale a medias por
      arriba. */
@@ -52,7 +55,27 @@ export function initTrabajos(): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const proyectos = $$<HTMLElement>('.tr-proyecto');
+  const raiz = document.documentElement;
   let pendiente = false;
+
+  /* Fondo propio: la misma textura del body, en una capa fija. Solo se ve
+     donde los proyectos se quedan quietos (trabajos.css). */
+  const fondo = document.createElement('div');
+  fondo.className = 'tr-fondo';
+  fondo.setAttribute('aria-hidden', 'true');
+  const textura = document.createElement('div');
+  fondo.appendChild(textura);
+  document.body.prepend(fondo);
+  raiz.classList.add('tr-fondo-propio');
+  let proporcion = 0;     // alto / ancho de la imagen de la textura
+  let mosaico = 0;        // alto de una repetición de la textura, en px
+  let quietos: Array<[number, number]> = [];   // [scrollY en que se queda quieto, lo que dura]
+  const url = /url\(["']?([^"')]+)["']?\)/.exec(getComputedStyle(textura).backgroundImage);
+  if (url) {
+    const imagen = new Image();
+    imagen.onload = () => { proporcion = imagen.naturalHeight / imagen.naturalWidth; rehacer(); };
+    imagen.src = url[1];
+  }
 
   /* Lo que alarga cada proyecto: lo que más baja de sus capturas visibles. */
   function medir(): void {
@@ -64,6 +87,42 @@ export function initTrabajos(): void {
       });
       if (recorrido > 0) proyecto.style.setProperty('--tr-recorrido', `${Math.round(recorrido)}px`);
     });
+
+    // Tramos en que cada escena está quieta (después de alargar los artículos)
+    quietos = [];
+    proyectos.forEach((proyecto) => {
+      const escena = proyecto.querySelector<HTMLElement>('.tr-escena');
+      if (!escena) return;
+      const ce = getComputedStyle(escena);
+      if (ce.position !== 'sticky') return;
+      const inicio = proyecto.getBoundingClientRect().top + window.scrollY - (parseFloat(ce.top) || 0);
+      quietos.push([inicio, proyecto.offsetHeight - escena.offsetHeight]);
+    });
+    mosaico = 0;
+    if (proporcion > 0 && getComputedStyle(fondo).display !== 'none') {
+      const tamano = parseFloat(getComputedStyle(textura).backgroundSize) / 100 || 1;
+      mosaico = fondo.clientWidth * tamano * proporcion;
+      textura.style.height = `${Math.ceil(fondo.clientHeight + mosaico)}px`;
+    }
+    if (!mosaico) raiz.classList.remove('tr-quieto');
+  }
+
+  /* El fondo baja con la página, menos lo que llevan los proyectos quietos;
+     y mientras uno está quieto, las partículas se paran. */
+  function moverFondo(): void {
+    if (!mosaico) return;
+    const y = window.scrollY;
+    let parado = 0;
+    let quieto = false;
+    quietos.forEach(([inicio, dura]) => {
+      const dentro = y - inicio;
+      if (dentro <= 0) return;
+      parado += Math.min(dentro, dura);
+      if (dentro < dura) quieto = true;
+    });
+    const bajado = (y - parado) % mosaico;
+    textura.style.transform = `translate3d(0, ${(-bajado).toFixed(1)}px, 0)`;
+    raiz.classList.toggle('tr-quieto', quieto);
   }
 
   function progreso(marco: HTMLElement, alto: number): number | null {
@@ -108,6 +167,7 @@ export function initTrabajos(): void {
       cambios.push([img, -Math.min(1, Math.max(0, p)) * recorrido]);
     });
     cambios.forEach(([img, y]) => { img.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`; });
+    moverFondo();
   }
 
   function pedir(): void {
@@ -123,6 +183,7 @@ export function initTrabajos(): void {
 
   window.addEventListener('scroll', pedir, { passive: true });
   window.addEventListener('resize', rehacer);
+  window.addEventListener('load', rehacer);   // con las letras ya cargadas, los tramos quietos exactos
   marcos.forEach((m) => { m.querySelector('img')?.addEventListener('load', rehacer); });
   rehacer();
 }

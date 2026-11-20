@@ -105,6 +105,15 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   ventanas más bajas, en el móvil y con «reducir movimiento», como antes
   (comprobado igual que la versión anterior). Al añadir un proyecto, copiar
   también su `tr-escena`.
+  **Mientras está quieto, solo se mueve la web del recuadro** (20-nov-2026,
+  Álvaro: «que no scrollee el fondo ni las partículas ni nada más»): la
+  textura del fondo la pinta una capa fija (`.tr-fondo`, la crea
+  `trabajos.ts`) que baja con la página menos lo que llevan los proyectos
+  quietos, y las partículas se pausan (`.tr-quieto` en `<html>`). Fuera de
+  esos tramos el fondo se ve idéntico al de antes (comparado píxel a píxel).
+  Solo sigue latiendo el botón CONTACTO del menú, como siempre. Si se cambia
+  el fondo de `.fondo-negro body` (legal-modal.css), cambiar también el de
+  `.tr-fondo > div` (trabajos.css).
 - **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
   saca las dos capturas a `assets/trabajos/`; luego se copia un `<article>`
   de `diseno-web/index.html`, se cambian textos, enlaces e imágenes y se añade
