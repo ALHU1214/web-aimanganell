@@ -142,6 +142,7 @@
   border: 1px solid rgba(232, 242, 239, .16); background: #0b1419;
   box-shadow: 0 40px 90px rgba(0, 0, 0, .6);
 }
+.tr-marco picture { display: block; }
 .tr-marco img { width: 100%; height: auto; will-change: transform; }
 .tr-marco--escritorio { aspect-ratio: 16 / 10; border-radius: 10px; }
 .tr-marco--movil {
@@ -210,21 +211,20 @@
      marco se queda quieto (sticky) y la web pasa por dentro de arriba abajo.
      Así se ve primero su portada, que es lo que más luce. Solo el marco
      abre el enlace; el hueco de debajo no.
-     19-nov-2026 (Álvaro: «que no se vea ampliada»): el marco tiene la forma
-     de la pantalla de la captura (390 × 844) y va centrado. Antes ocupaba
-     todo el ancho y la web se veía casi a tamaño real, como si estuvieras
-     dentro de ella; ahora cabe una pantalla entera de móvil, en pequeño. */
+     19-nov-2026 (Álvaro: «que no se vea ampliada»): el marco ocupa todo el
+     ancho, como siempre, pero dentro va la captura «recuadro» (<source> del
+     <picture>), sacada con una pantalla de sus mismas proporciones (560 × 844):
+     la web cabe entera y en pequeño. La de móvil (390) se veía casi a tamaño
+     real, como si estuvieras dentro de ella. */
   .tr-visor, .tr-proyecto:nth-of-type(even) .tr-visor {
     margin-top: 30px; padding: 0;
-    height: calc(min(66svh, 540px) + 760px); pointer-events: none;
+    height: calc(min(66svh, 540px) + 900px); pointer-events: none;
   }
   .tr-marco--escritorio { display: none; }
   .tr-marco--movil, .tr-proyecto:nth-of-type(even) .tr-marco--movil {
-    position: sticky; top: 92px; left: auto; right: auto;
-    width: auto; height: min(66svh, 540px); aspect-ratio: 390 / 844;
-    margin: 0 auto; border-radius: 26px;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, .7), 0 0 0 6px rgba(6, 22, 29, .9);
-    pointer-events: auto;
+    position: sticky; top: 92px; left: auto; right: auto; width: 100%;
+    aspect-ratio: auto; height: min(66svh, 540px); border-radius: 16px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .65); pointer-events: auto;
   }
   .tr-desc { margin-top: 22px; font-size: 16.5px; }
 

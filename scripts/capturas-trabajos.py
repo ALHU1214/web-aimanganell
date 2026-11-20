@@ -1,9 +1,13 @@
 """
 Capturas para la página /trabajos/ (portfolio).
 
-Saca dos imágenes de la web de un proyecto y las deja en assets/trabajos/:
-  <slug>-movil.webp       390 px de ancho a 2x  -> 780 px
-  <slug>-escritorio.webp  1440 px de ancho      -> 1200 px
+Saca tres imágenes de la web de un proyecto y las deja en assets/trabajos/:
+  <slug>-movil.webp       390 px de ancho a 2x  -> 780 px   (móvil pequeño, en el ordenador)
+  <slug>-escritorio.webp  1440 px de ancho      -> 1200 px  (pantalla grande, en el ordenador)
+  <slug>-recuadro.webp    560 px de ancho a 2x  -> 1120 px  (el recuadro, en el móvil)
+El recuadro del móvil ocupa todo el ancho (~358 × 540): la web se saca con una
+pantalla de esas proporciones (560 × 844) para que quepa entera y en pequeño,
+sin verse ampliada (19-nov-2026, Álvaro).
 
 Solo se captura el principio de cada web (ALTO_CSS píxeles): en la página la
 imagen se desliza dentro de su marco mientras se hace scroll, y con más altura
@@ -13,6 +17,7 @@ Si el proyecto está en ZONAS (abajo), se captura esa parte en vez de la portada
 Uso (desde la raíz del repo):
   python scripts/capturas-trabajos.py <slug> <url>
   python scripts/capturas-trabajos.py salomn https://salomtenerife.com/
+  python scripts/capturas-trabajos.py salomn https://salomtenerife.com/ recuadro   (solo esa)
 
 No forma parte del build ni se publica (scripts/ está en INTERNOS de
 minificar-html.js). Necesita Python con playwright y Pillow.
@@ -28,6 +33,7 @@ from playwright.async_api import async_playwright
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 SALIDA = RAIZ / "assets" / "trabajos"
 ALTO_CSS = 2000
+ALTO_ZONA = 2800   # con ZONAS: hasta el final de la zona (los platos de Salomn a 560 px miden ~2500)
 
 # Proyectos cuya captura no empieza en la portada, sino en la parte que más
 # luce: (sección donde empieza, elemento donde acaba). Se recorta de una a otro
@@ -62,6 +68,8 @@ PERFILES = {
                   is_mobile=True, has_touch=True, ancho_final=780),
     "escritorio": dict(viewport={"width": 1440, "height": 900}, device_scale_factor=1,
                        is_mobile=False, has_touch=False, ancho_final=1200),
+    "recuadro": dict(viewport={"width": 560, "height": 844}, device_scale_factor=2,
+                     is_mobile=True, has_touch=True, ancho_final=1120),
 }
 
 # Botones de los avisos de cookies: se rechazan para que no salgan en la foto
@@ -147,7 +155,7 @@ async def capturar(navegador, slug, url, nombre, perfil):
     escala = p["device_scale_factor"]
     if zona:
         y0 = max(0, round((zona["inicio"] - zona["barra"]) * escala))
-        y1 = y0 + ALTO_CSS * escala
+        y1 = y0 + ALTO_ZONA * escala   # la zona manda; el tope solo por si acaso
         if zona["fin"] is not None:
             y1 = min(y1, round((zona["fin"] + 48) * escala))
         img = img.crop((0, y0, img.width, min(img.height, y1)))
@@ -163,23 +171,25 @@ async def capturar(navegador, slug, url, nombre, perfil):
     print(f"{destino.relative_to(RAIZ)}  {img.width}x{img.height}  {destino.stat().st_size // 1024} KB")
     # Versiones pequeñas para el srcset de diseno-web/index.html (19-nov-2026):
     # cada pantalla baja la que necesita (móvil 400/640/780, escritorio 700/1200).
-    for ancho in {"movil": [400, 640], "escritorio": [700]}[nombre]:
+    for ancho in {"movil": [400, 640], "escritorio": [700], "recuadro": [720]}[nombre]:
         peque = img.resize((ancho, round(img.height * ancho / img.width)), Image.LANCZOS)
         d = SALIDA / f"{slug}-{nombre}-{ancho}.webp"
         peque.save(d, "WEBP", quality=72, method=6)
         print(f"{d.relative_to(RAIZ)}  {peque.width}x{peque.height}  {d.stat().st_size // 1024} KB")
 
 
-async def main(slug, url):
+async def main(slug, url, solo=None):
     SALIDA.mkdir(parents=True, exist_ok=True)
     async with async_playwright() as pw:
         navegador = await pw.chromium.launch()
         for nombre, perfil in PERFILES.items():
+            if solo and nombre not in solo:
+                continue
             await capturar(navegador, slug, url, nombre, perfil)
         await navegador.close()
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 3:
         sys.exit(__doc__)
-    asyncio.run(main(sys.argv[1], sys.argv[2]))
+    asyncio.run(main(sys.argv[1], sys.argv[2], sys.argv[3:] or None))
