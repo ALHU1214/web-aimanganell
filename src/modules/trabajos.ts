@@ -1,5 +1,36 @@
 import { $$ } from './utils';
 
+/* ---------- índice de /diseno-web/ ----------
+   Botones (data-ir) que bajan hasta su proyecto (data-proyecto). No son
+   enlaces "#salomn" a propósito: con anclas, Google sacaba cada proyecto
+   como enlace aparte debajo de AI MANGANELL al buscar la marca
+   (20-nov-2026, Álvaro). Quien llegue con un enlace antiguo con #slug
+   (guardado, el desvío de /trabajos/ o el de Google mientras lo tenga)
+   baja igual hasta su proyecto. */
+export function initIndiceTrabajos(): void {
+  const proyectos = $$<HTMLElement>('[data-proyecto]');
+  if (!proyectos.length) return;
+  const suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function ir(slug: string, comportamiento: ScrollBehavior, enfocar: boolean): void {
+    const destino = proyectos.find((p) => p.dataset.proyecto === slug);
+    if (!destino) return;
+    destino.scrollIntoView({ behavior: comportamiento, block: 'start' });
+    const titulo = destino.querySelector<HTMLElement>('.tr-nombre');
+    if (enfocar && titulo) {
+      titulo.tabIndex = -1;
+      titulo.focus({ preventScroll: true });
+    }
+  }
+
+  $$<HTMLButtonElement>('[data-ir]').forEach((boton) => {
+    boton.addEventListener('click', () => ir(boton.dataset.ir || '', suave ? 'smooth' : 'instant', true));
+  });
+
+  const ancla = decodeURIComponent(location.hash.slice(1));
+  if (ancla) ir(ancla, 'instant', false);
+}
+
 /* ---------- página /trabajos/ ----------
    Cada captura es más alta que su marco. Mientras se hace scroll, la
    captura sube dentro del marco: se ve la web pasar de arriba abajo, como

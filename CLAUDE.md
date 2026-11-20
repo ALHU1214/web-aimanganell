@@ -82,6 +82,15 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   el 19-nov y se volvieron a poner).
 - Con cinco enlaces, entre 761 y 960 px el menú va a 14 px (`src/styles/nav.css`).
   Si se añade otro enlace, volver a medir de 700 a 1920 px.
+- **El índice de arriba va con botones, no con enlaces `#slug` (20-nov-2026,
+  Álvaro):** con anclas, Google sacaba «Salomn Tenerife» (`/diseno-web/#salomn`)
+  como enlace aparte debajo de AI MANGANELL al buscar la marca, y Álvaro no
+  quiere a los clientes ahí. Cada botón lleva `data-ir="<slug>"`, cada
+  `<article>` `data-proyecto="<slug>"` (sin `id`) y los mueve
+  `initIndiceTrabajos` (`src/modules/trabajos.ts`), que también lleva a su
+  proyecto a quien entre con un enlace antiguo con `#slug`. **No volver a
+  poner `href="#…"` ni `id` en los proyectos.** Sin `noindex`: la página sigue
+  indexada.
 - **Añadir un proyecto:** `python scripts/capturas-trabajos.py <slug> <url>`
   saca las dos capturas a `assets/trabajos/`; luego se copia un `<article>`
   de `diseno-web/index.html`, se cambian textos, enlaces e imágenes y se añade
