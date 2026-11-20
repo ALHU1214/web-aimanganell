@@ -31,9 +31,12 @@
 <link rel="preconnect" href="https://region1.google-analytics.com">
 <link rel="stylesheet" href="styles.css?v=3cbc01e0">
 
-<!-- JSON-LD: entidad de negocio. Sin teléfono ni correo: el contacto
-     es por formulario y calendario, y el único correo publicado es
-     legal@, que vive solo en las páginas legales. Dirección a nivel de localidad, región y país
+<!-- JSON-LD: entidad de negocio. Sin teléfono. Correo: contacto@, el mismo que sale
+     en el pie de todas las páginas (20-nov-2026; antes decía que no había correo
+     publicado y ya no era cierto). Dos servicios en makesOffer, cada uno con su
+     página: el diagnóstico (/consultoria/) y el diseño web (/diseno-web/, 19-nov).
+     Si se añade otro servicio con página propia, añadirlo ahí y en llms.txt.
+     Dirección a nivel de localidad, región y país
      (sin calle): la base está en Tenerife/Canarias y el servicio cubre
      también península en remoto, ver areaServed.
 
@@ -62,7 +65,8 @@
   "@id": "https://aimanganell.com/#organization",
   "name": "AI MANGANELL",
   "url": "https://aimanganell.com/",
-  "description": "Consultoría de automatización con inteligencia artificial y ciberseguridad para empresas. Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden.",
+  "description": "Consultoría de automatización con inteligencia artificial y ciberseguridad para empresas. Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden. También diseñamos y desarrollamos páginas web a medida para negocios de Tenerife y del resto de Canarias.",
+  "email": "contacto@aimanganell.com",
   "logo": {
     "@type": "ImageObject",
     "url": "https://aimanganell.com/assets/logos/horizontal-x.png",
@@ -80,6 +84,28 @@
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Canarias" },
     { "@type": "Country", "name": "España" }
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "@id": "https://aimanganell.com/consultoria/#servicio",
+        "name": "AI & Cyber AMG™",
+        "serviceType": "Consultoría de automatización con inteligencia artificial y ciberseguridad",
+        "url": "https://aimanganell.com/consultoria/"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "@id": "https://aimanganell.com/diseno-web/#servicio",
+        "name": "Diseño y desarrollo web",
+        "serviceType": "Diseño y desarrollo de páginas web",
+        "url": "https://aimanganell.com/diseno-web/"
+      }
+    }
   ],
   "sameAs": [
     "https://www.linkedin.com/company/aimanganell/",
@@ -120,7 +146,7 @@
       "isPartOf": { "@id": "https://aimanganell.com/#website" },
       "about": { "@id": "https://aimanganell.com/#organization" },
       "inLanguage": "es-ES",
-      "dateModified": "2026-09-30"
+      "dateModified": "2026-11-20"
     }
   ]
 }

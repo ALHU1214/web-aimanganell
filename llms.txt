@@ -2,8 +2,9 @@
 
 > Consultoría de automatización con inteligencia artificial y ciberseguridad para empresas.
 > Diagnosticamos antes de automatizar: qué falla, qué automatizar y en qué orden.
+> También diseñamos y desarrollamos páginas web a medida para negocios de Tenerife y Canarias.
 
-Contacto: formulario en https://aimanganell.com/#contacto o correo a contacto@aimanganell.com. Base en Tenerife, Canarias; servicio en remoto a toda España.
+Contacto: formulario en https://aimanganell.com/contacto-aimanganell/ o correo a contacto@aimanganell.com. Base en Tenerife, Canarias; servicio en remoto a toda España.
 Fundador: Álvaro Manganell González.
 
 ## Qué hacemos
@@ -25,11 +26,20 @@ Fundador: Álvaro Manganell González.
   IA y ciberseguridad para empresas.
 - [Diseño web](https://aimanganell.com/diseno-web/): webs, imagen de marca y fichas de Google que
   hemos hecho para negocios de Tenerife, con enlace a cada web en directo.
+- [Contacto](https://aimanganell.com/contacto-aimanganell/): formulario y correo.
 - [Blog](https://aimanganell.com/blog/): artículos sobre automatización con IA y
   ciberseguridad para empresas: qué automatizar, en qué orden y los errores habituales.
 
 ## Artículos
 
+- [Gobierna datos sanitarios con IA en tu empresa](https://aimanganell.com/blog/gobernanza-datos-sanitarios-ia-pyme/):
+  controles, responsabilidades y claves para usar la IA con datos sanitarios de forma segura y legal.
+- [Evita fugas de información en tu empresa](https://aimanganell.com/blog/meta-muse-seguridad-ia-pyme/):
+  cómo evitar que la IA (Meta Muse) filtre información confidencial: datos, accesos y formación del equipo.
+- [Protege el teletrabajo de tu empresa con VPN](https://aimanganell.com/blog/proteccion-teletrabajo-pymes-vpn-segura/):
+  cifrar accesos, limitar permisos y reforzar la ciberseguridad del trabajo en remoto.
+- [Cuánto cuesta implantar agentes de IA](https://aimanganell.com/blog/coste-agentes-ia-pyme/):
+  precios, gastos ocultos y claves para presupuestar agentes de IA en una empresa.
 - [Cómo controlar los riesgos de la IA multiagente en empresas](https://aimanganell.com/blog/riesgos-controles-ia-multiagente-pyme/):
   riesgos y controles para implantar sistemas de IA multiagente, proteger datos y limitar permisos.
 - [Seguridad de agentes IA en reservas con CRM](https://aimanganell.com/blog/seguridad-agentes-ia-reservas-empresariales/):
@@ -47,7 +57,8 @@ Fundador: Álvaro Manganell González.
 
 ## Notas
 
-Actualizado el 2026-08-31. Precio y plazo verificados contra /consultoria/.
+Actualizado el 2026-11-20. Precio y plazo verificados contra /consultoria/.
+Los artículos son los publicados e indexados (los que llevan noindex no se listan).
 
 Todo el contenido de este archivo está también en el HTML de las páginas correspondientes:
 no hay nada aquí que un crawler no pueda leer navegando el sitio. Si cambia el precio en
