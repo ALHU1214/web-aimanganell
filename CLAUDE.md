@@ -259,3 +259,6 @@ borrarla). Tras publicar páginas nuevas o cambios grandes, avisar con un POST a
 `https://api.indexnow.org/indexnow` con `host`, `key`, `keyLocation` y
 `urlList` (las URL del sitemap). Respuesta 200 o 202 = recibido. Google no usa
 IndexNow: para Google, Search Console (inspeccionar URL y reenviar el sitemap).
+La web ya está en **Bing Webmaster Tools** (cuenta de Álvaro, con el sitemap
+enviado desde el 19-nov-2026). Ahí se ven también los avisos de IndexNow y el
+informe «AI Performance» (cuándo cita Copilot la web). A 22-nov-2026: 0 citas.
