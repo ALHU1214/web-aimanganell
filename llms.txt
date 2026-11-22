@@ -13,6 +13,12 @@ Fundador: Álvaro Manganell González.
   revisamos los riesgos de seguridad y detectamos dónde la IA aporta valor y dónde no.
   **Desde 1.200 €**, entrega en **10–15 días**. El importe final depende de la complejidad y el
   alcance, y se descuenta íntegro si se contrata AMG MAX™ en los 30 días siguientes.
+- **Automatización de procesos con IA (AMG MAX™)** — Después del diagnóstico, desarrollamos e
+  implantamos las automatizaciones y mejoras que salen de él, por fases y en el orden decidido
+  por impacto y riesgo, con la seguridad revisada en cada paso. A veces basta con conectar las
+  herramientas que ya usa la empresa; otras tiene sentido un agente de IA; y en algunos procesos
+  la IA no merece la pena. El alcance y el precio se fijan con el plan del diagnóstico. Más en
+  https://aimanganell.com/automatizacion-procesos-ia/.
 - **Diseño y desarrollo web** — Páginas web a medida para negocios de Tenerife y del resto de
   Canarias, adaptadas al móvil y preparadas para salir en Google (SEO) y en las respuestas de
   asistentes de IA como ChatGPT, Gemini o Perplexity (posicionamiento en IA), junto con la

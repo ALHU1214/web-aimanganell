@@ -250,3 +250,12 @@ título tienen que **verse** y llevar lo que la gente escribe en Google
   enlaza a /consultoria/, /blog/ y /diseno-web/. Textos sacados de
   /consultoria/ y `llms.txt`: no añadir promesas ni cifras que no estén allí.
 - Estilos en `src/styles/hero.css`.
+
+## IndexNow: avisar a Bing (y con él a ChatGPT) (22-nov-2026)
+
+ChatGPT busca con el índice de Bing. La clave de IndexNow es el archivo
+`ab9630900bb24e4c5a7ef82d4aee24e3.txt` de la raíz (es pública a propósito: no
+borrarla). Tras publicar páginas nuevas o cambios grandes, avisar con un POST a
+`https://api.indexnow.org/indexnow` con `host`, `key`, `keyLocation` y
+`urlList` (las URL del sitemap). Respuesta 200 o 202 = recibido. Google no usa
+IndexNow: para Google, Search Console (inspeccionar URL y reenviar el sitemap).
