@@ -12,6 +12,7 @@
    3. .auto-opciones: conectar / automatizar / agente de IA / nada de IA,
       cada una con un dibujo pequeño que se anima al verse.
    4. .auto-faq: preguntas frecuentes desplegables (<details>, sin JS).
+      También las usa /consultoria/ (#preguntas).
    ============================================================ */
 
 /* ---------- 1. Flujo de la cabecera ---------- */
