@@ -87,7 +87,7 @@
         {
           "@type": "Question",
           "name": "¿Cuánto cuesta?",
-          "acceptedAnswer": { "@type": "Answer", "text": "El diagnóstico cuesta desde 1.200 € y se entrega en 10–15 días; el importe final depende de la complejidad y el alcance. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico. Si la contratas en los 30 días siguientes, el importe del diagnóstico se descuenta íntegro." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Depende de lo que haya que automatizar. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico AI & Cyber AMG™." }
         }
       ]
     }
@@ -122,8 +122,9 @@
      si se cambia el estilo de consultoría, cambia también este.
      Textos sacados del método de Álvaro, /consultoria/ y llms.txt: no
      añadir promesas, plazos ni precios de AMG MAX™ que Álvaro no haya dado.
-     El formulario es el de consultoría (lead-form-2): los leads entran con
-     origen «Consultoría». -->
+     Solo lleva lo necesario para posicionar «automatización» y da pie al
+     diagnóstico AI & Cyber AMG™ (/consultoria/): sin formulario, precios ni
+     garantías, que están allí (Álvaro, 22-nov-2026). -->
 <div id="page2" class="page">
     <div class="p2-body">
     <!-- PORTADA -->
@@ -132,7 +133,7 @@
         <h1 class="p2-kicker">Automatización de procesos con IA para empresas</h1>
         <p class="p2-hook">Automatiza tu empresa con IA sin automatizar el desorden</p>
         <p>Primero ordenamos cómo trabaja tu empresa. Después desarrollamos e implantamos las automatizaciones que de verdad te ahorran tiempo, con la seguridad revisada en cada paso.</p>
-        <a href="#contacto" class="btn-acc btn-round btn-palpita">Empezar por el diagnóstico</a>
+        <a href="/consultoria/" class="btn-acc btn-round btn-palpita">Empieza por el diagnóstico AI &amp; Cyber AMG™</a>
       </div>
     </section>
 
@@ -162,12 +163,6 @@
         </div>
       </section>
 
-      <!-- GARANTÍA -->
-      <section class="sec sec-tight">
-        <div class="wrap wrap-wide guarantee-bar">
-          <p><span class="c-acc">✓</span> 100% del coste del diagnóstico se descuenta si contratas AMG MAX™ en los 30 días siguientes.</p>
-        </div>
-      </section>
 
       <!-- QUÉ INCLUYE AMG MAX -->
       <section class="sec" id="amg-max">
@@ -180,18 +175,6 @@
             <div class="obt-item"><span class="tick">✓</span><span>Coordinación de la tecnología y de los procesos</span></div>
             <div class="obt-item"><span class="tick">✓</span><span>Implantación por fases, priorizada por impacto y riesgo</span></div>
             <div class="obt-item"><span class="tick">✓</span><span>Seguridad y calidad revisadas en cada paso</span></div>
-          </div>
-          <div class="obt-facts">
-            <div class="obt-fact">
-              <span class="obt-fact-label">Se empieza por</span>
-              <span class="obt-fact-value">Diagnóstico</span>
-              <p class="obt-facts-note">(AI &amp; Cyber AMG™, 10–15 días)</p>
-            </div>
-            <div class="obt-fact">
-              <span class="obt-fact-label">Inversión</span>
-              <span class="obt-fact-value">A medida</span>
-              <p class="obt-facts-note">(se fija con el plan del diagnóstico)</p>
-            </div>
           </div>
         </div>
       </section>
@@ -229,7 +212,7 @@
           </div>
           <div class="srv-fila">
             <h3>¿Cuánto cuesta?</h3>
-            <div class="srv-texto"><p>El diagnóstico cuesta desde 1.200 € y se entrega en 10–15 días; el importe final depende de la complejidad y el alcance. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico. Si la contratas en los 30 días siguientes, el importe del diagnóstico se descuenta íntegro.</p></div>
+            <div class="srv-texto"><p>Depende de lo que haya que automatizar. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico AI &amp; Cyber AMG™.</p></div>
           </div>
         </div>
       </section>
@@ -239,74 +222,13 @@
         <p>Primero se ordena,<br><span class="c-acc">después se automatiza.</span></p>
       </section>
 
-      <!-- CONTACTO -->
-      <section id="contacto" class="contacto">
-        <div class="contacto-head">
-          <h2>Solicita tu <span class="hl">AI &amp; Cyber AMG™</span></h2>
-        </div>
-        <section id="formulario-contacto" class="form-sec">
-          <div class="form-stack">
-            <div class="form-shadow"></div>
-            <div class="form-card" data-m="form-card">
-              <form class="lead-form lead-form-2" novalidate>
-                <div class="field-wrap">
-                  <label for="p2-nombre">Nombre <span class="req">*</span></label>
-                  <input class="field" id="p2-nombre" name="nombre" type="text" autocomplete="name" maxlength="50">
-                </div>
-                <div class="field-wrap">
-                  <label for="p2-empresa">Empresa <span class="req">*</span></label>
-                  <input class="field" id="p2-empresa" name="empresa" type="text" autocomplete="organization" maxlength="50">
-                </div>
-                <div class="field-wrap">
-                  <label for="p2-biz">Tipo de negocio <span class="req">*</span></label>
-                  <select class="field field-select" id="p2-biz" name="biz">
-                    <option value="">Selecciona una opción</option>
-                    <option value="servicios-profesionales">Servicios profesionales (asesoría, legal, ingeniería)</option>
-                    <option value="industria">Industria y manufactura</option>
-                    <option value="construccion">Construcción e instalaciones</option>
-                    <option value="logistica">Logística y transporte</option>
-                    <option value="distribucion">Distribución y comercio B2B</option>
-                    <option value="tecnologia">Tecnología y software</option>
-                    <option value="salud">Salud y clínicas</option>
-                    <option value="inmobiliaria">Inmobiliaria y patrimonio</option>
-                    <option value="turismo">Turismo y hostelería</option>
-                    <option value="otro">Otro</option>
-                  </select>
-                </div>
-                <div class="field-wrap">
-                  <label for="p2-email">Email <span class="req">*</span></label>
-                  <input class="field" id="p2-email" name="email" type="email" autocomplete="email">
-                </div>
-                <div class="field-wrap">
-                  <label for="p2-tel">Teléfono <span class="req">*</span></label>
-                  <input class="field" id="p2-tel" name="telefono" type="tel" autocomplete="tel" maxlength="15">
-                </div>
-                <div class="field-wrap">
-                  <label for="p2-msg">¿Qué te gustaría mejorar con IA? <span class="opt">(opcional)</span></label>
-                  <textarea class="field autogrow" id="p2-msg" name="mensaje" rows="3" maxlength="300" placeholder="Describe brevemente tus principales desafíos o áreas que quieres optimizar..."></textarea>
-                </div>
-                <label class="consent">
-                  <input type="checkbox" name="acepta">
-                  <span>He leído y acepto la <a href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a> y el tratamiento de mis datos para ser contactado.</span>
-                </label>
-                <div class="turnstile-box"></div>
-                <p class="form-error" hidden></p>
-                <button type="submit" class="btn-acc btn-submit">Quiero que me contacten</button>
-              </form>
-            </div>
-          </div>
-        </section>
-      </section>
-
-      <!-- GARANTÍA TOTAL -->
+      <!-- PASO SIGUIENTE: esta página da pie al diagnóstico AI & Cyber AMG™
+           (Álvaro, 22-nov-2026). Formulario, precio y garantías, allí. -->
       <section class="sec-total">
         <div class="total-box">
-          <h2>Garantía Total</h2>
-          <p>100% del coste se descuenta si decides avanzar al proyecto completo <strong>AMG MAX™</strong> en los siguientes 30 días.</p>
-          <div class="plazas">
-            <span class="plazas-bang">!</span>
-            <span><strong>Plazas limitadas al mes</strong> para garantizar la calidad del trabajo.</span>
-          </div>
+          <h2>El primer paso: AI&nbsp;&amp;&nbsp;Cyber&nbsp;AMG™</h2>
+          <p>Antes de automatizar nada, el diagnóstico ordena tus procesos, revisa la seguridad y te dice qué automatizar y en qué orden.</p>
+          <a href="/consultoria/" class="btn-acc btn-round btn-palpita auto-paso">Ver el diagnóstico AI &amp; Cyber AMG™</a>
         </div>
       </section>
     </main>

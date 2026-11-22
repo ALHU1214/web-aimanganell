@@ -224,6 +224,15 @@
   margin: 8px 0 20px;
 }
 .fmt-360 .total-box > p { margin: 0 auto; font-size: 16px; line-height: 1.6; }
+/* /automatizacion-procesos-ia/: la caja final lleva un botón a AI & Cyber AMG™ */
+.fmt-360 .total-box .auto-paso {
+  display: inline-flex; justify-content: center; margin-top: 30px; padding: 18px 36px;
+  font-size: 17.6px; font-weight: 700; line-height: 22.4px; text-decoration: none;
+  box-shadow: 0 0 28px rgba(var(--acc-rgb), .35);
+}
+@media (max-width: 760px) {
+  .fmt-360 .total-box .auto-paso { display: flex; width: 100%; padding: 18px 20px; }
+}
 /* Aviso de plazas: geometría de la referencia, pero en el ámbar de
    siempre (decisión del usuario). Color, borde y animación "palpita"
    vienen de la regla general de .plazas y no se tocan aquí. La

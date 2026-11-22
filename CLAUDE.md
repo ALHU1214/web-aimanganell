@@ -171,12 +171,14 @@ que sale del diagnóstico. Textos sacados de su método
 plazo de AMG MAX™** hasta que Álvaro los dé. Las preguntas frecuentes están
 dos veces (HTML y `FAQPage` del JSON-LD): si se cambia una, cambiar las dos.
 **Mismo estilo que /consultoria/ (22-nov-2026, Álvaro: «adáptala completamente
-al estilo de las demás»):** `#page2`, `.p2-hero`, `.fmt-360`, tarjetas, barra de
-garantía, manifiesto, formulario y «Garantía Total». Si cambia el estilo de
-consultoría, cambiar también este. Las preguntas frecuentes usan las filas de
-la portada (`.srv-fila`). El formulario es el de consultoría (`lead-form-2`):
-los leads entran con origen «Consultoría». Está en el sitemap
-(`STATIC_PAGES`), en `llms.txt` y la enlaza la portada.
+al estilo de las demás»):** `#page2`, `.p2-hero`, `.fmt-360`, tarjetas, manifiesto
+y la caja final (`.total-box`). Si cambia el estilo de consultoría, cambiar
+también este. Las preguntas frecuentes usan las filas de la portada (`.srv-fila`).
+**Solo lleva lo necesario para posicionar «automatización» y da pie a AI &
+Cyber AMG™ (Álvaro):** sin formulario, sin precios del diagnóstico y sin
+garantías, que están en /consultoria/; los dos botones (arriba y la caja final)
+llevan allí. Está en el sitemap (`STATIC_PAGES`), en `llms.txt` y la enlaza la
+portada.
 
 ## Menú (22-nov-2026, Álvaro)
 
