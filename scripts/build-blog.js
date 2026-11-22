@@ -40,7 +40,9 @@ const STATIC_PAGES = [
   { relPath: path.join('contacto-aimanganell', 'index.html'), url: SITE_URL + '/contacto-aimanganell/' },
   // 19-nov-2026: indexada (Álvaro), para las búsquedas de diseño y desarrollo web.
   // Antes en /trabajos/, que ahora es solo un desvío para el QR (sin indexar).
-  { relPath: path.join('diseno-web', 'index.html'), url: SITE_URL + '/diseno-web/' }
+  { relPath: path.join('diseno-web', 'index.html'), url: SITE_URL + '/diseno-web/' },
+  // 22-nov-2026: «automatización de procesos con ia» (Keyword Planner, España 100-1.000/mes).
+  { relPath: path.join('automatizacion-procesos-ia', 'index.html'), url: SITE_URL + '/automatizacion-procesos-ia/' }
 ];
 
 // misma entidad en cada página — inline siempre (no @id cruzado entre

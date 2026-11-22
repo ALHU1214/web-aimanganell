@@ -59,6 +59,11 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   19-nov se llama «DISEÑO WEB»** (antes «TRABAJOS»): dice qué ofreces y le da a
   Google un enlace con la palabra clave desde cada página. El menú enlaza a
   `/diseno-web/`. Los tres enlaces de cada proyecto dicen «Ver la web».
+- **H1 (22-nov-2026, Keyword Planner: «diseño web tenerife» y «páginas web en
+  tenerife», 100-1.000 al mes y competencia baja):** la frase pequeña de
+  arriba, `h1.p2-kicker.tr-kicker`: «Diseño web en Tenerife y Canarias». «No
+  te lo contamos. Te lo enseñamos.» sigue igual pero es un `<p class="tr-titulo">`.
+  Título: «Diseño web en Tenerife: páginas web para empresas - AI MANGANELL».
 - **Desde el 19-nov-2026 está indexada** (Álvaro): sin `noindex`, en el sitemap
   (`STATIC_PAGES` de `scripts/build-blog.js`) y en `llms.txt`. Es la página para
   las búsquedas de **diseño y desarrollo web en Tenerife y Canarias**: título
@@ -155,6 +160,20 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   que pesen igual. El script también saca el símbolo de cada uno
   (`logo-<slug>-simbolo.svg`) para el índice. Nunca a color: con los colores de
   cada marca la página parece un collage.
+
+## Página `/automatizacion-procesos-ia/` (22-nov-2026)
+
+Para «automatización de procesos con ia» (Keyword Planner, España: 100-1.000
+búsquedas al mes; la búsqueda de IA con más volumen que no tenía página).
+Explica AMG MAX™ como lo dice Álvaro: el desarrollo y la implantación de lo
+que sale del diagnóstico. Textos sacados de su método
+(`modelo-agencia-ia-y-cyber.md`), /consultoria/ y `llms.txt`. **Sin precio ni
+plazo de AMG MAX™** hasta que Álvaro los dé. Las preguntas frecuentes están
+dos veces (HTML y `FAQPage` del JSON-LD): si se cambia una, cambiar las dos.
+Usa los estilos de /diseno-web/ (`.tr`, `.tr-cab`, `.tr-cierre`) y las filas de
+la portada (`.srv-fila`). Está en el sitemap (`STATIC_PAGES`) y en `llms.txt`,
+y la enlaza la fila «Automatización de procesos con IA» de la portada. No
+está en el menú.
 
 ## Títulos de pestaña: con guion
 
