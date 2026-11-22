@@ -188,7 +188,14 @@ se alinean y una luz que recorre la línea: «primero se ordena, después se
 automatiza». Arranca al entrar en pantalla (`.anima`). (2) Los cuatro pasos con
 números de contorno 01-04 (como los de /diseno-web/) y una línea a la
 izquierda que se llena al bajar; cada número se enciende al llegar a su paso.
-Con «reducir movimiento», todo quieto en su estado final.
+(3) «¿Automatización o agentes de IA?» con cuatro opciones (conectar,
+automatizar, agente de IA, nada de IA), cada una con un dibujo pequeño animado
+del mismo estilo, separadas por líneas finas. (4) Preguntas frecuentes
+desplegables (`<details>`, sin JS); las respuestas siguen siendo las del
+`FAQPage`. La animación de la cabecera la mueve JS fotograma a fotograma (la
+línea se desenreda con los puntos, luz con estela, onda en cada punto) y se
+para cuando sale de pantalla. Con «reducir movimiento», todo quieto en su
+estado final.
 
 ## Menú (22-nov-2026, Álvaro)
 

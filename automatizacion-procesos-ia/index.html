@@ -137,15 +137,26 @@
            (la luz recorre la línea). Estilos en src/styles/automatizacion.css -->
       <figure class="auto-flujo" aria-hidden="true">
         <svg viewBox="0 0 1000 120" focusable="false">
-          <path class="auto-enredo" d="M104 16 L184 106 L458 8 L550 102 L814 24 L906 92"/>
-          <line class="auto-recta" x1="70" y1="60" x2="930" y2="60"/>
-          <line class="auto-luz" x1="70" y1="60" x2="930" y2="60"/>
-          <circle class="auto-nodo n1" cx="70" cy="60" r="10"/>
-          <circle class="auto-nodo n2" cx="242" cy="60" r="10"/>
-          <circle class="auto-nodo n3" cx="414" cy="60" r="10"/>
-          <circle class="auto-nodo n4" cx="586" cy="60" r="10"/>
-          <circle class="auto-nodo n5" cx="758" cy="60" r="10"/>
-          <circle class="auto-nodo n6" cx="930" cy="60" r="10"/>
+          <defs>
+            <linearGradient id="auto-cola" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="160" y2="0">
+              <stop offset="0" stop-color="#7ab6ff" stop-opacity="0"/>
+              <stop offset="1" stop-color="#7ab6ff" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <path class="auto-traza" d="M70 60 L930 60"/>
+          <line class="auto-luz" x1="70" y1="60" x2="70" y2="60" stroke="url(#auto-cola)"/>
+          <circle class="auto-onda" cx="70" cy="60" r="10"/>
+          <circle class="auto-onda" cx="242" cy="60" r="10"/>
+          <circle class="auto-onda" cx="414" cy="60" r="10"/>
+          <circle class="auto-onda" cx="586" cy="60" r="10"/>
+          <circle class="auto-onda" cx="758" cy="60" r="10"/>
+          <circle class="auto-onda" cx="930" cy="60" r="10"/>
+          <circle class="auto-nodo" cx="70" cy="60" r="10"/>
+          <circle class="auto-nodo" cx="242" cy="60" r="10"/>
+          <circle class="auto-nodo" cx="414" cy="60" r="10"/>
+          <circle class="auto-nodo" cx="586" cy="60" r="10"/>
+          <circle class="auto-nodo" cx="758" cy="60" r="10"/>
+          <circle class="auto-nodo" cx="930" cy="60" r="10"/>
         </svg>
         <figcaption class="auto-flujo-pie"><span>Cómo se trabaja hoy</span><span>Ordenado y automatizado</span></figcaption>
       </figure>
@@ -194,35 +205,83 @@
       </ol>
     </section>
 
+    <!-- Cuatro opciones, cada una con su dibujo (mismo lenguaje que la
+         cabecera: puntos, líneas y luz). Se animan al verse. -->
     <section class="srv-home" aria-labelledby="agentes-titulo">
       <h2 class="sec-title" id="agentes-titulo">¿Automatización o agentes de IA para tu empresa?</h2>
-      <div class="srv-fila">
-        <h3>Lo decide tu empresa, no la moda</h3>
-        <div class="srv-texto">
-          <p>A veces basta con conectar las herramientas que ya usas. Otras, tiene sentido un agente de IA que haga parte del trabajo. Y en algunos procesos la IA no merece la pena, y te lo decimos. El diagnóstico te dice qué conviene en cada caso y por qué.</p>
+      <p class="auto-intro">No todos los procesos piden lo mismo. A veces basta con poco y otras tiene sentido la IA.</p>
+      <div class="auto-opciones">
+        <div class="auto-opcion">
+          <svg class="auto-mini" viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+            <line class="via" x1="25" y1="35" x2="135" y2="35"/>
+            <circle class="dato" cx="25" cy="35" r="4"/>
+            <circle class="punto" cx="25" cy="35" r="9"/>
+            <circle class="punto" cx="135" cy="35" r="9"/>
+          </svg>
+          <h3>Conectar lo que ya usas</h3>
+          <p>A veces basta con que tus herramientas se pasen los datos solas.</p>
+        </div>
+        <div class="auto-opcion">
+          <svg class="auto-mini" viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+            <line class="via" x1="12" y1="35" x2="148" y2="35"/>
+            <line class="luz" x1="12" y1="35" x2="148" y2="35"/>
+            <circle class="punto" cx="12" cy="35" r="7"/>
+            <circle class="punto" cx="57" cy="35" r="7"/>
+            <circle class="punto" cx="103" cy="35" r="7"/>
+            <circle class="punto" cx="148" cy="35" r="7"/>
+          </svg>
+          <h3>Automatizar el proceso</h3>
+          <p>Los pasos que se repiten se hacen solos, siempre igual y en orden.</p>
+        </div>
+        <div class="auto-opcion">
+          <svg class="auto-mini" viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+            <line class="rama" x1="80" y1="35" x2="22" y2="10"/>
+            <line class="rama r2" x1="80" y1="35" x2="138" y2="10"/>
+            <line class="rama r3" x1="80" y1="35" x2="138" y2="60"/>
+            <line class="rama r4" x1="80" y1="35" x2="22" y2="60"/>
+            <circle class="punto" cx="22" cy="10" r="7"/>
+            <circle class="punto" cx="138" cy="10" r="7"/>
+            <circle class="punto" cx="138" cy="60" r="7"/>
+            <circle class="punto" cx="22" cy="60" r="7"/>
+            <circle class="centro" cx="80" cy="35" r="11"/>
+          </svg>
+          <h3>Un agente de IA</h3>
+          <p>Cuando hay que leer, entender o decidir, un agente de IA puede hacer parte del trabajo.</p>
+        </div>
+        <div class="auto-opcion auto-opcion--no">
+          <svg class="auto-mini" viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+            <line class="via" x1="25" y1="35" x2="98" y2="35"/>
+            <circle class="apagado" cx="25" cy="35" r="9"/>
+            <path class="cruz" d="M112 25 L132 45 M132 25 L112 45"/>
+          </svg>
+          <h3>Nada de IA</h3>
+          <p>En algunos procesos la IA no merece la pena, y te lo decimos.</p>
         </div>
       </div>
+      <a class="srv-link" href="/consultoria/">El diagnóstico te dice qué conviene en cada caso y por qué <span aria-hidden="true">→</span></a>
     </section>
 
     <!-- Preguntas frecuentes: las mismas que el FAQPage del JSON-LD. Si se
          cambia una, cambiar las dos. El precio, al final. -->
     <section class="srv-home" aria-labelledby="faq-titulo">
       <h2 class="sec-title" id="faq-titulo">Preguntas frecuentes</h2>
-      <div class="srv-fila">
-        <h3>¿Podéis automatizar sin hacer antes el diagnóstico?</h3>
-        <div class="srv-texto"><p>No. Sin entender antes cómo trabaja tu empresa, automatizaríamos a ciegas y podríamos acelerar un proceso que está mal hecho. El diagnóstico AI &amp; Cyber AMG™ es siempre el primer paso.</p></div>
-      </div>
-      <div class="srv-fila">
-        <h3>¿Y si después no contrato la implantación?</h3>
-        <div class="srv-texto"><p>Te quedas con el diagnóstico: sabrás qué procesos fallan, qué automatizar, en qué orden y con qué riesgos. Tiene valor por sí mismo.</p></div>
-      </div>
-      <div class="srv-fila">
-        <h3>¿Trabajáis solo en Tenerife?</h3>
-        <div class="srv-texto"><p>Tenemos la base en Tenerife. Trabajamos de forma presencial en Canarias y en remoto con empresas de toda España.</p></div>
-      </div>
-      <div class="srv-fila">
-        <h3>¿Cuánto cuesta?</h3>
-        <div class="srv-texto"><p>Depende de lo que haya que automatizar. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico AI &amp; Cyber AMG™.</p></div>
+      <div class="auto-faq">
+        <details class="auto-pregunta">
+          <summary><h3>¿Podéis automatizar sin hacer antes el diagnóstico?</h3><span class="auto-mas" aria-hidden="true"></span></summary>
+          <div class="auto-respuesta"><p>No. Sin entender antes cómo trabaja tu empresa, automatizaríamos a ciegas y podríamos acelerar un proceso que está mal hecho. El diagnóstico AI &amp; Cyber AMG™ es siempre el primer paso.</p></div>
+        </details>
+        <details class="auto-pregunta">
+          <summary><h3>¿Y si después no contrato la implantación?</h3><span class="auto-mas" aria-hidden="true"></span></summary>
+          <div class="auto-respuesta"><p>Te quedas con el diagnóstico: sabrás qué procesos fallan, qué automatizar, en qué orden y con qué riesgos. Tiene valor por sí mismo.</p></div>
+        </details>
+        <details class="auto-pregunta">
+          <summary><h3>¿Trabajáis solo en Tenerife?</h3><span class="auto-mas" aria-hidden="true"></span></summary>
+          <div class="auto-respuesta"><p>Tenemos la base en Tenerife. Trabajamos de forma presencial en Canarias y en remoto con empresas de toda España.</p></div>
+        </details>
+        <details class="auto-pregunta">
+          <summary><h3>¿Cuánto cuesta?</h3><span class="auto-mas" aria-hidden="true"></span></summary>
+          <div class="auto-respuesta"><p>Depende de lo que haya que automatizar. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico AI &amp; Cyber AMG™.</p></div>
+        </details>
       </div>
     </section>
 

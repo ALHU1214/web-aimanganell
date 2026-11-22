@@ -9,7 +9,7 @@ import { initScrollReveal } from './modules/scroll-reveal';
 import { initMenuMovil } from './modules/menu-movil';
 import { initParticulas } from './modules/particulas';
 import { initTrabajos, initIndiceTrabajos } from './modules/trabajos';
-import { initPasosAutomatizacion, initFlujoAutomatizacion } from './modules/automatizacion';
+import { initPasosAutomatizacion, initFlujoAutomatizacion, initOpcionesAutomatizacion } from './modules/automatizacion';
 import { config } from './config';
 
 /* ============================================================
@@ -35,5 +35,6 @@ import { config } from './config';
   initIndiceTrabajos();  // un enlace con #slug cae en su sitio
   initPasosAutomatizacion();
   initFlujoAutomatizacion();
+  initOpcionesAutomatizacion();
 })();
 

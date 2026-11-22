@@ -2,80 +2,54 @@
    /automatizacion-procesos-ia/ · efectos (22-nov-2026, Álvaro: «está todo
    muy texto; algo visual para las numeraciones, con nuestro estilo pero sin
    que parezca la de AI & Cyber»).
-   Dos efectos que cuentan el mensaje, no adornos:
-   1. .auto-flujo: puntos desordenados que se ordenan en línea y una luz
-      que la recorre = «Primero se ordena. Después se automatiza.»
-   2. .auto-linea: los cuatro pasos con números grandes de contorno (como
-      los de /diseno-web/) y una línea que se llena al bajar; cada número se
-      enciende al llegar a su paso (lo mueve src/modules/automatizacion.ts).
-   Sin tarjetas, sin resplandores, sin iconos. Con «reducir movimiento», todo
-   quieto y en su estado final.
+   Todo con el mismo lenguaje: puntos, líneas y una luz azul. Sin tarjetas,
+   sin resplandores, sin iconos. Con «reducir movimiento», todo quieto.
+   1. .auto-flujo: puntos desordenados que se ordenan (la línea se desenreda
+      con ellos) y una luz con estela que los recorre y los enciende =
+      «Primero se ordena. Después se automatiza.» Lo mueve automatizacion.ts.
+   2. .auto-linea: los cuatro pasos, números de contorno y línea que se
+      llena al bajar (automatizacion.ts).
+   3. .auto-opciones: conectar / automatizar / agente de IA / nada de IA,
+      cada una con un dibujo pequeño que se anima al verse.
+   4. .auto-faq: preguntas frecuentes desplegables (<details>, sin JS).
    ============================================================ */
 
 /* ---------- 1. Flujo de la cabecera ---------- */
-.auto-flujo { margin: 64px auto 0; max-width: 980px; }
-.auto-flujo svg { display: block; width: 100%; height: auto; overflow: visible; }
-/* El dibujo no se ve ni se anima hasta que entra en pantalla: entonces
-   automatizacion.ts le pone .anima y empieza desde el desorden. Así nadie se
-   lo pierde aunque la página tarde en cargar. (Es decorativo: sin JS no sale.) */
-.auto-flujo { opacity: 0; transition: opacity .3s; }
+/* No se ve hasta que entra en pantalla (.anima, lo pone automatizacion.ts):
+   así nadie se pierde el desorden del principio. Es decorativo: sin JS no sale. */
+.auto-flujo { margin: 64px auto 0; max-width: 980px; opacity: 0; transition: opacity .4s; }
 .auto-flujo.anima { opacity: 1; }
-.auto-flujo:not(.anima) * { animation: none !important; }
+.auto-flujo svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.auto-traza {
+  fill: none; stroke: rgba(232, 242, 239, .32); stroke-width: 2;
+  stroke-linejoin: round; stroke-linecap: round;
+}
+.auto-luz { fill: none; stroke-width: 4; stroke-linecap: round; }
+.auto-nodo {
+  fill: #0a141d; stroke: rgba(232, 242, 239, .55); stroke-width: 2;
+  transition: fill .3s, stroke .5s;
+}
+.auto-flujo.listo .auto-nodo { stroke: rgba(var(--acc-rgb), .9); }
+.auto-nodo.encendido { fill: var(--acc2); stroke: var(--acc2); transition: fill .08s, stroke .08s; }
+/* la onda que sale de cada punto cuando lo alcanza la luz */
+.auto-onda {
+  fill: none; stroke: var(--acc2); stroke-width: 2; opacity: 0;
+  transform-box: fill-box; transform-origin: center;
+}
+.auto-onda.ping { animation: auto-ping .8s ease-out; }
+@keyframes auto-ping {
+  from { opacity: .8; transform: scale(1); }
+  to   { opacity: 0;  transform: scale(2.8); }
+}
+
 .auto-flujo-pie {
   display: flex; justify-content: space-between; margin-top: 4px; padding: 0 3%;
   font-size: 14px; color: rgba(232, 242, 239, .55);
-  opacity: 0; animation: auto-aparece .6s 2.4s ease-out forwards;
+  opacity: 0; transition: opacity .6s;
 }
+.auto-flujo.listo .auto-flujo-pie { opacity: 1; }
 .auto-flujo-pie span:last-child { color: var(--acc2); }
-
-/* el desorden: una línea gris enredada que se apaga */
-.auto-enredo {
-  fill: none; stroke: rgba(232, 242, 239, .28); stroke-width: 2;
-  stroke-dasharray: 6 8; stroke-linejoin: round;
-  animation: auto-apaga .8s .9s ease-out forwards;
-}
-/* el orden: la línea recta que se dibuja */
-.auto-recta {
-  fill: none; stroke: rgba(232, 242, 239, .30); stroke-width: 2;
-  stroke-dasharray: 860; stroke-dashoffset: 860;
-  animation: auto-dibuja .9s 1.3s cubic-bezier(.22, .8, .3, 1) forwards;
-}
-/* la automatización: una luz que recorre la línea una y otra vez */
-.auto-luz {
-  fill: none; stroke: var(--acc2); stroke-width: 4; stroke-linecap: round;
-  stroke-dasharray: 110 2000; stroke-dashoffset: 110; opacity: 0;
-  animation: auto-recorre 3s 2.3s linear infinite;
-}
-/* los puntos: salen descolocados y se alinean */
-.auto-nodo {
-  fill: #0a141d; stroke: rgba(232, 242, 239, .55); stroke-width: 2;
-  animation:
-    auto-alinea 1.1s .5s cubic-bezier(.22, .8, .3, 1) both,
-    auto-enciende 3s 2.3s linear infinite;
-}
-.auto-nodo.n1 { --dx: 34px;  --dy: -44px; animation-delay: .50s, calc(2.3s + 3s * 0.00); }
-.auto-nodo.n2 { --dx: -58px; --dy: 46px;  animation-delay: .58s, calc(2.3s + 3s * 0.18); }
-.auto-nodo.n3 { --dx: 44px;  --dy: -52px; animation-delay: .66s, calc(2.3s + 3s * 0.36); }
-.auto-nodo.n4 { --dx: -36px; --dy: 42px;  animation-delay: .74s, calc(2.3s + 3s * 0.54); }
-.auto-nodo.n5 { --dx: 56px;  --dy: -36px; animation-delay: .82s, calc(2.3s + 3s * 0.72); }
-.auto-nodo.n6 { --dx: -24px; --dy: 32px;  animation-delay: .90s, calc(2.3s + 3s * 0.90); }
-
-@keyframes auto-alinea {
-  from { transform: translate(var(--dx), var(--dy)); }
-  to   { transform: none; stroke: rgba(var(--acc-rgb), .9); }
-}
-@keyframes auto-enciende {
-  0%, 12%, 100% { fill: #0a141d; stroke: rgba(var(--acc-rgb), .9); }
-  4%            { fill: var(--acc2); stroke: var(--acc2); }
-}
-@keyframes auto-apaga   { to { opacity: 0; } }
-@keyframes auto-dibuja  { to { stroke-dashoffset: 0; } }
-@keyframes auto-aparece { to { opacity: 1; } }
-@keyframes auto-recorre {
-  0%   { stroke-dashoffset: 110; opacity: 1; }
-  85%  { stroke-dashoffset: -860; opacity: 1; }
-  100% { stroke-dashoffset: -860; opacity: 0; }
-}
 
 /* ---------- 2. Los cuatro pasos ---------- */
 .auto-linea {
@@ -118,26 +92,136 @@
 .auto-paso.activo::before { background: var(--acc); border-color: var(--acc); }
 .auto-paso.activo .auto-num { -webkit-text-stroke-color: rgba(var(--acc-rgb), .9); }
 
+/* ---------- 3. ¿Automatización o agentes de IA? ---------- */
+.auto-intro {
+  margin: -12px auto 44px; max-width: 40em; text-align: center;
+  font-size: 18px; line-height: 1.6; color: rgba(232, 242, 239, .72);
+}
+.auto-opciones {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(232, 242, 239, .14);
+  border-bottom: 1px solid rgba(232, 242, 239, .14);
+}
+.auto-opcion { padding: 34px 28px 36px; }
+.auto-opcion + .auto-opcion { border-left: 1px solid rgba(232, 242, 239, .14); }
+.auto-opcion h3 {
+  margin: 22px 0 10px; font-size: 20px; font-weight: 500; line-height: 1.3;
+  color: #f8f8f8; text-wrap: balance;
+}
+.auto-opcion p { margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(232, 242, 239, .72); }
+.auto-opcion--no h3 { color: rgba(232, 242, 239, .8); }
+.auto-opciones + .srv-link { display: flex; justify-content: center; margin-top: 30px; }
+
+/* los dibujos pequeños */
+.auto-mini { display: block; width: 100%; max-width: 190px; height: auto; overflow: visible; }
+.auto-mini .via { fill: none; stroke: rgba(232, 242, 239, .28); stroke-width: 2; stroke-linecap: round; }
+.auto-mini .punto { fill: #0a141d; stroke: rgba(var(--acc-rgb), .9); stroke-width: 2; }
+.auto-mini .centro { fill: var(--acc); stroke: var(--acc); stroke-width: 2; }
+.auto-mini .dato { fill: var(--acc2); }
+.auto-mini .luz {
+  fill: none; stroke: var(--acc2); stroke-width: 3.5; stroke-linecap: round;
+  stroke-dasharray: 26 400; stroke-dashoffset: 26; opacity: 0;
+}
+.auto-mini .rama { fill: none; stroke: rgba(232, 242, 239, .28); stroke-width: 2; stroke-linecap: round; }
+.auto-mini .cruz { fill: none; stroke: rgba(232, 242, 239, .45); stroke-width: 2.5; stroke-linecap: round; }
+.auto-mini .apagado { fill: #0a141d; stroke: rgba(232, 242, 239, .35); stroke-width: 2; }
+
+/* se animan solo cuando se ven (.anima en .auto-opciones) */
+.auto-opciones.anima .dato { animation: auto-dato 2.2s ease-in-out infinite; }
+.auto-opciones.anima .luz  { animation: auto-luz-mini 2.4s linear infinite; }
+.auto-opciones.anima .rama { animation: auto-rama 2.8s ease-in-out infinite; }
+.auto-opciones.anima .rama.r2 { animation-delay: .35s; }
+.auto-opciones.anima .rama.r3 { animation-delay: .7s; }
+.auto-opciones.anima .rama.r4 { animation-delay: 1.05s; }
+@keyframes auto-dato {
+  0%   { transform: translateX(0); opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateX(110px); opacity: 0; }
+}
+@keyframes auto-luz-mini {
+  0%   { stroke-dashoffset: 26; opacity: 1; }
+  80%  { stroke-dashoffset: -150; opacity: 1; }
+  100% { stroke-dashoffset: -150; opacity: 0; }
+}
+@keyframes auto-rama {
+  0%, 60%, 100% { stroke: rgba(232, 242, 239, .28); }
+  20%           { stroke: var(--acc2); }
+}
+
+/* ---------- 4. Preguntas frecuentes desplegables ---------- */
+.auto-faq { border-top: 1px solid rgba(232, 242, 239, .14); }
+.auto-pregunta { border-bottom: 1px solid rgba(232, 242, 239, .14); interpolate-size: allow-keywords; }
+.auto-pregunta summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 26px 0; cursor: pointer; list-style: none;
+}
+.auto-pregunta summary::-webkit-details-marker { display: none; }
+.auto-pregunta summary h3 {
+  margin: 0; font-size: 21px; font-weight: 500; line-height: 1.35; color: #f8f8f8;
+  transition: color .25s;
+}
+.auto-pregunta summary:hover h3,
+.auto-pregunta summary:focus-visible h3 { color: var(--acc2); }
+.auto-pregunta summary:focus-visible { outline: 2px solid var(--acc2); outline-offset: 4px; }
+/* el + que pasa a × */
+.auto-mas { position: relative; flex: none; width: 22px; height: 22px; transition: transform .3s cubic-bezier(.22, .8, .3, 1); }
+.auto-mas::before,
+.auto-mas::after {
+  content: ''; position: absolute; left: 50%; top: 50%; width: 18px; height: 2px;
+  margin: -1px 0 0 -9px; border-radius: 2px; background: var(--acc2);
+}
+.auto-mas::after { transform: rotate(90deg); }
+.auto-pregunta[open] .auto-mas { transform: rotate(45deg); }
+.auto-respuesta p {
+  margin: 0; padding: 0 46px 28px 0; max-width: 62ch;
+  font-size: 16.5px; line-height: 1.7; color: rgba(232, 242, 239, .78);
+}
+.auto-pregunta[open] .auto-respuesta { animation: auto-abre .35s ease-out; }
+@keyframes auto-abre { from { opacity: 0; transform: translateY(-6px); } }
+/* donde el navegador lo permite, además se despliega con suavidad */
+.auto-pregunta::details-content {
+  block-size: 0; overflow: hidden;
+  transition: block-size .35s cubic-bezier(.22, .8, .3, 1), content-visibility .35s allow-discrete;
+}
+.auto-pregunta[open]::details-content { block-size: auto; }
+
+/* ---------- móvil ---------- */
+@media (max-width: 960px) {
+  .auto-opciones { grid-template-columns: repeat(2, 1fr); }
+  .auto-opcion:nth-child(3) { border-left: 0; }
+  .auto-opcion:nth-child(n+3) { border-top: 1px solid rgba(232, 242, 239, .14); }
+}
 @media (max-width: 760px) {
   .auto-flujo { margin-top: 44px; }
   .auto-flujo-pie { font-size: 12.5px; }
   /* el dibujo se encoge a un tercio: trazos más gruesos para que se vean */
-  .auto-enredo { stroke-width: 5; stroke-dasharray: 14 16; }
-  .auto-recta { stroke-width: 5; }
+  .auto-traza { stroke-width: 5; }
   .auto-luz { stroke-width: 10; }
   .auto-nodo { stroke-width: 5; }
+  .auto-onda { stroke-width: 4; }
   .auto-linea { padding-left: 28px; }
   .auto-paso { grid-template-columns: 1fr; gap: 14px; padding: 32px 0; }
   .auto-paso::before { left: -28px; top: 40px; }
   .auto-num { font-size: 72px; }
   .auto-paso h3 { font-size: 21px; margin-top: 0; }
+  .auto-intro { font-size: 16.5px; margin-bottom: 32px; }
+  .auto-opciones { grid-template-columns: 1fr; }
+  .auto-opcion { padding: 28px 0 30px; }
+  .auto-opcion + .auto-opcion { border-left: 0; border-top: 1px solid rgba(232, 242, 239, .14); }
+  .auto-mini { max-width: 170px; }
+  .auto-pregunta summary { padding: 22px 0; }
+  .auto-pregunta summary h3 { font-size: 18px; }
+  .auto-respuesta p { padding-right: 0; font-size: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .auto-flujo-pie { opacity: 1; animation: none; }
-  .auto-enredo { animation: none; opacity: 0; }
-  .auto-recta { animation: none; stroke-dashoffset: 0; }
-  .auto-luz { animation: none; opacity: 0; }
-  .auto-nodo { animation: none; stroke: rgba(var(--acc-rgb), .9); }
+  .auto-flujo, .auto-flujo-pie, .auto-nodo, .auto-mas { transition: none; }
+  .auto-onda.ping { animation: none; }
   .auto-paso::before, .auto-num { transition: none; }
+  .auto-opciones.anima .dato,
+  .auto-opciones.anima .luz,
+  .auto-opciones.anima .rama { animation: none; }
+  .auto-pregunta[open] .auto-respuesta { animation: none; }
+  .auto-pregunta::details-content { transition: none; }
 }
