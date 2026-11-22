@@ -173,18 +173,27 @@ título tienen que **verse** y llevar lo que la gente escribe en Google
 «ciberseguridad empresas Tenerife», «empresas ciberseguridad Canarias»,
 «automatizar procesos en mi empresa»).
 
+- **Enfoque (22-nov-2026, Álvaro): que le encuentren por la consultoría de IA.
+  La ciberseguridad es un añadido, no lo que se posiciona:** fuera de títulos,
+  H1 y H2. No crear página de ciberseguridad. Estudio de palabras clave en
+  `../aeo/clientes/aimanganell/palabras-clave-2026-11-22.md`.
 - **H1** (`.hero-kicker`, frase corta encima del gancho, como la de
-  /consultoria/): «Consultoría de IA y ciberseguridad para empresas en
+  /consultoria/): «Consultoría de IA para empresas en Tenerife y Canarias».
+  Título de pestaña: «AI MANGANELL - Consultoría de IA para empresas en
   Tenerife y Canarias».
+- **/consultoria/**: el H1 es la frase pequeña (`h1.p2-kicker`): «Consultoría
+  de IA para pymes que no quieren romper lo que ya funciona». El gancho grande
+  es `<p class="p2-hook">`. Título: «Consultoría de IA para pymes: diagnóstico
+  AI & Cyber AMG™ - AI MANGANELL».
 - El gancho grande («Sabes que deberías usar IA…») sigue igual, pero es un
   `<p class="hero-hook">`, no un título. No volver a hacerlo H1: dos H1
   confunden a Google.
-- **H2 del formulario**: «Pide tu diagnóstico de IA y ciberseguridad» (el
-  enlace a /consultoria/ va en «IA y ciberseguridad»). El nombre AI & Cyber
+- **H2 del formulario**: «Pide tu diagnóstico de IA» (el enlace a
+  /consultoria/ va en «diagnóstico de IA»). El nombre AI & Cyber
   AMG™ sigue en el menú y en /consultoria/.
 - **H2 + tres H3** en la sección `.srv-home`, debajo del formulario:
-  «Automatización con IA y ciberseguridad para pymes» → «Automatización de
-  procesos con IA», «Ciberseguridad para empresas», «Diseño y desarrollo
+  «Consultoría de IA y automatización para pymes» → «Automatización de
+  procesos con IA», «Con la seguridad revisada», «Diseño y desarrollo
   web en Tenerife». Filas con línea fina, sin tarjetas ni iconos. Cada una
   enlaza a /consultoria/, /blog/ y /diseno-web/. Textos sacados de
   /consultoria/ y `llms.txt`: no añadir promesas ni cifras que no estén allí.
