@@ -41,6 +41,9 @@
 /* H1 = frase pequeña de arriba con lo que se busca en Google (22-nov-2026,
    Keyword Planner: «diseño web tenerife»). El título grande es un <p>. */
 .tr-kicker { margin: 0 auto 26px; max-width: 40em; text-wrap: balance; }
+/* /automatizacion-procesos-ia/ usa esta misma cabecera (22-nov-2026) */
+.auto-cab-cta { margin-top: 34px; }
+.tr-hecho.auto-incluye { margin: 18px 0 0; }
 .tr-entradilla {
   margin: 26px auto 0; max-width: 40em;
   font-size: 20px; line-height: 1.55; color: rgba(232, 242, 239, .72);

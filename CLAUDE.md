@@ -170,14 +170,15 @@ que sale del diagnóstico. Textos sacados de su método
 (`modelo-agencia-ia-y-cyber.md`), /consultoria/ y `llms.txt`. **Sin precio ni
 plazo de AMG MAX™** hasta que Álvaro los dé. Las preguntas frecuentes están
 dos veces (HTML y `FAQPage` del JSON-LD): si se cambia una, cambiar las dos.
-**Mismo estilo que /consultoria/ (22-nov-2026, Álvaro: «adáptala completamente
-al estilo de las demás»):** `#page2`, `.p2-hero`, `.fmt-360`, tarjetas, manifiesto
-y la caja final (`.total-box`). Si cambia el estilo de consultoría, cambiar
-también este. Las preguntas frecuentes usan las filas de la portada (`.srv-fila`).
-**Solo lleva lo necesario para posicionar «automatización» y da pie a AI &
-Cyber AMG™ (Álvaro):** sin formulario, sin precios del diagnóstico y sin
-garantías, que están en /consultoria/; los dos botones (arriba y la caja final)
-llevan allí. Está en el sitemap (`STATIC_PAGES`), en `llms.txt` y la enlaza la
+**Es una página para EXPLICAR, no para vender (22-nov-2026, Álvaro):** con el
+estilo de /consultoria/ «parecían una copia que dice cosas distintas y
+confunde». Va con el estilo de /diseno-web/ (`.tr`, `.tr-cab`, `.tr-cierre`,
+`.tr-hecho`) y las filas de la portada (`.srv-fila`): título grande, filas con
+línea fina, sin tarjetas. **Solo lleva lo necesario para posicionar
+«automatización» y da pie a AI & Cyber AMG™:** sin formulario, sin precios del
+diagnóstico y sin garantías, que están en /consultoria/ (la página de venta);
+los botones de arriba y del cierre llevan allí. No volver a darle el aspecto de
+consultoría. Está en el sitemap (`STATIC_PAGES`), en `llms.txt` y la enlaza la
 portada.
 
 ## Menú (22-nov-2026, Álvaro)
