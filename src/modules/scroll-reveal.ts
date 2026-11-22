@@ -3,6 +3,7 @@ import { $$ } from './utils';
 /* ---------- 9 · reveal al hacer scroll (una sola vez) ---------- */
 const REVEAL_SELECTORS = [
   '#home #formulario',
+  '#home .srv-fila',
   '#page2 .sec > .wrap.guarantee-bar',
   '#page2 .sec > .wrap:not(.guarantee-bar) > *',
   '#page2 .manifiesto > *',

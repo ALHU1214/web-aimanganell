@@ -164,3 +164,28 @@ Nunca barra `|` ni punto `·`. La home es la única con la marca delante
 (`AI MANGANELL - Consultoría de IA y ciberseguridad en Canarias`), a propósito.
 Los posts del blog salen de `scripts/build-blog.js` y `scripts/post-template.html`,
 que ya lo llevan así.
+
+## Portada: títulos H1, H2 y H3 (22-nov-2026, Álvaro)
+
+Álvaro: «nadie va a buscar "Solicita tu AI & Cyber"». Los tres niveles de
+título tienen que **verse** y llevar lo que la gente escribe en Google
+(sacado de las sugerencias de Google: «consultoría IA para empresas/pymes»,
+«ciberseguridad empresas Tenerife», «empresas ciberseguridad Canarias»,
+«automatizar procesos en mi empresa»).
+
+- **H1** (`.hero-kicker`, frase corta encima del gancho, como la de
+  /consultoria/): «Consultoría de IA y ciberseguridad para empresas en
+  Tenerife y Canarias».
+- El gancho grande («Sabes que deberías usar IA…») sigue igual, pero es un
+  `<p class="hero-hook">`, no un título. No volver a hacerlo H1: dos H1
+  confunden a Google.
+- **H2 del formulario**: «Pide tu diagnóstico de IA y ciberseguridad» (el
+  enlace a /consultoria/ va en «IA y ciberseguridad»). El nombre AI & Cyber
+  AMG™ sigue en el menú y en /consultoria/.
+- **H2 + tres H3** en la sección `.srv-home`, debajo del formulario:
+  «Automatización con IA y ciberseguridad para pymes» → «Automatización de
+  procesos con IA», «Ciberseguridad para empresas», «Diseño y desarrollo
+  web en Tenerife». Filas con línea fina, sin tarjetas ni iconos. Cada una
+  enlaza a /consultoria/, /blog/ y /diseno-web/. Textos sacados de
+  /consultoria/ y `llms.txt`: no añadir promesas ni cifras que no estén allí.
+- Estilos en `src/styles/hero.css`.
