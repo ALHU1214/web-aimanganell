@@ -9,6 +9,7 @@ import { initScrollReveal } from './modules/scroll-reveal';
 import { initMenuMovil } from './modules/menu-movil';
 import { initParticulas } from './modules/particulas';
 import { initTrabajos, initIndiceTrabajos } from './modules/trabajos';
+import { initPasosAutomatizacion, initFlujoAutomatizacion } from './modules/automatizacion';
 import { config } from './config';
 
 /* ============================================================
@@ -32,5 +33,7 @@ import { config } from './config';
   initParticulas();
   initTrabajos();        // antes que el índice: alarga cada proyecto y así
   initIndiceTrabajos();  // un enlace con #slug cae en su sitio
+  initPasosAutomatizacion();
+  initFlujoAutomatizacion();
 })();
 

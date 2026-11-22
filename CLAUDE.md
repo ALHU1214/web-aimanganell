@@ -181,6 +181,15 @@ los botones de arriba y del cierre llevan allí. No volver a darle el aspecto de
 consultoría. Está en el sitemap (`STATIC_PAGES`), en `llms.txt` y la enlaza la
 portada.
 
+**Efectos (22-nov-2026, Álvaro: «está todo muy texto; algo visual para las
+numeraciones, sin que parezca la de AI & Cyber»):** en `src/styles/automatizacion.css`
+y `src/modules/automatizacion.ts`. (1) Bajo el título, puntos desordenados que
+se alinean y una luz que recorre la línea: «primero se ordena, después se
+automatiza». Arranca al entrar en pantalla (`.anima`). (2) Los cuatro pasos con
+números de contorno 01-04 (como los de /diseno-web/) y una línea a la
+izquierda que se llena al bajar; cada número se enciende al llegar a su paso.
+Con «reducir movimiento», todo quieto en su estado final.
+
 ## Menú (22-nov-2026, Álvaro)
 
 **AUTOMATIZACIÓN · AI & CYBER AMG™ · DISEÑO WEB · BLOG · CONTACTO.** Sin HOME:
