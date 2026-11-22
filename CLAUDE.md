@@ -170,10 +170,24 @@ que sale del diagnóstico. Textos sacados de su método
 (`modelo-agencia-ia-y-cyber.md`), /consultoria/ y `llms.txt`. **Sin precio ni
 plazo de AMG MAX™** hasta que Álvaro los dé. Las preguntas frecuentes están
 dos veces (HTML y `FAQPage` del JSON-LD): si se cambia una, cambiar las dos.
-Usa los estilos de /diseno-web/ (`.tr`, `.tr-cab`, `.tr-cierre`) y las filas de
-la portada (`.srv-fila`). Está en el sitemap (`STATIC_PAGES`) y en `llms.txt`,
-y la enlaza la fila «Automatización de procesos con IA» de la portada. No
-está en el menú.
+**Mismo estilo que /consultoria/ (22-nov-2026, Álvaro: «adáptala completamente
+al estilo de las demás»):** `#page2`, `.p2-hero`, `.fmt-360`, tarjetas, barra de
+garantía, manifiesto, formulario y «Garantía Total». Si cambia el estilo de
+consultoría, cambiar también este. Las preguntas frecuentes usan las filas de
+la portada (`.srv-fila`). El formulario es el de consultoría (`lead-form-2`):
+los leads entran con origen «Consultoría». Está en el sitemap
+(`STATIC_PAGES`), en `llms.txt` y la enlaza la portada.
+
+## Menú (22-nov-2026, Álvaro)
+
+**AUTOMATIZACIÓN · AI & CYBER AMG™ · DISEÑO WEB · BLOG · CONTACTO.** Sin HOME:
+el logo lleva a la portada. Automatización va primero porque es lo que busca
+el cliente y lleva al diagnóstico (Álvaro: «que primero vaya automatización y
+que eso dé pie a mi diagnóstico»). El nombre AI & Cyber AMG™ se queda en el
+menú (término medio). Está en todas las páginas y en las dos plantillas del
+blog de `scripts/`. Tamaños medidos cada 5 px de 700 a 1920 px en
+`src/styles/nav.css`: al menos 40 px entre logo y menú. Si se cambia un texto
+del menú, volver a medir.
 
 ## Títulos de pestaña: con guion
 

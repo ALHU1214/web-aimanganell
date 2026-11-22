@@ -105,8 +105,8 @@
   <button type="button" class="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
     <span></span><span></span><span></span>
   </button>
-  <div class="nav-links" id="nav-links">
-    <a href="/" class="nav-link">HOME</a>
+  <div class="nav-links" id="nav-links">
+    <a href="/automatizacion-procesos-ia/" class="nav-link" aria-current="page">AUTOMATIZACIÓN</a>
     <a href="/consultoria/" class="nav-link">AI &amp; CYBER AMG™</a>
     <a href="/diseno-web/" class="nav-link">DISEÑO WEB</a>
     <a href="/blog/" class="nav-link">BLOG</a>
@@ -118,120 +118,222 @@
      22-nov-2026: página para «automatización de procesos con ia» (Keyword
      Planner, España: 100-1.000 búsquedas al mes). Explica AMG MAX™: el
      desarrollo y la implantación de lo que sale del diagnóstico (Álvaro).
-     Textos sacados de su método, /consultoria/ y llms.txt: no añadir
-     promesas, plazos ni precios de AMG MAX™ que Álvaro no haya dado.
-     Mismos estilos que /diseno-web/ (cabecera y cierre) y las filas de la
-     portada (.srv-fila): sin tarjetas ni iconos. -->
-<div class="page">
-  <main class="tr">
-
-    <header class="tr-cab">
-      <h1 class="p2-kicker tr-kicker rise d1">Automatización de procesos con IA para empresas</h1>
-      <p class="tr-titulo rise d1">Primero se ordena. <span class="c-blue">Después se automatiza.</span></p>
-      <p class="tr-entradilla rise d2">Automatizar un proceso que funciona mal solo hace que falle más rápido. Por eso empezamos por entender cómo trabaja tu empresa, y después implantamos la IA y las automatizaciones solo donde de verdad te ahorran tiempo.</p>
-    </header>
-
-    <section class="srv-home" aria-labelledby="como-titulo">
-      <h2 class="sec-title" id="como-titulo">Cómo implantamos la automatización con IA</h2>
-      <div class="srv-fila">
-        <h3>1. Ordenamos tus procesos</h3>
-        <div class="srv-texto">
-          <p>Dibujamos cómo se trabaja hoy de verdad en marketing, ventas, entrega del servicio y administración, no cómo debería ser. Ahí aparece dónde se pierde el tiempo.</p>
-        </div>
-      </div>
-      <div class="srv-fila">
-        <h3>2. Quitamos lo que sobra</h3>
-        <div class="srv-texto">
-          <p>Antes de automatizar nada, eliminamos los pasos innecesarios y los cuellos de botella. Primero se optimiza; después se automatiza.</p>
-        </div>
-      </div>
-      <div class="srv-fila">
-        <h3>3. Revisamos la seguridad</h3>
-        <div class="srv-texto">
-          <p>Cada automatización se revisa desde los accesos, los datos, las dependencias y los riesgos técnicos y humanos. Si no es segura, no la proponemos.</p>
-          <a class="srv-link" href="/consultoria/">Estos tres pasos son el diagnóstico AI &amp; Cyber AMG™ <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-      <div class="srv-fila">
-        <h3>4. Lo implantamos: AMG MAX™</h3>
-        <div class="srv-texto">
-          <p>Si decides seguir con nosotros, desarrollamos e implantamos las automatizaciones y las mejoras que salieron del diagnóstico. Por fases y en el orden que se decidió por impacto y riesgo, cuidando la calidad y la seguridad de cada paso.</p>
-        </div>
+     Misma estructura y estilos que /consultoria/ (#page2, .p2-*, .fmt-360):
+     si se cambia el estilo de consultoría, cambia también este.
+     Textos sacados del método de Álvaro, /consultoria/ y llms.txt: no
+     añadir promesas, plazos ni precios de AMG MAX™ que Álvaro no haya dado.
+     El formulario es el de consultoría (lead-form-2): los leads entran con
+     origen «Consultoría». -->
+<div id="page2" class="page">
+    <div class="p2-body">
+    <!-- PORTADA -->
+    <section class="p2-hero">
+      <div class="p2-hero-copy">
+        <h1 class="p2-kicker">Automatización de procesos con IA para empresas</h1>
+        <p class="p2-hook">Automatiza tu empresa con IA sin automatizar el desorden</p>
+        <p>Primero ordenamos cómo trabaja tu empresa. Después desarrollamos e implantamos las automatizaciones que de verdad te ahorran tiempo, con la seguridad revisada en cada paso.</p>
+        <a href="#contacto" class="btn-acc btn-round btn-palpita">Empezar por el diagnóstico</a>
       </div>
     </section>
 
-    <section class="srv-home" aria-labelledby="agentes-titulo">
-      <h2 class="sec-title" id="agentes-titulo">¿Automatización o agentes de IA para tu empresa?</h2>
-      <div class="srv-fila">
-        <h3>Lo decide tu empresa, no la moda</h3>
-        <div class="srv-texto">
-          <p>A veces basta con conectar las herramientas que ya usas. Otras, tiene sentido un agente de IA que haga parte del trabajo. Y en algunos procesos la IA no merece la pena. El diagnóstico te dice qué conviene en cada caso y por qué.</p>
+    <main class="p2-tiled fmt-360">
+      <!-- CÓMO LO HACEMOS -->
+      <section class="sec">
+        <div class="wrap wrap-wide">
+          <h2 class="sec-title">Cómo implantamos la automatización con IA</h2>
+          <div class="ben-grid">
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">🗺️</span>
+              <p>Ordenamos tus procesos: dibujamos cómo se trabaja de verdad en marketing, ventas, entrega del servicio y administración.</p>
+            </div>
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">✂️</span>
+              <p>Quitamos lo que sobra: pasos innecesarios y cuellos de botella fuera antes de automatizar nada.</p>
+            </div>
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">🔒</span>
+              <p>Revisamos la seguridad: accesos, datos y dependencias. Si una automatización no es segura, no la proponemos.</p>
+            </div>
+            <div class="ben-card">
+              <span class="ben-ico" aria-hidden="true">⚙️</span>
+              <p>La implantamos por fases, en el orden decidido por impacto y riesgo: es el proyecto AMG MAX™.</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Preguntas frecuentes: las mismas que el FAQPage del JSON-LD. Si se
-         cambia una, cambiar las dos. El precio, al final. -->
-    <section class="srv-home" aria-labelledby="faq-titulo">
-      <h2 class="sec-title" id="faq-titulo">Preguntas frecuentes</h2>
-      <div class="srv-fila">
-        <h3>¿Podéis automatizar sin hacer antes el diagnóstico?</h3>
-        <div class="srv-texto">
-          <p>No. Sin entender antes cómo trabaja tu empresa, automatizaríamos a ciegas y podríamos acelerar un proceso que está mal hecho. El diagnóstico AI &amp; Cyber AMG™ es siempre el primer paso.</p>
+      <!-- GARANTÍA -->
+      <section class="sec sec-tight">
+        <div class="wrap wrap-wide guarantee-bar">
+          <p><span class="c-acc">✓</span> 100% del coste del diagnóstico se descuenta si contratas AMG MAX™ en los 30 días siguientes.</p>
         </div>
-      </div>
-      <div class="srv-fila">
-        <h3>¿Y si después no contrato la implantación?</h3>
-        <div class="srv-texto">
-          <p>Te quedas con el diagnóstico: sabrás qué procesos fallan, qué automatizar, en qué orden y con qué riesgos. Tiene valor por sí mismo.</p>
-        </div>
-      </div>
-      <div class="srv-fila">
-        <h3>¿Trabajáis solo en Tenerife?</h3>
-        <div class="srv-texto">
-          <p>Tenemos la base en Tenerife. Trabajamos de forma presencial en Canarias y en remoto con empresas de toda España.</p>
-        </div>
-      </div>
-      <div class="srv-fila">
-        <h3>¿Cuánto cuesta?</h3>
-        <div class="srv-texto">
-          <p>El diagnóstico cuesta desde 1.200 € y se entrega en 10–15 días; el importe final depende de la complejidad y el alcance. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico. Si la contratas en los 30 días siguientes, el importe del diagnóstico se descuenta íntegro.</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="tr-cierre">
-      <h2 class="tr-cierre-titulo">¿Qué automatizamos <span class="c-blue">en tu empresa?</span></h2>
-      <p>Empieza por el diagnóstico AI &amp; Cyber AMG™: en 10–15 días sabrás qué automatizar, en qué orden y qué riesgos tiene cada paso.</p>
-      <div class="tr-cierre-botones">
-        <a href="/consultoria/#contacto" class="btn-acc btn-round btn-palpita tr-cierre-cta">Pide tu diagnóstico</a>
-        <a href="/contacto-aimanganell/" class="btn-info">Escríbenos <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
-  </main>
+      <!-- QUÉ INCLUYE AMG MAX -->
+      <section class="sec" id="amg-max">
+        <div class="wrap">
+          <h2 class="sec-title">¿Qué incluye AMG MAX™?</h2>
+          <div class="obt-grid">
+            <div class="obt-item"><span class="tick">✓</span><span>Llevar a la realidad el plan que sale del diagnóstico</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Desarrollo e implantación de las automatizaciones</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>IA integrada solo donde aporta valor</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Coordinación de la tecnología y de los procesos</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Implantación por fases, priorizada por impacto y riesgo</span></div>
+            <div class="obt-item"><span class="tick">✓</span><span>Seguridad y calidad revisadas en cada paso</span></div>
+          </div>
+          <div class="obt-facts">
+            <div class="obt-fact">
+              <span class="obt-fact-label">Se empieza por</span>
+              <span class="obt-fact-value">Diagnóstico</span>
+              <p class="obt-facts-note">(AI &amp; Cyber AMG™, 10–15 días)</p>
+            </div>
+            <div class="obt-fact">
+              <span class="obt-fact-label">Inversión</span>
+              <span class="obt-fact-value">A medida</span>
+              <p class="obt-facts-note">(se fija con el plan del diagnóstico)</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer>
-    <div class="foot-brand-row">
-      <img class="foot-logo" src="../assets/logos/horizontal-x.webp" srcset="../assets/logos/horizontal-x-240.webp 1x, ../assets/logos/horizontal-x.webp 2x" alt="AI MANGANELL" width="469" height="80">
-      <div class="foot-social" role="group" aria-label="Redes sociales">
-        <a href="https://www.linkedin.com/in/alvaromanganell" target="_blank" rel="me noopener" aria-label="LinkedIn de Álvaro Manganell"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <!-- AUTOMATIZACIÓN O AGENTES -->
+      <section class="sec">
+        <div class="wrap">
+          <h2 class="sec-title">¿Automatización o agentes de IA para tu empresa?</h2>
+          <div class="para-grid">
+            <div class="para-item"><span class="tick">✓</span><span>A veces basta con conectar las herramientas que ya usas</span></div>
+            <div class="para-item"><span class="tick">✓</span><span>Otras, tiene sentido un agente de IA que haga parte del trabajo</span></div>
+            <div class="para-item"><span class="tick">✓</span><span>En algunos procesos la IA no merece la pena, y te lo decimos</span></div>
+            <div class="para-item"><span class="tick">✓</span><span>El diagnóstico decide qué conviene en cada caso y por qué</span></div>
+          </div>
+          <div class="para-not"><span class="cross">✗</span><span>No automatizamos procesos que nadie ha ordenado antes</span></div>
+        </div>
+      </section>
+
+      <!-- PREGUNTAS FRECUENTES: las mismas que el FAQPage del JSON-LD. Si se
+           cambia una, cambiar las dos. El precio, al final. -->
+      <section class="sec">
+        <div class="wrap">
+          <h2 class="sec-title">Preguntas frecuentes</h2>
+          <div class="srv-fila">
+            <h3>¿Podéis automatizar sin hacer antes el diagnóstico?</h3>
+            <div class="srv-texto"><p>No. Sin entender antes cómo trabaja tu empresa, automatizaríamos a ciegas y podríamos acelerar un proceso que está mal hecho. El diagnóstico AI &amp; Cyber AMG™ es siempre el primer paso.</p></div>
+          </div>
+          <div class="srv-fila">
+            <h3>¿Y si después no contrato la implantación?</h3>
+            <div class="srv-texto"><p>Te quedas con el diagnóstico: sabrás qué procesos fallan, qué automatizar, en qué orden y con qué riesgos. Tiene valor por sí mismo.</p></div>
+          </div>
+          <div class="srv-fila">
+            <h3>¿Trabajáis solo en Tenerife?</h3>
+            <div class="srv-texto"><p>Tenemos la base en Tenerife. Trabajamos de forma presencial en Canarias y en remoto con empresas de toda España.</p></div>
+          </div>
+          <div class="srv-fila">
+            <h3>¿Cuánto cuesta?</h3>
+            <div class="srv-texto"><p>El diagnóstico cuesta desde 1.200 € y se entrega en 10–15 días; el importe final depende de la complejidad y el alcance. El alcance y el precio de la implantación (AMG MAX™) se fijan a partir del plan que sale del diagnóstico. Si la contratas en los 30 días siguientes, el importe del diagnóstico se descuenta íntegro.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MANIFIESTO -->
+      <section class="manifiesto">
+        <p>Primero se ordena,<br><span class="c-acc">después se automatiza.</span></p>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" class="contacto">
+        <div class="contacto-head">
+          <h2>Solicita tu <span class="hl">AI &amp; Cyber AMG™</span></h2>
+        </div>
+        <section id="formulario-contacto" class="form-sec">
+          <div class="form-stack">
+            <div class="form-shadow"></div>
+            <div class="form-card" data-m="form-card">
+              <form class="lead-form lead-form-2" novalidate>
+                <div class="field-wrap">
+                  <label for="p2-nombre">Nombre <span class="req">*</span></label>
+                  <input class="field" id="p2-nombre" name="nombre" type="text" autocomplete="name" maxlength="50">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-empresa">Empresa <span class="req">*</span></label>
+                  <input class="field" id="p2-empresa" name="empresa" type="text" autocomplete="organization" maxlength="50">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-biz">Tipo de negocio <span class="req">*</span></label>
+                  <select class="field field-select" id="p2-biz" name="biz">
+                    <option value="">Selecciona una opción</option>
+                    <option value="servicios-profesionales">Servicios profesionales (asesoría, legal, ingeniería)</option>
+                    <option value="industria">Industria y manufactura</option>
+                    <option value="construccion">Construcción e instalaciones</option>
+                    <option value="logistica">Logística y transporte</option>
+                    <option value="distribucion">Distribución y comercio B2B</option>
+                    <option value="tecnologia">Tecnología y software</option>
+                    <option value="salud">Salud y clínicas</option>
+                    <option value="inmobiliaria">Inmobiliaria y patrimonio</option>
+                    <option value="turismo">Turismo y hostelería</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-email">Email <span class="req">*</span></label>
+                  <input class="field" id="p2-email" name="email" type="email" autocomplete="email">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-tel">Teléfono <span class="req">*</span></label>
+                  <input class="field" id="p2-tel" name="telefono" type="tel" autocomplete="tel" maxlength="15">
+                </div>
+                <div class="field-wrap">
+                  <label for="p2-msg">¿Qué te gustaría mejorar con IA? <span class="opt">(opcional)</span></label>
+                  <textarea class="field autogrow" id="p2-msg" name="mensaje" rows="3" maxlength="300" placeholder="Describe brevemente tus principales desafíos o áreas que quieres optimizar..."></textarea>
+                </div>
+                <label class="consent">
+                  <input type="checkbox" name="acepta">
+                  <span>He leído y acepto la <a href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a> y el tratamiento de mis datos para ser contactado.</span>
+                </label>
+                <div class="turnstile-box"></div>
+                <p class="form-error" hidden></p>
+                <button type="submit" class="btn-acc btn-submit">Quiero que me contacten</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- GARANTÍA TOTAL -->
+      <section class="sec-total">
+        <div class="total-box">
+          <h2>Garantía Total</h2>
+          <p>100% del coste se descuenta si decides avanzar al proyecto completo <strong>AMG MAX™</strong> en los siguientes 30 días.</p>
+          <div class="plazas">
+            <span class="plazas-bang">!</span>
+            <span><strong>Plazas limitadas al mes</strong> para garantizar la calidad del trabajo.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+      <div class="foot-brand-row">
+        <img class="foot-logo" src="../assets/logos/horizontal-x.webp" srcset="../assets/logos/horizontal-x-240.webp 1x, ../assets/logos/horizontal-x.webp 2x" alt="AI MANGANELL" width="469" height="80">
+        <div class="foot-social" role="group" aria-label="Redes sociales">
+          <a href="https://www.linkedin.com/in/alvaromanganell" target="_blank" rel="me noopener" aria-label="LinkedIn de Álvaro Manganell"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+        </div>
       </div>
-    </div>
-    <div class="foot-legal">
-      <a class="foot-link" href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a>
-      <a class="foot-link" href="/legal/cookies/" data-legal="cookies">Política de Cookies</a>
-      <a class="foot-link" href="/legal/aviso-legal/" data-legal="aviso">Aviso Legal</a>
-      <a class="foot-link foot-link-subtle" href="#" id="reopen-cookies">Configurar cookies</a>
-    </div>
-    <div class="foot-email">
-      <a class="foot-link" href="mailto:contacto@aimanganell.com">contacto@aimanganell.com</a>
-    </div>
-    <div class="foot-symbol">
-      <img src="../assets/logos/simbolo-a.webp" alt="AI MANGANELL" width="200" height="200">
-    </div>
-    <p class="foot-copy">© 2026 AI MANGANELL, todos los derechos reservados</p>
-  </footer>
+      <div class="foot-legal">
+        <a class="foot-link" href="/legal/privacidad/" data-legal="priv">Política de Privacidad</a>
+        <a class="foot-link" href="/legal/cookies/" data-legal="cookies">Política de Cookies</a>
+        <a class="foot-link" href="/legal/aviso-legal/" data-legal="aviso">Aviso Legal</a>
+        <a class="foot-link foot-link-subtle" href="#" id="reopen-cookies">Configurar cookies</a>
+      </div>
+      <div class="foot-email">
+        <a class="foot-link" href="mailto:contacto@aimanganell.com">contacto@aimanganell.com</a>
+      </div>
+      <div class="foot-symbol">
+        <img src="../assets/logos/simbolo-a.webp" alt="AI MANGANELL" width="200" height="200">
+      </div>
+      <p class="foot-copy">© 2026 AI MANGANELL, todos los derechos reservados</p>
+    </footer>
+  </div>
 </div>
 
 <!-- ============ COOKIES ============ -->
