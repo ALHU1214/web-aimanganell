@@ -159,6 +159,11 @@
 .tr-marco--escritorio { aspect-ratio: 16 / 10; border-radius: 10px; }
 .tr-marco--movil {
   position: absolute; right: 0; bottom: 0; width: 29%; aspect-ratio: 9 / 19;
+  /* 26-nov-2026: Safari (Mac e iPhone) no respetaba el aspect-ratio en este
+     recuadro absoluto y lo estiraba hasta el largo de toda la captura (se
+     vio en el MacBook del socio; Chrome y Edge sí lo respetan). Con
+     min-height: 0 el alto vuelve a salir del ancho. */
+  min-height: 0;
   border-radius: 20px; border-color: rgba(232, 242, 239, .26);
   box-shadow: 0 30px 70px rgba(0, 0, 0, .7), 0 0 0 6px rgba(6, 22, 29, .9);
 }
