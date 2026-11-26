@@ -293,3 +293,21 @@ IndexNow: para Google, Search Console (inspeccionar URL y reenviar el sitemap).
 La web ya está en **Bing Webmaster Tools** (cuenta de Álvaro, con el sitemap
 enviado desde el 19-nov-2026). Ahí se ven también los avisos de IndexNow y el
 informe «AI Performance» (cuándo cita Copilot la web). A 22-nov-2026: 0 citas.
+
+## Enlaces para WhatsApp: cada uno con su vista previa (26-nov-2026)
+
+Álvaro manda la web por WhatsApp a tres tipos de negocio y la vista previa
+(imagen, título y descripción) tiene que decir lo que le ofrece a cada uno:
+
+- **Automatización:** `aimanganell.com/automatizacion-procesos-ia/`
+- **Web nueva:** `aimanganell.com/diseno-web/`
+- **Mejorar la web que ya tienen:** `aimanganell.com/mejorar-web/`. No es una
+  página de verdad: lleva su propia vista previa y salta a `/diseno-web/` con
+  JavaScript (WhatsApp no lo ejecuta, las personas sí). Sin meta refresh a
+  propósito, `noindex` y fuera del sitemap. No borrarla: la tiene mandada.
+
+Cada una tiene su imagen (`assets/compartir-<nombre>.jpg`, 1200 × 630), hecha
+con `scripts/imagenes-compartir.py` sobre los trazos de `assets/og.jpg`. La
+portada y el resto siguen con `og.jpg`. **Nada de «pymes»** en lo que se ve al
+compartir (Álvaro). Si se cambia una imagen, cambiarle el nombre: WhatsApp
+guarda las vistas previas y las imágenes ya vistas y no se entera del cambio.
