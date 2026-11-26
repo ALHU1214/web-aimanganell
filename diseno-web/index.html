@@ -209,14 +209,34 @@
     </article>
 
     <!-- CIERRE: centrado. El texto lleva las búsquedas de diseño y desarrollo web en Tenerife y Canarias -->
-    <!-- Testimonio (26-nov-2026, Álvaro): frases literales de la reseña de
-         Malik en Google, recortadas, sin cambiar sus palabras. Va aquí y no
-         dentro de Salomn: allí no cabía en los portátiles de 768 px de alto
-         mientras el proyecto se queda quieto. -->
-    <figure class="tr-testimonio">
-      <blockquote><p>«Desde que empezamos a trabajar con él tenemos más clientes. La gente nos conoce más y cada vez viene más.»</p></blockquote>
-      <figcaption>Malik Diop, Salomn Tenerife · <a href="https://www.google.com/maps/place/AI+Manganell/@28.4578204,-16.2863345,13z/data=!4m6!3m5!1s0x438b0830f3365c11:0xb46cbefcc073a7ab!8m2!3d28.4578204!4d-16.2863346!16s%2Fg%2F11zx78xs45" target="_blank" rel="noopener">Reseña en Google</a></figcaption>
-    </figure>
+    <!-- TESTIMONIOS (26-nov-2026, Álvaro: «añade una sección de testimonios y
+         cúralo un poco más»). Misma estructura que un proyecto: a la izquierda
+         comillas grandes de contorno (como los números 01-03) y el título; a la
+         derecha la valoración, la cita y la firma. Las frases son LITERALES de
+         la reseña de Malik en Google (la única publicada a 26-nov-2026),
+         recortadas sin cambiar sus palabras. No poner su cargo: no lo sabemos.
+         Para añadir otra reseña, copiar el <figure> entero. Va fuera de los
+         proyectos: dentro, Salomn no cabía quieto en portátiles de 768 px de alto.
+         Sin «Review» en el JSON-LD: Google no admite reseñas de la propia empresa. -->
+    <section class="tr-testimonios">
+      <div class="tr-testimonios-cabeza">
+        <p class="tr-comilla" aria-hidden="true">«</p>
+        <h2 class="tr-nombre">Lo que dicen nuestros clientes</h2>
+      </div>
+      <figure class="tr-testimonio">
+        <p class="tr-estrellas" role="img" aria-label="5 de 5 estrellas en Google"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></p>
+        <blockquote>
+          <p class="tr-testimonio-frase">Desde que empezamos a trabajar con él tenemos más clientes. La gente nos conoce más y cada vez viene más.</p>
+          <p class="tr-testimonio-mas">Es un chico muy serio, trabajador y siempre está pendiente de las cosas.</p>
+        </blockquote>
+        <figcaption class="tr-testimonio-firma">
+          <img class="tr-testimonio-logo" src="../assets/trabajos/logo-salomn-simbolo.svg" alt="" width="204" height="200" loading="lazy" decoding="async">
+          <span class="tr-testimonio-quien"><strong>Malik Diop</strong><span>Salomn Tenerife</span></span>
+          <a class="tr-ver tr-testimonio-ver" href="https://www.google.com/maps/place/AI+Manganell/@28.4578204,-16.2863345,13z/data=!4m6!3m5!1s0x438b0830f3365c11:0xb46cbefcc073a7ab!8m2!3d28.4578204!4d-16.2863346!16s%2Fg%2F11zx78xs45" target="_blank" rel="noopener">Ver la reseña en Google <span aria-hidden="true">↗</span></a>
+        </figcaption>
+      </figure>
+    </section>
+
 
     <section class="tr-cierre">
       <h2 class="tr-cierre-titulo">¿Y si el próximo <span class="c-blue">es tu negocio?</span></h2>

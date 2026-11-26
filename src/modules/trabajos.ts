@@ -187,3 +187,22 @@ export function initTrabajos(): void {
   marcos.forEach((m) => { m.querySelector('img')?.addEventListener('load', rehacer); });
   rehacer();
 }
+
+/* ---------- testimonios de /diseno-web/ ----------
+   26-nov-2026: las cinco estrellas se encienden una a una cuando la
+   sección llega a la pantalla, como la nota de Google. Sin JavaScript o
+   con «reducir movimiento», se ven encendidas desde el principio. */
+export function initTestimonios(): void {
+  const testimonios = $$<HTMLElement>('.tr-testimonio');
+  if (!testimonios.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('js-estrellas');
+  const io = new IntersectionObserver((entradas) => {
+    entradas.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('anima');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.4 });
+  testimonios.forEach((t) => io.observe(t));
+}

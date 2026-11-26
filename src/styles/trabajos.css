@@ -171,23 +171,57 @@
 .tr-visor:hover .tr-marco--escritorio,
 .tr-visor:focus-visible .tr-marco--escritorio { border-color: rgba(var(--acc-rgb), .6); }
 
-/* ---------- testimonio, antes del cierre ----------
-   26-nov-2026 (Álvaro): frases literales de la reseña de Malik en Google.
-   Centrado y grande, como el título y el cierre; sin tarjeta ni comillas
-   gigantes: la línea azul corta de arriba hace de separador. */
-.tr-testimonio { margin: 0; padding: 130px 0 0; text-align: center; }
-.tr-testimonio::before {
-  content: ''; display: block; width: 56px; height: 2px; margin: 0 auto 34px; background: var(--acc);
+/* ---------- testimonios, antes del cierre ----------
+   26-nov-2026 (Álvaro): «una sección que ponga testimonios, más cuidada».
+   Misma rejilla que un proyecto (5fr | 8fr): a la izquierda unas comillas
+   de contorno como los números 01-03 y el título; a la derecha la
+   valoración, la cita y la firma. Sin tarjetas: líneas finas y la raya
+   azul. Las estrellas se encienden una a una al llegar (trabajos.ts),
+   como la nota de Google; con «reducir movimiento», ya encendidas. */
+.tr-testimonios {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr);
+  column-gap: 56px; align-items: center;
+  padding: 130px 0; border-bottom: 1px solid var(--linea);
 }
+.tr-comilla {
+  margin: 0 0 6px; font-weight: 800; line-height: .7; letter-spacing: 0;
+  font-size: clamp(150px, 16vw, 240px);
+  color: transparent; -webkit-text-stroke: 1.5px rgba(var(--acc-rgb), .8);
+}
+.tr-testimonios .tr-nombre { max-width: 9em; }
+
+.tr-testimonio { margin: 0; padding-left: 34px; border-left: 1px solid var(--linea); }
+.tr-estrellas { display: flex; gap: 6px; margin: 0 0 26px; }
+.tr-estrellas svg { width: 22px; height: 22px; fill: var(--acc); }
 .tr-testimonio blockquote { margin: 0; }
-.tr-testimonio p {
-  margin: 0 auto; max-width: 24em;
-  font-size: clamp(24px, 3vw, 38px); font-weight: 500; line-height: 1.3; letter-spacing: -.02em;
-  color: var(--ink); text-wrap: balance;
+.tr-testimonio-frase {
+  margin: 0; font-size: clamp(26px, 2.7vw, 36px); font-weight: 500; line-height: 1.25;
+  letter-spacing: -.02em; color: var(--ink); text-wrap: pretty;
 }
-.tr-testimonio figcaption { margin-top: 22px; font-size: 16px; color: var(--suave); }
-.tr-testimonio figcaption a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-.tr-testimonio figcaption a:hover, .tr-testimonio figcaption a:focus-visible { color: var(--acc2); }
+.tr-testimonio-mas {
+  margin: 22px 0 0; max-width: 32em;
+  font-size: 18px; line-height: 1.6; color: rgba(232, 242, 239, .72); text-wrap: pretty;
+}
+.tr-testimonio-firma {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 18px;
+  margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--linea);
+}
+.tr-testimonio-logo { height: 46px; width: auto; flex: none; }
+.tr-testimonio-quien { display: flex; flex-direction: column; line-height: 1.35; margin-right: auto; }
+.tr-testimonio-quien strong { font-size: 17px; font-weight: 600; color: var(--ink); }
+.tr-testimonio-quien span { font-size: 15px; color: var(--suave); }
+.tr-testimonio-ver { font-size: 15px; }
+
+/* Estrellas: apagadas hasta que la sección llega a la pantalla */
+.js-estrellas .tr-estrellas svg { opacity: .18; transform: scale(.6); }
+.js-estrellas .tr-testimonio.anima .tr-estrellas svg {
+  animation: tr-estrella .5s cubic-bezier(.34, 1.56, .64, 1) forwards;
+}
+.js-estrellas .tr-testimonio.anima .tr-estrellas svg:nth-child(2) { animation-delay: .12s; }
+.js-estrellas .tr-testimonio.anima .tr-estrellas svg:nth-child(3) { animation-delay: .24s; }
+.js-estrellas .tr-testimonio.anima .tr-estrellas svg:nth-child(4) { animation-delay: .36s; }
+.js-estrellas .tr-testimonio.anima .tr-estrellas svg:nth-child(5) { animation-delay: .48s; }
+@keyframes tr-estrella { to { opacity: 1; transform: none; } }
 
 /* ---------- cierre, centrado ---------- */
 .tr-cierre { padding: 130px 0 120px; text-align: center; }
@@ -263,8 +297,14 @@
   }
   .tr-desc { margin-top: 22px; font-size: 16.5px; }
 
-  .tr-testimonio { padding-top: 84px; }
-  .tr-testimonio figcaption { font-size: 14.5px; }
+  .tr-testimonios { grid-template-columns: minmax(0, 1fr); padding: 76px 0; }
+  .tr-comilla { font-size: 140px; margin-bottom: 0; }
+  .tr-testimonios .tr-nombre { margin-bottom: 30px; }
+  .tr-testimonio { padding-left: 0; border-left: 0; }
+  .tr-estrellas { margin-bottom: 20px; }
+  .tr-testimonio-frase { font-size: 24px; }
+  .tr-testimonio-mas { font-size: 16.5px; margin-top: 18px; }
+  .tr-testimonio-firma { margin-top: 28px; }
   .tr-cierre { padding: 84px 0 90px; }
   .tr-cierre > p { font-size: 16.5px; }
   .tr-cierre-botones { flex-direction: column; align-items: stretch; }

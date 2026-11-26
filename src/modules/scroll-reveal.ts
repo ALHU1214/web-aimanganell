@@ -19,6 +19,8 @@ const REVEAL_SELECTORS = [
   '.gracias-links > a',
   '.tr-escena > .tr-cabeza',
   '.tr-escena > .tr-cuerpo',
+  '.tr-testimonios-cabeza',
+  '.tr-testimonio',
   '.tr-cierre > *'
 ];
 

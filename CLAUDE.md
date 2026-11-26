@@ -166,12 +166,17 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   `aspect-ratio` de un recuadro con `position: absolute`. Se arregla con
   `min-height: 0` en `.tr-marco--movil`. **Comprobar siempre también con
   WebKit** (Playwright `p.webkit`, ya instalado): Chrome y Edge no lo enseñan.
-- **Testimonio (26-nov-2026, Álvaro):** antes del cierre, frases literales
-  de la reseña de Malik Diop en Google (la única publicada), recortadas sin
-  cambiar sus palabras, con enlace a la reseña. No meterlo dentro de un
-  proyecto: con él, el proyecto ya no cabía quieto en portátiles de 768 px de
-  alto. Sin `Review` en el JSON-LD (Google no admite reseñas de la propia
-  empresa en sus datos estructurados).
+- **Testimonios (26-nov-2026, Álvaro: «una sección de testimonios, más
+  cuidada»):** sección `.tr-testimonios` antes del cierre, con la rejilla de
+  un proyecto: comillas de contorno (como los números) y «Lo que dicen
+  nuestros clientes»; a la derecha cinco estrellas que se encienden una a una
+  (`initTestimonios`, `trabajos.ts`), la cita, otra frase y la firma con el
+  símbolo de Salomn y enlace a la reseña. Frases LITERALES de la reseña de
+  Malik Diop en Google (la única publicada), recortadas sin cambiar sus
+  palabras; sin su cargo (no lo sabemos). Para otra reseña, copiar el
+  `<figure>`. No meterla dentro de un proyecto: no cabía quieto en portátiles
+  de 768 px de alto. Sin `Review` en el JSON-LD (Google no admite reseñas de
+  la propia empresa en sus datos estructurados).
 
 ## Página `/automatizacion-procesos-ia/` (22-nov-2026)
 

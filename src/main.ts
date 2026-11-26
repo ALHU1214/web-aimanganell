@@ -8,7 +8,7 @@ import { initGestionCookies } from './modules/gestion-cookies';
 import { initScrollReveal } from './modules/scroll-reveal';
 import { initMenuMovil } from './modules/menu-movil';
 import { initParticulas } from './modules/particulas';
-import { initTrabajos, initIndiceTrabajos } from './modules/trabajos';
+import { initTrabajos, initIndiceTrabajos, initTestimonios } from './modules/trabajos';
 import { initPasosAutomatizacion, initFlujoAutomatizacion, initOpcionesAutomatizacion } from './modules/automatizacion';
 import { config } from './config';
 
@@ -33,6 +33,7 @@ import { config } from './config';
   initParticulas();
   initTrabajos();        // antes que el índice: alarga cada proyecto y así
   initIndiceTrabajos();  // un enlace con #slug cae en su sitio
+  initTestimonios();
   initPasosAutomatizacion();
   initFlujoAutomatizacion();
   initOpcionesAutomatizacion();
