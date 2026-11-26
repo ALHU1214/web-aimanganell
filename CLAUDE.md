@@ -177,6 +177,20 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   `<figure>`. No meterla dentro de un proyecto: no cabía quieto en portátiles
   de 768 px de alto. Sin `Review` en el JSON-LD (Google no admite reseñas de
   la propia empresa en sus datos estructurados).
+  **Con más reseñas (diseño aprobado por Álvaro el 26-nov-2026 con un
+  ejemplo):** el CSS ya está en `trabajos.css` (`.tr-testimonios--varios`).
+  1. A la `<section>` se le añade `tr-testimonios--varios`.
+  2. En `.tr-testimonios-cabeza`, debajo del `h2`, la nota total y el enlace:
+     `<p class="tr-nota"><strong>5,0</strong> <span class="tr-nota-estrellas" aria-hidden="true">(5 estrellas svg)</span><span class="tr-nota-total">N reseñas en Google</span></p>`
+     y `<a class="tr-ver" href="(ficha de Google)" target="_blank" rel="noopener">Verlas todas en Google <span aria-hidden="true">↗</span></a>`.
+     **La nota y el número, los reales de la ficha**: actualizarlos con cada reseña nueva.
+  3. Los `<figure>` van dentro de un `<div class="tr-testimonios-lista">`. El
+     primero, la destacada (como la de Malik, la que habla de resultados);
+     los demás con `class="tr-testimonio tr-testimonio--fila"`: estrellas, una
+     o dos frases literales (sin `.tr-testimonio-mas`), y la firma con el
+     símbolo de su negocio (`logo-<slug>-simbolo.svg`) sin enlace propio.
+  4. Como mucho 4 en la página; el resto se ve con «Verlas todas en Google».
+  Comprobar en ordenador (la columna izquierda se queda fija al bajar) y móvil.
 
 ## Página `/automatizacion-procesos-ia/` (22-nov-2026)
 
