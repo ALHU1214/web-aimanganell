@@ -311,3 +311,8 @@ con `scripts/imagenes-compartir.py` sobre los trazos de `assets/og.jpg`. La
 portada y el resto siguen con `og.jpg`. **Nada de «pymes»** en lo que se ve al
 compartir (Álvaro). Si se cambia una imagen, cambiarle el nombre: WhatsApp
 guarda las vistas previas y las imágenes ya vistas y no se entera del cambio.
+
+**Para que salga la vista previa al enviarlo (26-nov-2026):** el enlace
+completo, con `https://`, y esperar a que aparezca el recuadro con la imagen
+antes de darle a enviar. Escrito como `aimanganell.com/diseno-web/` (sin
+`https://`) o enviado antes de que cargue, WhatsApp manda solo el texto.
