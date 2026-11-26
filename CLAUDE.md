@@ -161,6 +161,18 @@ guardada: no borrarlo. Las carpetas y nombres internos (`assets/trabajos/`,
   (`logo-<slug>-simbolo.svg`) para el índice. Nunca a color: con los colores de
   cada marca la página parece un collage.
 
+- **Safari (26-nov-2026):** en el MacBook del socio el recuadro pequeño del
+  móvil salía estirado hasta el largo de toda la captura: Safari no respeta el
+  `aspect-ratio` de un recuadro con `position: absolute`. Se arregla con
+  `min-height: 0` en `.tr-marco--movil`. **Comprobar siempre también con
+  WebKit** (Playwright `p.webkit`, ya instalado): Chrome y Edge no lo enseñan.
+- **Testimonio (26-nov-2026, Álvaro):** antes del cierre, frases literales
+  de la reseña de Malik Diop en Google (la única publicada), recortadas sin
+  cambiar sus palabras, con enlace a la reseña. No meterlo dentro de un
+  proyecto: con él, el proyecto ya no cabía quieto en portátiles de 768 px de
+  alto. Sin `Review` en el JSON-LD (Google no admite reseñas de la propia
+  empresa en sus datos estructurados).
+
 ## Página `/automatizacion-procesos-ia/` (22-nov-2026)
 
 Para «automatización de procesos con ia» (Keyword Planner, España: 100-1.000

@@ -171,6 +171,24 @@
 .tr-visor:hover .tr-marco--escritorio,
 .tr-visor:focus-visible .tr-marco--escritorio { border-color: rgba(var(--acc-rgb), .6); }
 
+/* ---------- testimonio, antes del cierre ----------
+   26-nov-2026 (Álvaro): frases literales de la reseña de Malik en Google.
+   Centrado y grande, como el título y el cierre; sin tarjeta ni comillas
+   gigantes: la línea azul corta de arriba hace de separador. */
+.tr-testimonio { margin: 0; padding: 130px 0 0; text-align: center; }
+.tr-testimonio::before {
+  content: ''; display: block; width: 56px; height: 2px; margin: 0 auto 34px; background: var(--acc);
+}
+.tr-testimonio blockquote { margin: 0; }
+.tr-testimonio p {
+  margin: 0 auto; max-width: 24em;
+  font-size: clamp(24px, 3vw, 38px); font-weight: 500; line-height: 1.3; letter-spacing: -.02em;
+  color: var(--ink); text-wrap: balance;
+}
+.tr-testimonio figcaption { margin-top: 22px; font-size: 16px; color: var(--suave); }
+.tr-testimonio figcaption a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.tr-testimonio figcaption a:hover, .tr-testimonio figcaption a:focus-visible { color: var(--acc2); }
+
 /* ---------- cierre, centrado ---------- */
 .tr-cierre { padding: 130px 0 120px; text-align: center; }
 .tr-cierre > p {
@@ -245,6 +263,8 @@
   }
   .tr-desc { margin-top: 22px; font-size: 16.5px; }
 
+  .tr-testimonio { padding-top: 84px; }
+  .tr-testimonio figcaption { font-size: 14.5px; }
   .tr-cierre { padding: 84px 0 90px; }
   .tr-cierre > p { font-size: 16.5px; }
   .tr-cierre-botones { flex-direction: column; align-items: stretch; }
